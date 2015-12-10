@@ -13,10 +13,16 @@ namespace DanielIncidentReporting.Controllers
     public class IncidentReportsController : Controller
     {
         private IRTSDBContext db = new IRTSDBContext();
-
         // GET: IncidentReports
         public ActionResult Index()
         {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            if (user != null)
+            {
+                return View(db.IncidentReports.Where(m => m.programName.Equals(user.Program)));
+            }
             return View(db.IncidentReports.ToList());
         }
 
@@ -33,6 +39,11 @@ namespace DanielIncidentReporting.Controllers
                 return HttpNotFound();
             }
             return View(incidentReport);
+        }
+
+        public ActionResult Confirmation()
+        {
+            return View();
         }
 
         // GET: IncidentReports/Create
@@ -52,7 +63,7 @@ namespace DanielIncidentReporting.Controllers
             {
                 db.IncidentReports.Add(incidentReport);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Confirmation");
             }
 
             return View(incidentReport);

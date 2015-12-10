@@ -79,6 +79,14 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Manager Position")]
+        public string mgrPosition { get; set; }
+
+        [Required]
+        [Display(Name = "Program")]
+        public string Program { get; set; }
     }
 
     public class ResetPasswordViewModel

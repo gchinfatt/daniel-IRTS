@@ -4198,6 +4198,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
 }
 
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
@@ -4501,31 +4502,39 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
+  /*background-color: #222222;*/
+  background-color: #106533;
   border-color: #080808;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  /*color: #999999;*/
+  color: #ffffff;
 }
 
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #ffffff;
+  /*color: #ffffff;*/
+  color: #F58729;
   background-color: transparent;
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  /*color: #999999;*/
+  color: #ffffff;
+  text-shadow: 1px 1px #000;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  /*color: #999999;*/
+  color: #ffffff;
+  text-shadow: 1px 1px #000;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
+  /*color: #ffffff;*/
+  color: #F58729;
   background-color: transparent;
 }
 
@@ -6813,4 +6822,10 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+/* Gina added styling */
+logo-image .img{
+    display: block;
+    height: 20px;
+    padding: 2em;
 }

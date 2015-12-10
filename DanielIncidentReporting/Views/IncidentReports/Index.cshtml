@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<DanielIncidentReporting.Models.IncidentReport>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manager Dashboard";
 }
-
-<h2>Index</h2>
-
+<div style="text-align: center"></div>
+<h2>Manager Dashboard</h2>
+<hr/>
+<h4>Incidents to Approve</h4>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @*@Html.ActionLink("Create New", "Create")*@
 </p>
 <table class="table">
     <tr>
@@ -59,9 +60,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.id }) @*|*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
         </td>
     </tr>
 }
