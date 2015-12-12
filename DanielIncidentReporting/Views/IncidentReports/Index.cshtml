@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DanielIncidentReporting.Models.IncidentReport>
+
+@{
+    ViewBag.Title = "Manager Dashboard";
+}
+<div style="text-align: center"></div>
+<h2>Manager Dashboard</h2>
+<hr/>
+<h4>Incidents to Approve</h4>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.incidentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.programName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.incidentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reporterFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reporterLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.incidentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.programName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.incidentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reporterFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reporterLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.id }) @*|*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>
