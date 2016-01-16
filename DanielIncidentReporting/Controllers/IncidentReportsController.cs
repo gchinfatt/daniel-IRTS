@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DanielIncidentReporting.Models;
+using System.Data.Entity.Validation;
 
 namespace DanielIncidentReporting.Controllers
 {
     public class IncidentReportsController : Controller
     {
-        private IRTSDBContext db = new IRTSDBContext();
+        private IRTSDBContext2 db = new IRTSDBContext2();
         // GET: IncidentReports
         public ActionResult Index()
         {
@@ -21,7 +22,7 @@ namespace DanielIncidentReporting.Controllers
             ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
             if (user != null)
             {
-                return View(db.IncidentReports.Where(m => m.programName.Equals(user.Program)));
+                return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program)));
             }
             return View(db.IncidentReports.ToList());
         }
@@ -57,13 +58,13 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,incidentDate,programName,location,incidentType,reporterFirstName,reporterLastName,Description")] IncidentReport incidentReport)
+        public ActionResult Create([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
         {
             if (ModelState.IsValid)
             {
-                db.IncidentReports.Add(incidentReport);
-                db.SaveChanges();
-                return RedirectToAction("Confirmation");
+                    db.IncidentReports.Add(incidentReport);
+                    db.SaveChanges();
+                    return RedirectToAction("Confirmation");  
             }
 
             return View(incidentReport);
@@ -89,7 +90,7 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,incidentDate,programName,location,incidentType,reporterFirstName,reporterLastName,Description")] IncidentReport incidentReport)
+        public ActionResult Edit([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
         {
             if (ModelState.IsValid)
             {
