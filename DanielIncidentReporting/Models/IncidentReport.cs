@@ -19,10 +19,11 @@ namespace DanielIncidentReporting.Models
         public string location { get; set; }
         [Display(Name = "Incident Type")]
         public string incidentType { get; set; }
-        [Display(Name = "First Name")]
+        [Display(Name = "Reporter First Name")]
         public string reporterFirstName { get; set; }
-        [Display(Name = "Last Name")]
+        [Display(Name = "Reporter Last Name")]
         public string reporterLastName { get; set; }
+
         [Display(Name = "Description")]
         public string Description { get; set; }        
     }
