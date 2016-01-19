@@ -23,8 +23,10 @@ namespace DanielIncidentReporting.Models
         public string IRP_VictimFirstName { get; set; }
         [Display(Name = "Victim Last Name")]
         public string IRP_VictimLastName { get; set; }
+
         [Display(Name = "Report On")]
         public string IRP_ReportOn { get; set; }
+
         [Display(Name = "Res Mgr Approved Date")]
         public DateTime IRP_ResMgrApprovedDate { get; set; }
         [Display(Name = "Dept Dir Approved Date")]
