@@ -1,4 +1,4 @@
-﻿@model DanielIncidentReporting.Models.IncidentReport
+﻿@model DanielIncidentReporting.Models.IRTSDBContext2
 
 @{
     ViewBag.Title = "Details";
@@ -11,160 +11,160 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_Category)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Category)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_Category)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_Category)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_Location)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Location)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_Location)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_Location)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ReportDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ReportDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ReportDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ReportDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_IncidentDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_IncidentDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_IncidentDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_IncidentDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_VictimFirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_VictimFirstName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_VictimFirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_VictimLastName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_VictimLastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_VictimLastName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_VictimLastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ReportOn)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ReportOn)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ReportOn)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ReportOn)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ResMgrApprovedDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ResMgrApprovedDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ResMgrApprovedDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_DeptDirApprovedDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_DeptDirApprovedDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_DeptDirApprovedDate)
         </dd>
        
          <dt>
-            @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_RiskMgrApprovedDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_RiskMgrApprovedDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_RiskMgrApprovedDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_RiskMgrComment)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_RiskMgrComment)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_RiskMgrComment)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_PreparedByFirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_PreparedByFirstName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_PreparedByFirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_PreparedByLastName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_PreparedByLastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_PreparedByLastName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_PreparedByLastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_Description)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_Description)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_Description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_InjuryType)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_InjuryType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_InjuryType)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_InjuryType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_BodyPart)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_BodyPart)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_BodyPart)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_BodyPart)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_InjuryFollowUp)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_InjuryFollowUp)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ApprovalLevelReq)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ApprovalLevelReq)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ApprovalLevelReq)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ApprovalLevelReq)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ProgramName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ProgramName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ProgramName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ProgramName)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IRP_ID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IncidentReport.IRP_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

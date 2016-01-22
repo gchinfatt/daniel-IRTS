@@ -19,6 +19,7 @@ namespace DanielIncidentReporting
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<ApplicationDbContext>(null);
+            Database.SetInitializer<DanielIncidentReporting.Models.IRTSDBContext2>(null);
         }
     }
 }

@@ -58,16 +58,21 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
+        public ActionResult Create([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport,
+            [Bind(Include = "IRP_ID, INT_ID, INC_PoliceReportNo, INC_StartTime, INC_EndTime")] Incident incident)
         {
             if (ModelState.IsValid)
             {
-                    db.IncidentReports.Add(incidentReport);
-                    db.SaveChanges();
-                    return RedirectToAction("Confirmation");  
+                db.IncidentReports.Add(incidentReport);
+                db.SaveChanges();
+                incident.IRP_ID = incidentReport.IRP_ID;
+                incident.INT_ID = 1;
+                db.Incidents.Add(incident);
+                db.SaveChanges();
+                return RedirectToAction("Confirmation");  
             }
 
-            return View(incidentReport);
+            return View();
         }
 
         // GET: IncidentReports/Edit/5

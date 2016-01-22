@@ -1,4 +1,4 @@
-﻿@model DanielIncidentReporting.Models.IncidentReport
+﻿@model DanielIncidentReporting.Models.IRTSDBContext2
 
 @{
     ViewBag.Title = "Delete";
@@ -12,59 +12,35 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.incidentDate)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_IncidentDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.incidentDate)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_IncidentDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.programName)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ProgramName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.programName)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_ProgramName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.location)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Location)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.location)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_Location)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.incidentType)
+            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.incidentType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.reporterFirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.reporterFirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.reporterLastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.reporterLastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.IncidentReport.IRP_Description)
         </dd>
 
     </dl>
