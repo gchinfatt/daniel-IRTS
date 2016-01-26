@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DanielIncidentReporting.Models.IRTSDBContext2>
+﻿@model IEnumerable<DanielIncidentReporting.Models.IncidentReport>
 
 @{
     ViewBag.Title = "Manager Dashboard";
@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IncidentReport.IRP_IncidentDate)
+            @Html.DisplayNameFor(model => model.IRP_IncidentDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IncidentReport.IRP_ProgramName)
+            @Html.DisplayNameFor(model => model.IRP_ProgramName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IncidentReport.IRP_Category)
+            @Html.DisplayNameFor(model => model.IRP_Category)
         </th>
        
         <th></th>
@@ -28,18 +28,18 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IncidentReport.IRP_IncidentDate)
+            @Html.DisplayFor(modelItem => item.IRP_IncidentDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IncidentReport.IRP_ProgramName)
+            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IncidentReport.IRP_Category)
+            @Html.DisplayFor(modelItem => item.IRP_Category)
         </td>
         
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { id=item.IncidentReport.id }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.IncidentReport.IRP_ID }) @*|*@
+            @Html.ActionLink("Details", "Details", new { id=item.IRP_ID }) @*|*@
             @*@Html.ActionLink("Delete", "Delete", new { id=item.IncidentReport.id })*@
         </td>
     </tr>

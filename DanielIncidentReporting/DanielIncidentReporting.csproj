@@ -194,6 +194,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605.mdf" />
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605_log.ldf">
+      <DependentUpon>aspnet-DanielIncidentReporting-20151124070605.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -319,9 +323,7 @@
     <Content Include="Views\IncidentReports\Index.cshtml" />
     <Content Include="Views\IncidentReports\Confirmation.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

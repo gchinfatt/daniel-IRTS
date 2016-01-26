@@ -58,8 +58,7 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport,
-            [Bind(Include = "IRP_ID, INT_ID, INC_PoliceReportNo, INC_StartTime, INC_EndTime")] Incident incident)
+        public ActionResult Create(IncidentReport incidentReport, Incident incident)
         {
             if (ModelState.IsValid)
             {
