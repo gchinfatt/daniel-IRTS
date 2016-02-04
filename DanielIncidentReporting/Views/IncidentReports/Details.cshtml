@@ -147,14 +147,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ApprovalLevelReq)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IRP_ApprovalLevelReq)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.IRP_ProgramName)
         </dt>
 
@@ -165,6 +157,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IRP_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Edit", "Edit", new {id = Model.IRP_ID}) |
+    @Html.ActionLink("Approve Incident", "Index")
+
 </p>

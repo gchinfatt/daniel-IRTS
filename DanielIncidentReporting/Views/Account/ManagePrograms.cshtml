@@ -1,0 +1,52 @@
+﻿@model DanielIncidentReporting.Models.Program
+@{
+    ViewBag.Title = "ManagePrograms";
+}
+
+<h2>Manage Programs</h2>
+
+ <!-- Delete Program -->
+<div class="form-group">
+    @Html.LabelFor(model => model.Prg_Name, htmlAttributes: new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.Prg_Name, new SelectList(new List<Object>
+        {
+            new {value = "SIPP", text = "SIPP"},
+            new {value = "BMP", text = "Behavior Management"},
+            new {value = "CMO", text = "Case Management Organization"},
+            new {value = "FFI", text = "Families Fostering Independence"},
+            new {value = "FBT", text = "Family Based Treatment"},
+            new {value = "FSS", text = "Full Service Schools"},
+            new {value = "Prevention(STEPS)", text = "Prevention (STEPS)"},
+            new {value = "PP", text = "Project Prepare"},
+            new {value = "CMH", text = "TCM/Outpatient/TBOS/BNET"},
+            new {value = "JS", text = "Journey To Success"},
+            new {value = "DA - Belfort", text = "Daniel Academy - Belfort"},
+            new {value = "Admin", text = "Other"}
+        }, "value", "text", 2))
+        @Html.ValidationMessageFor(model => model.Prg_Name, "", new {@class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Delete Program" class="btn btn-default" />
+    </div>
+</div>
+
+<br/><hr/><br/>
+
+<!-- Add Program-->
+<div class="form-group">
+    @Html.LabelFor(model => model.Prg_Name, htmlAttributes: new {@class = "control-label col-md-2"})
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Prg_Name, new {htmlAttributes = new {@class = "form-control"}})
+        @Html.ValidationMessageFor(model => model.Prg_Name, "", new {@class = "text-danger"})
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Add Program" class="btn btn-default" />
+    </div>
+</div>

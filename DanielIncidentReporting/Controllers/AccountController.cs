@@ -53,6 +53,22 @@ namespace DanielIncidentReporting.Controllers
         }
 
         //
+        // GET: /Account/ExternalLoginFailure
+        [AllowAnonymous]
+        public ActionResult ManagePrograms()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/ExternalLoginFailure
+        [AllowAnonymous]
+        public ActionResult ManageUsers()
+        {
+            return View();
+        }
+
+        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

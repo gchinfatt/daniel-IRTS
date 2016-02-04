@@ -190,6 +190,7 @@
     <Compile Include="Models\IncidentType.cs" />
     <Compile Include="Models\IRTSDBContext2.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -323,6 +324,8 @@
     <Content Include="Views\IncidentReports\Edit.cshtml" />
     <Content Include="Views\IncidentReports\Index.cshtml" />
     <Content Include="Views\IncidentReports\Confirmation.cshtml" />
+    <Content Include="Views\Account\ManagePrograms.cshtml" />
+    <Content Include="Views\Account\ManageUsers.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

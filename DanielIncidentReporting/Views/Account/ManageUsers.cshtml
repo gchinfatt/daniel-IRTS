@@ -1,0 +1,24 @@
+﻿@model DanielIncidentReporting.Models.RegisterViewModel
+@{
+    ViewBag.Title = "ManageUsers";
+}
+
+<h2>Manage Users</h2>
+
+ <!-- Delete User -->
+<div class="form-group">
+    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.Email, new SelectList(new List<Object>
+        {
+            new {value = "", text = "List of users"},
+        }, "value", "text", 2))
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Delete User" class="btn btn-default" />
+    </div>
+</div>
