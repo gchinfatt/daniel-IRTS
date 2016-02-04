@@ -14,12 +14,12 @@ namespace DanielIncidentReporting.Models
         [Key]
         public int IRP_ID { get; set; }
 
-        [Display(Name = "Category")]
+        [Display(Name = "Nature of Incident")]
         public string IRP_Category { get; set; }
 
         [Display(Name = "Location")]
         public string IRP_Location { get; set; }
-
+        
         [Display(Name = "Report Date")]
         public DateTime IRP_ReportDate { get; set; }
 
