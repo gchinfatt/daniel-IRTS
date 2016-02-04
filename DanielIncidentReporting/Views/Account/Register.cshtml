@@ -32,15 +32,38 @@
     <div class="form-group">
         @Html.LabelFor(m => m.mgrPosition, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.mgrPosition, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.mgrPosition, new SelectList(new List<Object>
+                {
+                  new { value = "Residential Manager", text = "Residential Manager"},
+                  new { value = "Department Director", text = "Department Director"},
+                  new { value = "Risk Manager", text = "Risk Manager"},
+                }, "value", "text", 2))
+            @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
+</div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Program, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Program, new SelectList(new List<Object>
+                {
+                  new { value = "SIPP", text = "SIPP"},
+                  new { value = "BMP", text = "Behavior Management"},
+                  new { value = "CMO", text = "Case Management Organization"},
+                  new { value = "FFI", text = "Families Fostering Independence"},
+                  new { value = "FBT", text = "Family Based Treatment"},
+                  new { value = "FSS", text = "Full Service Schools"},
+                  new { value = "Prevention(STEPS)", text = "Prevention (STEPS)"},
+                  new { value = "PP", text = "Project Prepare"},
+                  new { value = "CMH", text = "TCM/Outpatient/TBOS/BNET"},
+                  new { value = "JS", text = "Journey To Success"},
+                  new { value = "DA - Belfort", text = "Daniel Academy - Belfort"},
+                  new { value = "Admin", text = "Admin"}
+                }, "value", "text", 2))
+            @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-            @Html.LabelFor(m => m.Program, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Program, new { @class = "form-control" })
-            </div>
-        </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />

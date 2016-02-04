@@ -13,58 +13,39 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.incidentDate)
+            @Html.DisplayNameFor(model => model.IRP_IncidentDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.programName)
+            @Html.DisplayNameFor(model => model.IRP_ProgramName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.location)
+            @Html.DisplayNameFor(model => model.IRP_Category)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.incidentType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.reporterFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.reporterLastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
+       
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.incidentDate)
+            @Html.DisplayFor(modelItem => item.IRP_IncidentDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.programName)
+            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.location)
+            @Html.DisplayFor(modelItem => item.IRP_Category)
         </td>
+        
         <td>
-            @Html.DisplayFor(modelItem => item.incidentType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.reporterFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.reporterLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.id }) @*|*@
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.IncidentReport.id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.IRP_ID }) @*|*@
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.IncidentReport.id })*@
         </td>
     </tr>
 }
-
 </table>
+<hr/>
+<div style="text-align: left">
+    <p>Click "Details" to approve an incident report.</p>
+</div>
