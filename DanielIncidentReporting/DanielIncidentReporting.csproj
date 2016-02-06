@@ -326,6 +326,9 @@
     <Content Include="Views\IncidentReports\Confirmation.cshtml" />
     <Content Include="Views\Account\ManagePrograms.cshtml" />
     <Content Include="Views\Account\ManageUsers.cshtml" />
+    <Content Include="Views\IncidentReports\Approve.cshtml" />
+    <Content Include="Views\Account\DeleteProgram.cshtml" />
+    <Content Include="Views\Account\AddProgram.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

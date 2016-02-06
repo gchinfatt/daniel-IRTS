@@ -65,7 +65,6 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Injury Follow Up")]
         public string IRP_InjuryFollowUp { get; set; }
 
-        [Display(Name = "Approved Level Req")]
         public string IRP_ApprovalLevelReq { get; set; }
 
         [Display(Name = "Program Name")]

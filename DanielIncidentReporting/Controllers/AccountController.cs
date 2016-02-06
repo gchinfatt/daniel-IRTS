@@ -17,7 +17,20 @@ namespace DanielIncidentReporting.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
- 
+        private IRTSDBContext2 db = new IRTSDBContext2();
+
+        public ActionResult DeleteProgram(int? id)
+        {
+            Program program = db.Programs.Find(id);
+            db.Programs.Remove(program);
+            db.SaveChanges();
+            return View(program);
+        }
+
+        public ActionResult AddProgram()
+        {
+            return View();
+        }
         public AccountController()
         {
         }
