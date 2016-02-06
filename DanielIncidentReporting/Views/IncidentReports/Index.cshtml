@@ -6,46 +6,52 @@
 <div style="text-align: center"></div>
 <h2>Manager Dashboard</h2>
 <hr/>
-<h4>Incidents to Approve</h4>
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IRP_IncidentDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IRP_ProgramName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IRP_Category)
-        </th>
-       
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IRP_IncidentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IRP_Category)
-        </td>
-        
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.IncidentReport.id }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.IRP_ID }) @*|*@
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.IncidentReport.id })*@
-        </td>
-    </tr>
+
+@if (Model.Count().Equals(0))
+{
+    <div style="text-align: left">
+        <p>There are no incidents that need your attention now.</p>
+    </div>
 }
-</table>
-<hr/>
-<div style="text-align: left">
-    <p>Click "Details" to approve an incident report.</p>
-</div>
+else
+{
+    <h4>Incidents to Approve</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_IncidentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_ProgramName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_Category)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IRP_IncidentDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IRP_Category)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                </td>
+            </tr>
+        }
+    </table>
+    <hr />
+    <div style="text-align: left">
+        <p>Click "Details" to approve an incident report.</p>
+    </div>
+}

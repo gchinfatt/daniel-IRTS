@@ -185,7 +185,8 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program};
+                //In trying to remove the name error message, if delete UserName = model.Email - error message displays 'Name cannot be null or empty'
+                var user = new ApplicationUser { Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

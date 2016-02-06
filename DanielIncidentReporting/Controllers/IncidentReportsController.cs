@@ -51,14 +51,17 @@ namespace DanielIncidentReporting.Controllers
             if (user.mgrPosition.Equals("Residential Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "1";
+                incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
             }
             else if (user.mgrPosition.Equals("Department Director"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "2";
+                incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
             }
             else if (user.mgrPosition.Equals("Risk Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "3";
+                incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
             }
 
             db.IncidentReports.AddOrUpdate(incidentReport);
