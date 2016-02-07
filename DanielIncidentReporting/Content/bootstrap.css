@@ -158,6 +158,12 @@ legend {
   border: 0;
 }
 
+
+select,
+textarea {
+    width: 280px;
+}
+
 button,
 input,
 select,
