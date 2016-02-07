@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace DanielIncidentReporting.Models
 {
@@ -66,6 +68,7 @@ namespace DanielIncidentReporting.Models
     {
         [Required]
         [EmailAddress]
+        [StringLength(256)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
