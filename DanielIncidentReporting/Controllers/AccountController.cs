@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -18,17 +19,22 @@ namespace DanielIncidentReporting.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IRTSDBContext2 db = new IRTSDBContext2();
+        ApplicationDbContext context = new ApplicationDbContext();
+
 
         public ActionResult DeleteProgram(int? id)
         {
             Program program = db.Programs.Find(id);
-            db.Programs.Remove(program);
+            program.Prg_Active = "n";
             db.SaveChanges();
             return View(program);
         }
 
-        public ActionResult AddProgram()
+        public ActionResult AddProgram(Program program)
         {
+            program.Prg_Active = "y";
+            db.Programs.Add(program);
+            db.SaveChanges();
             return View();
         }
         public AccountController()
@@ -66,10 +72,22 @@ namespace DanielIncidentReporting.Controllers
         }
 
         //
-        // GET: /Account/ExternalLoginFailure
+        // GET:
         [AllowAnonymous]
         public ActionResult ManagePrograms()
         {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("y"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
             return View();
         }
 
@@ -78,6 +96,21 @@ namespace DanielIncidentReporting.Controllers
         [AllowAnonymous]
         public ActionResult ManageUsers()
         {
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            //users = context.Users.Where(m => m.isActive.Equals("1"));
+
+            List<SelectListItem> list = new List<SelectListItem>();
+            
+            foreach (var user in users)
+            {
+                if (user.isActive.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Text = user.Email });
+                }
+            }
+
+            SelectList userList = new SelectList(list, "Text", "Text");
+            ViewBag.users = userList;
             return View();
         }
 
@@ -173,6 +206,18 @@ namespace DanielIncidentReporting.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("y"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
             return View();
         }
 

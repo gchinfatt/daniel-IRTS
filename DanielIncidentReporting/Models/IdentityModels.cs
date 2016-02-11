@@ -11,6 +11,7 @@ namespace DanielIncidentReporting.Models
     {
         public string mgrPosition { get; set; }
         public string Program { get; set; }
+        public string isActive { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

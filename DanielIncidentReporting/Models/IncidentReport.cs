@@ -69,5 +69,9 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Program Name")]
         public string IRP_ProgramName { get; set; }
+        [Display(Name = "Witness")]
+        public string IRP_Witness { get; set; }
+        [Display(Name = "Notified Person")]
+        public string IRP_Notified { get; set; }
     }
 }

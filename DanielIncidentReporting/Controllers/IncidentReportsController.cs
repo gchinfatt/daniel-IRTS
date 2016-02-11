@@ -92,6 +92,18 @@ namespace DanielIncidentReporting.Controllers
         // GET: IncidentReports/Create
         public ActionResult Create()
         {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("y"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
             return View();
         }
 
@@ -104,7 +116,7 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (incidentReport.IRP_ProgramName.Equals("SIPP"))
+                if (incidentReport.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
                 {
                     incidentReport.IRP_ApprovalLevelReq = "0";
                 }
@@ -137,6 +149,18 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("y"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
             return View(incidentReport);
         }
 
@@ -168,7 +192,7 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
-            return View(incidentReport);
+            return View();
         }
 
         // POST: IncidentReports/Delete/5
