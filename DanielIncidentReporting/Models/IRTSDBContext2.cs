@@ -12,5 +12,7 @@ namespace DanielIncidentReporting.Models
         public DbSet<IncidentType> IncidentTypes { get; set; }
         public DbSet<Incident> Incidents { get; set; }
         public DbSet<Program> Programs { get; set; }
+        public DbSet<InjuryFollowUp> InjuryFollowUps { get; set; }
+
     }
 }

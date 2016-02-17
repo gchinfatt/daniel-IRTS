@@ -188,6 +188,7 @@
     <Compile Include="Models\Incident.cs" />
     <Compile Include="Models\IncidentReport.cs" />
     <Compile Include="Models\IncidentType.cs" />
+    <Compile Include="Models\InjuryFollowUp.cs" />
     <Compile Include="Models\IRTSDBContext2.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Program.cs" />
@@ -327,10 +328,14 @@
     <Content Include="Views\Account\ManagePrograms.cshtml" />
     <Content Include="Views\Account\ManageUsers.cshtml" />
     <Content Include="Views\IncidentReports\Approve.cshtml" />
-    <Content Include="Views\Account\DeleteProgram.cshtml" />
+    <Content Include="Views\Account\DeleteProgramConfirmation.cshtml" />
     <Content Include="Views\Account\AddProgram.cshtml" />
+    <Content Include="Views\Account\DeleteUserConfirmation.cshtml" />
+    <Content Include="Views\Account\AddProgramConfirmation.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\InjuryFollowUp\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />

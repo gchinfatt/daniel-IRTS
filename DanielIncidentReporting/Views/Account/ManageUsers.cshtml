@@ -1,21 +1,26 @@
-﻿@model DanielIncidentReporting.Models.RegisterViewModel
+﻿@using System.Activities.Statements
+@model DanielIncidentReporting.Models.ApplicationUser
 @{
     ViewBag.Title = "ManageUsers";
 }
 
 <h2>Manage Users</h2>
 
- <!-- Delete User -->
-<div class="form-group">
-    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => model.Email, (SelectList)ViewBag.users)
-        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-    </div>
-</div>
+<!-- Delete User -->
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("userId", (SelectList)ViewBag.users)
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Delete User" class="btn btn-default" />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete User" class="btn btn-default"/>
+        </div>
     </div>
-</div>
+}

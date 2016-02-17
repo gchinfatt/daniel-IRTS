@@ -96,7 +96,7 @@ namespace DanielIncidentReporting.Controllers
 
             foreach (var program in db.Programs)
             {
-                if (program.Prg_Active.Equals("y"))
+                if (program.Prg_Active.Equals("1"))
                 {
                     list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
                 }
@@ -104,6 +104,17 @@ namespace DanielIncidentReporting.Controllers
 
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
+
+            //InjuryFollowUpList for dropdown
+            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
+            ViewBag.injuryFollowUps = injuryFollowUps;
+
             return View();
         }
 
@@ -121,9 +132,7 @@ namespace DanielIncidentReporting.Controllers
                     incidentReport.IRP_ApprovalLevelReq = "0";
                 }
                 else
-                {
                     incidentReport.IRP_ApprovalLevelReq = "1";
-                }
 
                 db.IncidentReports.Add(incidentReport);
                 db.SaveChanges();
@@ -153,7 +162,7 @@ namespace DanielIncidentReporting.Controllers
 
             foreach (var program in db.Programs)
             {
-                if (program.Prg_Active.Equals("y"))
+                if (program.Prg_Active.Equals("1"))
                 {
                     list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
                 }
@@ -161,6 +170,18 @@ namespace DanielIncidentReporting.Controllers
 
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
+
+
+            //InjuryFollowUpList for dropdown
+            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
+            ViewBag.injuryFollowUps = injuryFollowUps;
+
             return View(incidentReport);
         }
 

@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using DanielIncidentReporting.Models
+@using Microsoft.AspNet.Identity
 
 @if (Request.IsAuthenticated)
 {
@@ -17,7 +18,6 @@
         
         }
         -->
-
         <li>@Html.ActionLink("Manage Programs", "ManagePrograms", "Account")</li>
         <li>@Html.ActionLink("Manage Users", "ManageUsers", "Account")</li>
         <!-- Added dashboard link for logged in user, filtered by dept. -->

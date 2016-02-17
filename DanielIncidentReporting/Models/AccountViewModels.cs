@@ -90,6 +90,7 @@ namespace DanielIncidentReporting.Models
         [Required]
         [Display(Name = "Program")]
         public string Program { get; set; }
+        public string isActive { get; set; }
     }
 
     public class ResetPasswordViewModel

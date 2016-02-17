@@ -23,23 +23,23 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <!-- ReportDate sysdate -->
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.HiddenFor(model => model.IRP_ReportDate, new {@Value = System.DateTime.Now})
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.IRP_ReportDate, new {@Value = System.DateTime.Now})
+            </div>
         </div>
-    </div>
         <!-- Program Name -->
         <div class="form-group">
-        @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList)ViewBag.programs)
-            @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList)ViewBag.programs)
+                @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <script>
-        var program;
-        document.getElementById("")
-    </script>
+        <script>
+            var program;
+            document.getElementById("");
+        </script>
 
     <!-- Location -->
     <div class="form-group">
@@ -139,15 +139,29 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new {@class = "control-label col-md-2"})
         <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_BodyPart, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.IRP_BodyPart, new {htmlAttributes = new {@class = "form-control"}})
+            @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new {@class = "text-danger"})
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "control-label col-md-2" })
+        <!--Injury FollowUp with dropdown-->
+       *<div class="form-group">
+            @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUps)
+                @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <script>
+            var injuryFollowUp;
+            document.getElementById("");
+        </script>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.IRP_ReportOn, new SelectList(new List<Object>
             {
@@ -157,9 +171,9 @@
                 new {value = "Non-emergency Doctor's Visit", text = "Non-emergency Doctor's Visit"},
                 new {value = "None Needed", text = "None Needed"},
             }, "value", "text", 2))
-            @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
         </div>
-    </div>
+    </div>*@
 
     @*<div class="form-group">
         @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
