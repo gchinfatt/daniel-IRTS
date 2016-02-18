@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -22,9 +23,50 @@ namespace DanielIncidentReporting.Controllers
             ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
             if (user != null)
             {
-                return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program)));
+                if (user.mgrPosition.Equals("Residential Manager"))
+                {
+                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("0")));
+                }
+                else if (user.mgrPosition.Equals("Department Director"))
+                {
+                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
+                }
+                else if (user.mgrPosition.Equals("Risk Manager"))
+                {
+                    return View(db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("2")));
+                }
+               
             }
-            return View(db.IncidentReports.ToList());
+            return View();
+        }
+        //GET: IncidentReports
+        public ActionResult Approve(int? id)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+            IncidentReport incidentReport = db.IncidentReports.Find(id);
+
+            if (user.mgrPosition.Equals("Residential Manager"))
+            {
+                incidentReport.IRP_ApprovalLevelReq = "1";
+                incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
+            }
+            else if (user.mgrPosition.Equals("Department Director"))
+            {
+                incidentReport.IRP_ApprovalLevelReq = "2";
+                incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
+            }
+            else if (user.mgrPosition.Equals("Risk Manager"))
+            {
+                incidentReport.IRP_ApprovalLevelReq = "3";
+                incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
+            }
+
+            db.IncidentReports.AddOrUpdate(incidentReport);
+            db.SaveChanges();
+            return View();
         }
 
         // GET: IncidentReports/Details/5
@@ -50,6 +92,29 @@ namespace DanielIncidentReporting.Controllers
         // GET: IncidentReports/Create
         public ActionResult Create()
         {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
+
+            //InjuryFollowUpList for dropdown
+            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
+            ViewBag.injuryFollowUps = injuryFollowUps;
+
             return View();
         }
 
@@ -62,6 +127,13 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (incidentReport.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
+                {
+                    incidentReport.IRP_ApprovalLevelReq = "0";
+                }
+                else
+                    incidentReport.IRP_ApprovalLevelReq = "1";
+
                 db.IncidentReports.Add(incidentReport);
                 db.SaveChanges();
                 incident.IRP_ID = incidentReport.IRP_ID;
@@ -86,6 +158,30 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
+
+
+            //InjuryFollowUpList for dropdown
+            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
+            ViewBag.injuryFollowUps = injuryFollowUps;
+
             return View(incidentReport);
         }
 
@@ -117,7 +213,7 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
-            return View(incidentReport);
+            return View();
         }
 
         // POST: IncidentReports/Delete/5

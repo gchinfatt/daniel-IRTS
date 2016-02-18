@@ -8,13 +8,19 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
+    <h4>Create a new account</h4>
+    <hr/>
+       <!-- isActive defauls to 1 -->
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(model => model.isActive, new { @Value = "1" })
+        </div>
+    </div>
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label"})
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = "255" })
         </div>
     </div>
     <div class="form-group">
@@ -45,21 +51,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Program, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Program, new SelectList(new List<Object>
-                {
-                  new { value = "SIPP", text = "SIPP"},
-                  new { value = "BMP", text = "Behavior Management"},
-                  new { value = "CMO", text = "Case Management Organization"},
-                  new { value = "FFI", text = "Families Fostering Independence"},
-                  new { value = "FBT", text = "Family Based Treatment"},
-                  new { value = "FSS", text = "Full Service Schools"},
-                  new { value = "Prevention(STEPS)", text = "Prevention (STEPS)"},
-                  new { value = "PP", text = "Project Prepare"},
-                  new { value = "CMH", text = "TCM/Outpatient/TBOS/BNET"},
-                  new { value = "JS", text = "Journey To Success"},
-                  new { value = "DA - Belfort", text = "Daniel Academy - Belfort"},
-                  new { value = "Admin", text = "Admin"}
-                }, "value", "text", 2))
+            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs)
             @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
         </div>
     </div>

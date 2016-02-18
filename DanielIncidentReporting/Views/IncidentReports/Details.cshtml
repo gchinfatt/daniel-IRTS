@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>IncidentReport</h4>
+    <h4>Incident Report</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -147,14 +147,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IRP_ApprovalLevelReq)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IRP_ApprovalLevelReq)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.IRP_ProgramName)
         </dt>
 
@@ -165,6 +157,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IRP_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Edit", "Edit", new {id = Model.IRP_ID}) |
+    @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID })
 </p>

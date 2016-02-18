@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace DanielIncidentReporting.Models
 {
@@ -66,6 +68,7 @@ namespace DanielIncidentReporting.Models
     {
         [Required]
         [EmailAddress]
+        [StringLength(256)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -76,7 +79,7 @@ namespace DanielIncidentReporting.Models
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
@@ -87,6 +90,7 @@ namespace DanielIncidentReporting.Models
         [Required]
         [Display(Name = "Program")]
         public string Program { get; set; }
+        public string isActive { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -5,9 +5,10 @@
     ViewBag.Title = "Report Incident";
 }
 
+<!-- Bootstrap datepicker : implemented at mentor's meeting -->
 <script type="text/javascript">
     $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
+        $('.datepicker').datepicker(); //Initialize any date pickers
     });
 </script>
 
@@ -18,79 +19,66 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Incident Report</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <!-- ReportDate sysdate -->
-    <div class="form-group">
-        <div class="col-md-10">
-            @Html.HiddenFor(model => model.IRP_ReportDate, new {@Value = System.DateTime.Now})
+       <!-- HIDDEN ReportDate sysdate -->
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.IRP_ReportDate, new {@Value = DateTime.Now})
+            </div>
         </div>
-    </div>
+
+        <!-- Prepared By First Name -->
+        <div class="container form-group">
+            <label class="control-label col-md-2">Prepared By</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IRP_PreparedByFirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", maxlength = "49" } })
+                @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- Prepare by last name -->
+        <div class="container form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.IRP_PreparedByLastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name", maxlength = "49" } })
+                @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+
         <!-- Program Name -->
         <div class="form-group">
-        @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.IRP_ProgramName, new SelectList(new List<Object>
-        {
-            new { value = "SIPP", text = "SIPP"},
-            new { value = "BMP", text = "Behavior Management"},
-            new { value = "CMO", text = "Case Management Organization"},
-            new { value = "FFI", text = "Families Fostering Independence"},
-            new { value = "FBT", text = "Family Based Treatment"},
-            new { value = "FSS", text = "Full Service Schools"},
-            new { value = "Prevention(STEPS)", text = "Prevention (STEPS)"},
-            new { value = "PP", text = "Project Prepare"},
-            new { value = "CMH", text = "TCM/Outpatient/TBOS/BNET"},
-            new { value = "JS", text = "Journey To Success"},
-            new { value = "DA - Belfort", text = "Daniel Academy - Belfort"},
-            new { value = "Admin", text = "Other"}
-        }, "value", "text", 2))
-            @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList)ViewBag.programs)
+                @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <script>
-        var program;
-        document.getElementById("")
-    </script>
+        <script>
+            var program;
+            document.getElementById("");
+        </script>
 
-    <!-- Location -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_Location, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_Location, "", new { @class = "text-danger" })
+        <!-- Location -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IRP_Location, new { htmlAttributes = new { @class = "form-control", @maxlength = "499" } })
+                @Html.ValidationMessageFor(model => model.IRP_Location, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <!-- Incident Date -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
-            @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
+        <!-- Incident Date -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
+                @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
         <hr/>
-    <!-- Prepared By Name -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_PreparedByFirstName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <!-- Prepare by last name -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_PreparedByLastName, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new {@class = "text-danger"})
-        </div>
-    </div>
-    <hr/>
 
 
     <!-- Radio buttons for ReportOn -->
@@ -106,140 +94,253 @@
 
     <!-- Victim First name -->
     <div class="form-group">
-        @Html.LabelFor(model => model.IRP_VictimFirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_VictimFirstName, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-offset-2 col-md-10">
+            @Html.EditorFor(model => model.IRP_VictimFirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", maxlength = "99" } })
             @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
         </div>
     </div>
     
     <!-- Victim Last name -->
     <div class="form-group">
-        @Html.LabelFor(model => model.IRP_VictimLastName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_VictimLastName, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-offset-2 col-md-10">
+            @Html.EditorFor(model => model.IRP_VictimLastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name", maxlength = "99" } })
             @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <!-- Nature of Incident: -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="checkbox" name="IRP_Category" value="Abuse Allegation">Abuse Allegation<br>
-            <input type="checkbox" name="IRP_Category" value="Death">Death<br>
-            <input type="checkbox" name="IRP_Category" value="Sexual Encounter">Sexual Encounter<br>
+        
+
+        <!-- Nature of Incident: -->
+        <hr />
+        <div class="container form-group">
+            @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new { @class = "control-label" })
+            <br />
+            <div class="container checkbox col-md-4">
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Abuse allegation" />Abuse Allegation
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Death" />Death
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Involvement w/ police and/or fire/rescue personnel"/>Involvement w/ police and/or<br/> fire/rescue personnel
+                </label>
+                <br/>
+                <label>
+                    <input type="text" class="form-control" name="INC_PoliceReportNo" placeholder="Police Report No." maxlength = "49" >
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Suicide gestures" />Suicide gestures
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Unplanned hospitalization" />Unplanned hospitalization
+                </label>
+                <br />
+            </div>
+            <div class="container checkbox col-md-4">
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Sexual encounter" />Sexual encounter
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Substance abuse" />Substance abuse
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Medication error" />Medication error
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Injury" />Injury
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Client grievance" />Client grievance
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Physical restraint"/>Physical restraint
+                </label>
+                <br />
+                <label>
+                    <input type="text" class="form-control" name="INC_StartTime" placeholder="Start time">
+                </label>
+                <br />
+                <label>
+                    <input type="text" class="form-control" name="INC_EndTime" placeholder="End time">
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Seclusion"/>Seclusion
+                </label>
+                <br />
+                <label>
+                    <input type="text" class="form-control" name="INC_StartTime" placeholder="Start time">
+                </label>
+                <br />
+                <label>
+                    <input type="text" class="form-control" name="INC_EndTime" placeholder="End time">
+                </label>
+                <br />
+            </div>
+            <div class="container checkbox col-md-4">
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Property damage" />Property damage
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Property missing" />Property missing
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Theft" />Theft
+                </label>
+                <br />
+                <label>
+                    <input type="checkbox" name="IRP_Category" value="Other" />Other
+                </label>
+                <br />
+            </div>
             @Html.ValidationMessageFor(model => model.IRP_Category, "", new { @class = "text-danger" })
         </div>
-    </div>
+        <hr />
 
-    <!-- Description -->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.IRP_Description, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4" ,@maxlength = "999" })
-            @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+        <!-- Contributing Factors -->
+        <div class="container form-group">
+            <label class="control-label">Contributing Factors</label><br/>
+            <div class="col-md-3">
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.DropDownListFor(model => model.IRP_RiskMgrComment, new SelectList(new List<Object>
+                {
+                    new {value = "Client/Client", text = "Client/Client"},
+                    new {value = "Client/Staff", text = "Client/Staff"},
+                    new {value = "Client/Parent", text = "Client/Parent"},
+                    new {value = "Client/Other", text = "Client/Other"},
+                }, "value", "text", 2))
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
+            </div>
+            <div class="col-md-3">
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.DropDownListFor(model => model.IRP_RiskMgrComment, new SelectList(new List<Object>
+                {
+                    new {value = "Towards others", text = "Towards others"},
+                    new {value = "Towards self", text = "Towards self"},
+                }, "value", "text", 2))
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
+            </div>
+            <div class="col-md-3">
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.DropDownListFor(model => model.IRP_RiskMgrComment, new SelectList(new List<Object>
+                {
+                    new {value = "Baker act", text = "Baker act"},
+                    new {value = "Medical Emergency", text = "Medical Emergency"},
+                    new {value = "Elopement", text = "Elopement"},
+                    new {value = "Criminal activity", text = "Criminal activity"},
+                    new {value = "False alarm", text = "False alarm"},
+                }, "value", "text", 2))
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.DropDownListFor(model => model.IRP_RiskMgrComment, new SelectList(new List<Object>
+                {
+                    new {value = "Slip/Fall", text = "Slip/Fall"},
+                    new {value = "Bite", text = "Bite"},
+                    new {value = "During ESI", text = "During ESI"},
+                    new {value = "Self-inflicted", text = "Self-inflicted"},
+                    new {value = "Other", text = "Other"},
+                }, "value", "text", 2))
+                <!-- TODO: change model to reference new contrib factors model -->
+                @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <!-- ///// Manager Approval dates should not be input fields. Again, should be timestamps at time of submission ///// -->
-
+    <hr/>
+    <!-- Injury Type -->
     <div class="form-group">
         @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_InjuryType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.IRP_InjuryType, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
             @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
         </div>
     </div>
 
+    <!-- Injury Body Part -->
     <div class="form-group">
-        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new {@class = "control-label col-md-2"})
         <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_BodyPart, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.IRP_BodyPart, new {htmlAttributes = new {@class = "form-control", maxlength = "249" } })
+            @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new {@class = "text-danger"})
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.IRP_ReportOn, new SelectList(new List<Object>
-            {
-                new {value = "First Aid", text = "First Aid"},
-                new {value = "ER", text = "ER"},
-                new {value = "On-site Consult", text = "On-site Consult"},
-                new {value = "Non-emergency Doctor's Visit", text = "Non-emergency Doctor's Visit"},
-                new {value = "None Needed", text = "None Needed"},
-            }, "value", "text", 2))
-            @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new { @class = "text-danger" })
+        <!--Injury FollowUp with dropdown-->
+       <div class="form-group">
+            @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUps)
+                @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
+    
+        <!-- JUSTIN - do we need this if we are not writing back to an injuryFollowUp table? - Gina -->
+        <script>
+            var injuryFollowUp;
+            document.getElementById("");
+        </script>
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.IRP_ReportOn, new SelectList(new List<Object>
-            {
-                new {value = "Client", text = "Client"},
-                new {value = "Staff", text = "Staff"},
-                new {value = "N/A", text = "N/A"},
-            }, "value", "text", 2))
-            @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new {@class = "text-danger"})
+        <!-- Notification -->
+        <div class="container form-group">
+            <label class="control-label col-md-2">Notification</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.IRP_Notified, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+                <br />
+                <small class="text-muted">
+                    Notified Person Name, Position, Date of Notification.<br />
+                    Maximum 1000 characters allowed.
+                </small>
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>*@
+        <hr />
 
+        <!-- Description -->
+        <div class="container form-group">
+            @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.IRP_Description, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+                <br />
+                <small class="text-muted">
+                    Maximum 1000 characters allowed.
+                </small>
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr/>
 
+        <!-- Witness Name -->
+        <div class="container form-group">
+            <!-- TODO: Change to model.IRP_NotifiedPerson -->
+            <label class="control-label col-md-2">Witness</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.IRP_Witness, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+                <br />
+                <small class="text-muted">
+                    Witness Name, Position.<br />
+                    Maximum 1000 characters allowed.
+                </small>
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.IRP_ApprovalLevelReq, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_ApprovalLevelReq, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_ApprovalLevelReq, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-    <!-- Category not required on form-->
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_Category, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.IRP_Category, "", new {@class = "text-danger"})
-        </div>
-    </div>*@
-
-    @*
-    <!-- ///// We can show the approval dates to Risk Manager but not as editable fields                            ///// -->
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.IRP_ResMgrApprovedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.IRP_ResMgrApprovedDate, htmlAttributes : new { @class = "form-control datepicker" } )
-            @Html.ValidationMessageFor(model => model.IRP_ResMgrApprovedDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_DeptDirApprovedDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_DeptDirApprovedDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IRP_DeptDirApprovedDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_RiskMgrApprovedDate, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_RiskMgrApprovedDate, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.IRP_RiskMgrApprovedDate, "", new {@class = "text-danger"})
-        </div>
-    </div>*@
-    <!-- ///////////////////////////////////// end Manager Approval dates /////////////////////////////////////////////////////// -->
-    <!-- Move to Edit form for Risk Mgr -->
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_RiskMgrComment, new {htmlAttributes = new {@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
-        </div>
-    </div>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

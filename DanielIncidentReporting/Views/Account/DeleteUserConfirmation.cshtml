@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Delete User";
+}
+<br/><br/>
+
+<h3>The user <strong>@ViewBag.deleteduser</strong> has been successfully deleted. </h3>
+
+<br/>
+
+<p>
+    @Html.ActionLink("Back", "ManageUsers", "Account") |
+    @Html.ActionLink("Dashboard", "Index", "IncidentReports")
+</p>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -9,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DanielIncidentReporting.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace DanielIncidentReporting.Controllers
 {
@@ -17,9 +20,107 @@ namespace DanielIncidentReporting.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
- 
+        private IRTSDBContext2 db = new IRTSDBContext2();
+        ApplicationDbContext context = new ApplicationDbContext();
+
+
+        //
+        // GET:
+        [AllowAnonymous]
+        public ActionResult ManagePrograms()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_ID.ToString(), Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
+            return View();
+        }
+        //POST when delete or add program is clicked
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManagePrograms(string programId, string programName)
+        {
+            //if add is selected
+            if (programId == null)
+            {
+                Program program = new Program();
+                program.Prg_Name = programName;
+                program.Prg_Active = "1";
+
+                db.Programs.Add(program);
+                db.SaveChanges();
+                ViewBag.addedProgram = program.Prg_Name;
+                return View("AddProgramConfirmation");
+            }
+            //if delete is selected
+            else
+            {
+                Program program = db.Programs.Find(Int32.Parse(programId));
+                program.Prg_Active = "0";
+                db.Programs.AddOrUpdate(program);
+                db.SaveChanges();
+                ViewBag.deletedProgram = program.Prg_Name;
+                return View("DeleteProgramConfirmation");
+            }
+        }
+
+        public ActionResult AddProgram(Program program)
+        {
+            program.Prg_Active = "1";
+            db.Programs.Add(program);
+            db.SaveChanges();
+            return View();
+        }
+
+        //
+        // GET: /Account/ExternalLoginFailure
+        [AllowAnonymous]
+        public ActionResult ManageUsers()
+        {
+            //List<ApplicationUser> users = context.Users.ToList();
+            //users = context.Users.Where(m => m.isActive.Equals("1"));
+
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var user in context.Users.ToList())
+            {
+                if (user.isActive.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Value = user.Id, Text = user.Email });
+                }
+            }
+
+            SelectList userList = new SelectList(list, "Value", "Text");
+            ViewBag.users = userList;
+            return View();
+        }
+
+        //POST when "Delete user" button is clicked
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManageUsers(string userId)
+        {
+            ApplicationUser deletedUser = context.Users.Find(userId);
+
+            deletedUser.isActive = "0";
+            
+            context.Users.AddOrUpdate(deletedUser);
+            context.SaveChanges();
+            ViewBag.deleteduser = deletedUser.Email;
+            return View("DeleteUserConfirmation");
+        }
+        
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -51,6 +152,8 @@ namespace DanielIncidentReporting.Controllers
                 _userManager = value;
             }
         }
+
+
 
         //
         // GET: /Account/Login
@@ -144,6 +247,18 @@ namespace DanielIncidentReporting.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (var program in db.Programs)
+            {
+                if (program.Prg_Active.Equals("1"))
+                {
+                    list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                }
+            }
+
+            SelectList programs = new SelectList(list, "Value", "Text");
+            ViewBag.programs = programs;
             return View();
         }
 
@@ -156,7 +271,8 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program};
+                //In trying to remove the 'Username taken' error message, if delete UserName = model.Email - error message displays 'Name cannot be null or empty'
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program, isActive = model.isActive};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
