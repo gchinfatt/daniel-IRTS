@@ -70,8 +70,6 @@ namespace DanielIncidentReporting.Controllers
                 ViewBag.deletedProgram = program.Prg_Name;
                 return View("DeleteProgramConfirmation");
             }
-            return View("ManagePrograms");
-            ;
         }
 
         public ActionResult AddProgram(Program program)

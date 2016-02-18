@@ -1,7 +1,7 @@
 ﻿@using DanielIncidentReporting.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Manager Log in";
+    ViewBag.Title = "Manager Log In";
 }
 
 <h2 style="text-align: left">@ViewBag.Title</h2>
@@ -17,7 +17,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = "255" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
