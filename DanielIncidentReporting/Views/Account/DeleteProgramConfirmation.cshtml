@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Delete Program";
+}
+<br/><br/>
+
+<h3>The program <strong>@ViewBag.deletedProgram</strong> has been succesfully deleted.</h3>
+
+<br/>
+
+<p>
+    @Html.ActionLink("Back", "ManagePrograms", "Account") |
+    @Html.ActionLink("Dashboard", "Index", "IncidentReports") 
+</p>
