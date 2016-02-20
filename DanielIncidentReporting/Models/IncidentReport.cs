@@ -73,5 +73,8 @@ namespace DanielIncidentReporting.Models
         public string IRP_Witness { get; set; }
         [Display(Name = "Notified Person")]
         public string IRP_Notified { get; set; }
+        
+        [Display(Name = "Contributing Factor")]
+        public string IRP_ContribFactor { get; set; }
     }
 }

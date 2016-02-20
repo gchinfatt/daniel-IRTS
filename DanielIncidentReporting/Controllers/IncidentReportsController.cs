@@ -111,9 +111,49 @@ namespace DanielIncidentReporting.Controllers
             {
                 injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
             }
-
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
+            //is this repeating what the above code is doing? - Gina
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text"); 
             ViewBag.injuryFollowUps = injuryFollowUps;
+
+            // Contributing Factors - 1. Abuse allegation dropdown list items - Gina Chin Fatt
+            List<SelectListItem> abuseAllegationItems = new List<SelectListItem>();
+            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse/sexual encounter", Selected = true, Disabled = true });
+            abuseAllegationItems.Add(new SelectListItem {Value="Client/Client", Text="Client/Client"});
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
+
+            ViewBag.abuseAllegationItems = abuseAllegationItems;
+
+            // Contributing Factors - 2. Physical aggression dropdown list items - Gina Chin Fatt
+            List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
+            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical aggression", Selected = true, Disabled = true });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward others", Text = "Toward others" });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward self", Text = "Toward self" });
+ 
+            ViewBag.physicalAggressionItems = physicalAggressionItems;
+
+            // Contributing Factors - 3. Physical aggression dropdown list items - Gina Chin Fatt
+            List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
+            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with police/fire/rescue", Selected = true, Disabled = true });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Baker act", Text = "Baker act" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Medical emergency", Text = "Medical emergency" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Criminal activity", Text = "Criminal activity" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "False alarm", Text = "False alarm" });
+            
+            ViewBag.policeInvolvementItems = policeInvolvementItems;
+
+            // Contributing Factors - 3. Cause of Injury dropdown list items - Gina Chin Fatt
+            List<SelectListItem> injuryItems = new List<SelectListItem>();
+            injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of injury", Selected = true, Disabled = true});
+            injuryItems.Add(new SelectListItem { Value = "Baker act", Text = "Baker act" });
+            injuryItems.Add(new SelectListItem { Value = "Medical emergency", Text = "Medical emergency" });
+            injuryItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            injuryItems.Add(new SelectListItem { Value = "Criminal activity", Text = "Criminal activity" });
+            injuryItems.Add(new SelectListItem { Value = "False alarm", Text = "False alarm" });
+
+            ViewBag.injuryItems = injuryItems;
 
             return View();
         }
