@@ -176,10 +176,6 @@ namespace DanielIncidentReporting.Controllers
 
                 db.IncidentReports.Add(incidentReport);
                 db.SaveChanges();
-                incident.IRP_ID = incidentReport.IRP_ID;
-                incident.INT_ID = 1;
-                db.Incidents.Add(incident);
-                db.SaveChanges();
                 return RedirectToAction("Confirmation");  
             }
 
