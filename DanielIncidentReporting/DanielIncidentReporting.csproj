@@ -341,6 +341,7 @@
     <Content Include="Views\Account\AddProgram.cshtml" />
     <Content Include="Views\Account\DeleteUserConfirmation.cshtml" />
     <Content Include="Views\Account\AddProgramConfirmation.cshtml" />
+    <Content Include="Views\Account\UserAddedConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\InjuryFollowUp\" />

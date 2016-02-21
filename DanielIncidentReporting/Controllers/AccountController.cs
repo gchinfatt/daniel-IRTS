@@ -285,7 +285,9 @@ namespace DanielIncidentReporting.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //return RedirectToAction("Index", "Manage");
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    ViewBag.username = model.Email;
+                    return View("UserAddedConfirmation");
                 }
                 AddErrors(result);
             }
