@@ -73,8 +73,36 @@ namespace DanielIncidentReporting.Models
         public string IRP_Witness { get; set; }
         [Display(Name = "Notified Person")]
         public string IRP_Notified { get; set; }
+
+        //Contributing Factors
+        public string IRP_Contrib1 { get; set; }
+        public string IRP_Contrib2 { get; set; }
+        public string IRP_Contrib3 { get; set; }
+        public string IRP_Contrib4 { get; set; }
+        //Incident types 
+        public string IRP_AbuseAllegation { get; set; }
+        public string IRP_Death { get; set; }
+        public string IRP_PoliceFire { get; set; }
+        public string IRP_SuicideGestures { get; set; }
+        public string IRP_UnplannedHospitalization { get; set; }
+        public string IRP_SexualEncounter { get; set; }
+        public string IRP_SubstanceAbuse { get; set; }
+        public string IRP_MedicationError { get; set; }
+        public string IRP_Injury { get; set; }
+        public string IRP_ClientGrievance { get; set; }
+        public string IRP_PhysicalRestraint { get; set; }
+        public string IRP_Seclusion { get; set; }
+        public string IRP_PropertyDamage { get; set; }
+        public string IRP_PropertyMissing { get; set; }
+        public string IRP_Theft { get; set; }
+        public string IRP_Other { get; set; }
+
+        //Incident Types extras
+        public string IRP_RestraintSTTime { get; set; }
+        public string IRP_RestraintENTime { get; set; }
+        public string IRP_SeclusionSTTime { get; set; }
+        public string IRP_SeclusionENTime { get; set; }
+        public string IRP_PoliceRepNo { get; set; }
         
-        [Display(Name = "Contributing Factor")]
-        public string IRP_ContribFactor { get; set; }
     }
 }

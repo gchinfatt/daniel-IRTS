@@ -144,14 +144,14 @@ namespace DanielIncidentReporting.Controllers
             
             ViewBag.policeInvolvementItems = policeInvolvementItems;
 
-            // Contributing Factors - 3. Cause of Injury dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 4. Cause of Injury dropdown list items - Gina Chin Fatt
             List<SelectListItem> injuryItems = new List<SelectListItem>();
             injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of injury", Selected = true, Disabled = true});
-            injuryItems.Add(new SelectListItem { Value = "Baker act", Text = "Baker act" });
-            injuryItems.Add(new SelectListItem { Value = "Medical emergency", Text = "Medical emergency" });
-            injuryItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
-            injuryItems.Add(new SelectListItem { Value = "Criminal activity", Text = "Criminal activity" });
-            injuryItems.Add(new SelectListItem { Value = "False alarm", Text = "False alarm" });
+            injuryItems.Add(new SelectListItem { Value = "Slip/Fall", Text = "Slip/Fall" });
+            injuryItems.Add(new SelectListItem { Value = "Bite", Text = "Bite" });
+            injuryItems.Add(new SelectListItem { Value = "During ESI", Text = "During ESI" });
+            injuryItems.Add(new SelectListItem { Value = "Self-Inflected", Text = "Self-Inflicted" });
+            injuryItems.Add(new SelectListItem { Value = "Other", Text = "Other" });
 
             ViewBag.injuryItems = injuryItems;
 
