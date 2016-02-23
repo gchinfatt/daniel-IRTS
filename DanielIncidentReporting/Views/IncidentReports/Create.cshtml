@@ -199,6 +199,53 @@
                 <label>
                     <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End time">
                 </label>
+                @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker3'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('#datetimepicker3').datetimepicker({
+                                    format: 'LT'
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>*@
+
+                @*<br/>
+
+                @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
+                <div class="container">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker3'>
+                                    <input id="IRP_SeclusionENTime"type='text' class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            $(function() {
+                                $('#datetimepicker3').datetimepicker({
+                                    format: 'LT'
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>*@
             </div>
 
             <br/>
@@ -287,21 +334,6 @@
     </script>
     
     <hr/>
-    <!-- Notification -->
-    <div class="container form-group">
-        <label class="control-label col-md-2">Notification</label>
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.IRP_Notified, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
-            <br/>
-            <small class="text-muted">
-                Notified Person Name, Position, Date of Notification.<br/>
-                Maximum 1000 characters allowed.
-            </small>
-            @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
-        </div>
-    </div>
-    <hr/>
-
     <!-- Description -->
     <div class="container form-group">
         @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new {@class = "control-label col-md-2"})
@@ -332,6 +364,20 @@
     </div>
     <hr/>
 
+    <!-- Notification -->
+    <div class="container form-group">
+        <label class="control-label col-md-2">Notification</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.IRP_Notified, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+            <br />
+            <small class="text-muted">
+                Notified Person Name, Position, Date of Notification.<br />
+                Maximum 1000 characters allowed.
+            </small>
+            @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <hr />
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -366,6 +412,10 @@
        if (sender.name == "IRP_PhysicalRestraint") {
            if (sender.checked == true) {
                $('#RestrainTime').show();
+               $('#datetimepicker3').datetimepicker({
+                                    format: 'LT'
+                                });
+
            } else {
                $('#RestrainTime').hide();
            }
