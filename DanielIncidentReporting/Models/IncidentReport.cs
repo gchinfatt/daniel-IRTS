@@ -44,7 +44,7 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Risk Manager Approved Date")]
         public DateTime IRP_RiskMgrApprovedDate { get; set; }
 
-        [Display(Name = "RiskMgrComment")]
+        [Display(Name = "Risk Manager Comment")]
         public string IRP_RiskMgrComment { get; set; }
 
         [Display(Name = "Prepared By First Name")]

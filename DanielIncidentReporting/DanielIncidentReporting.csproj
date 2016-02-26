@@ -344,6 +344,7 @@
     <Content Include="Views\Account\UserAddedConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Edit\" />
     <Folder Include="Views\InjuryFollowUp\" />
   </ItemGroup>
   <ItemGroup>

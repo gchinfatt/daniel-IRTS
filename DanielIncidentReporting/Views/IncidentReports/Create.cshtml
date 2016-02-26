@@ -6,11 +6,11 @@
 }
 
 <!-- Bootstrap datepicker : implemented at mentor's meeting -->
-@*<script type="text/javascript">
+<script type="text/javascript">
     $(function () { // will trigger when the document is ready
         $('.datepicker').datepicker(); //Initialize any date pickers
     });
-</script>*@
+</script>
 
 <h2>Report an Incident</h2>
 
@@ -70,21 +70,21 @@
     </div>
 
     <!-- Incident Date -->
-    @*<div class="container form-group">
+    <div class="container form-group">
             @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
                 @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
             </div>
-        </div>*@
-
+        </div>
+    @*
     <div class="container form-group">
         @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
         <div class="row">
             <div class='col-xs-3'>
                 <div class="form-group">
                     <div class='input-group date' id='datetimepicker3'>
-                        <input type='text' class="form-control"/>
+                        <input type='text' name="IRP_IncidentDate" class="form-control"/>
                         <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-
+    *@
     <hr/>
 
 
@@ -150,15 +150,15 @@
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_SuicideGestures" value="1"/>Suicide gestures
+                <input type="checkbox" name="IRP_SuicideGestures" value="1"/>Suicide Gestures
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned hospitalization
+                <input type="checkbox" name="IRP_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned Hospitalization
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement w/ police and/or<br/> fire/rescue personnel
+                <input type="checkbox" name="IRP_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
             </label>
             <br/>
             <label>
@@ -167,16 +167,16 @@
         </div>
         <div class="container checkbox col-md-4">
             <label>
-                <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual encounter
+                <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
             </label>
             <br/>
             <asp:CheckBox id="CheckBox1" checked="true"/>
             <label>
-                <input type="checkbox" name="IRP_SubstanceAbuse" value="1"/>Substance abuse
+                <input type="checkbox" name="IRP_SubstanceAbuse" value="1"/>Substance Abuse
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_MedicationError" value="1"/>Medication error
+                <input type="checkbox" name="IRP_MedicationError" value="1"/>Medication Error
             </label>
             <br/>
             <label>
@@ -184,20 +184,20 @@
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_ClientGrievance" value="1"/>Client grievance
+                <input type="checkbox" name="IRP_ClientGrievance" value="1"/>Client Grievance
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical restraint
+                <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
             </label>
 
             <div id="RestrainTime" style='display: none;'>
                 <label>
-                    <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start time">
+                    <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time">
                 </label>
                 <br/>
                 <label>
-                    <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End time">
+                    <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time">
                 </label>
                 @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
                 <div class="container">
@@ -256,11 +256,11 @@
 
             <div id="SeclusionTime" style='display: none;'>
                 <label>
-                    <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start time">
+                    <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time">
                 </label>
                 <br/>
                 <label>
-                    <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End time">
+                    <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time">
                 </label>
                 <br/>
             </div>
@@ -268,11 +268,11 @@
 
         <div class="container checkbox col-md-4">
             <label>
-                <input type="checkbox" name="IRP_PropertyDamage" value="1"/>Property damage
+                <input type="checkbox" name="IRP_PropertyDamage" value="1"/>Property Damage
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_PropertyMissing" value="1"/>Property missing
+                <input type="checkbox" name="IRP_PropertyMissing" value="1"/>Property Missing
             </label>
             <br/>
             <label>
@@ -377,7 +377,7 @@
             @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
         </div>
     </div>
-    <hr />
+    <hr/>
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -412,10 +412,6 @@
        if (sender.name == "IRP_PhysicalRestraint") {
            if (sender.checked == true) {
                $('#RestrainTime').show();
-               $('#datetimepicker3').datetimepicker({
-                                    format: 'LT'
-                                });
-
            } else {
                $('#RestrainTime').hide();
            }
