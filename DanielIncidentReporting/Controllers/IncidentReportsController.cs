@@ -185,6 +185,7 @@ namespace DanielIncidentReporting.Controllers
         // GET: IncidentReports/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -194,14 +195,6 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
-
-            //Show Risk Manager Comment Field if user is a Risk Manager
-            //if (user.mgrPosition.Equals("Risk Manager"))
-            //{
-            //    IRP_RiskMgrComment.show;
-            //}
-            //else IRP_RiskMgrComment.hide;
-
 
             List<SelectListItem> list = new List<SelectListItem>();
 
@@ -275,7 +268,7 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Contrib1, IRP_Contrib2, IRP_Contrib3, IRP_Contrib4, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_Witness, IRP_Notified, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
+        public ActionResult Edit([Bind(Include = "mgrPosition, IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Contrib1, IRP_Contrib2, IRP_Contrib3, IRP_Contrib4, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_Witness, IRP_Notified, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
         {
             if (ModelState.IsValid)
             {
