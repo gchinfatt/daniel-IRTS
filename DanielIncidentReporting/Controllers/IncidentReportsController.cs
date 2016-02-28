@@ -15,6 +15,7 @@ namespace DanielIncidentReporting.Controllers
     public class IncidentReportsController : Controller
     {
         private IRTSDBContext2 db = new IRTSDBContext2();
+
         // GET: IncidentReports
         public ActionResult Index()
         {
@@ -186,6 +187,12 @@ namespace DanielIncidentReporting.Controllers
         public ActionResult Edit(int? id)
         {
 
+            //Create a viewbag to hold the mgrPosition
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            String mgrPosition = userPosition.mgrPosition;
+            ViewBag.mgrPosition = mgrPosition;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -268,8 +275,9 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "mgrPosition, IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Contrib1, IRP_Contrib2, IRP_Contrib3, IRP_Contrib4, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_Witness, IRP_Notified, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
+        public ActionResult Edit([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Contrib1, IRP_Contrib2, IRP_Contrib3, IRP_Contrib4, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_Witness, IRP_Notified, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(incidentReport).State = EntityState.Modified;

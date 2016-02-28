@@ -8,11 +8,6 @@ using System.Data.Entity;
 
 namespace DanielIncidentReporting.Models
 {
-    //[Table("ASPNetUsers")]
-    //public class UserPosition
-    //{
-    //    public string mgrPosition { get; set; }
-    //}
 
     [Table("IncidentReports")]
     public class IncidentReport
