@@ -9,21 +9,6 @@
     $(function() { // will trigger when the document is ready
         $('.datepicker').datepicker(); //Initialise any date pickers
     });
-
-    @*//Viewbag.mgrPosition from IncidentReportsController.cs
-    var mgrPosition = @ViewBag.mgrPosition;
-    //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function(@ViewBag.mgrPosition)
-    {
-        if (@ViewBag.mgrPosition == "Risk Manager")
-        {
-            $('#riskMgrComment').show();
-        }
-        else if (@ViewBag.mgrPosition != "Risk Manager")
-        {
-            $('#riskMgrComment').hide();
-        }
-    });*@
 </script>
 
 <h2>Edit an Incident Report</h2>
@@ -38,11 +23,6 @@
     @Html.ValidationSummary(true, "", new {@class = "text-danger"})
     @Html.HiddenFor(model => model.IRP_ID)
     @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
-
-    <!--mgrPosition Test-->
-    @*<div>
-        @ViewBag.mgrPosition
-    </div>*@
 
     <!--Prepared By First Name-->
     <div class="form-group">
@@ -374,10 +354,14 @@
     <!--Risk Manager Comment-->
     <div id="riskMgrComment">
         <hr/>
-        <div class="form-group">
+        <div class="container form-group">
             @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
+                <br />
+                <small class="text-muted">
+                    Maximum 1000 characters allowed.
+                </small>
                 @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
             </div>
         </div>
@@ -438,4 +422,15 @@
             }
         }
     }
+
+    //Show Risk Manager Comment Field if user is a Risk Manager
+    $(function () {
+        var mgrPosition = '@(ViewBag.mgrPosition)';
+        if (mgrPosition == "Risk Manager") {
+            $('#riskMgrComment').show();
+        }
+        else if (mgrPosition != "Risk Manager") {
+            $('#riskMgrComment').hide();
+        }
+    });
 </script>
