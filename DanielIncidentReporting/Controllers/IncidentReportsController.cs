@@ -277,7 +277,55 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Contrib1, IRP_Contrib2, IRP_Contrib3, IRP_Contrib4, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_Witness, IRP_Notified, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
+        public ActionResult Edit([Bind(Include = 
+            "IRP_ID, " +
+            "IRP_Category, " +
+            "IRP_Location, " +
+            "IRP_ReportDate, " +
+            "IRP_IncidentDate, " +
+            "IRP_VictimFirstName, " +
+            "IRP_VictimLastName, " +
+            "IRP_ReportOn, " +
+            "IRP_ResMgrApprovedDate, " +
+            "IRP_DeptDirApprovedDate, " +
+            "IRP_RiskMgrApprovedDate, " +
+            "IRP_RiskMgrComment, " +
+            "IRP_PreparedByFirstName, " +
+            "IRP_PreparedByLastName, " +
+            "IRP_Description, " +
+            "IRP_InjuryType, " +
+            "IRP_BodyPart, " +
+            "IRP_InjuryFollowUp, " +
+            "IRP_ApprovalLevelReq, " +
+            "IRP_ProgramName, " +
+            "IRP_Witness, " +
+            "IRP_Notified, " +
+            "IRP_Contrib1, " +
+            "IRP_Contrib2, " +
+            "IRP_Contrib3, " +
+            "IRP_Contrib4, " +
+            "IRP_AbuseAllegation, " +
+            "IRP_Death, " +
+            "IRP_PoliceFire, " +
+            "IRP_SuicideGestures, " +
+            "IRP_UnplannedHospitalization, " +
+            "IRP_SexualEncounter, " +
+            "IRP_SubstanceAbuse, " +
+            "IRP_MedicationError, " +
+            "IRP_Injury, " +
+            "IRP_ClientGrievance, " +
+            "IRP_PhysicalRestraint, " +
+            "IRP_Seclusion, " +
+            "IRP_PropertyDamage, " +
+            "IRP_PropertyMissing, " +
+            "IRP_Theft, " +
+            "IRP_Other, " +
+            "IRP_RestraintSTTime, " +
+            "IRP_RestraintENTime, " +
+            "IRP_SeclusionSTTime, " +
+            "IRP_SeclusionENTime, " +
+            "IRP_PoliceRepNo"
+            )] IncidentReport incidentReport)
         {
 
             if (ModelState.IsValid)

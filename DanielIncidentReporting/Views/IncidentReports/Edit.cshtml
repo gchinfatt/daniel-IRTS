@@ -19,362 +19,373 @@
 
     <div class="form-horizontal">
 
-    <hr/>
-    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-    @Html.HiddenFor(model => model.IRP_ID)
-    @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        @Html.HiddenFor(model => model.IRP_ID)
+        @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
 
-    <!--Prepared By First Name-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_PreparedByFirstName, new {htmlAttributes = new {@class = "form-control", maxlength = "49"}})
-            @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new {@class = "text-danger"})
+
+
+        <!--Prepared By First Name-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IRP_PreparedByFirstName, new {htmlAttributes = new {@class = "form-control", maxlength = "49"}})
+                @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <!--Prepared By Last Name-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_PreparedByLastName, new {htmlAttributes = new {@class = "form-control", maxlength = "49"}})
-            @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new {@class = "text-danger"})
+        <!--Prepared By Last Name-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IRP_PreparedByLastName, new {htmlAttributes = new {@class = "form-control", maxlength = "49"}})
+                @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <hr/>
+        <hr/>
 
-    <!--Program Name-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList) ViewBag.programs)
-            @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new {@class = "text-danger"})
+        <!--Program Name-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList) ViewBag.programs)
+                @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <script>
-        var program;
-        document.getElementById("");
-    </script>
+        <script>
+            var program;
+            document.getElementById("");
+        </script>
 
-    <!--Location-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IRP_Location, new {htmlAttributes = new {@class = "form-control", @maxlength = "499"}})
-            @Html.ValidationMessageFor(model => model.IRP_Location, "", new {@class = "text-danger"})
+        <!--Location-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IRP_Location, new {htmlAttributes = new {@class = "form-control", @maxlength = "499"}})
+                @Html.ValidationMessageFor(model => model.IRP_Location, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <!--Incident Date-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
-            @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
+        <!--Incident Date-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
+                @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <hr/>
+        <hr/>
 
-    <!--Report On-->
-    <div class="form-group">
-        @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.RadioButton("IRP_ReportOn", "Client") Client
-            @Html.RadioButton("IRP_ReportOn", "Staff") Staff
-            @Html.RadioButton("IRP_ReportOn", "N/A") N/A
-            @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new {@class = "text-danger"})
+        <!--Report On-->
+        <div id="reportOn">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    <div id="reportOn_client">
+                        @Html.RadioButton("IRP_ReportOn", "Client") Client
+                    </div>
+                    <div id="reportOn_staff">
+                        @Html.RadioButton("IRP_ReportOn", "Staff") Staff
+                    </div>
+                    <div id="reportOn_NA">
+                        @Html.RadioButton("IRP_ReportOn", "N/A") N/A
+                    </div>
+                    @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!--Victim First Name-->
-    <div class="container form-group">
-        <div class="col-md-offset-2 col-md-10">
-            @Html.EditorFor(model => model.IRP_VictimFirstName, new {htmlAttributes = new {@class = "form-control", maxlength = "99"}})
-            @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new {@class = "text-danger"})
+    
+        <!--Victim First Name-->
+        <div class="container form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.IRP_VictimFirstName, new {htmlAttributes = new {@class = "form-control", maxlength = "99"}})
+                @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <!--Victim Last Name-->
-    <div class="container form-group">
-        <div class="col-md-offset-2 col-md-10">
-            @Html.EditorFor(model => model.IRP_VictimLastName, new {htmlAttributes = new {@class = "form-control", maxlength = "99"}})
-            @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new {@class = "text-danger"})
+        <!--Victim Last Name-->
+        <div class="container form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => model.IRP_VictimLastName, new {htmlAttributes = new {@class = "form-control", maxlength = "99"}})
+                @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
 
-    <hr/>
-    <!-- Nature of Incident: -->
-    <div class="container form-group">
-        @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new {@class = "control-label"})
-        <br/>
-        <div class="container checkbox col-md-4">
-            <label>
-                <input type="checkbox" name="IRP_AbuseAllegation" onclick="displayContrib(this, '#IRP_Contrib1')" value="1"/>Abuse Allegation
-            </label>
+        <hr/>
+    
+        <!-- Nature of Incident: -->
+        <div class="container form-group">
+            @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new {@class = "control-label"})
             <br/>
-            <label>
-                <input type="checkbox" name="IRP_Death" value="1"/>Death
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_SuicideGestures" value="1"/>Suicide Gestures
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned Hospitalization
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
-            </label>
-            <br/>
-            <label>
-                <input type="text" class="form-control" id="IRP_PoliceRepNo" style='display: none;' name="IRP_PoliceRepNo" placeholder="Police Report No." maxlength="49">
-            </label>
-        </div>
-        <div class="container checkbox col-md-4">
-            <label>
-                <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
-            </label>
-            <br/>
-            <asp:CheckBox id="CheckBox1" checked="true"/>
-            <label>
-                <input type="checkbox" name="IRP_SubstanceAbuse" value="1"/>Substance Abuse
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_MedicationError" value="1"/>Medication Error
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_ClientGrievance" value="1"/>Client Grievance
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
-            </label>
-
-            <div id="RestrainTime" style='display: none;'>
+            <div class="container checkbox col-md-4">
                 <label>
-                    <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time">
+                    <input type="checkbox" name="IRP_AbuseAllegation" id="cBox_AbuseAllegation" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" />Abuse Allegation
                 </label>
                 <br/>
                 <label>
-                    <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time">
+                    <input type="checkbox" name="IRP_Death" value="1"/>Death
                 </label>
-                @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
-                    <div class="container">
-                        <div class="row">
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class='input-group date' id='datetimepicker3'>
-                                        <input type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_SuicideGestures" value="1"/>Suicide Gestures
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_UnplannedHospitalization" id="cBox_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned Hospitalization
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_PoliceFire" id="cBox_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
+                </label>
+                <br/>
+                <label>
+                    <input type="text" class="form-control" id="IRP_PoliceRepNo" style='display: none;' name="IRP_PoliceRepNo" placeholder="Police Report No." maxlength="49">
+                </label>
+            </div>
+            <div class="container checkbox col-md-4">
+                <label>
+                    <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
+                </label>
+                <br/>
+                <asp:CheckBox id="CheckBox1" checked="true"/>
+                <label>
+                    <input type="checkbox" name="IRP_SubstanceAbuse" value="1"/>Substance Abuse
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_MedicationError" value="1"/>Medication Error
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_ClientGrievance" value="1"/>Client Grievance
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
+                </label>
+
+                <div id="RestrainTime" style='display: none;'>
+                    <label>
+                        <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time">
+                    </label>
+                    <br/>
+                    <label>
+                        <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time">
+                    </label>
+                    @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='datetimepicker3'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-time"></span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <script type="text/javascript">
-                                $(function() {
-                                    $('#datetimepicker3').datetimepicker({
-                                        format: 'LT'
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $('#datetimepicker3').datetimepicker({
+                                            format: 'LT'
+                                        });
                                     });
-                                });
-                            </script>
-                        </div>
-                    </div>*@
+                                </script>
+                            </div>
+                        </div>*@
 
-                @*<br/>
+                    @*<br/>
 
-                    @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
-                    <div class="container">
-                        <div class="row">
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class='input-group date' id='datetimepicker3'>
-                                        <input id="IRP_SeclusionENTime"type='text' class="form-control"/>
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-time"></span>
-                                        </span>
+                        @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='datetimepicker3'>
+                                            <input id="IRP_SeclusionENTime"type='text' class="form-control"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-time"></span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <script type="text/javascript">
-                                $(function() {
-                                    $('#datetimepicker3').datetimepicker({
-                                        format: 'LT'
+                                <script type="text/javascript">
+                                    $(function() {
+                                        $('#datetimepicker3').datetimepicker({
+                                            format: 'LT'
+                                        });
                                     });
-                                });
-                            </script>
-                        </div>
-                    </div>*@
+                                </script>
+                            </div>
+                        </div>*@
+                </div>
+
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
+                </label>
+                <br/>
+
+                <div id="SeclusionTime" style='display: none;'>
+                    <label>
+                        <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time">
+                    </label>
+                    <br/>
+                    <label>
+                        <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time">
+                    </label>
+                    <br/>
+                </div>
             </div>
 
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
-            </label>
-            <br/>
-
-            <div id="SeclusionTime" style='display: none;'>
+            <div class="container checkbox col-md-4">
                 <label>
-                    <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time">
+                    <input type="checkbox" name="IRP_PropertyDamage" value="1"/>Property Damage
                 </label>
                 <br/>
                 <label>
-                    <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time">
+                    <input type="checkbox" name="IRP_PropertyMissing" value="1"/>Property Missing
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_Theft" value="1"/>Theft
+                </label>
+                <br/>
+                <label>
+                    <input type="checkbox" name="IRP_Other" value="1"/>Other
                 </label>
                 <br/>
             </div>
+            @Html.ValidationMessageFor(model => model.IRP_Category, "", new {@class = "text-danger"})
         </div>
 
-        <div class="container checkbox col-md-4">
-            <label>
-                <input type="checkbox" name="IRP_PropertyDamage" value="1"/>Property Damage
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_PropertyMissing" value="1"/>Property Missing
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_Theft" value="1"/>Theft
-            </label>
-            <br/>
-            <label>
-                <input type="checkbox" name="IRP_Other" value="1"/>Other
-            </label>
-            <br/>
+        <!-- Contributing Factors -->
+        <div id="ContribFactors" style='display: none;'>
+            <hr/>
+            <label class="control-label">Contributing Factors</label><br/><br/>
+            @Html.DropDownList("IRP_Contrib1", ViewBag.abuseAllegationItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+            @Html.DropDownList("IRP_Contrib2", ViewBag.physicalAggressionItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+            @Html.DropDownList("IRP_Contrib3", ViewBag.policeInvolvementItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+            @Html.DropDownList("IRP_Contrib4", ViewBag.injuryItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
         </div>
-        @Html.ValidationMessageFor(model => model.IRP_Category, "", new {@class = "text-danger"})
-    </div>
-
-    <!-- Contributing Factors -->
-    <div id="ContribFactors" style='display: none;'>
-        <hr/>
-        <label class="control-label">Contributing Factors</label><br/><br/>
-        @Html.DropDownList("IRP_Contrib1", ViewBag.abuseAllegationItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib2", ViewBag.physicalAggressionItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib3", ViewBag.policeInvolvementItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib4", ViewBag.injuryItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-    </div>
 
 
-    <div id="Injury" style='display: none;'>
-        <hr/>
-        <div class="container form-group">
-            @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IRP_InjuryType, new {htmlAttributes = new {@class = "form-control", maxlength = "249"}})
-                @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new {@class = "text-danger"})
+        <div id="Injury" style='display: none;'>
+            <hr/>
+            <div class="container form-group">
+                @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IRP_InjuryType, new {htmlAttributes = new {@class = "form-control", maxlength = "249"}})
+                    @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <!-- Injury Body Part -->
+            <div class="container form-group">
+                @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IRP_BodyPart, new {htmlAttributes = new {@class = "form-control", maxlength = "249"}})
+                    @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <!--Injury FollowUp with dropdown-->
+            <div class="container form-group">
+                @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUps, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
+                </div>
             </div>
         </div>
 
-        <!-- Injury Body Part -->
-        <div class="container form-group">
-            @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IRP_BodyPart, new {htmlAttributes = new {@class = "form-control", maxlength = "249"}})
-                @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new {@class = "text-danger"})
-            </div>
-        </div>
+        <!-- JUSTIN - do we need this if we are not writing back to an injuryFollowUp table? - Gina -->
+        <script>
+            var injuryFollowUp;
+            document.getElementById("");
+        </script>
 
-        <!--Injury FollowUp with dropdown-->
-        <div class="container form-group">
-            @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUps, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
-            </div>
-        </div>
-    </div>
-
-    <!-- JUSTIN - do we need this if we are not writing back to an injuryFollowUp table? - Gina -->
-    <script>
-        var injuryFollowUp;
-        document.getElementById("");
-    </script>
-
-    <hr/>
-
-    <!-- Description -->
-    <div class="container form-group">
-        @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.IRP_Description, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
-            <br/>
-            <small class="text-muted">
-                Maximum 1000 characters allowed.
-            </small>
-            @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
-        </div>
-    </div>
-
-    <hr/>
-
-    <!-- Witness Name -->
-    <div class="container form-group">
-        <!-- TODO: Change to model.IRP_NotifiedPerson -->
-        <label class="control-label col-md-2">Witness</label>
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.IRP_Witness, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
-            <br/>
-            <small class="text-muted">
-                Witness Name, Position.<br/>
-                Maximum 1000 characters allowed.
-            </small>
-            @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
-        </div>
-    </div>
-
-    <hr/>
-
-    <!-- Notification -->
-    <div class="container form-group">
-        <label class="control-label col-md-2">Notification</label>
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.IRP_Notified, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
-            <br/>
-            <small class="text-muted">
-                Notified Person Name, Position, Date of Notification.<br/>
-                Maximum 1000 characters allowed.
-            </small>
-            @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
-        </div>
-    </div>
-
-    <!--Risk Manager Comment-->
-    <div id="riskMgrComment">
         <hr/>
+
+        <!-- Description -->
         <div class="container form-group">
-            @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
-                <br />
+                @Html.TextAreaFor(model => model.IRP_Description, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
+                <br/>
                 <small class="text-muted">
                     Maximum 1000 characters allowed.
                 </small>
-                @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
             </div>
         </div>
-    </div>
 
-    <hr/>
+        <hr/>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default"/>
+        <!-- Witness Name -->
+        <div class="container form-group">
+            <!-- TODO: Change to model.IRP_NotifiedPerson -->
+            <label class="control-label col-md-2">Witness</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.IRP_Witness, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
+                <br/>
+                <small class="text-muted">
+                    Witness Name, Position.<br/>
+                    Maximum 1000 characters allowed.
+                </small>
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
+            </div>
         </div>
-    </div>
-    </div>
+
+        <hr/>
+
+        <!-- Notification -->
+        <div class="container form-group">
+            <label class="control-label col-md-2">Notification</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.IRP_Notified, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
+                <br/>
+                <small class="text-muted">
+                    Notified Person Name, Position, Date of Notification.<br/>
+                    Maximum 1000 characters allowed.
+                </small>
+                @Html.ValidationMessageFor(model => model.IRP_Description, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <!--Risk Manager Comment-->
+        <div id="riskMgrComment">
+            <hr/>
+            <div class="container form-group">
+                @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new {htmlAttributes = new {@class = "form-control"}, @cols = "80", @rows = "4", @maxlength = "999"})
+                    <br />
+                    <small class="text-muted">
+                        Maximum 1000 characters allowed.
+                    </small>
+                    @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new {@class = "text-danger"})
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
+        </div>
+        </div>
 }
 
 <div>
@@ -382,18 +393,26 @@
 </div>
 
 <script language="javascript" type="text/javascript">
-    function displayContrib(sender, dropdown) {
-        if (sender.checked == true) {
+    //Display Contrib Factors Dropdowns if checked
+    function displayContrib(sender, dropdown)
+    {
+        if (sender.checked == true)
+        {
             $('#ContribFactors').show();
             $(dropdown).show();
-        } else {
+        }
+        else
+        {
             $(dropdown).hide();
         }
 
-        if (sender.name == "IRP_PoliceFire") {
-            if (sender.checked == true) {
+        if (sender.name == "IRP_PoliceFire")
+        {
+            if (sender.checked == true)
+            {
                 $('#IRP_PoliceRepNo').show();
-            } else {
+            } else
+            {
                 $('#IRP_PoliceRepNo').hide();
             }
         }
@@ -422,14 +441,105 @@
             }
         }
     }
+ 
+    //Populate checked Contributing Factors on page load -- work in progress
+        //Abuse Allegation
+        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        {
+            document.getElementById('cBox_AbuseAllegation').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib1').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        {
+            document.getElementById('cBox_AbuseAllegation').checked = false;
+        }
 
+        //Unplanned Hospitalization (commented out because it interferes with abuse allegation logic)
+        @*else if (@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization) == "1")
+        {
+            document.getElementById('cBox_UnplannedHospitalization').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib3').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization) != "1")
+        {
+            document.getElementById('cBox_UnplannedHospitalization').checked = false;
+        }*@
+
+        //Involvement with Police and/or Fire/Rescue Personnel
+        @*if (@Html.DisplayTextFor(model => model.IRP_PoliceFire) == "1")
+        {
+            document.getElementById('cBox_PoliceFire').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib3').show();
+        }
+        if (@Html.DisplayTextFor(model => model.IRP_PoliceFire) != "1")
+        {
+            document.getElementById('cBox_PoliceFire').checked = false;
+        }*@
+
+        @*//Sexual Encounter
+        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib1').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = false;
+        }
+
+
+        //Injury
+        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib1').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = false;
+        }
+
+
+        //Physical Restraint
+        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib1').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = false;
+        }
+
+
+        //Seclusion
+        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = true;
+            $('#ContribFactors').show();
+            $('#IRP_Contrib1').show();
+        }
+        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        {
+            document.getElementById('cBox_abuseAllegation').checked = false;
+        }*@
+    
     //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function () {
+    $(function()
+    {
         var mgrPosition = '@(ViewBag.mgrPosition)';
-        if (mgrPosition == "Risk Manager") {
+        if (mgrPosition == "Risk Manager")
+        {
             $('#riskMgrComment').show();
         }
-        else if (mgrPosition != "Risk Manager") {
+        else if (mgrPosition != "Risk Manager")
+        {
             $('#riskMgrComment').hide();
         }
     });
