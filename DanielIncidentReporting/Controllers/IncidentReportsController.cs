@@ -269,6 +269,20 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.injuryItems = injuryItems;
 
+            //---------------------------------
+
+
+            // Contributing Factors - 5. Police Report Number
+            //m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            //var reportID = id;
+            //IncidentReport incidentReportData = db.IncidentReports.Where(m => m.IRP_ID.Equals(reportID));
+            IncidentReport incidentReportData = db.IncidentReports.Find(id);
+            String IRP_PoliceRepNoValue = incidentReportData.IRP_PoliceRepNo;
+            ViewBag.IRP_PoliceRepNoValue = IRP_PoliceRepNoValue;
+            
+            
+            //---------------------------------
+            
             return View(incidentReport);
         }
 

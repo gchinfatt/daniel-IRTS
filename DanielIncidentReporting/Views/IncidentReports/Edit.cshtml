@@ -24,8 +24,6 @@
         @Html.HiddenFor(model => model.IRP_ID)
         @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
 
-
-
         <!--Prepared By First Name-->
         <div class="form-group">
             @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new {@class = "control-label col-md-2"})
@@ -148,7 +146,7 @@
             </div>
             <div class="container checkbox col-md-4">
                 <label>
-                    <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
+                    <input type="checkbox" name="IRP_SexualEncounter" id="cBox_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
                 </label>
                 <br/>
                 <asp:CheckBox id="CheckBox1" checked="true"/>
@@ -161,7 +159,7 @@
                 </label>
                 <br/>
                 <label>
-                    <input type="checkbox" name="IRP_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
+                    <input type="checkbox" name="IRP_Injury" id="cBox_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
                 </label>
                 <br/>
                 <label>
@@ -169,7 +167,7 @@
                 </label>
                 <br/>
                 <label>
-                    <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
+                    <input type="checkbox" name="IRP_PhysicalRestraint" id="cBox_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
                 </label>
 
                 <div id="RestrainTime" style='display: none;'>
@@ -231,7 +229,7 @@
 
                 <br/>
                 <label>
-                    <input type="checkbox" name="IRP_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
+                    <input type="checkbox" name="IRP_Seclusion" id="cBox_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
                 </label>
                 <br/>
 
@@ -394,25 +392,18 @@
 
 <script language="javascript" type="text/javascript">
     //Display Contrib Factors Dropdowns if checked
-    function displayContrib(sender, dropdown)
-    {
-        if (sender.checked == true)
-        {
+    function displayContrib(sender, dropdown) {
+        if (sender.checked == true) {
             $('#ContribFactors').show();
             $(dropdown).show();
-        }
-        else
-        {
+        } else {
             $(dropdown).hide();
         }
 
-        if (sender.name == "IRP_PoliceFire")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_PoliceFire") {
+            if (sender.checked == true) {
                 $('#IRP_PoliceRepNo').show();
-            } else
-            {
+            } else {
                 $('#IRP_PoliceRepNo').hide();
             }
         }
@@ -441,105 +432,106 @@
             }
         }
     }
- 
+
     //Populate checked Contributing Factors on page load -- work in progress
+    $(function populateNatureOfIncident()
+    {
         //Abuse Allegation
-        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
-        {
+        var IRP_AbuseAllegationValue = '@Html.DisplayTextFor(model => model.IRP_AbuseAllegation)';
+        if (IRP_AbuseAllegationValue == "1") {
             document.getElementById('cBox_AbuseAllegation').checked = true;
             $('#ContribFactors').show();
             $('#IRP_Contrib1').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
-        {
+        else if (IRP_AbuseAllegationValue != "1") {
             document.getElementById('cBox_AbuseAllegation').checked = false;
         }
 
         //Unplanned Hospitalization (commented out because it interferes with abuse allegation logic)
-        @*else if (@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization) == "1")
-        {
+        var IRP_UnplannedHospitalizationValue = '@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization)';
+        if (IRP_UnplannedHospitalizationValue == "1") {
             document.getElementById('cBox_UnplannedHospitalization').checked = true;
             $('#ContribFactors').show();
             $('#IRP_Contrib3').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization) != "1")
-        {
+        else if (IRP_UnplannedHospitalizationValue != "1") {
             document.getElementById('cBox_UnplannedHospitalization').checked = false;
-        }*@
+        }
 
         //Involvement with Police and/or Fire/Rescue Personnel
-        @*if (@Html.DisplayTextFor(model => model.IRP_PoliceFire) == "1")
-        {
+        var IRP_PoliceFireValue = '@Html.DisplayTextFor(model => model.IRP_PoliceFire)';
+        var IRP_PoliceRepNoValue = '@(ViewBag.IRP_PoliceRepNoValue)';
+        if (IRP_PoliceFireValue == "1") {
             document.getElementById('cBox_PoliceFire').checked = true;
             $('#ContribFactors').show();
-            $('#IRP_Contrib3').show();
+            $('#IRP_PoliceRepNo').show();
         }
-        if (@Html.DisplayTextFor(model => model.IRP_PoliceFire) != "1")
-        {
+        else if (IRP_PoliceFireValue != "1") {
             document.getElementById('cBox_PoliceFire').checked = false;
-        }*@
+        }
 
-        @*//Sexual Encounter
-        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        //Sexual Encounter
+        var IRP_SexualEncounterValue = '@Html.DisplayTextFor(model => model.IRP_SexualEncounter)';
+        if (IRP_SexualEncounterValue == "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = true;
+            document.getElementById('cBox_SexualEncounter').checked = true;
             $('#ContribFactors').show();
             $('#IRP_Contrib1').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        else if (IRP_SexualEncounterValue != "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = false;
+            document.getElementById('cBox_SexualEncounter').checked = false;
         }
-
 
         //Injury
-        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        var IRP_InjuryValue = '@Html.DisplayTextFor(model => model.IRP_Injury)';
+        if (IRP_InjuryValue == "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = true;
+            document.getElementById('cBox_Injury').checked = true;
             $('#ContribFactors').show();
-            $('#IRP_Contrib1').show();
+            $('#IRP_Contrib4').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        else if (IRP_InjuryValue != "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = false;
+            document.getElementById('cBox_Injury').checked = false;
         }
-
 
         //Physical Restraint
-        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        var IRP_PhysicalRestraintValue = '@Html.DisplayTextFor(model => model.IRP_PhysicalRestraint)';
+        if (IRP_PhysicalRestraintValue == "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = true;
+            document.getElementById('cBox_PhysicalRestraint').checked = true;
             $('#ContribFactors').show();
-            $('#IRP_Contrib1').show();
+            $('#IRP_Contrib2').show();
+            $('#RestrainTime').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        else if (IRP_PhysicalRestraintValue != "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = false;
+            document.getElementById('cBox_PhysicalRestraint').checked = false;
         }
-
 
         //Seclusion
-        if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) == "1")
+        var IRP_SeclusionValue = '@Html.DisplayTextFor(model => model.IRP_Seclusion)';
+        if (IRP_SeclusionValue == "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = true;
+            document.getElementById('cBox_Seclusion').checked = true;
             $('#ContribFactors').show();
-            $('#IRP_Contrib1').show();
+            $('#IRP_Contrib2').show();
+            $('#SeclusionTime').show();
         }
-        else if (@Html.DisplayTextFor(model => model.IRP_AbuseAllegation) != "1")
+        else if (IRP_UnplannedHospitalizationValue != "1")
         {
-            document.getElementById('cBox_abuseAllegation').checked = false;
-        }*@
-    
+            document.getElementById('cBox_Seclusion').checked = false;
+        }
+    });
+
     //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function()
-    {
+    $(function () {
         var mgrPosition = '@(ViewBag.mgrPosition)';
-        if (mgrPosition == "Risk Manager")
-        {
+        if (mgrPosition == "Risk Manager") {
             $('#riskMgrComment').show();
         }
-        else if (mgrPosition != "Risk Manager")
-        {
+        else if (mgrPosition != "Risk Manager") {
             $('#riskMgrComment').hide();
         }
     });
