@@ -269,20 +269,26 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.injuryItems = injuryItems;
 
-            //---------------------------------
-
-
             // Contributing Factors - 5. Police Report Number
-            //m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
-            //var reportID = id;
-            //IncidentReport incidentReportData = db.IncidentReports.Where(m => m.IRP_ID.Equals(reportID));
             IncidentReport incidentReportData = db.IncidentReports.Find(id);
             String IRP_PoliceRepNoValue = incidentReportData.IRP_PoliceRepNo;
+
             ViewBag.IRP_PoliceRepNoValue = IRP_PoliceRepNoValue;
-            
-            
-            //---------------------------------
-            
+
+            // Contributing Factors - 6. Physical Restraint Times
+            String IRP_RestraintSTTimeValue = incidentReportData.IRP_RestraintSTTime;
+            String IRP_RestraintENTimeValue = incidentReportData.IRP_RestraintENTime;
+
+            ViewBag.IRP_RestraintSTTimeValue = IRP_RestraintSTTimeValue;
+            ViewBag.IRP_RestraintENTimeValue = IRP_RestraintENTimeValue;
+
+            // Contributing Factors - 7. Seclusion Times
+            String IRP_SeclusionSTTimeValue = incidentReportData.IRP_SeclusionSTTime;
+            String IRP_SeclusionENTimeValue = incidentReportData.IRP_SeclusionENTime;
+
+            ViewBag.IRP_SeclusionSTTimeValue = IRP_SeclusionSTTimeValue;
+            ViewBag.IRP_SeclusionENTimeValue = IRP_SeclusionENTimeValue;
+
             return View(incidentReport);
         }
 

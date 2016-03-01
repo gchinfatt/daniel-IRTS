@@ -141,7 +141,7 @@
                 </label>
                 <br/>
                 <label>
-                    <input type="text" class="form-control" id="IRP_PoliceRepNo" style='display: none;' name="IRP_PoliceRepNo" placeholder="Police Report No." maxlength="49">
+                    <input type="text" class="form-control" id="IRP_PoliceRepNo" style='display: none;' name="IRP_PoliceRepNo" placeholder="Police Report No." value="@(ViewBag.IRP_PoliceRepNoValue ?? String.Empty)" maxlength="49">
                 </label>
             </div>
             <div class="container checkbox col-md-4">
@@ -172,11 +172,11 @@
 
                 <div id="RestrainTime" style='display: none;'>
                     <label>
-                        <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time">
+                        <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time" value="@(ViewBag.IRP_RestraintSTTimeValue ?? String.Empty)">
                     </label>
                     <br/>
                     <label>
-                        <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time">
+                        <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time" value="@(ViewBag.IRP_RestraintENTimeValue ?? String.Empty)">
                     </label>
                     @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
                         <div class="container">
@@ -235,11 +235,11 @@
 
                 <div id="SeclusionTime" style='display: none;'>
                     <label>
-                        <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time">
+                        <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time" value="@(ViewBag.IRP_SeclusionSTTimeValue ?? String.Empty)">
                     </label>
                     <br/>
                     <label>
-                        <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time">
+                        <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time" value="@(ViewBag.IRP_SeclusionENTimeValue ?? String.Empty)">
                     </label>
                     <br/>
                 </div>
@@ -438,35 +438,40 @@
     {
         //Abuse Allegation
         var IRP_AbuseAllegationValue = '@Html.DisplayTextFor(model => model.IRP_AbuseAllegation)';
-        if (IRP_AbuseAllegationValue == "1") {
+        if (IRP_AbuseAllegationValue == "1")
+        {
             document.getElementById('cBox_AbuseAllegation').checked = true;
             $('#ContribFactors').show();
             $('#IRP_Contrib1').show();
         }
-        else if (IRP_AbuseAllegationValue != "1") {
+        else if (IRP_AbuseAllegationValue != "1")
+        {
             document.getElementById('cBox_AbuseAllegation').checked = false;
         }
 
         //Unplanned Hospitalization (commented out because it interferes with abuse allegation logic)
         var IRP_UnplannedHospitalizationValue = '@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization)';
-        if (IRP_UnplannedHospitalizationValue == "1") {
+        if (IRP_UnplannedHospitalizationValue == "1")
+        {
             document.getElementById('cBox_UnplannedHospitalization').checked = true;
             $('#ContribFactors').show();
             $('#IRP_Contrib3').show();
         }
-        else if (IRP_UnplannedHospitalizationValue != "1") {
+        else if (IRP_UnplannedHospitalizationValue != "1")
+        {
             document.getElementById('cBox_UnplannedHospitalization').checked = false;
         }
 
         //Involvement with Police and/or Fire/Rescue Personnel
         var IRP_PoliceFireValue = '@Html.DisplayTextFor(model => model.IRP_PoliceFire)';
-        var IRP_PoliceRepNoValue = '@(ViewBag.IRP_PoliceRepNoValue)';
-        if (IRP_PoliceFireValue == "1") {
+        if (IRP_PoliceFireValue == "1")
+        {
             document.getElementById('cBox_PoliceFire').checked = true;
             $('#ContribFactors').show();
             $('#IRP_PoliceRepNo').show();
         }
-        else if (IRP_PoliceFireValue != "1") {
+        else if (IRP_PoliceFireValue != "1")
+        {
             document.getElementById('cBox_PoliceFire').checked = false;
         }
 
