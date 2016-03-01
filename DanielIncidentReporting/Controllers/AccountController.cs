@@ -112,7 +112,7 @@ namespace DanielIncidentReporting.Controllers
 
             deletedUser.isActive = "0";
             
-            context.Users.AddOrUpdate(deletedUser);
+            context.Users.Remove(deletedUser);
             context.SaveChanges();
             ViewBag.deleteduser = deletedUser.Email;
             return View("DeleteUserConfirmation");
@@ -179,6 +179,10 @@ namespace DanielIncidentReporting.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+
+
+
             switch (result)
             {
                 case SignInStatus.Success:
