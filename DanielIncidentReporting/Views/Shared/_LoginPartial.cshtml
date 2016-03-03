@@ -1,6 +1,7 @@
 ﻿@using DanielIncidentReporting.Models
 @using Microsoft.AspNet.Identity
 
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -12,14 +13,19 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
         </li>
 
-        <!-- code for risk manager functionality
-        if (User.Identity.mgrPosition.Equals("Risk Manager"))
-        {
-        
+         @*code for risk manager functionality*@
+        @{ 
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
         }
-        -->
-        <li>@Html.ActionLink("Manage Programs", "ManagePrograms", "Account")</li>
-        <li>@Html.ActionLink("Manage Users", "ManageUsers", "Account")</li>
+        @if (user.mgrPosition.Equals("Risk Manager"))
+        {
+            <li>@Html.ActionLink("Manage Programs", "ManagePrograms", "Account")</li>
+            <li>@Html.ActionLink("Manage Users", "ManageUsers", "Account")</li>    
+        }
+        
+
         <!-- Added dashboard link for logged in user, filtered by dept. -->
         <li>@Html.ActionLink("Dashboard", "Index", "IncidentReports")</li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
