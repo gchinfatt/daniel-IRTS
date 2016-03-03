@@ -83,15 +83,9 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    <div id="reportOn_client">
-                        @Html.RadioButton("IRP_ReportOn", "Client") Client
-                    </div>
-                    <div id="reportOn_staff">
-                        @Html.RadioButton("IRP_ReportOn", "Staff") Staff
-                    </div>
-                    <div id="reportOn_NA">
-                        @Html.RadioButton("IRP_ReportOn", "N/A") N/A
-                    </div>
+                    @Html.RadioButton("IRP_ReportOn", "Client") Client
+                    @Html.RadioButton("IRP_ReportOn", "Staff") Staff
+                    @Html.RadioButton("IRP_ReportOn", "N/A") N/A
                     @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -115,149 +109,123 @@
 
         <hr/>
     
-        <!-- Nature of Incident: -->
+        <!--Nature of Incident Column 1-->
         <div class="container form-group">
             @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new {@class = "control-label"})
             <br/>
             <div class="container checkbox col-md-4">
+                <!--Abuse Allegation-->
                 <label>
                     <input type="checkbox" name="IRP_AbuseAllegation" id="cBox_AbuseAllegation" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" />Abuse Allegation
                 </label>
                 <br/>
+                <!--Death-->
                 <label>
                     <input type="checkbox" name="IRP_Death" value="1"/>Death
                 </label>
                 <br/>
+                <!--Suicicde Gestures-->
                 <label>
                     <input type="checkbox" name="IRP_SuicideGestures" value="1"/>Suicide Gestures
                 </label>
                 <br/>
+                <!--Unplanned Hospitalization-->
                 <label>
                     <input type="checkbox" name="IRP_UnplannedHospitalization" id="cBox_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned Hospitalization
                 </label>
                 <br/>
+                <!--Police/Fire Involvement-->
                 <label>
                     <input type="checkbox" name="IRP_PoliceFire" id="cBox_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
                 </label>
                 <br/>
+                <!--Police Report Number-->
                 <label>
                     <input type="text" class="form-control" id="IRP_PoliceRepNo" style='display: none;' name="IRP_PoliceRepNo" placeholder="Police Report No." value="@(ViewBag.IRP_PoliceRepNoValue ?? String.Empty)" maxlength="49">
                 </label>
             </div>
+            <!--Nature of Incident Column 2-->
             <div class="container checkbox col-md-4">
+                <!--Sexual Encounter-->
                 <label>
                     <input type="checkbox" name="IRP_SexualEncounter" id="cBox_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
                 </label>
                 <br/>
                 <asp:CheckBox id="CheckBox1" checked="true"/>
+                <!--Substace Abuse-->
                 <label>
                     <input type="checkbox" name="IRP_SubstanceAbuse" value="1"/>Substance Abuse
                 </label>
                 <br/>
+                <!--Medication Error-->
                 <label>
                     <input type="checkbox" name="IRP_MedicationError" value="1"/>Medication Error
                 </label>
                 <br/>
+                <!--Injury-->
                 <label>
                     <input type="checkbox" name="IRP_Injury" id="cBox_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
                 </label>
                 <br/>
+                <!--Client Grievance-->
                 <label>
                     <input type="checkbox" name="IRP_ClientGrievance" value="1"/>Client Grievance
                 </label>
                 <br/>
+                <!--Physical Restraint-->
                 <label>
                     <input type="checkbox" name="IRP_PhysicalRestraint" id="cBox_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
                 </label>
-
+                <!--Physical Restraint Times (Start & End)-->
                 <div id="RestrainTime" style='display: none;'>
+                    <!--Physical Restraint Start Time-->
                     <label>
                         <input type="text" class="form-control" name="IRP_RestraintSTTime" placeholder="Start Time" value="@(ViewBag.IRP_RestraintSTTimeValue ?? String.Empty)">
                     </label>
                     <br/>
+                    <!--Physical Restraint End Time-->
                     <label>
                         <input type="text" class="form-control" name="IRP_RestraintENTime" placeholder="End Time" value="@(ViewBag.IRP_RestraintENTimeValue ?? String.Empty)">
                     </label>
-                    @*@Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
-                        <div class="container">
-                            <div class="row">
-                                <div class='col-sm-6'>
-                                    <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker3'>
-                                            <input type='text' class="form-control" />
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                    $(function() {
-                                        $('#datetimepicker3').datetimepicker({
-                                            format: 'LT'
-                                        });
-                                    });
-                                </script>
-                            </div>
-                        </div>*@
-
-                    @*<br/>
-
-                        @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "control-label" })
-                        <div class="container">
-                            <div class="row">
-                                <div class='col-sm-6'>
-                                    <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker3'>
-                                            <input id="IRP_SeclusionENTime"type='text' class="form-control"/>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-time"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                    $(function() {
-                                        $('#datetimepicker3').datetimepicker({
-                                            format: 'LT'
-                                        });
-                                    });
-                                </script>
-                            </div>
-                        </div>*@
                 </div>
-
                 <br/>
+                <!--Seclusion-->
                 <label>
                     <input type="checkbox" name="IRP_Seclusion" id="cBox_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
                 </label>
                 <br/>
-
+                <!--Seclusion Times (Start & End)-->
                 <div id="SeclusionTime" style='display: none;'>
+                    <!--Seclusion Start Time-->
                     <label>
                         <input type="text" class="form-control" name="IRP_SeclusionSTTime" placeholder="Start Time" value="@(ViewBag.IRP_SeclusionSTTimeValue ?? String.Empty)">
                     </label>
                     <br/>
+                    <!--Seclusion End Time-->
                     <label>
                         <input type="text" class="form-control" name="IRP_SeclusionENTime" placeholder="End Time" value="@(ViewBag.IRP_SeclusionENTimeValue ?? String.Empty)">
                     </label>
                     <br/>
                 </div>
             </div>
-
+            <!--Nature of Incident Column 3-->
             <div class="container checkbox col-md-4">
+                <!--Property Damage-->
                 <label>
                     <input type="checkbox" name="IRP_PropertyDamage" value="1"/>Property Damage
                 </label>
                 <br/>
+                <!--Property Missing-->
                 <label>
                     <input type="checkbox" name="IRP_PropertyMissing" value="1"/>Property Missing
                 </label>
                 <br/>
+                <!--Theft-->
                 <label>
                     <input type="checkbox" name="IRP_Theft" value="1"/>Theft
                 </label>
                 <br/>
+                <!--Other-->
                 <label>
                     <input type="checkbox" name="IRP_Other" value="1"/>Other
                 </label>
@@ -391,43 +359,65 @@
 </div>
 
 <script language="javascript" type="text/javascript">
+
     //Display Contrib Factors Dropdowns if checked
-    function displayContrib(sender, dropdown) {
-        if (sender.checked == true) {
+    function displayContrib(sender, dropdown)
+    {
+        if (sender.checked == true)
+        {
             $('#ContribFactors').show();
             $(dropdown).show();
-        } else {
+        }
+        else
+        {
+            $('#ContribFactors').hide();
             $(dropdown).hide();
         }
 
-        if (sender.name == "IRP_PoliceFire") {
-            if (sender.checked == true) {
+        if (sender.name == "IRP_PoliceFire")
+        {
+            if (sender.checked == true)
+            {
                 $('#IRP_PoliceRepNo').show();
-            } else {
+            }
+            else
+            {
                 $('#IRP_PoliceRepNo').hide();
             }
         }
 
-        if (sender.name == "IRP_PhysicalRestraint") {
-            if (sender.checked == true) {
+        if (sender.name == "IRP_PhysicalRestraint")
+        {
+            if (sender.checked == true)
+            {
                 $('#RestrainTime').show();
-            } else {
+            }
+            else
+            {
                 $('#RestrainTime').hide();
             }
         }
 
-        if (sender.name == "IRP_Seclusion") {
-            if (sender.checked == true) {
+        if (sender.name == "IRP_Seclusion")
+        {
+            if (sender.checked == true)
+            {
                 $('#SeclusionTime').show();
-            } else {
+            }
+            else
+            {
                 $('#SeclusionTime').hide();
             }
         }
 
-        if (sender.name == "IRP_Injury") {
-            if (sender.checked == true) {
+        if (sender.name == "IRP_Injury")
+        {
+            if (sender.checked == true)
+            {
                 $('#Injury').show();
-            } else {
+            }
+            else
+            {
                 $('#Injury').hide();
             }
         }
@@ -447,6 +437,7 @@
         else if (IRP_AbuseAllegationValue != "1")
         {
             document.getElementById('cBox_AbuseAllegation').checked = false;
+            //document.getElementById('IRP_Contrib1').value = "";
         }
 
         //Unplanned Hospitalization (commented out because it interferes with abuse allegation logic)
@@ -460,6 +451,7 @@
         else if (IRP_UnplannedHospitalizationValue != "1")
         {
             document.getElementById('cBox_UnplannedHospitalization').checked = false;
+            //document.getElementById('IRP_Contrib3').value = "";
         }
 
         //Involvement with Police and/or Fire/Rescue Personnel
@@ -473,6 +465,7 @@
         else if (IRP_PoliceFireValue != "1")
         {
             document.getElementById('cBox_PoliceFire').checked = false;
+            //document.getElementById('IRP_PoliceRepNo').value = "";
         }
 
         //Sexual Encounter
@@ -486,6 +479,7 @@
         else if (IRP_SexualEncounterValue != "1")
         {
             document.getElementById('cBox_SexualEncounter').checked = false;
+            //document.getElementById('IRP_Contrib1').value = "";
         }
 
         //Injury
@@ -499,6 +493,7 @@
         else if (IRP_InjuryValue != "1")
         {
             document.getElementById('cBox_Injury').checked = false;
+            //document.getElementById('IRP_Contrib4').value = "";
         }
 
         //Physical Restraint
@@ -513,6 +508,9 @@
         else if (IRP_PhysicalRestraintValue != "1")
         {
             document.getElementById('cBox_PhysicalRestraint').checked = false;
+            //document.getElementById('IRP_Contrib2').value = "";
+            //document.getElementById('IRP_RestraintSTTime').value = "";
+            //document.getElementById('IRP_RestraintENTime').value = "";
         }
 
         //Seclusion
@@ -527,6 +525,9 @@
         else if (IRP_UnplannedHospitalizationValue != "1")
         {
             document.getElementById('cBox_Seclusion').checked = false;
+            //document.getElementById('IRP_Contrib2').value = "";
+            //document.getElementById('IRP_SeclusionSTTime').value = "";
+            //document.getElementById('IRP_SeclusionENTime').value = "";
         }
     });
 

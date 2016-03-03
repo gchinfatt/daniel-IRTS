@@ -104,8 +104,6 @@
     *@
     <hr/>
 
-
-
     <!-- Radio buttons for ReportOn -->
     <div class="container form-group">
         @Html.LabelFor(model => model.IRP_ReportOn, htmlAttributes: new {@class = "control-label col-md-2"})
@@ -398,6 +396,7 @@
             $('#ContribFactors').show();
             $(dropdown).show();
         } else {
+            $('#ContribFactors').hide();
             $(dropdown).hide();
         }
 
