@@ -38,6 +38,9 @@
     <div class="form-group">
         @Html.LabelFor(m => m.mgrPosition, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
+            <!-- To change the styling for this, -->
+            <!-- I have to change the viewbag to be in the controller -->
+            <!-- like the contrib factors in the Create view - Gina -->
             @Html.DropDownListFor(m => m.mgrPosition, new SelectList(new List<Object>
                 {
                   new { value = "Residential Manager", text = "Residential Manager"},
@@ -51,7 +54,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Program, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs)
+            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
         </div>
     </div>

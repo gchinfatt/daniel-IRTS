@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList) ViewBag.programs)
+                @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList) ViewBag.programs, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new {@class = "text-danger"})
             </div>
         </div>

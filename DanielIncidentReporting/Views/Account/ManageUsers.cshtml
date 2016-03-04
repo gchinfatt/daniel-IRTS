@@ -11,15 +11,15 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-        <div class="form-group">
+        <div class="container form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("userId", (SelectList)ViewBag.users)
+                @Html.DropDownList("userId", (SelectList)ViewBag.users, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
-    <div class="form-group">
+    <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Delete User" class="btn btn-default"/>
         </div>
