@@ -1,6 +1,6 @@
 ﻿@using DanielIncidentReporting.Models
 @using Microsoft.AspNet.Identity
-
+@using System.Net.Mail
 
 @if (Request.IsAuthenticated)
 {
@@ -10,8 +10,15 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})
-        </li>
+            <!--Original Action Method-->
+            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})*@
+            
+            @{
+                MailAddress addr = new MailAddress(User.Identity.GetUserName());
+                var uname = addr.User;
+                @Html.ActionLink("Hello " + uname + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            }
+         </li>
 
          @*code for risk manager functionality*@
         @{ 
