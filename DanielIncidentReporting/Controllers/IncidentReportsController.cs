@@ -34,7 +34,8 @@ namespace DanielIncidentReporting.Controllers
                 }
                 else if (user.mgrPosition.Equals("Risk Manager"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("2")));
+                    ViewBag.position = "RiskManager";
+                    return View(db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1") || m.IRP_ApprovalLevelReq.Equals("2")));
                 }
                
             }
@@ -168,12 +169,25 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
+                //If the incident program is SIPP
                 if (incidentReport.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
                 {
                     incidentReport.IRP_ApprovalLevelReq = "0";
                 }
                 else
                     incidentReport.IRP_ApprovalLevelReq = "1";
+
+                //Nature of incident
+                if (incidentReport.IRP_AbuseAllegation == "1" || incidentReport.IRP_Death == "1" ||
+                    incidentReport.IRP_PoliceFire == "1" || incidentReport.IRP_SuicideGestures == "1" ||
+                    incidentReport.IRP_UnplannedHospitalization == "1")
+                {
+                    incidentReport.IRP_Category = "Serious";
+                }
+                else
+                {
+                    incidentReport.IRP_Category = "Regular";
+                }
 
                 db.IncidentReports.Add(incidentReport);
                 db.SaveChanges();

@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.IRP_ProgramName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IRP_ProgramName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.IRP_Category)
         </dt>
 
@@ -31,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_ReportDate)
+            @Model.IRP_ReportDate.ToShortDateString()
         </dd>
 
         <dt>
@@ -39,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IRP_IncidentDate)
+            @Model.IRP_IncidentDate.ToShortDateString()
         </dd>
 
         <dt>
@@ -65,39 +73,7 @@
         <dd>
             @Html.DisplayFor(model => model.IRP_ReportOn)
         </dd>
-<!--
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IRP_ResMgrApprovedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IRP_DeptDirApprovedDate)
-        </dd>
-       
-         <dt>
-            @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IRP_RiskMgrApprovedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
-        </dt>
-    
-        <dd>
-            @Html.DisplayFor(model => model.IRP_RiskMgrComment)
-        </dd>
-    -->
         <dt>
             @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
         </dt>
@@ -122,38 +98,38 @@
             @Html.DisplayFor(model => model.IRP_Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_InjuryType)
-        </dt>
+        @if (Model.IRP_InjuryType != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.IRP_InjuryType)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IRP_InjuryType)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IRP_InjuryType)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_BodyPart)
-        </dt>
+        @if (Model.IRP_BodyPart != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.IRP_BodyPart)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IRP_BodyPart)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IRP_BodyPart)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
-        </dt>
+        @if (Model.IRP_InjuryFollowUp != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IRP_ProgramName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IRP_ProgramName)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
+            </dd>
+        }
     </dl>
 </div>
 <p>
