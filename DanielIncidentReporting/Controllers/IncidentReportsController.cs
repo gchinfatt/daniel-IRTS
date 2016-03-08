@@ -364,6 +364,18 @@ namespace DanielIncidentReporting.Controllers
 
             if (ModelState.IsValid)
             {
+                //Nature of incident
+                if (incidentReport.IRP_AbuseAllegation == "1" || incidentReport.IRP_Death == "1" ||
+                    incidentReport.IRP_PoliceFire == "1" || incidentReport.IRP_SuicideGestures == "1" ||
+                    incidentReport.IRP_UnplannedHospitalization == "1")
+                {
+                    incidentReport.IRP_Category = "Serious";
+                }
+                else
+                {
+                    incidentReport.IRP_Category = "Regular";
+                }
+
                 db.Entry(incidentReport).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
