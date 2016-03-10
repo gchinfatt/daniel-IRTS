@@ -89,7 +89,9 @@ namespace DanielIncidentReporting.Controllers
             //users = context.Users.Where(m => m.isActive.Equals("1"));
 
             List<SelectListItem> list = new List<SelectListItem>();
-
+            //Added title to users dropdown list - Gina Chin Fatt
+            //Did not work with Delete user logic.  -03-09-2016
+            //list.Add(new SelectListItem() {Value ="-1", Text = "Select user", Selected = true, Disabled = true});
             foreach (var user in context.Users.ToList())
             {
                 if (user.isActive.Equals("1"))
