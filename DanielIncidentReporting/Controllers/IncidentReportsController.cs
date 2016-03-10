@@ -107,19 +107,9 @@ namespace DanielIncidentReporting.Controllers
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
 
-            //InjuryFollowUpList for dropdown
-            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
-            //is this repeating what the above code is doing? - Gina
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text"); 
-            ViewBag.injuryFollowUps = injuryFollowUps;
-
-            // Contributing Factors - 1. Abuse allegation dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 1. Abuse Allegation dropdown list items - Gina Chin Fatt
             List<SelectListItem> abuseAllegationItems = new List<SelectListItem>();
-            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse/Sexual Encounter", Selected = true, Disabled = true });
+            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse Allegation", Selected = true, Disabled = true });
             abuseAllegationItems.Add(new SelectListItem {Value="Client/Client", Text="Client/Client"});
             abuseAllegationItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
             abuseAllegationItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
@@ -127,7 +117,7 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.abuseAllegationItems = abuseAllegationItems;
 
-            // Contributing Factors - 2. Physical aggression dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
             List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
             physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Aggression", Selected = true, Disabled = true });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
@@ -135,7 +125,7 @@ namespace DanielIncidentReporting.Controllers
  
             ViewBag.physicalAggressionItems = physicalAggressionItems;
 
-            // Contributing Factors - 3. Physical aggression dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
             List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
             policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
             policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
@@ -146,7 +136,7 @@ namespace DanielIncidentReporting.Controllers
             
             ViewBag.policeInvolvementItems = policeInvolvementItems;
 
-            // Contributing Factors - 4. Cause of Injury dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 4. Injury Items dropdown list items - Gina Chin Fatt
             List<SelectListItem> injuryItems = new List<SelectListItem>();
             injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of Injury", Selected = true, Disabled = true});
             injuryItems.Add(new SelectListItem { Value = "Slip/Fall", Text = "Slip/Fall" });
@@ -156,6 +146,47 @@ namespace DanielIncidentReporting.Controllers
             injuryItems.Add(new SelectListItem { Value = "Other", Text = "Other" });
 
             ViewBag.injuryItems = injuryItems;
+
+            // Contributing Factors - 4a. Injury FollowUp dropdown list items
+            List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
+            injuryFollowUpItems.Add(new SelectListItem() { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpItems.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpItems, "Value", "Text");
+
+            ViewBag.injuryFollowUpItems = injuryFollowUps;
+
+            // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
+            List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "-1", Text = "Unplanned Hospitalization", Selected = true, Disabled = true });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
+
+            ViewBag.unplannedHospitalizationItems = unplannedHospitalizationItems;
+
+            // Contributing Factors - 6. Sexual Encounter dropdown list items
+            List<SelectListItem> sexualEncounterItems = new List<SelectListItem>();
+            sexualEncounterItems.Add(new SelectListItem { Value = "-1", Text = "Sexual Encounter", Selected = true, Disabled = true });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
+
+            ViewBag.sexualEncounterItems = sexualEncounterItems;
+
+            // Contributing Factors - 7. Seclusion dropdown list items
+            List<SelectListItem> seclusionItems = new List<SelectListItem>();
+            seclusionItems.Add(new SelectListItem { Value = "-1", Text = "Seclusion", Selected = true, Disabled = true });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+
+            ViewBag.seclusionItems = seclusionItems;
 
             return View();
         }
@@ -201,6 +232,8 @@ namespace DanielIncidentReporting.Controllers
         public ActionResult Edit(int? id)
         {
 
+            IncidentReport incidentReportData = db.IncidentReports.Find(id);
+
             //Create a viewbag (Viewbag.mgrPosition) to hold the mgrPosition of the current user
             //This viewbag is what's used to give the mgrPosition to the Edit view
             //for the function of diplayRiskManagerComment
@@ -228,24 +261,13 @@ namespace DanielIncidentReporting.Controllers
                     list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
                 }
             }
-
             SelectList programs = new SelectList(list, "Value", "Text");
+
             ViewBag.programs = programs;
 
-
-            //InjuryFollowUpList for dropdown
-            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
-
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
-            ViewBag.injuryFollowUps = injuryFollowUps;
-
-            // Contributing Factors - 1. Abuse allegation dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 1. Abuse Allegation dropdown list items - Gina Chin Fatt
             List<SelectListItem> abuseAllegationItems = new List<SelectListItem>();
-            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse/Sexual Encounter", Selected = true, Disabled = true });
+            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse Allegation", Selected = true, Disabled = true });
             abuseAllegationItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
             abuseAllegationItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
             abuseAllegationItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
@@ -253,7 +275,7 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.abuseAllegationItems = abuseAllegationItems;
 
-            // Contributing Factors - 2. Physical aggression dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
             List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
             physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Aggression", Selected = true, Disabled = true });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
@@ -261,10 +283,17 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.physicalAggressionItems = physicalAggressionItems;
 
-            // Contributing Factors - 3. Physical aggression dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 2a. Physical Restraint Times
+            String IRP_RestraintSTTimeValue = incidentReportData.IRP_RestraintSTTime;
+            String IRP_RestraintENTimeValue = incidentReportData.IRP_RestraintENTime;
+
+            ViewBag.IRP_RestraintSTTimeValue = IRP_RestraintSTTimeValue;
+            ViewBag.IRP_RestraintENTimeValue = IRP_RestraintENTimeValue;
+
+            // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
             List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
             policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
-            policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker Act" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
@@ -272,31 +301,64 @@ namespace DanielIncidentReporting.Controllers
 
             ViewBag.policeInvolvementItems = policeInvolvementItems;
 
-            // Contributing Factors - 4. Cause of Injury dropdown list items - Gina Chin Fatt
+            // Contributing Factors - 3a. Police Report Number
+            String IRP_PoliceRepNoValue = incidentReportData.IRP_PoliceRepNo;
+
+            ViewBag.IRP_PoliceRepNoValue = IRP_PoliceRepNoValue;
+
+            // Contributing Factors - 4. Injury Items dropdown list items - Gina Chin Fatt
             List<SelectListItem> injuryItems = new List<SelectListItem>();
             injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of Injury", Selected = true, Disabled = true });
             injuryItems.Add(new SelectListItem { Value = "Slip/Fall", Text = "Slip/Fall" });
             injuryItems.Add(new SelectListItem { Value = "Bite", Text = "Bite" });
             injuryItems.Add(new SelectListItem { Value = "During ESI", Text = "During ESI" });
-            injuryItems.Add(new SelectListItem { Value = "Self-InflIcted", Text = "Self-Inflicted" });
+            injuryItems.Add(new SelectListItem { Value = "Self-Inflicted", Text = "Self-Inflicted" });
             injuryItems.Add(new SelectListItem { Value = "Other", Text = "Other" });
 
             ViewBag.injuryItems = injuryItems;
 
-            // Contributing Factors - 5. Police Report Number
-            IncidentReport incidentReportData = db.IncidentReports.Find(id);
-            String IRP_PoliceRepNoValue = incidentReportData.IRP_PoliceRepNo;
+            // Contributing Factors - 4a. Injury FollowUp dropdown list items
+            List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
+            injuryFollowUpItems.Add(new SelectListItem() { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
 
-            ViewBag.IRP_PoliceRepNoValue = IRP_PoliceRepNoValue;
+            foreach (var injuryFollowUp in db.InjuryFollowUps)
+            {
+                injuryFollowUpItems.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
+            }
+            SelectList injuryFollowUps = new SelectList(injuryFollowUpItems, "Value", "Text");
 
-            // Contributing Factors - 6. Physical Restraint Times
-            String IRP_RestraintSTTimeValue = incidentReportData.IRP_RestraintSTTime;
-            String IRP_RestraintENTimeValue = incidentReportData.IRP_RestraintENTime;
+            ViewBag.injuryFollowUpItems = injuryFollowUps;
 
-            ViewBag.IRP_RestraintSTTimeValue = IRP_RestraintSTTimeValue;
-            ViewBag.IRP_RestraintENTimeValue = IRP_RestraintENTimeValue;
+            // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
+            List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "-1", Text = "Unplanned Hospitalization", Selected = true, Disabled = true });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
 
-            // Contributing Factors - 7. Seclusion Times
+            ViewBag.unplannedHospitalizationItems = unplannedHospitalizationItems;
+
+            // Contributing Factors - 6. Sexual Encounter dropdown list items
+            List<SelectListItem> sexualEncounterItems = new List<SelectListItem>();
+            sexualEncounterItems.Add(new SelectListItem { Value = "-1", Text = "Sexual Encounter", Selected = true, Disabled = true });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
+
+            ViewBag.sexualEncounterItems = sexualEncounterItems;
+
+            // Contributing Factors - 7. Seclusion dropdown list items
+            List<SelectListItem> seclusionItems = new List<SelectListItem>();
+            seclusionItems.Add(new SelectListItem { Value = "-1", Text = "Seclusion", Selected = true, Disabled = true });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+
+            ViewBag.seclusionItems = seclusionItems;
+
+            // Contributing Factors - 7a. Seclusion Times
             String IRP_SeclusionSTTimeValue = incidentReportData.IRP_SeclusionSTTime;
             String IRP_SeclusionENTimeValue = incidentReportData.IRP_SeclusionENTime;
 
@@ -334,10 +396,13 @@ namespace DanielIncidentReporting.Controllers
             "IRP_ProgramName, " +
             "IRP_Witness, " +
             "IRP_Notified, " +
-            "IRP_Contrib1, " +
-            "IRP_Contrib2, " +
-            "IRP_Contrib3, " +
-            "IRP_Contrib4, " +
+            "IRP_ContribAbuseAllegation, " +
+            "IRP_ContribPhysicalAggression, " +
+            "IRP_ContribPoliceInvolvement, " +
+            "IRP_ContribInjuryItems, " +
+            "IRP_ContribUnplannedHospitalization, " +
+            "IRP_ContribSexualEncounter, " +
+            "IRP_ContribSeclusion, " +
             "IRP_AbuseAllegation, " +
             "IRP_Death, " +
             "IRP_PoliceFire, " +

@@ -48,10 +48,10 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Risk Manager Comment")]
         public string IRP_RiskMgrComment { get; set; }
 
-        [Display(Name = "Prepared By First Name")]
+        [Display(Name = "Reporter First Name")]
         public string IRP_PreparedByFirstName { get; set; }
 
-        [Display(Name = "Prepared By Last Name")]
+        [Display(Name = "Reporter Last Name")]
         public string IRP_PreparedByLastName { get; set; }
 
         [Display(Name = "Description")]
@@ -63,23 +63,42 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Body Part")]
         public string IRP_BodyPart { get; set; }
 
-        [Display(Name = "Injury Follow Up")]
+        [Display(Name = "Injury Follow-Up")]
         public string IRP_InjuryFollowUp { get; set; }
 
         public string IRP_ApprovalLevelReq { get; set; }
 
         [Display(Name = "Program Name")]
         public string IRP_ProgramName { get; set; }
+
         [Display(Name = "Witness")]
         public string IRP_Witness { get; set; }
+
         [Display(Name = "Notified Person")]
         public string IRP_Notified { get; set; }
 
         //Contributing Factors
-        public string IRP_Contrib1 { get; set; }
-        public string IRP_Contrib2 { get; set; }
-        public string IRP_Contrib3 { get; set; }
-        public string IRP_Contrib4 { get; set; }
+        [Display(Name = "Abuse Allegation")]
+        public string IRP_ContribAbuseAllegation { get; set; }
+
+        [Display(Name = "Physical Aggression")]
+        public string IRP_ContribPhysicalAggression { get; set; }
+
+        [Display(Name = "Police Involvement")]
+        public string IRP_ContribPoliceInvolvement { get; set; }
+
+        [Display(Name = "Injury Items")]
+        public string IRP_ContribInjuryItems { get; set; }
+
+        [Display(Name = "Unplanned Hospitalization")]
+        public string IRP_ContribUnplannedHospitalization { get; set; }
+
+        [Display(Name = "Sexual Encounter")]
+        public string IRP_ContribSexualEncounter { get; set; }
+
+        [Display(Name = "Seclusion")]
+        public string IRP_ContribSeclusion { get; set; }
+
         //Incident types 
         public string IRP_AbuseAllegation { get; set; }
         public string IRP_Death { get; set; }
@@ -99,10 +118,19 @@ namespace DanielIncidentReporting.Models
         public string IRP_Other { get; set; }
 
         //Incident Types extras
+        [Display(Name = "Restraint Start Time")]
         public string IRP_RestraintSTTime { get; set; }
+
+        [Display(Name = "Restraint End Time")]
         public string IRP_RestraintENTime { get; set; }
+
+        [Display(Name = "Seclusion Start Time")]
         public string IRP_SeclusionSTTime { get; set; }
+
+        [Display(Name = "Seclusion End Time")]
         public string IRP_SeclusionENTime { get; set; }
+
+        [Display(Name = "Police Report Number")]
         public string IRP_PoliceRepNo { get; set; }
         
     }

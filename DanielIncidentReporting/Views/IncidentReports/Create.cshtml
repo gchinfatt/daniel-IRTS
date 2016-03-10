@@ -140,7 +140,7 @@
         <br/>
         <div class="container checkbox col-md-4">
             <label>
-                <input type="checkbox" name="IRP_AbuseAllegation" onclick="displayContrib(this, '#IRP_Contrib1')" value="1"/>Abuse Allegation
+                <input type="checkbox" name="IRP_AbuseAllegation" onclick="displayContrib(this, '#IRP_ContribAbuseAllegation')" value="1"/>Abuse Allegation
             </label>
             <br/>
             <label>
@@ -152,11 +152,11 @@
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Unplanned Hospitalization
+                <input type="checkbox" name="IRP_UnplannedHospitalization" onclick="displayContrib(this, '#IRP_ContribPoliceInvolvement')" value="1"/>Unplanned Hospitalization
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_PoliceFire" onclick="displayContrib(this, '#IRP_Contrib3')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
+                <input type="checkbox" name="IRP_PoliceFire" onclick="displayContrib(this, '#IRP_ContribPoliceInvolvement')" value="1"/>Involvement with Police and/or<br/> Fire/Rescue Personnel
             </label>
             <br/>
             <label>
@@ -165,7 +165,7 @@
         </div>
         <div class="container checkbox col-md-4">
             <label>
-                <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_Contrib1')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
+                <input type="checkbox" name="IRP_SexualEncounter" onclick="displayContrib(this, '#IRP_ContribAbuseAllegation')" value="1" id="IRP_SexualEncounter"/>Sexual Encounter
             </label>
             <br/>
             <asp:CheckBox id="CheckBox1" checked="true"/>
@@ -178,7 +178,7 @@
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_Injury" onclick="displayContrib(this, '#IRP_Contrib4')" value="1"/>Injury
+                <input type="checkbox" name="IRP_Injury" onclick="displayContrib(this, '#IRP_ContribInjuryItems')" value="1"/>Injury
             </label>
             <br/>
             <label>
@@ -186,7 +186,7 @@
             </label>
             <br/>
             <label>
-                <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Physical Restraint
+                <input type="checkbox" name="IRP_PhysicalRestraint" onclick="displayContrib(this, '#IRP_ContribPhysicalAggression')" value="1"/>Physical Restraint
             </label>
 
             <div id="RestrainTime" style='display: none;'>
@@ -248,7 +248,7 @@
 
             <br/>
             <label>
-                <input type="checkbox" name="IRP_Seclusion" onclick="displayContrib(this, '#IRP_Contrib2')" value="1"/>Seclusion
+                <input type="checkbox" name="IRP_Seclusion" onclick="displayContrib(this, '#IRP_ContribPhysicalAggression')" value="1"/>Seclusion
             </label>
             <br/>
 
@@ -289,10 +289,10 @@
     <div id="ContribFactors" style='display: none;'>
         <hr />
         <label class="control-label">Contributing Factors</label><br/><br/>
-        @Html.DropDownList("IRP_Contrib1", ViewBag.abuseAllegationItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib2", ViewBag.physicalAggressionItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib3", ViewBag.policeInvolvementItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
-        @Html.DropDownList("IRP_Contrib4", ViewBag.injuryItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+        @Html.DropDownList("IRP_ContribAbuseAllegation", ViewBag.abuseAllegationItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+        @Html.DropDownList("IRP_ContribPhysicalAggression", ViewBag.physicalAggressionItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+        @Html.DropDownList("IRP_ContribPoliceInvolvement", ViewBag.policeInvolvementItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
+        @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new {@class = "form-control", @style = "display:none"})
     </div>
 
 
@@ -319,7 +319,7 @@
         <div class="container form-group">
             @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUps, new {@class = "form-control"})
+                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUpItems, new {@class = "form-control"})
                 @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
             </div>
         </div>
