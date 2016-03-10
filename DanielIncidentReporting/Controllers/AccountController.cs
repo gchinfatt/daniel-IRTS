@@ -263,6 +263,16 @@ namespace DanielIncidentReporting.Controllers
 
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
+
+            // Manager position dropdown list items - Gina Chin Fatt
+            List<SelectListItem> managerItems = new List<SelectListItem>();
+            managerItems.Add(new SelectListItem { Value = "-1", Text = "Select manager position", Selected = true, Disabled = true });
+            managerItems.Add(new SelectListItem { Value = "Residential Manager", Text = "Residential Manager" });
+            managerItems.Add(new SelectListItem { Value = "Department Director", Text = "Department Director" });
+            managerItems.Add(new SelectListItem { Value = "Risk Manager", Text = "Risk Manager" });
+
+            ViewBag.managerItems = managerItems;
+
             return View();
         }
 
