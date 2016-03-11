@@ -232,17 +232,17 @@
                 <label class="control-label">Contributing Factors</label><br /><br />
                 <!-- Abuse Allegation -->
                 <div class="row-margin" id="ContribFactors_AbuseAllegation" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribAbuseAllegation, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribAbuseAllegation, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribAbuseAllegation", ViewBag.abuseAllegationItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                 </div>
                 <!-- Physical Aggression Items -->
                 <div class="row-margin" id="ContribFactors_PhysicalAggression" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribPhysicalAggression, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribPhysicalAggression, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribPhysicalAggression", ViewBag.physicalAggressionItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                     <!-- Restraint Start Time -->
                     <div id="ContribFactors_RestraintStartTime" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_RestraintSTTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
@@ -252,7 +252,7 @@
                     <!-- Restraint End Time -->
                     <div id="ContribFactors_RestraintEndTime" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_RestraintENTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
@@ -262,12 +262,12 @@
                 </div>
                 <!-- Police Involvement -->
                 <div class="row-margin" id="ContribFactors_PoliceInvolvement" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribPoliceInvolvement, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribPoliceInvolvement, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribPoliceInvolvement", ViewBag.policeInvolvementItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                     <!-- Police Report Number -->
                     <div id="ContribFactors_PoliceReportNumber" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_PoliceRepNo, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_PoliceRepNo, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_PoliceRepNo, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_PoliceRepNo, "", new { @class = "text-danger" })
@@ -277,12 +277,12 @@
                 </div>
                 <!-- Injury Items -->
                 <div class="row-margin" id="ContribFactors_InjuryItems" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                     <!-- Injury Type -->
                     <div id="ContribFactors_InjuryType" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_InjuryType, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
@@ -292,7 +292,7 @@
                     <!-- Injury Body Part -->
                     <div id="ContribFactors_InjuryBodyPart" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_BodyPart, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
@@ -302,7 +302,7 @@
                     <!-- Injury FollowUp -->
                     <div id="ContribFactors_InjuryFollowUp" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList)ViewBag.injuryFollowUpItems, new { @class = "form-control", @style = "display:none" })
                                 @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new { @class = "text-danger" })
@@ -312,22 +312,22 @@
                 </div>
                 <!-- Unplanned Hospitalization -->
                 <div class="row-margin" id="ContribFactors_UnplannedHospitalization" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribUnplannedHospitalization, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribUnplannedHospitalization, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribUnplannedHospitalization", ViewBag.unplannedHospitalizationItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                 </div>
                 <!-- Sexual Encounter -->
                 <div class="row-margin" id="ContribFactors_SexualEncounter" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribSexualEncounter, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribSexualEncounter, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribSexualEncounter", ViewBag.sexualEncounterItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                 </div>
                 <!-- Seclusion Items -->
                 <div class="row-margin" id="ContribFactors_Seclusion" style='display: none;'>
-                    @Html.LabelFor(model => model.IRP_ContribSeclusion, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.LabelFor(model => model.IRP_ContribSeclusion, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:25px;" })
                     @Html.DropDownList("IRP_ContribSeclusion", ViewBag.seclusionItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                     <!-- Seclusion Start Time -->
                     <div id="ContribFactors_SeclusionStartTime" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_SeclusionSTTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
@@ -337,7 +337,7 @@
                     <!-- Seclusion End Time -->
                     <div id="ContribFactors_SeclusionEndTime" style='display: none;'>
                         <div>
-                            @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "col-md-3" })
+                            @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
                                 @Html.EditorFor(model => model.IRP_SeclusionENTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249" } })
                                 @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
@@ -356,73 +356,80 @@
 
             <!-- Description -->
             <div class="container form-group">
-                @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
+                <div class="row-margin">
+                    @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "col-md-2" })
                     @Html.TextAreaFor(model => model.IRP_Description, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
-                    <br />
+                    <br/>
+                    <div class ="col-md-2"></div>
                     <small class="text-muted">
                         Maximum 1000 characters allowed.
                     </small>
                     @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            
             <hr />
 
             <!-- Witness Name -->
             <div class="container form-group">
                 <!-- TODO: Change to model.IRP_NotifiedPerson -->
-                <label class="control-label col-md-2">Witness</label>
-                <div class="col-md-10">
+                <div class="row-margin">
+                    @Html.LabelFor(model => model.IRP_Witness, htmlAttributes: new { @class = "col-md-2" })
                     @Html.TextAreaFor(model => model.IRP_Witness, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
                     <br />
+                    <div class="col-md-2"></div>
                     <small class="text-muted">
-                        Witness Name, Position.<br />
+                        Witness Name, Position.<br/>
+                        <div class="col-md-2"></div>
                         Maximum 1000 characters allowed.
                     </small>
-                    @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.IRP_Witness, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        
+            <hr />
+
+            <!-- Notification -->
+            <div class="container form-group">
+                <div class="row-margin">
+                    @Html.LabelFor(model => model.IRP_Notified, htmlAttributes: new { @class = "col-md-2" })
+                    @Html.TextAreaFor(model => model.IRP_Notified, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+                    <br />
+                    <div class="col-md-2"></div>
+                    <small class="text-muted">
+                        Notified Person Name, Position, Date of Notification.<br />
+                        <div class="col-md-2"></div>
+                        Maximum 1000 characters allowed.
+                    </small>
+                    @Html.ValidationMessageFor(model => model.IRP_Notified, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <hr />
 
-            <!-- Notification -->
+            <!--Risk Manager Comment-->
             <div class="container form-group">
-                <label class="control-label col-md-2">Notification</label>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.IRP_Notified, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
+                <div class="row-margin">
+                    @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new { @class = "col-md-2" })
+                    @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
                     <br />
+                    <div class="col-md-2"></div>
                     <small class="text-muted">
-                        Notified Person Name, Position, Date of Notification.<br />
                         Maximum 1000 characters allowed.
                     </small>
-                    @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <!--Risk Manager Comment-->
-            <div id="riskMgrComment">
-                <hr />
-                <div class="container form-group">
-                    @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { htmlAttributes = new { @class = "form-control" }, @cols = "80", @rows = "4", @maxlength = "999" })
-                        <br />
-                        <small class="text-muted">
-                            Maximum 1000 characters allowed.
-                        </small>
-                        @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <hr />
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
+                <div class= "col-md-2">       
+                @*<div class="col-md-offset-2 col-md-10">*@
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
+        
         </div>
     }
 

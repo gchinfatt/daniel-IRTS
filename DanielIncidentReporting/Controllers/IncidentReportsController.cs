@@ -119,7 +119,7 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
             List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
-            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Aggression", Selected = true, Disabled = true });
+            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Restraint", Selected = true, Disabled = true });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
  
@@ -277,7 +277,7 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
             List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
-            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Aggression", Selected = true, Disabled = true });
+            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Restraint", Selected = true, Disabled = true });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
             physicalAggressionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
 

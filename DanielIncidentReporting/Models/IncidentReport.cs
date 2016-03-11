@@ -66,6 +66,7 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Injury Follow-Up")]
         public string IRP_InjuryFollowUp { get; set; }
 
+        [Display(Name = "Approval Level Required")]
         public string IRP_ApprovalLevelReq { get; set; }
 
         [Display(Name = "Program Name")]
@@ -81,7 +82,7 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Abuse Allegation")]
         public string IRP_ContribAbuseAllegation { get; set; }
 
-        [Display(Name = "Physical Aggression")]
+        [Display(Name = "Physical Restraint")]
         public string IRP_ContribPhysicalAggression { get; set; }
 
         [Display(Name = "Police Involvement")]
