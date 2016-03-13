@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using DanielIncidentReporting.Models;
 using System.Data.Entity.Validation;
+using System.Text;
 
 namespace DanielIncidentReporting.Controllers
 {
@@ -26,21 +27,33 @@ namespace DanielIncidentReporting.Controllers
             {
                 if (user.mgrPosition.Equals("Residential Manager"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("0")));
+                    return
+                        View(
+                            db.IncidentReports.Where(
+                                m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("0")));
                 }
                 else if (user.mgrPosition.Equals("Department Director"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
+                    return
+                        View(
+                            db.IncidentReports.Where(
+                                m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
                 }
                 else if (user.mgrPosition.Equals("Risk Manager"))
                 {
                     ViewBag.position = "RiskManager";
-                    return View(db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1") || m.IRP_ApprovalLevelReq.Equals("2")));
+                    return
+                        View(
+                            db.IncidentReports.Where(
+                                m =>
+                                    m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1") ||
+                                    m.IRP_ApprovalLevelReq.Equals("2")));
                 }
-               
+
             }
             return View();
         }
+
         //GET: IncidentReports
         public ActionResult Approve(int? id)
         {
@@ -71,6 +84,59 @@ namespace DanielIncidentReporting.Controllers
             return View();
         }
 
+        //GET ExportCSV
+        public ActionResult ExportCSV() {
+            
+            return View();
+        }
+
+        //POST ExportCSV
+        [HttpPost]
+        public ActionResult ExportCSV(DateTime dateFrom, DateTime dateTo)
+        {
+            List<IncidentReport> incidents = new List<IncidentReport>();
+
+            //Filter incidents by date
+            foreach (var incident in db.IncidentReports)
+            {
+                if (incident.IRP_IncidentDate >= dateFrom && incident.IRP_IncidentDate <= dateTo)
+                {
+                    incidents.Add(incident);
+                }
+            }
+
+            //Put filtered incidents into a string builder
+            StringBuilder sb = new StringBuilder();
+            
+            //Column headers
+            sb.AppendLine("Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" + "," + "Incident Date" + "," + "Victim First Name" +
+                    "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," + "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" + 
+                    "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" + "," + "Reporter First Name" + "," + "Reporter Last Name" + 
+                    "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" + 
+                    "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," + "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" + 
+                    "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," + "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." + 
+                    "," + "Restraint Start Time" + "," + "Restraint End Time" + "," + "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" + 
+                    "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" + "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" + 
+                    "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up");
+
+            //Actual values of each filtered incident
+            foreach (var incident in incidents)
+            {
+                sb.AppendLine(incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " + incident.IRP_Location + "," + incident.IRP_ReportDate + "," + incident.IRP_IncidentDate + "," + incident.IRP_VictimFirstName +
+                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
+                    "," + incident.IRP_RiskMgrComment + "," + incident.IRP_PreparedByFirstName + "," + incident.IRP_PreparedByLastName + "," + incident.IRP_Description + "," + incident.IRP_Witness + "," + incident.IRP_Notified +
+                    "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
+                    "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
+                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + incident.IRP_PoliceRepNo + "," + incident.IRP_RestraintSTTime + "," + incident.IRP_RestraintENTime + "," + incident.IRP_SeclusionSTTime +
+                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
+                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + incident.IRP_InjuryType + "," + incident.IRP_BodyPart + "," + incident.IRP_InjuryFollowUp); ;
+            }
+
+            String csv = sb.ToString();
+            String reportName = "Incidents" + dateFrom.ToShortDateString() + "_" + dateTo.ToShortDateString() + ".csv";
+
+            return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
+        }
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
         {

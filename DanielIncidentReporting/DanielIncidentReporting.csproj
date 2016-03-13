@@ -344,6 +344,7 @@
     <Content Include="Views\Account\DeleteUserConfirmation.cshtml" />
     <Content Include="Views\Account\AddProgramConfirmation.cshtml" />
     <Content Include="Views\Account\UserAddedConfirmation.cshtml" />
+    <Content Include="Views\IncidentReports\ExportCSV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Edit\" />
