@@ -149,15 +149,14 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 4a. Injury FollowUp dropdown list items
             List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
-            injuryFollowUpItems.Add(new SelectListItem() { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "First Aid", Text = "First Aid" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "ER", Text = "ER" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "On-Site Consult", Text = "On-Site Consult" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "Non-emergency Doctor's Visit", Text = "Non-emergency Doctor's Visit" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "None Needed", Text = "None Needed" });
 
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpItems.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpItems, "Value", "Text");
-
-            ViewBag.injuryFollowUpItems = injuryFollowUps;
+            ViewBag.injuryFollowUpItems = injuryFollowUpItems;
 
             // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
             List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();
@@ -319,15 +318,14 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 4a. Injury FollowUp dropdown list items
             List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
-            injuryFollowUpItems.Add(new SelectListItem() { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "First Aid", Text = "First Aid" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "ER", Text = "ER" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "On-Site Consult", Text = "On-Site Consult" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "Non-emergency Doctor's Visit", Text = "Non-emergency Doctor's Visit" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "None Needed", Text = "None Needed" });
 
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpItems.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpItems, "Value", "Text");
-
-            ViewBag.injuryFollowUpItems = injuryFollowUps;
+            ViewBag.injuryFollowUpItems = injuryFollowUpItems;
 
             // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
             List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();

@@ -315,11 +315,11 @@
             </div>
         </div>
 
-        <!--Injury FollowUp with dropdown-->
+        <!--Injury FollowUp-->
         <div class="container form-group">
             @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IRP_InjuryFollowUp, (SelectList) ViewBag.injuryFollowUpItems, new {@class = "form-control"})
+                @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new { @class = "form-control", @style = "display:none" })
                 @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new {@class = "text-danger"})
             </div>
         </div>
