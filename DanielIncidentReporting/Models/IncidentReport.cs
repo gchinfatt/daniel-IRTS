@@ -101,21 +101,52 @@ namespace DanielIncidentReporting.Models
         public string IRP_ContribSeclusion { get; set; }
 
         //Incident types 
+        [Display(Name = "Abuse Allegation")]
         public string IRP_AbuseAllegation { get; set; }
+
+        [Display(Name = "Death")]
         public string IRP_Death { get; set; }
+
+        [Display(Name = "Involvement with Police/Fire")]
         public string IRP_PoliceFire { get; set; }
+
+        [Display(Name = "Suicide Gestures")]
         public string IRP_SuicideGestures { get; set; }
+
+        [Display(Name = "Unplanned Hospitalization")]
         public string IRP_UnplannedHospitalization { get; set; }
+
+        [Display(Name = "Sexual Encounter")]
         public string IRP_SexualEncounter { get; set; }
+
+        [Display(Name = "Substance Abuse")]
         public string IRP_SubstanceAbuse { get; set; }
+
+        [Display(Name = "Medication Error")]
         public string IRP_MedicationError { get; set; }
+
+        [Display(Name = "Injury")]
         public string IRP_Injury { get; set; }
+
+        [Display(Name = "Client Grievance")]
         public string IRP_ClientGrievance { get; set; }
+
+        [Display(Name = "Physical Restraint")]
         public string IRP_PhysicalRestraint { get; set; }
+
+        [Display(Name = "Seclusion")]
         public string IRP_Seclusion { get; set; }
+
+        [Display(Name = "Property Damage")]
         public string IRP_PropertyDamage { get; set; }
+
+        [Display(Name = "Property Missing")]
         public string IRP_PropertyMissing { get; set; }
+
+        [Display(Name = "Theft")]
         public string IRP_Theft { get; set; }
+
+        [Display(Name = "Other")]
         public string IRP_Other { get; set; }
 
         //Incident Types extras

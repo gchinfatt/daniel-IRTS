@@ -241,7 +241,7 @@
                         <div>
                             @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
-                                @Html.EditorFor(model => model.IRP_RestraintSTTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249", @placeholder= "Restraint Start Time" } })
+                                @Html.EditorFor(model => model.IRP_RestraintSTTime, new { htmlAttributes = new { @class = "form-control", @type="time", @maxlength = "249", @placeholder= "Restraint Start Time" } })
                                 @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -251,7 +251,7 @@
                         <div>
                             @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
-                                @Html.EditorFor(model => model.IRP_RestraintENTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249", @placeholder = "Restraint End Time" } })
+                                @Html.EditorFor(model => model.IRP_RestraintENTime, new { htmlAttributes = new { @class = "form-control", @type = "time", @maxlength = "249", @placeholder = "Restraint End Time" } })
                                 @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -326,7 +326,7 @@
                         <div>
                             @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
-                                @Html.EditorFor(model => model.IRP_SeclusionSTTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249", @placeholder = "Seclusion Start Time" } })
+                                @Html.EditorFor(model => model.IRP_SeclusionSTTime, new { htmlAttributes = new { @class = "form-control", @type = "time", @maxlength = "249", @placeholder = "Seclusion Start Time" } })
                                 @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -336,7 +336,7 @@
                         <div>
                             @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "col-md-3", @style = "padding-left:50px;" })
                             <div class="row-margin">
-                                @Html.EditorFor(model => model.IRP_SeclusionENTime, new { htmlAttributes = new { @class = "form-control", maxlength = "249", @placeholder= "Seclusion End Time" } })
+                                @Html.EditorFor(model => model.IRP_SeclusionENTime, new { htmlAttributes = new { @class = "form-control", @type = "time", @maxlength = "249", @placeholder= "Seclusion End Time" } })
                                 @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -756,6 +756,33 @@
                 $('#ContribFactors').hide();
                 $(contribFactorDiv).hide();
                 $(contribFactorItemsDiv).hide();
+            }
+            //Abuse Allegation
+            if (sender.name == "IRP_AbuseAllegation") {
+                if (sender.checked == true) {
+                    $('#ContribFactors_AbuseAllegation').show();
+                }
+                else {
+                    $('#ContribFactors_AbuseAllegation').hide();
+                }
+            }
+            //Sexual Encounter
+            if (sender.name == "IRP_SexualEncounter") {
+                if (sender.checked == true) {
+                    $('#ContribFactors_SexualEncounter').show();
+                }
+                else {
+                    $('#ContribFactors_SexualEncounter').hide();
+                }
+            }
+            //Unplanned Hospitalization
+            if (sender.name == "IRP_UnplannedHospitalization") {
+                if (sender.checked == true) {
+                    $('#ContribFactors_UnplannedHospitalization').show();
+                }
+                else {
+                    $('#ContribFactors_UnplannedHospitalization').hide();
+                }
             }
             //Police Involvement
             if (sender.name == "IRP_PoliceFire")

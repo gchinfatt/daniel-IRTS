@@ -149,6 +149,15 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Create a viewbag (Viewbag.mgrPosition) to hold the mgrPosition of the current user
+            //This viewbag is what's used to give the mgrPosition to the Edit view
+            //for the function of diplayRiskManagerComment
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            String mgrPosition = userPosition.mgrPosition;
+            ViewBag.mgrPosition = mgrPosition;
+
             return View(incidentReport);
         }
 
