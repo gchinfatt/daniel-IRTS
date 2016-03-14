@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using DanielIncidentReporting.Models;
 using System.Data.Entity.Validation;
 using System.Text;
+using System.Web.UI.WebControls;
 
 namespace DanielIncidentReporting.Controllers
 {
@@ -44,10 +45,8 @@ namespace DanielIncidentReporting.Controllers
                     ViewBag.position = "RiskManager";
                     return
                         View(
-                            db.IncidentReports.Where(
-                                m =>
-                                    m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1") ||
-                                    m.IRP_ApprovalLevelReq.Equals("2")));
+                            db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("0") || 
+                            m.IRP_ApprovalLevelReq.Equals("1") || m.IRP_ApprovalLevelReq.Equals("2")));
                 }
 
             }
@@ -122,20 +121,43 @@ namespace DanielIncidentReporting.Controllers
             //Actual values of each filtered incident
             foreach (var incident in incidents)
             {
-                sb.AppendLine(incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " + incident.IRP_Location + "," + incident.IRP_ReportDate + "," + incident.IRP_IncidentDate + "," + incident.IRP_VictimFirstName +
-                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
-                    "," + incident.IRP_RiskMgrComment + "," + incident.IRP_PreparedByFirstName + "," + incident.IRP_PreparedByLastName + "," + incident.IRP_Description + "," + incident.IRP_Witness + "," + incident.IRP_Notified +
+                String incidentData = incident.IRP_ID + "," + incident.IRP_ProgramName + "," + incident.IRP_Category + "," + escapeCSV(incident.IRP_Location) + "," + escapeCSV(incident.IRP_ReportDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_VictimFirstName) +
+                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV("Res. Email") + "," + incident.IRP_ResMgrApprovedDate.ToShortDateString() + "," + escapeCSV("Dep. Dir. Email") + "," + incident.IRP_DeptDirApprovedDate.ToShortDateString() + "," + escapeCSV("Risk Email") + "," + incident.IRP_RiskMgrApprovedDate.ToShortDateString() +
+                    "," + escapeCSV(incident.IRP_RiskMgrComment) + "," + escapeCSV(incident.IRP_PreparedByFirstName) + "," + escapeCSV(incident.IRP_PreparedByLastName) + "," + escapeCSV(incident.IRP_Description) + "," + escapeCSV(incident.IRP_Witness) + "," + escapeCSV(incident.IRP_Notified) +
                     "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
-                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + incident.IRP_PoliceRepNo + "," + incident.IRP_RestraintSTTime + "," + incident.IRP_RestraintENTime + "," + incident.IRP_SeclusionSTTime +
-                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
-                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + incident.IRP_InjuryType + "," + incident.IRP_BodyPart + "," + incident.IRP_InjuryFollowUp); ;
+                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + escapeCSV(incident.IRP_PoliceRepNo) + "," + escapeCSV(incident.IRP_RestraintSTTime) + "," + escapeCSV(incident.IRP_RestraintENTime) + "," + escapeCSV(incident.IRP_SeclusionSTTime) +
+                    "," + escapeCSV(incident.IRP_SeclusionENTime) + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
+                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + escapeCSV(incident.IRP_InjuryType) + "," + escapeCSV(incident.IRP_BodyPart) + "," + escapeCSV(incident.IRP_InjuryFollowUp);
+                
+                sb.AppendLine(incidentData); ;
             }
 
             String csv = sb.ToString();
             String reportName = "Incidents" + dateFrom.ToShortDateString() + "_" + dateTo.ToShortDateString() + ".csv";
 
             return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
+        }
+
+        private String escapeCSV(String escapeStr)
+        {
+            if (escapeStr != null)
+            {
+                if (escapeStr.Contains("\""))
+                {
+                    escapeStr = escapeStr.Replace("\"", "\"\"");
+                }
+                if (escapeStr.Contains(","))
+                {
+                    escapeStr = String.Format("\" {0}\"", escapeStr);
+                }
+                if (escapeStr.Contains(System.Environment.NewLine))
+                {
+                    escapeStr = String.Format("\" {0}\"", escapeStr);
+                }
+            }
+            
+            return escapeStr;
         }
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
