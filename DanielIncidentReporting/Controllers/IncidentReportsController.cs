@@ -122,7 +122,7 @@ namespace DanielIncidentReporting.Controllers
             foreach (var incident in incidents)
             {
                 String incidentData = incident.IRP_ID + "," + incident.IRP_ProgramName + "," + incident.IRP_Category + "," + escapeCSV(incident.IRP_Location) + "," + escapeCSV(incident.IRP_ReportDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_VictimFirstName) +
-                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV("Res. Email") + "," + incident.IRP_ResMgrApprovedDate.ToShortDateString() + "," + escapeCSV("Dep. Dir. Email") + "," + incident.IRP_DeptDirApprovedDate.ToShortDateString() + "," + escapeCSV("Risk Email") + "," + incident.IRP_RiskMgrApprovedDate.ToShortDateString() +
+                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV("Res. Email") + "," + checkDate(incident.IRP_ResMgrApprovedDate.ToShortDateString()) + "," + escapeCSV("Dep. Dir. Email") + "," + checkDate(incident.IRP_DeptDirApprovedDate.ToShortDateString()) + "," + escapeCSV("Risk Email") + "," + checkDate(incident.IRP_RiskMgrApprovedDate.ToShortDateString()) +
                     "," + escapeCSV(incident.IRP_RiskMgrComment) + "," + escapeCSV(incident.IRP_PreparedByFirstName) + "," + escapeCSV(incident.IRP_PreparedByLastName) + "," + escapeCSV(incident.IRP_Description) + "," + escapeCSV(incident.IRP_Witness) + "," + escapeCSV(incident.IRP_Notified) +
                     "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
@@ -158,6 +158,16 @@ namespace DanielIncidentReporting.Controllers
             }
             
             return escapeStr;
+        }
+
+        private String checkDate(String date)
+        {
+            if (date != null && date.Equals("1/1/0001"))
+            {
+                date = "None";
+            }
+
+            return date;
         }
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
