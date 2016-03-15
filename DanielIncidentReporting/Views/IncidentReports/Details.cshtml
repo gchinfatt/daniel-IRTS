@@ -12,12 +12,13 @@
         if (mgrPosition == "Risk Manager")
         {
             $('#riskMgrComment').show();
-        } 
-        else if (mgrPosition != "Risk Manager") 
+        }
+        else if (mgrPosition != "Risk Manager")
         {
             $('#riskMgrComment').hide();
         }
     });
+
 </script>
 
 <h2>Details</h2>
@@ -373,8 +374,8 @@
             </dl>
         </dl>
         <dl class="dl-horizontal" id="approvalDates">
-            <div>
-                @if (Model.IRP_ResMgrApprovedDate != null)
+            <div id ="resMgrApprovedDate">
+                @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
                     <dt>
                         @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
@@ -383,16 +384,40 @@
                         @Model.IRP_ResMgrApprovedDate.ToShortDateString()
                     </dd>
                 }
-                @if (Model.IRP_DeptDirApprovedDate != null)
+                else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+                    </dt>
+                    <dd>
+                        Pending Residential Manager Approval
+                    </dd>
+                }
+            </div>
+            <br/>
+            <div id="deptDirApprovedDate">
+                @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
+                {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
+                        </dt>
+                        <dd>
+                            @Model.IRP_DeptDirApprovedDate.ToShortDateString()
+                        </dd>
+                }
+                else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
                 {
                     <dt>
                         @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
                     </dt>
                     <dd>
-                        @Model.IRP_DeptDirApprovedDate.ToShortDateString()
+                        Pending Department Director Approval
                     </dd>
                 }
-                @if (Model.IRP_RiskMgrApprovedDate != null)
+            </div>
+            <br />
+            <div id="riskMgrApprovedDate">
+                @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
                     <dt>
                         @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
@@ -401,7 +426,17 @@
                         @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
                     </dd>
                 }
+                else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                {
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
+                    </dt>
+                    <dd>
+                        Pending Risk Manager Approval
+                    </dd>
+                }
             </div>
+            <br />       
         </dl>
     </div>
 </div>
