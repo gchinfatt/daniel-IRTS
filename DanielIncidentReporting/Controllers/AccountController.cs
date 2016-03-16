@@ -612,7 +612,7 @@ namespace DanielIncidentReporting.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-
+        //Original AddErrors method - can delete
         //private void AddErrors(IdentityResult result)
         //{
         //    foreach (var error in result.Errors)
