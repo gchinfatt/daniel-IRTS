@@ -36,13 +36,17 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Report On")]
         public string IRP_ReportOn { get; set; }
 
-        [Display(Name = "Residential Manager Approved Date")]
+        [Display(Name = "Residential Manager")]
+        public string IRP_ResMgrEmail { get; set; }
+        [Display(Name = "Date")]
         public DateTime IRP_ResMgrApprovedDate { get; set; }
-
-        [Display(Name = "Department Director Approved Date")]
+        [Display(Name = "Department Director")]
+        public string IRP_DepDirEmail { get; set; }
+        [Display(Name = "Date")]
         public DateTime IRP_DeptDirApprovedDate { get; set; }
-
-        [Display(Name = "Risk Manager Approved Date")]
+        [Display(Name = "Risk Manager")]
+        public string IRP_RiskMgrEmail { get; set; }
+        [Display(Name = "Date")]
         public DateTime IRP_RiskMgrApprovedDate { get; set; }
 
         [Display(Name = "Risk Manager Comment")]

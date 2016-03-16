@@ -66,16 +66,19 @@ namespace DanielIncidentReporting.Controllers
             {
                 incidentReport.IRP_ApprovalLevelReq = "1";
                 incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_ResMgrEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Department Director"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "2";
                 incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_DepDirEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Risk Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "3";
                 incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_RiskMgrEmail = user.Email;
             }
 
             db.IncidentReports.AddOrUpdate(incidentReport);
@@ -134,7 +137,7 @@ namespace DanielIncidentReporting.Controllers
             foreach (var incident in incidents)
             {
                 String incidentData = incident.IRP_ID + "," + incident.IRP_ProgramName + "," + incident.IRP_Category + "," + escapeCSV(incident.IRP_Location) + "," + escapeCSV(incident.IRP_ReportDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_VictimFirstName) +
-                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV("Res. Email") + "," + checkDate(incident.IRP_ResMgrApprovedDate.ToShortDateString()) + "," + escapeCSV("Dep. Dir. Email") + "," + checkDate(incident.IRP_DeptDirApprovedDate.ToShortDateString()) + "," + escapeCSV("Risk Email") + "," + checkDate(incident.IRP_RiskMgrApprovedDate.ToShortDateString()) +
+                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV(incident.IRP_ResMgrEmail) + "," + checkDate(incident.IRP_ResMgrApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_DepDirEmail) + "," + checkDate(incident.IRP_DeptDirApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_RiskMgrEmail) + "," + checkDate(incident.IRP_RiskMgrApprovedDate.ToShortDateString()) +
                     "," + escapeCSV(incident.IRP_RiskMgrComment) + "," + escapeCSV(incident.IRP_PreparedByFirstName) + "," + escapeCSV(incident.IRP_PreparedByLastName) + "," + escapeCSV(incident.IRP_Description) + "," + escapeCSV(incident.IRP_Witness) + "," + escapeCSV(incident.IRP_Notified) +
                     "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + incident.IRP_AMA + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +

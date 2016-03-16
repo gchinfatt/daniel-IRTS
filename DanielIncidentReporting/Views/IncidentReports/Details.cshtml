@@ -82,6 +82,8 @@
                 <dt>
                     Contributing Factors
                 </dt>
+                <dd>
+                </dd>
             </div>
                 @*//Items with No Contributing Factors*@
                 <div id="incidentsWNoContrib" style="padding-left:25px">
@@ -389,71 +391,90 @@
                 </div>
             </dl>
         </dl>
-        <dl class="dl-horizontal" id="approvalDates">
-            <div id ="resMgrApprovedDate">
-                @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
-                    </dt>
-                    <dd>
-                        @Model.IRP_ResMgrApprovedDate.ToShortDateString()
-                    </dd>
-                }
-                else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
-                    </dt>
-                    <dd>
-                         Pending
-                    </dd>
-                }
-            </div>
-            <br/>
-            <div id="deptDirApprovedDate">
-                @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
-                {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
-                        </dt>
-                        <dd>
-                            @Model.IRP_DeptDirApprovedDate.ToShortDateString()
-                        </dd>
-                }
-                else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
-                    </dt>
-                    <dd>
-                         Pending
-                    </dd>
-                }
-            </div>
-            <br />
-            <div id="riskMgrApprovedDate">
-                @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
-                    </dt>
-                    <dd>
-                        @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
-                    </dd>
-                }
-                else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
-                {
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
-                    </dt>
-                    <dd>
-                         Pending
-                    </dd>
-                }
-            </div>
-            <br />       
-        </dl>
+    <dl class="dl-horizontal" id="approvalDates">
+        <b>Approvals</b><br/>
+        <div id="resMgrApprovedDate">
+            @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                </dt>
+                <dd>
+                    @Model.IRP_ResMgrEmail
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+                </dt>
+                <dd>
+                    @Model.IRP_ResMgrApprovedDate.ToShortDateString()
+                </dd>
+            }
+            else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                </dt>
+                <dd>
+                    Pending
+                </dd>
+            }
+        </div>
+        <br/>
+        <div id="deptDirApprovedDate">
+            @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
+                </dt>
+                <dd>
+                    @Model.IRP_DepDirEmail
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
+                </dt>
+                <dd>
+                    @Model.IRP_DeptDirApprovedDate.ToShortDateString()
+                </dd>
+            }
+            else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
+                </dt>
+                <dd>
+                    Pending
+                </dd>
+            }
+        </div>
+        <br/>
+        <div id="riskMgrApprovedDate">
+            @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
+                </dt>
+                <dd>
+                    @Model.IRP_RiskMgrEmail
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
+                </dt>
+                <dd>
+                    @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
+                </dd>
+            }
+            else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
+                </dt>
+                <dd>
+                    Pending
+                </dd>
+            }
+        </div>
+        <br/>
+    </dl>
     </div>
 </div>
 <p>
