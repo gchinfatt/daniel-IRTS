@@ -109,6 +109,8 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Involvement with Police/Fire")]
         public string IRP_PoliceFire { get; set; }
+        [Display(Name = "AMA")]
+        public string IRP_AMA { get; set; }
 
         [Display(Name = "Suicide Gestures")]
         public string IRP_SuicideGestures { get; set; }

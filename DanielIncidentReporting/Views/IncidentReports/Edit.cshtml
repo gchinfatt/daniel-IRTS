@@ -160,42 +160,47 @@
                     </div>
                     <!--Nature of Incident Column 2-->
                     <div class="container checkbox col-md-4">
+                        <!--AMA-->
+                        <label>
+                            <input type="checkbox" name="IRP_AMA" id="cBox_AMA" value="1" />AMA
+                        </label>
+                        <br />
                         <!--Sexual Encounter-->
                         <label>
-                            <input type="checkbox" name="IRP_SexualEncounter" id="cBox_SexualEncounter" onclick="displayContrib(this, '#ContribFactors_SexualEncounter', '#IRP_ContribSexualEncounter')" value="1" />Sexual Encounter
+                            <input type="checkbox" name="IRP_SexualEncounter" id="cBox_SexualEncounter" onclick="displayContrib(this, '#ContribFactors_SexualEncounter', '#IRP_ContribSexualEncounter')" value="1"/>Sexual Encounter
                         </label>
-                        <br />
-                        <asp:CheckBox id="CheckBox1" checked="true" />
+                        <br/>
+                        <asp:CheckBox id="CheckBox1" checked="true"/>
                         <!--Substace Abuse-->
                         <label>
-                            <input type="checkbox" name="IRP_SubstanceAbuse" id="cBox_SubstanceAbuse" value="1" />Substance Abuse
+                            <input type="checkbox" name="IRP_SubstanceAbuse" id="cBox_SubstanceAbuse" value="1"/>Substance Abuse
                         </label>
-                        <br />
+                        <br/>
                         <!--Medication Error-->
                         <label>
-                            <input type="checkbox" name="IRP_MedicationError" id="cBox_MedicationError" value="1" />Medication Error
+                            <input type="checkbox" name="IRP_MedicationError" id="cBox_MedicationError" value="1"/>Medication Error
                         </label>
-                        <br />
+                        <br/>
                         <!--Injury-->
                         <label>
-                            <input type="checkbox" name="IRP_Injury" id="cBox_Injury" onclick="displayContrib(this, '#ContribFactors_InjuryItems', '#IRP_ContribInjuryItems')" value="1" />Injury
+                            <input type="checkbox" name="IRP_Injury" id="cBox_Injury" onclick="displayContrib(this, '#ContribFactors_InjuryItems', '#IRP_ContribInjuryItems')" value="1"/>Injury
                         </label>
-                        <br />
+                        <br/>
                         <!--Client Grievance-->
                         <label>
-                            <input type="checkbox" name="IRP_ClientGrievance" id="cBox_ClientGrievance" value="1" />Client Grievance
+                            <input type="checkbox" name="IRP_ClientGrievance" id="cBox_ClientGrievance" value="1"/>Client Grievance
                         </label>
-                        <br />
+                        <br/>
                         <!--Physical Restraint-->
                         <label>
-                            <input type="checkbox" name="IRP_PhysicalRestraint" id="cBox_PhysicalRestraint" onclick="displayContrib(this, '#ContribFactors_PhysicalAggression', '#IRP_ContribPhysicalAggression')" value="1" />Physical Restraint
+                            <input type="checkbox" name="IRP_PhysicalRestraint" id="cBox_PhysicalRestraint" onclick="displayContrib(this, '#ContribFactors_PhysicalAggression', '#IRP_ContribPhysicalAggression')" value="1"/>Physical Restraint
                         </label>
-                        <br />
+                        <br/>
                         <!--Seclusion-->
                         <label>
-                            <input type="checkbox" name="IRP_Seclusion" id="cBox_Seclusion" onclick="displayContrib(this, '#ContribFactors_Seclusion', '#IRP_ContribSeclusion')" value="1" />Seclusion
+                            <input type="checkbox" name="IRP_Seclusion" id="cBox_Seclusion" onclick="displayContrib(this, '#ContribFactors_Seclusion', '#IRP_ContribSeclusion')" value="1"/>Seclusion
                         </label>
-                        <br />
+                        <br/>
                     </div>
                     <!--Nature of Incident Column 3-->
                     <div class="container checkbox col-md-4">
@@ -449,6 +454,7 @@
 
     //Items With No Contributing Factors
     var IRP_DeathValue = '@Html.DisplayTextFor(model => model.IRP_Death)';
+    var IRP_AMA = '@Html.DisplayTextFor(model => model.IRP_AMA)';
     var IRP_SuicideGesturesValue = '@Html.DisplayTextFor(model => model.IRP_SuicideGestures)';
     var IRP_SubstanceAbuseValue = '@Html.DisplayTextFor(model => model.IRP_SubstanceAbuse)';
     var IRP_MedicationErrorValue = '@Html.DisplayTextFor(model => model.IRP_MedicationError)';
@@ -683,6 +689,13 @@
         else if (IRP_SubstanceAbuseValue != "1")
         {
             document.getElementById("cBox_SubstanceAbuse").checked = false;
+        }
+        //AMA
+        if (IRP_AMA == "1") {
+            document.getElementById("cBox_AMA").checked = true;
+        }
+        else if (IRP_AMA != "1") {
+            document.getElementById("cBox_AMA").checked = false;
         }
         //Medication Error
         if (IRP_MedicationErrorValue == "1")

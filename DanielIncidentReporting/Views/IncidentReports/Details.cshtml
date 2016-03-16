@@ -78,6 +78,11 @@
                 </div>
             </dl>
             <dl class="dl-horizontal">
+            <div>
+                <dt>
+                    Contributing Factors
+                </dt>
+            </div>
                 @*//Items with No Contributing Factors*@
                 <div id="incidentsWNoContrib" style="padding-left:25px">
                     @*//Death*@
@@ -96,6 +101,17 @@
                         <dt>
                             @Html.DisplayNameFor(model => model.IRP_SuicideGestures)
                         </dt>
+                        <dd>
+                            Yes
+                        </dd>
+                    }
+                    @*//AMA*@
+                    @if (Model.IRP_AMA == "1")
+                    {
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IRP_AMA)
+                        </dt>
+
                         <dd>
                             Yes
                         </dd>
@@ -390,7 +406,7 @@
                         @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
                     </dt>
                     <dd>
-                        Pending Residential Manager Approval
+                         Pending
                     </dd>
                 }
             </div>
@@ -411,7 +427,7 @@
                         @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
                     </dt>
                     <dd>
-                        Pending Department Director Approval
+                         Pending
                     </dd>
                 }
             </div>
@@ -432,7 +448,7 @@
                         @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
                     </dt>
                     <dd>
-                        Pending Risk Manager Approval
+                         Pending
                     </dd>
                 }
             </div>
