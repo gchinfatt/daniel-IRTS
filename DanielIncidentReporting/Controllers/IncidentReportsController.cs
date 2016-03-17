@@ -9,12 +9,15 @@ using System.Web;
 using System.Web.Mvc;
 using DanielIncidentReporting.Models;
 using System.Data.Entity.Validation;
+using System.Text;
+using System.Web.UI.WebControls;
 
 namespace DanielIncidentReporting.Controllers
 {
     public class IncidentReportsController : Controller
     {
         private IRTSDBContext2 db = new IRTSDBContext2();
+
         // GET: IncidentReports
         public ActionResult Index()
         {
@@ -25,20 +28,31 @@ namespace DanielIncidentReporting.Controllers
             {
                 if (user.mgrPosition.Equals("Residential Manager"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("0")));
+                    return
+                        View(
+                            db.IncidentReports.Where(
+                                m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("0")));
                 }
                 else if (user.mgrPosition.Equals("Department Director"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
+                    return
+                        View(
+                            db.IncidentReports.Where(
+                                m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
                 }
                 else if (user.mgrPosition.Equals("Risk Manager"))
                 {
-                    return View(db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("2")));
+                    ViewBag.position = "RiskManager";
+                    return
+                        View(
+                            db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("0") || 
+                            m.IRP_ApprovalLevelReq.Equals("1") || m.IRP_ApprovalLevelReq.Equals("2")));
                 }
-               
+
             }
             return View();
         }
+
         //GET: IncidentReports
         public ActionResult Approve(int? id)
         {
@@ -52,16 +66,19 @@ namespace DanielIncidentReporting.Controllers
             {
                 incidentReport.IRP_ApprovalLevelReq = "1";
                 incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_ResMgrEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Department Director"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "2";
                 incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_DepDirEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Risk Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "3";
                 incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_RiskMgrEmail = user.Email;
             }
 
             db.IncidentReports.AddOrUpdate(incidentReport);
@@ -69,6 +86,127 @@ namespace DanielIncidentReporting.Controllers
             return View();
         }
 
+        //GET ExportCSV
+        public ActionResult ExportCSV() {
+            
+            return View();
+        }
+
+        //POST ExportCSV
+        [HttpPost]
+        public ActionResult ExportCSV(DateTime dateFrom, DateTime dateTo)
+        {
+            List<IncidentReport> incidents = new List<IncidentReport>();
+
+            //Filter incidents by date
+            foreach (var incident in db.IncidentReports)
+            {
+                if (incident.IRP_IncidentDate >= dateFrom && incident.IRP_IncidentDate <= dateTo)
+                {
+                    incidents.Add(incident);
+                }
+            }
+
+            //Put filtered incidents into a string builder
+            StringBuilder sb = new StringBuilder();
+            
+            //Column headers
+            String columnHeaders = "Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" +
+                                   "," + "Incident Date" + "," + "Victim First Name" +
+                                   "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," +
+                                   "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" +
+                                   "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" +
+                                   "," + "Reporter First Name" + "," + "Reporter Last Name" +
+                                   "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," +
+                                   "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" +
+                                   "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
+                                   "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
+                                   "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
+                                   "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." +
+                                   "," + "Restraint Start Time" + "," + "Restraint End Time" + "," +
+                                   "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" +
+                                   "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" +
+                                   "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" +
+                                   "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up";
+
+            sb.AppendLine(columnHeaders);
+
+            //Actual values of each filtered incident
+            int lastRow = 1;
+
+            foreach (var incident in incidents)
+            {
+                String incidentData = incident.IRP_ID + "," + incident.IRP_ProgramName + "," + incident.IRP_Category + "," + escapeCSV(incident.IRP_Location) + "," + escapeCSV(incident.IRP_ReportDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_VictimFirstName) +
+                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV(incident.IRP_ResMgrEmail) + "," + checkDate(incident.IRP_ResMgrApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_DepDirEmail) + "," + checkDate(incident.IRP_DeptDirApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_RiskMgrEmail) + "," + checkDate(incident.IRP_RiskMgrApprovedDate.ToShortDateString()) +
+                    "," + escapeCSV(incident.IRP_RiskMgrComment) + "," + escapeCSV(incident.IRP_PreparedByFirstName) + "," + escapeCSV(incident.IRP_PreparedByLastName) + "," + escapeCSV(incident.IRP_Description) + "," + escapeCSV(incident.IRP_Witness) + "," + escapeCSV(incident.IRP_Notified) +
+                    "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + incident.IRP_AMA + "," + incident.IRP_SexualEncounter +
+                    "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
+                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + escapeCSV(incident.IRP_PoliceRepNo) + "," + escapeCSV(incident.IRP_RestraintSTTime) + "," + escapeCSV(incident.IRP_RestraintENTime) + "," + escapeCSV(incident.IRP_SeclusionSTTime) +
+                    "," + escapeCSV(incident.IRP_SeclusionENTime) + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
+                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + escapeCSV(incident.IRP_InjuryType) + "," + escapeCSV(incident.IRP_BodyPart) + "," + escapeCSV(incident.IRP_InjuryFollowUp);
+                
+                sb.AppendLine(incidentData);
+                lastRow++;
+            }
+
+            //Total table values and headers
+            String lastRowHeaders = ",,,,,,,,,,,,,,,,,,,,," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" +
+                                    "," + "Suicide Gestures" + "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
+                                    "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
+                                    "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
+                                    "Prop. Missing" + "," + "Theft" + "," + "Other";
+
+            String totals = ",,,,,,,,,,,,,,,,,,,," + "Total" + "," + "=SUM(V2:V" + lastRow + ")" + "," + "=SUM(W2:W" +
+                            lastRow + ")" + "," + "=SUM(X2:X" + lastRow + ")" + "," + "=SUM(Y2:Y" + lastRow + ")" + "," +
+                            "=SUM(Z2:Z" + lastRow + ")" + "," + "=SUM(AA2:AA" + lastRow + ")" + "," + "=SUM(AB2:AB" +
+                            lastRow + ")" + "," + "=SUM(AC2:AC" + lastRow + ")" + "," + "=SUM(AD2:AD" + lastRow + ")" +
+                            "," + "=SUM(AE2:AE" + lastRow + ")" + "," + "=SUM(AF2:AF" + lastRow + ")" + "," + "=SUM(AG2:AG" +
+                            lastRow + ")" + "," + "=SUM(AH2:AH" + lastRow + ")" + "," + "=SUM(AI2:AI" + lastRow + ")" +
+                            "," + "=SUM(AJ2:AJ" + lastRow + ")" + "," + "=SUM(AK2:AK" + lastRow + ")" + "," + "=SUM(AL2:AL" +
+                            lastRow + ")";
+
+            
+            //Append totals
+            sb.AppendLine(lastRowHeaders);
+            sb.AppendLine(totals);
+
+            String csv = sb.ToString();
+
+            String reportName = "Incidents" + dateFrom.ToShortDateString() + "_" + dateTo.ToShortDateString() + ".csv";
+
+            return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
+        }
+
+        private String escapeCSV(String escapeStr)
+        {
+            if (escapeStr != null)
+            {
+                if (escapeStr.Contains("\""))
+                {
+                    escapeStr = escapeStr.Replace("\"", "\"\"");
+                }
+                if (escapeStr.Contains(","))
+                {
+                    escapeStr = String.Format("\" {0}\"", escapeStr);
+                }
+                if (escapeStr.Contains(System.Environment.NewLine))
+                {
+                    escapeStr = String.Format("\" {0}\"", escapeStr);
+                }
+            }
+            
+            return escapeStr;
+        }
+
+        private String checkDate(String date)
+        {
+            if (date != null && date.Equals("1/1/0001"))
+            {
+                date = "None";
+            }
+
+            return date;
+        }
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
         {
@@ -81,6 +219,15 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
+
+            //Create a viewbag (Viewbag.mgrPosition) to hold the mgrPosition of the current user
+            //This viewbag is what's used to give the mgrPosition to the Edit view
+            //for the function of diplayRiskManagerComment
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            String mgrPosition = userPosition.mgrPosition;
+            ViewBag.mgrPosition = mgrPosition;
+
             return View(incidentReport);
         }
 
@@ -105,15 +252,85 @@ namespace DanielIncidentReporting.Controllers
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
 
-            //InjuryFollowUpList for dropdown
-            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
+            // Contributing Factors - 1. Abuse Allegation dropdown list items - Gina Chin Fatt
+            List<SelectListItem> abuseAllegationItems = new List<SelectListItem>();
+            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse Allegation", Selected = true, Disabled = true });
+            abuseAllegationItems.Add(new SelectListItem {Value="Client/Client", Text="Client/Client"});
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
 
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
-            ViewBag.injuryFollowUps = injuryFollowUps;
+            ViewBag.abuseAllegationItems = abuseAllegationItems;
+
+            // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
+            List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
+            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Restraint", Selected = true, Disabled = true });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+ 
+            ViewBag.physicalAggressionItems = physicalAggressionItems;
+
+            // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
+            List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
+            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
+            
+            ViewBag.policeInvolvementItems = policeInvolvementItems;
+
+            // Contributing Factors - 4. Injury Items dropdown list items - Gina Chin Fatt
+            List<SelectListItem> injuryItems = new List<SelectListItem>();
+            injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of Injury", Selected = true, Disabled = true});
+            injuryItems.Add(new SelectListItem { Value = "Slip/Fall", Text = "Slip/Fall" });
+            injuryItems.Add(new SelectListItem { Value = "Bite", Text = "Bite" });
+            injuryItems.Add(new SelectListItem { Value = "During ESI", Text = "During ESI" });
+            injuryItems.Add(new SelectListItem { Value = "Self-Inflicted", Text = "Self-Inflicted" });
+            injuryItems.Add(new SelectListItem { Value = "Other", Text = "Other" });
+
+            ViewBag.injuryItems = injuryItems;
+
+            // Contributing Factors - 4a. Injury FollowUp dropdown list items
+            List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
+            injuryFollowUpItems.Add(new SelectListItem { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "First Aid", Text = "First Aid" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "ER", Text = "ER" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "On-Site Consult", Text = "On-Site Consult" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "Non-emergency Doctor's Visit", Text = "Non-emergency Doctor's Visit" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "None Needed", Text = "None Needed" });
+
+            ViewBag.injuryFollowUpItems = injuryFollowUpItems;
+
+            // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
+            List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "-1", Text = "Unplanned Hospitalization", Selected = true, Disabled = true });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
+
+            ViewBag.unplannedHospitalizationItems = unplannedHospitalizationItems;
+
+            // Contributing Factors - 6. Sexual Encounter dropdown list items
+            List<SelectListItem> sexualEncounterItems = new List<SelectListItem>();
+            sexualEncounterItems.Add(new SelectListItem { Value = "-1", Text = "Sexual Encounter", Selected = true, Disabled = true });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
+
+            ViewBag.sexualEncounterItems = sexualEncounterItems;
+
+            // Contributing Factors - 7. Seclusion dropdown list items
+            List<SelectListItem> seclusionItems = new List<SelectListItem>();
+            seclusionItems.Add(new SelectListItem { Value = "-1", Text = "Seclusion", Selected = true, Disabled = true });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+
+            ViewBag.seclusionItems = seclusionItems;
 
             return View();
         }
@@ -127,6 +344,7 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
+                //If the incident program is SIPP
                 if (incidentReport.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
                 {
                     incidentReport.IRP_ApprovalLevelReq = "0";
@@ -134,11 +352,19 @@ namespace DanielIncidentReporting.Controllers
                 else
                     incidentReport.IRP_ApprovalLevelReq = "1";
 
+                //Nature of incident
+                if (incidentReport.IRP_AbuseAllegation == "1" || incidentReport.IRP_Death == "1" ||
+                    incidentReport.IRP_PoliceFire == "1" || incidentReport.IRP_SuicideGestures == "1" ||
+                    incidentReport.IRP_UnplannedHospitalization == "1")
+                {
+                    incidentReport.IRP_Category = "Serious";
+                }
+                else
+                {
+                    incidentReport.IRP_Category = "Regular";
+                }
+
                 db.IncidentReports.Add(incidentReport);
-                db.SaveChanges();
-                incident.IRP_ID = incidentReport.IRP_ID;
-                incident.INT_ID = 1;
-                db.Incidents.Add(incident);
                 db.SaveChanges();
                 return RedirectToAction("Confirmation");  
             }
@@ -149,6 +375,17 @@ namespace DanielIncidentReporting.Controllers
         // GET: IncidentReports/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            IncidentReport incidentReportData = db.IncidentReports.Find(id);
+
+            //Create a viewbag (Viewbag.mgrPosition) to hold the mgrPosition of the current user
+            //This viewbag is what's used to give the mgrPosition to the Edit view
+            //for the function of diplayRiskManagerComment
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+            String mgrPosition = userPosition.mgrPosition;
+            ViewBag.mgrPosition = mgrPosition;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,6 +395,7 @@ namespace DanielIncidentReporting.Controllers
             {
                 return HttpNotFound();
             }
+
             List<SelectListItem> list = new List<SelectListItem>();
 
             foreach (var program in db.Programs)
@@ -167,20 +405,108 @@ namespace DanielIncidentReporting.Controllers
                     list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
                 }
             }
-
             SelectList programs = new SelectList(list, "Value", "Text");
+
             ViewBag.programs = programs;
 
+            // Contributing Factors - 1. Abuse Allegation dropdown list items - Gina Chin Fatt
+            List<SelectListItem> abuseAllegationItems = new List<SelectListItem>();
+            abuseAllegationItems.Add(new SelectListItem { Value = "-1", Text = "Abuse Allegation", Selected = true, Disabled = true });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            abuseAllegationItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
 
-            //InjuryFollowUpList for dropdown
-            List<SelectListItem> injuryFollowUpList = new List<SelectListItem>();
-            foreach (var injuryFollowUp in db.InjuryFollowUps)
-            {
-                injuryFollowUpList.Add(new SelectListItem() { Value = injuryFollowUp.IFU_name, Text = injuryFollowUp.IFU_name });
-            }
+            ViewBag.abuseAllegationItems = abuseAllegationItems;
 
-            SelectList injuryFollowUps = new SelectList(injuryFollowUpList, "Value", "Text");
-            ViewBag.injuryFollowUps = injuryFollowUps;
+            // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
+            List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
+            physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Restraint", Selected = true, Disabled = true });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+
+            ViewBag.physicalAggressionItems = physicalAggressionItems;
+
+            // Contributing Factors - 2a. Physical Restraint Times
+            String IRP_RestraintSTTimeValue = incidentReportData.IRP_RestraintSTTime;
+            String IRP_RestraintENTimeValue = incidentReportData.IRP_RestraintENTime;
+
+            ViewBag.IRP_RestraintSTTimeValue = IRP_RestraintSTTimeValue;
+            ViewBag.IRP_RestraintENTimeValue = IRP_RestraintENTimeValue;
+
+            // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
+            List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
+            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            policeInvolvementItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
+
+            ViewBag.policeInvolvementItems = policeInvolvementItems;
+
+            // Contributing Factors - 3a. Police Report Number
+            String IRP_PoliceRepNoValue = incidentReportData.IRP_PoliceRepNo;
+
+            ViewBag.IRP_PoliceRepNoValue = IRP_PoliceRepNoValue;
+
+            // Contributing Factors - 4. Injury Items dropdown list items - Gina Chin Fatt
+            List<SelectListItem> injuryItems = new List<SelectListItem>();
+            injuryItems.Add(new SelectListItem { Value = "-1", Text = "Cause of Injury", Selected = true, Disabled = true });
+            injuryItems.Add(new SelectListItem { Value = "Slip/Fall", Text = "Slip/Fall" });
+            injuryItems.Add(new SelectListItem { Value = "Bite", Text = "Bite" });
+            injuryItems.Add(new SelectListItem { Value = "During ESI", Text = "During ESI" });
+            injuryItems.Add(new SelectListItem { Value = "Self-Inflicted", Text = "Self-Inflicted" });
+            injuryItems.Add(new SelectListItem { Value = "Other", Text = "Other" });
+
+            ViewBag.injuryItems = injuryItems;
+
+            // Contributing Factors - 4a. Injury FollowUp dropdown list items
+            List<SelectListItem> injuryFollowUpItems = new List<SelectListItem>();
+            injuryFollowUpItems.Add(new SelectListItem { Value = "-1", Text = "Injury Follow-Up", Selected = true, Disabled = true });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "First Aid", Text = "First Aid" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "ER", Text = "ER" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "On-Site Consult", Text = "On-Site Consult" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "Non-emergency Doctor's Visit", Text = "Non-emergency Doctor's Visit" });
+            injuryFollowUpItems.Add(new SelectListItem { Value = "None Needed", Text = "None Needed" });
+
+            ViewBag.injuryFollowUpItems = injuryFollowUpItems;
+
+            // Contributing Factors - 5. Unplanned Hospitalization dropdown list items
+            List<SelectListItem> unplannedHospitalizationItems = new List<SelectListItem>();
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "-1", Text = "Unplanned Hospitalization", Selected = true, Disabled = true });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "Criminal Activity", Text = "Criminal Activity" });
+            unplannedHospitalizationItems.Add(new SelectListItem { Value = "False Alarm", Text = "False Alarm" });
+
+            ViewBag.unplannedHospitalizationItems = unplannedHospitalizationItems;
+
+            // Contributing Factors - 6. Sexual Encounter dropdown list items
+            List<SelectListItem> sexualEncounterItems = new List<SelectListItem>();
+            sexualEncounterItems.Add(new SelectListItem { Value = "-1", Text = "Sexual Encounter", Selected = true, Disabled = true });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Client", Text = "Client/Client" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Staff", Text = "Client/Staff" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Parent", Text = "Client/Parent" });
+            sexualEncounterItems.Add(new SelectListItem { Value = "Client/Other", Text = "Client/Other" });
+
+            ViewBag.sexualEncounterItems = sexualEncounterItems;
+
+            // Contributing Factors - 7. Seclusion dropdown list items
+            List<SelectListItem> seclusionItems = new List<SelectListItem>();
+            seclusionItems.Add(new SelectListItem { Value = "-1", Text = "Seclusion", Selected = true, Disabled = true });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
+            seclusionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+
+            ViewBag.seclusionItems = seclusionItems;
+
+            // Contributing Factors - 7a. Seclusion Times
+            String IRP_SeclusionSTTimeValue = incidentReportData.IRP_SeclusionSTTime;
+            String IRP_SeclusionENTimeValue = incidentReportData.IRP_SeclusionENTime;
+
+            ViewBag.IRP_SeclusionSTTimeValue = IRP_SeclusionSTTimeValue;
+            ViewBag.IRP_SeclusionENTimeValue = IRP_SeclusionENTimeValue;
 
             return View(incidentReport);
         }
@@ -190,10 +516,74 @@ namespace DanielIncidentReporting.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IRP_ID, IRP_Category, IRP_Location, IRP_ReportDate, IRP_IncidentDate, IRP_VictimFirstName, IRP_VictimLastName, IRP_ReportOn, IRP_ResMgrApprovedDate, IRP_DeptDirApprovedDate, IRP_RiskMgrApprovedDate, IRP_RiskMgrComment, IRP_PreparedByFirstName, IRP_PreparedByLastName, IRP_Description, IRP_InjuryType, IRP_BodyPart, IRP_InjuryFollowUp, IRP_ApprovalLevelReq, IRP_ProgramName")] IncidentReport incidentReport)
+        public ActionResult Edit([Bind(Include = 
+            "IRP_ID, " +
+            "IRP_Category, " +
+            "IRP_Location, " +
+            "IRP_ReportDate, " +
+            "IRP_IncidentDate, " +
+            "IRP_VictimFirstName, " +
+            "IRP_VictimLastName, " +
+            "IRP_ReportOn, " +
+            "IRP_ResMgrApprovedDate, " +
+            "IRP_DeptDirApprovedDate, " +
+            "IRP_RiskMgrApprovedDate, " +
+            "IRP_RiskMgrComment, " +
+            "IRP_PreparedByFirstName, " +
+            "IRP_PreparedByLastName, " +
+            "IRP_Description, " +
+            "IRP_InjuryType, " +
+            "IRP_BodyPart, " +
+            "IRP_InjuryFollowUp, " +
+            "IRP_ApprovalLevelReq, " +
+            "IRP_ProgramName, " +
+            "IRP_Witness, " +
+            "IRP_Notified, " +
+            "IRP_ContribAbuseAllegation, " +
+            "IRP_ContribPhysicalAggression, " +
+            "IRP_ContribPoliceInvolvement, " +
+            "IRP_ContribInjuryItems, " +
+            "IRP_ContribUnplannedHospitalization, " +
+            "IRP_ContribSexualEncounter, " +
+            "IRP_ContribSeclusion, " +
+            "IRP_AbuseAllegation, " +
+            "IRP_Death, " +
+            "IRP_PoliceFire, " +
+            "IRP_SuicideGestures, " +
+            "IRP_UnplannedHospitalization, " +
+            "IRP_SexualEncounter, " +
+            "IRP_SubstanceAbuse, " +
+            "IRP_MedicationError, " +
+            "IRP_Injury, " +
+            "IRP_ClientGrievance, " +
+            "IRP_PhysicalRestraint, " +
+            "IRP_Seclusion, " +
+            "IRP_PropertyDamage, " +
+            "IRP_PropertyMissing, " +
+            "IRP_Theft, " +
+            "IRP_Other, " +
+            "IRP_RestraintSTTime, " +
+            "IRP_RestraintENTime, " +
+            "IRP_SeclusionSTTime, " +
+            "IRP_SeclusionENTime, " +
+            "IRP_PoliceRepNo"
+            )] IncidentReport incidentReport)
         {
+
             if (ModelState.IsValid)
             {
+                //Nature of incident
+                if (incidentReport.IRP_AbuseAllegation == "1" || incidentReport.IRP_Death == "1" ||
+                    incidentReport.IRP_PoliceFire == "1" || incidentReport.IRP_SuicideGestures == "1" ||
+                    incidentReport.IRP_UnplannedHospitalization == "1")
+                {
+                    incidentReport.IRP_Category = "Serious";
+                }
+                else
+                {
+                    incidentReport.IRP_Category = "Regular";
+                }
+
                 db.Entry(incidentReport).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

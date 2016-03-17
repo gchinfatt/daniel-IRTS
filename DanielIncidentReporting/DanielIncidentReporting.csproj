@@ -196,13 +196,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-03092016.sql" />
     <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605.mdf" />
     <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605_log.ldf">
       <DependentUpon>aspnet-DanielIncidentReporting-20151124070605.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\IRTSscript03092016.sql" />
     <Content Include="App_Data\script1262016.sql" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -220,6 +224,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -281,6 +287,11 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -332,8 +343,11 @@
     <Content Include="Views\Account\AddProgram.cshtml" />
     <Content Include="Views\Account\DeleteUserConfirmation.cshtml" />
     <Content Include="Views\Account\AddProgramConfirmation.cshtml" />
+    <Content Include="Views\Account\UserAddedConfirmation.cshtml" />
+    <Content Include="Views\IncidentReports\ExportCSV.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Edit\" />
     <Folder Include="Views\InjuryFollowUp\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "UserAddedConfirmation";
+}
+<br /><br />
+
+<h3>The user <strong>@ViewBag.username</strong> has been succesfully added.</h3>
+
+<br />
+
+<p>
+    @Html.ActionLink("Register Another User", "Register", "Account") |
+    @Html.ActionLink("Manage Users", "ManageUsers", "Account")
+</p>
+

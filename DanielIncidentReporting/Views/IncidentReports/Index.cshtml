@@ -34,24 +34,90 @@ else
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRP_IncidentDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRP_ProgramName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IRP_Category)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
-                </td>
-            </tr>
+            //If risk manager, display only approval == 2
+            if (ViewBag.position == "RiskManager")
+            {
+                if (item.IRP_ApprovalLevelReq == "2")
+                {
+                    <tr>
+                        <td>
+                            @item.IRP_IncidentDate.ToShortDateString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRP_Category)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        @item.IRP_IncidentDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_Category)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                    </td>
+                </tr>
+            }
         }
     </table>
-    <hr />
     <div style="text-align: left">
         <p>Click "Details" to approve an incident report.</p>
     </div>
+
+    <!-- Display this table only for Risk Manager, these are the pending incidents-->
+    if (ViewBag.position == "RiskManager")
+    {
+        <br /><hr/><br/>
+        <h4>Incidents Pending</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IRP_IncidentDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IRP_ProgramName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IRP_Category)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                if (item.IRP_ApprovalLevelReq == "0" || item.IRP_ApprovalLevelReq == "1")
+                {
+                    <tr>
+                        <td>
+                           @item.IRP_IncidentDate.ToShortDateString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRP_Category)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details (Pending)", "Details", new {id = item.IRP_ID})
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    }
 }

@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -22,7 +23,6 @@ namespace DanielIncidentReporting.Controllers
         private ApplicationUserManager _userManager;
         private IRTSDBContext2 db = new IRTSDBContext2();
         ApplicationDbContext context = new ApplicationDbContext();
-
 
         //
         // GET:
@@ -89,7 +89,9 @@ namespace DanielIncidentReporting.Controllers
             //users = context.Users.Where(m => m.isActive.Equals("1"));
 
             List<SelectListItem> list = new List<SelectListItem>();
-
+            //Added title to users dropdown list - Gina Chin Fatt
+            //Did not work with Delete user logic.  -03-09-2016
+            //list.Add(new SelectListItem() {Value ="-1", Text = "Select user", Selected = true, Disabled = true});
             foreach (var user in context.Users.ToList())
             {
                 if (user.isActive.Equals("1"))
@@ -112,7 +114,7 @@ namespace DanielIncidentReporting.Controllers
 
             deletedUser.isActive = "0";
             
-            context.Users.AddOrUpdate(deletedUser);
+            context.Users.Remove(deletedUser);
             context.SaveChanges();
             ViewBag.deleteduser = deletedUser.Email;
             return View("DeleteUserConfirmation");
@@ -179,6 +181,10 @@ namespace DanielIncidentReporting.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
+
+
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -259,6 +265,17 @@ namespace DanielIncidentReporting.Controllers
 
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
+
+
+            // Manager position dropdown list items - Gina Chin Fatt
+            List<SelectListItem> managerItems = new List<SelectListItem>();
+            managerItems.Add(new SelectListItem { Value = "-1", Text = "Select manager position", Selected = true, Disabled = true });
+            managerItems.Add(new SelectListItem { Value = "Residential Manager", Text = "Residential Manager" });
+            managerItems.Add(new SelectListItem { Value = "Department Director", Text = "Department Director" });
+            managerItems.Add(new SelectListItem { Value = "Risk Manager", Text = "Risk Manager" });
+
+            ViewBag.managerItems = managerItems;
+
             return View();
         }
 
@@ -271,12 +288,47 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    List<SelectListItem> list = new List<SelectListItem>();
+
+                    foreach (var program in db.Programs)
+                    {
+                        if (program.Prg_Active.Equals("1"))
+                        {
+                            list.Add(new SelectListItem() {Value = program.Prg_Name, Text = program.Prg_Name});
+                        }
+                    }
+
+                    SelectList programs = new SelectList(list, "Value", "Text");
+                    ViewBag.programs = programs;
+
+
+                    // Manager position dropdown list items - Gina Chin Fatt
+                    List<SelectListItem> managerItems = new List<SelectListItem>();
+                    managerItems.Add(new SelectListItem
+                    {
+                        Value = "-1",
+                        Text = "Select manager position",
+                        Selected = true,
+                        Disabled = true
+                    });
+                    managerItems.Add(new SelectListItem {Value = "Residential Manager", Text = "Residential Manager"});
+                    managerItems.Add(new SelectListItem {Value = "Department Director", Text = "Department Director"});
+                    managerItems.Add(new SelectListItem {Value = "Risk Manager", Text = "Risk Manager"});
+
+                    ViewBag.managerItems = managerItems;
+                }
+                catch
+                {
+                    return View();
+                }
                 //In trying to remove the 'Username taken' error message, if delete UserName = model.Email - error message displays 'Name cannot be null or empty'
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program, isActive = model.isActive};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -285,13 +337,16 @@ namespace DanielIncidentReporting.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //return RedirectToAction("Index", "Manage");
-                    return RedirectToAction("Index", "IncidentReports");
+                    //return RedirectToAction("Index", "Home");
+                    ViewBag.username = model.Email;
+                    return View("UserAddedConfirmation");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+            
         }
 
         //
@@ -315,7 +370,7 @@ namespace DanielIncidentReporting.Controllers
             return View();
         }
 
-        //
+        //Original POST: for Forgot Password
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -333,14 +388,15 @@ namespace DanielIncidentReporting.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+            
         }
 
         //
@@ -556,12 +612,22 @@ namespace DanielIncidentReporting.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
+        //Original AddErrors method - can delete
+        //private void AddErrors(IdentityResult result)
+        //{
+        //    foreach (var error in result.Errors)
+        //    {
+        //        ModelState.AddModelError("", error);
+        //    }
+        //}
 
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                if (error.StartsWith("Name"))
+                    ModelState.AddModelError("", "");
+                else ModelState.AddModelError("", error);
             }
         }
 
