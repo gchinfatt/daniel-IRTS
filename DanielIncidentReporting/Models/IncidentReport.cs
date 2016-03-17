@@ -26,6 +26,8 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Incident Date")]
         public DateTime IRP_IncidentDate { get; set; }
+        [Display(Name = "Incident Time")]
+        public string IRP_IncidentTime { get; set; }
 
         [Display(Name = "Victim First Name")]
         public string IRP_VictimFirstName { get; set; }

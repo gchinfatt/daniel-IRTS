@@ -7,7 +7,7 @@
 
 <hr/>
 <!-- Delete Program -->
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "delete" }))
 {
     @Html.AntiForgeryToken()
 
@@ -21,15 +21,15 @@
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete Program" class="btn btn-default" />
+            <input type="button" value="Delete Program" class="btn btn-default" onClick="confirmation('Delete')" />
         </div>
     </div>
 }
 
 
-<br/><hr/><br/>
+<hr/>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "add" }))
 {
     @Html.AntiForgeryToken()
     <!-- Add Program-->
@@ -43,7 +43,24 @@
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Add Program" class="btn btn-default" />
+            <input type="button" value="Add Program" class="btn btn-default" onClick="confirmation('Add')" />
         </div>
     </div>}
 
+<script>
+    function confirmation(action) {
+        if (action == "Delete") {
+            var r = confirm("Are you sure you want to delete the selected program?");
+            if (r) {
+                document.getElementById("delete").submit();
+            } 
+
+        } else {
+            var programName = document.getElementById('programName').value;
+            var r = confirm("Are you sure you want to add program " + programName + "?");
+            if (r) {
+                document.getElementById("add").submit();
+            }
+    }
+}
+</script>

@@ -4,23 +4,6 @@
     ViewBag.Title = "Details";
 }
 
-<script language="javascript" type="text/javascript">
-    //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function isRiskManager()
-    {
-        var mgrPosition = '@(ViewBag.mgrPosition)';
-        if (mgrPosition == "Risk Manager")
-        {
-            $('#riskMgrComment').show();
-        }
-        else if (mgrPosition != "Risk Manager")
-        {
-            $('#riskMgrComment').hide();
-        }
-    });
-
-</script>
-
 <h2>Details</h2>
 
 <div>
@@ -36,6 +19,13 @@
                     </dt>
                     <dd>
                         @Model.IRP_IncidentDate.ToShortDateString()
+                    </dd>
+                    @*//Incident Time*@
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IRP_IncidentTime)
+                    </dt>
+                    <dd>
+                        @Model.IRP_IncidentTime
                     </dd>
                     @*//Report Date*@
                     <dt>
@@ -480,5 +470,22 @@
 <p>
     @Html.ActionLink("Back to List", "Index") |
     @Html.ActionLink("Edit", "Edit", new {id = Model.IRP_ID}) |
-    @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID })
+    @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID }, new { onclick = "return confirm('Are you sure you want to apporve this incident?');"})
 </p>
+
+<script language="javascript" type="text/javascript">
+    //Show Risk Manager Comment Field if user is a Risk Manager
+    $(function isRiskManager()
+    {
+        var mgrPosition = '@(ViewBag.mgrPosition)';
+        if (mgrPosition == "Risk Manager")
+        {
+            $('#riskMgrComment').show();
+        }
+        else if (mgrPosition != "Risk Manager")
+        {
+            $('#riskMgrComment').hide();
+        }
+    });
+
+</script>

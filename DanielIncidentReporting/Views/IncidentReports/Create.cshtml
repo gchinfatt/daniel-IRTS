@@ -14,7 +14,7 @@
 
 <h2>Report an Incident</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitIncident" }))
 {
     @Html.AntiForgeryToken()
 
@@ -71,12 +71,21 @@
 
     <!-- Incident Date -->
     <div class="container form-group">
-            @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
-                @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
-            </div>
+        @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "form-control datepicker"})
+            @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
         </div>
+    </div>
+
+    <!-- Incident Date -->
+    <div class="container form-group">
+        @Html.LabelFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "form-control", placeholder = "Ex. 10:45 AM", @maxlength = "99" })
+            @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
     @*
     <div class="container form-group">
         @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "control-label col-md-2"})
@@ -383,17 +392,12 @@
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Submit" class="btn btn-default"/>
+            <input type="button" value="Submit Incident" class="btn btn-default" onClick="confirmation()"/>
         </div>
     </div>
     </div>
 }
 
-<!--
-     if ($('#IRP_PoliceRepNo').checked == true || $('#IRP_AbuseAllegation').checked == true || $('#IRP_UnplannedHospitalization').checked == true
-                || $('#IRP_SexualEncounter').checked == true || $('#IRP_Injury').checked == true || $('#IRP_PhysicalRestraint').checked == true || $('#IRP_Seclusion').checked == true) {  
-            }
--->
 <script language="javascript" type="text/javascript">
     function displayContrib(sender, dropdown) {
         if (sender.checked == true) {
@@ -435,6 +439,14 @@
                $('#Injury').hide();
            }
        }
+    }
+
+    function confirmation() {
+        var r = confirm("Are you sure you want to submit this incident?");
+
+        if (r) {
+            document.getElementById("submitIncident").submit();
+        }
     }
 </script>
 

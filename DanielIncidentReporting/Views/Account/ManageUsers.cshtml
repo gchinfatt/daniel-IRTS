@@ -8,7 +8,7 @@
 <hr/>
 
 <!-- Delete User -->
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "deleteUser" }))
 {
     @Html.AntiForgeryToken()
         <div class="container form-group">
@@ -21,8 +21,18 @@
 
     <div class="container form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete User" class="btn btn-default"/>
+            <input type="button" value="Delete User" class="btn btn-default" onClick="confirmation()"/>
         </div>
     </div>
 }
-<br/>
+
+
+<script>
+    function confirmation() {
+        var r = confirm("Are you sure you want to delete the selected user?");
+
+        if (r) {
+            document.getElementById("deleteUser").submit();
+        }
+    }
+</script>

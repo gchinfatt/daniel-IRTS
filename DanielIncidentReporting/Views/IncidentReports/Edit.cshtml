@@ -42,6 +42,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.IRP_ID)
             @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
+            @Html.HiddenFor(model => model.IRP_ReportDate)
 
             <!--Prepared By-->
             <div class="container form-group">
@@ -90,16 +91,25 @@
             </div>
             
             <!--Incident Date-->
+        <div class="container form-group">
+            <div class="row-margin">
+                @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new {@class = "col-md-3"})
+                <!--Formatted to only show date "01/01/1999" without time-->
+                @Html.TextBoxFor(model => model.IRP_IncidentDate, "{0:MM/dd/yyyy}", new {@class = "form-control datepicker"})
+                @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+            <!--Incident Time-->
             <div class="container form-group">
                 <div class="row-margin">
-                    @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new { @class = "col-md-3" })
-                    <!--Formatted to only show date "01/01/1999" without time-->
-                    @Html.TextBoxFor(model => model.IRP_IncidentDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker" })
-                    @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "col-md-3" })
+                    @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "form-control", @maxlength = "99" })
+                    @Html.ValidationMessageFor(model => model.IRP_IncidentTime, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <hr />
+        <hr />
         
             <!--Report On-->
             <div class="container form-group" id="reportOn">
