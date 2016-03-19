@@ -477,6 +477,7 @@ namespace DanielIncidentReporting.Controllers
             "IRP_ContribSexualEncounter, " +
             "IRP_ContribSeclusion, " +
             "IRP_AbuseAllegation, " +
+            "IRP_AMA, " +
             "IRP_Death, " +
             "IRP_PoliceFire, " +
             "IRP_SuicideGestures, " +

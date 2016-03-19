@@ -325,7 +325,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "medium-textinput", @placeholder = "12:00AM" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Restraint End Time -->
@@ -333,7 +333,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-3-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "small-textinput", @placeholder = "12:00AM" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -438,7 +438,7 @@
                         @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.EditorFor(model => model.IRP_SeclusionSTTime, new { htmlAttributes = new { @class = "medium-textinput", @maxlength = "499" } })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Seclusion End Time -->
@@ -446,7 +446,7 @@
                         @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-3-wide">
-                        @Html.EditorFor(model => model.IRP_SeclusionENTime, new { htmlAttributes = new { @class = "small-textinput", @maxlength = "499" } })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
