@@ -21,7 +21,7 @@ namespace DanielIncidentReporting.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IRTSDBContext2 db = new IRTSDBContext2();
+        private IRTSDBContext2_TJA_test db = new IRTSDBContext2_TJA_test();
         ApplicationDbContext context = new ApplicationDbContext();
 
         //
@@ -266,7 +266,6 @@ namespace DanielIncidentReporting.Controllers
             SelectList programs = new SelectList(list, "Value", "Text");
             ViewBag.programs = programs;
 
-
             // Manager position dropdown list items - Gina Chin Fatt
             List<SelectListItem> managerItems = new List<SelectListItem>();
             managerItems.Add(new SelectListItem { Value = "-1", Text = "Select manager position", Selected = true, Disabled = true });
@@ -288,41 +287,6 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    List<SelectListItem> list = new List<SelectListItem>();
-
-                    foreach (var program in db.Programs)
-                    {
-                        if (program.Prg_Active.Equals("1"))
-                        {
-                            list.Add(new SelectListItem() {Value = program.Prg_Name, Text = program.Prg_Name});
-                        }
-                    }
-
-                    SelectList programs = new SelectList(list, "Value", "Text");
-                    ViewBag.programs = programs;
-
-
-                    // Manager position dropdown list items - Gina Chin Fatt
-                    List<SelectListItem> managerItems = new List<SelectListItem>();
-                    managerItems.Add(new SelectListItem
-                    {
-                        Value = "-1",
-                        Text = "Select manager position",
-                        Selected = true,
-                        Disabled = true
-                    });
-                    managerItems.Add(new SelectListItem {Value = "Residential Manager", Text = "Residential Manager"});
-                    managerItems.Add(new SelectListItem {Value = "Department Director", Text = "Department Director"});
-                    managerItems.Add(new SelectListItem {Value = "Risk Manager", Text = "Risk Manager"});
-
-                    ViewBag.managerItems = managerItems;
-                }
-                catch
-                {
-                    return View();
-                }
                 //In trying to remove the 'Username taken' error message, if delete UserName = model.Email - error message displays 'Name cannot be null or empty'
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program, isActive = model.isActive};
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -612,22 +576,12 @@ namespace DanielIncidentReporting.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-        //Original AddErrors method - can delete
-        //private void AddErrors(IdentityResult result)
-        //{
-        //    foreach (var error in result.Errors)
-        //    {
-        //        ModelState.AddModelError("", error);
-        //    }
-        //}
 
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                if (error.StartsWith("Name"))
-                    ModelState.AddModelError("", "");
-                else ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error);
             }
         }
 

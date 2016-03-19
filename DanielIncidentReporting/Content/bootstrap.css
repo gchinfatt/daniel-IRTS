@@ -814,12 +814,6 @@ pre code {
   clear: both;
 }
 
-.row-margin{
-  margin-right: -15px;
-  margin-left: -15px;
-  margin-top: 5px;
-  margin-bottom: 5px
-}
 
 .col-xs-1,
 .col-xs-2,
@@ -1763,6 +1757,7 @@ fieldset[disabled] .form-control {
 
 textarea.form-control {
   height: auto;
+
 }
 
 .form-group {

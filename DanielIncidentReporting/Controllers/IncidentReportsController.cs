@@ -10,13 +10,12 @@ using System.Web.Mvc;
 using DanielIncidentReporting.Models;
 using System.Data.Entity.Validation;
 using System.Text;
-using System.Web.UI.WebControls;
 
 namespace DanielIncidentReporting.Controllers
 {
     public class IncidentReportsController : Controller
     {
-        private IRTSDBContext2 db = new IRTSDBContext2();
+        private IRTSDBContext2_TJA_test db = new IRTSDBContext2_TJA_test();
 
         // GET: IncidentReports
         public ActionResult Index()
@@ -45,8 +44,10 @@ namespace DanielIncidentReporting.Controllers
                     ViewBag.position = "RiskManager";
                     return
                         View(
-                            db.IncidentReports.Where(m => m.IRP_ApprovalLevelReq.Equals("0") || 
-                            m.IRP_ApprovalLevelReq.Equals("1") || m.IRP_ApprovalLevelReq.Equals("2")));
+                            db.IncidentReports.Where(
+                                m =>
+                                    m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1") ||
+                                    m.IRP_ApprovalLevelReq.Equals("2")));
                 }
 
             }
@@ -66,19 +67,16 @@ namespace DanielIncidentReporting.Controllers
             {
                 incidentReport.IRP_ApprovalLevelReq = "1";
                 incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
-                incidentReport.IRP_ResMgrEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Department Director"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "2";
                 incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
-                incidentReport.IRP_DepDirEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Risk Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "3";
                 incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
-                incidentReport.IRP_RiskMgrEmail = user.Email;
             }
 
             db.IncidentReports.AddOrUpdate(incidentReport);
@@ -111,100 +109,33 @@ namespace DanielIncidentReporting.Controllers
             StringBuilder sb = new StringBuilder();
             
             //Column headers
-            String columnHeaders = "Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" +
-                                   "," + "Incident Date" + "," + "Incident Time" + "," + "Victim First Name" +
-                                   "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," +
-                                   "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" +
-                                   "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" +
-                                   "," + "Reporter First Name" + "," + "Reporter Last Name" +
-                                   "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," +
-                                   "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" +
-                                   "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
-                                   "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
-                                   "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
-                                   "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." +
-                                   "," + "Restraint Start Time" + "," + "Restraint End Time" + "," +
-                                   "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" +
-                                   "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" +
-                                   "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" +
-                                   "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up";
-
-            sb.AppendLine(columnHeaders);
+            sb.AppendLine("Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" + "," + "Incident Date" + "," + "Victim First Name" +
+                    "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," + "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" + 
+                    "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" + "," + "Reporter First Name" + "," + "Reporter Last Name" + 
+                    "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" + 
+                    "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," + "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" + 
+                    "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," + "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." + 
+                    "," + "Restraint Start Time" + "," + "Restraint End Time" + "," + "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" + 
+                    "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" + "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" + 
+                    "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up");
 
             //Actual values of each filtered incident
-            int lastRow = 1;
-
             foreach (var incident in incidents)
             {
-                String incidentData = incident.IRP_ID + "," + incident.IRP_ProgramName + "," + incident.IRP_Category + "," + escapeCSV(incident.IRP_Location) + "," + escapeCSV(incident.IRP_ReportDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_IncidentTime) + "," + escapeCSV(incident.IRP_VictimFirstName) +
-                    "," + escapeCSV(incident.IRP_VictimLastName) + "," + escapeCSV(incident.IRP_ReportOn) + "," + escapeCSV(incident.IRP_ResMgrEmail) + "," + checkDate(incident.IRP_ResMgrApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_DepDirEmail) + "," + checkDate(incident.IRP_DeptDirApprovedDate.ToShortDateString()) + "," + escapeCSV(incident.IRP_RiskMgrEmail) + "," + checkDate(incident.IRP_RiskMgrApprovedDate.ToShortDateString()) +
-                    "," + escapeCSV(incident.IRP_RiskMgrComment) + "," + escapeCSV(incident.IRP_PreparedByFirstName) + "," + escapeCSV(incident.IRP_PreparedByLastName) + "," + escapeCSV(incident.IRP_Description) + "," + escapeCSV(incident.IRP_Witness) + "," + escapeCSV(incident.IRP_Notified) +
-                    "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + incident.IRP_AMA + "," + incident.IRP_SexualEncounter +
+                sb.AppendLine(incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " + incident.IRP_Location + "," + incident.IRP_ReportDate + "," + incident.IRP_IncidentDate + "," + incident.IRP_VictimFirstName +
+                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
+                    "," + incident.IRP_RiskMgrComment + "," + incident.IRP_PreparedByFirstName + "," + incident.IRP_PreparedByLastName + "," + incident.IRP_Description + "," + incident.IRP_Witness + "," + incident.IRP_Notified +
+                    "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
-                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + escapeCSV(incident.IRP_PoliceRepNo) + "," + escapeCSV(incident.IRP_RestraintSTTime) + "," + escapeCSV(incident.IRP_RestraintENTime) + "," + escapeCSV(incident.IRP_SeclusionSTTime) +
-                    "," + escapeCSV(incident.IRP_SeclusionENTime) + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
-                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + escapeCSV(incident.IRP_InjuryType) + "," + escapeCSV(incident.IRP_BodyPart) + "," + escapeCSV(incident.IRP_InjuryFollowUp);
-                
-                sb.AppendLine(incidentData);
-                lastRow++;
+                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + incident.IRP_PoliceRepNo + "," + incident.IRP_RestraintSTTime + "," + incident.IRP_RestraintENTime + "," + incident.IRP_SeclusionSTTime +
+                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
+                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + incident.IRP_InjuryType + "," + incident.IRP_BodyPart + "," + incident.IRP_InjuryFollowUp); ;
             }
 
-            //Total table values and headers
-            String lastRowHeaders = ",,,,,,,,,,,,,,,,,,,,,," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" +
-                                    "," + "Suicide Gestures" + "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
-                                    "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
-                                    "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
-                                    "Prop. Missing" + "," + "Theft" + "," + "Other";
-
-            String totals = ",,,,,,,,,,,,,,,,,,,,," + "Total" + "," + "=SUM(W2:W" + lastRow + ")" + "," + "=SUM(X2:X" + lastRow + ")" + 
-                            "," + "=SUM(Y2:Y" + lastRow + ")" + "," + "=SUM(Z2:Z" + lastRow + ")" + "," + "=SUM(AA2:AA" + lastRow + ")" + 
-                            "," + "=SUM(AB2:AB" + lastRow + ")" + "," + "=SUM(AC2:AC" + lastRow + ")" + "," + "=SUM(AD2:AD" + lastRow + ")" +
-                            "," + "=SUM(AE2:AE" + lastRow + ")" + "," + "=SUM(AF2:AF" + lastRow + ")" + "," + "=SUM(AG2:AG" + lastRow + ")" + 
-                            "," + "=SUM(AH2:AH" + lastRow + ")" + "," + "=SUM(AI2:AI" + lastRow + ")" + "," + "=SUM(AJ2:AJ" + lastRow + ")" + 
-                            "," + "=SUM(AK2:AK" + lastRow + ")" + "," + "=SUM(AL2:AL" + lastRow + ")" + "," + "=SUM(AM2:AM" + lastRow + ")";
-
-
-            //Append totals
-            sb.AppendLine();
-            sb.AppendLine(lastRowHeaders);
-            sb.AppendLine(totals);
-
             String csv = sb.ToString();
-
             String reportName = "Incidents" + dateFrom.ToShortDateString() + "_" + dateTo.ToShortDateString() + ".csv";
 
             return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
-        }
-
-        private String escapeCSV(String escapeStr)
-        {
-            if (escapeStr != null)
-            {
-                if (escapeStr.Contains("\""))
-                {
-                    escapeStr = escapeStr.Replace("\"", "\"\"");
-                }
-                if (escapeStr.Contains(","))
-                {
-                    escapeStr = String.Format("\" {0}\"", escapeStr);
-                }
-                if (escapeStr.Contains(System.Environment.NewLine))
-                {
-                    escapeStr = String.Format("\" {0}\"", escapeStr);
-                }
-            }
-            
-            return escapeStr;
-        }
-
-        private String checkDate(String date)
-        {
-            if (date != null && date.Equals("1/1/0001"))
-            {
-                date = "None";
-            }
-
-            return date;
         }
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
@@ -271,7 +202,7 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
             List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
-            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
+            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Police/Fire/Rescue", Selected = true, Disabled = true });
             policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
@@ -435,7 +366,7 @@ namespace DanielIncidentReporting.Controllers
 
             // Contributing Factors - 3. Police Involvement dropdown list items - Gina Chin Fatt
             List<SelectListItem> policeInvolvementItems = new List<SelectListItem>();
-            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Involvement with Police/Fire/Rescue", Selected = true, Disabled = true });
+            policeInvolvementItems.Add(new SelectListItem { Value = "-1", Text = "Police/Fire/Rescue", Selected = true, Disabled = true });
             policeInvolvementItems.Add(new SelectListItem { Value = "Baker Act", Text = "Baker act" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Medical Emergency", Text = "Medical Emergency" });
             policeInvolvementItems.Add(new SelectListItem { Value = "Elopement", Text = "Elopement" });
@@ -521,7 +452,6 @@ namespace DanielIncidentReporting.Controllers
             "IRP_Location, " +
             "IRP_ReportDate, " +
             "IRP_IncidentDate, " +
-            "IRP_IncidentTime, " +
             "IRP_VictimFirstName, " +
             "IRP_VictimLastName, " +
             "IRP_ReportOn, " +
