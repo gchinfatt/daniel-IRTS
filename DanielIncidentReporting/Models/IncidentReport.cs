@@ -94,7 +94,7 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Police Involvement")]
         public string IRP_ContribPoliceInvolvement { get; set; }
 
-        [Display(Name = "Injury Items")]
+        [Display(Name = "Injury")]
         public string IRP_ContribInjuryItems { get; set; }
 
         [Display(Name = "Unplanned Hospitalization")]

@@ -5,486 +5,797 @@
 }
 
 <h2>Details</h2>
+<br />
+<h3 id="reportCategory"></h3>
+
 
 <div>
-    <h4>Incident Report</h4>
-    <hr/>
+
+    <hr />
+
     <div>
-        <dl class="dl-horizontal">
-            <dl class="dl-horizontal">
-                <div id="dates">
-                    @*//Incident Date*@
-                    <dt>
+        <table>
+            <tr>
+                @*//Incident Date*@
+                <td class="set-3-wide">
+                    <label>
                         @Html.DisplayNameFor(model => model.IRP_IncidentDate)
-                    </dt>
-                    <dd>
-                        @Model.IRP_IncidentDate.ToShortDateString()
-                    </dd>
-                    @*//Incident Time*@
-                    <dt>
+                    </label>
+                </td>
+                @*//Incident Date*@
+                <td class="set-3-wide">
+                    @Model.IRP_IncidentDate.ToShortDateString()
+                </td>
+                @*//Incident Time*@
+                <td class="set-3-wide">
+                    <label>
                         @Html.DisplayNameFor(model => model.IRP_IncidentTime)
-                    </dt>
-                    <dd>
-                        @Model.IRP_IncidentTime
-                    </dd>
-                    @*//Report Date*@
-                    <dt>
+                    </label>
+                </td>
+                @*//Incident Time*@
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_IncidentTime)
+                </td>
+            </tr>
+            <tr>
+                @*//Report Date*@
+                <td class="set-3-wide">
+                    <label>
                         @Html.DisplayNameFor(model => model.IRP_ReportDate)
-                    </dt>
-                    <dd>
-                        @Model.IRP_ReportDate.ToShortDateString()
-                    </dd>
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-                <div>
-                    @*Program Name*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_ProgramName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_ProgramName)
-                    </dd>
-                </div>
-                <div>
-                    @*//Location*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_Location)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_Location)
-                    </dd>
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-                @*Nature Of Incident*@
-                <div id="NatureOfIncident">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_Category)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_Category)
-                    </dd>
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-            <div>
-                <dt>
-                    Contributing Factors
-                </dt>
-                <dd>
-                </dd>
-            </div>
-                @*//Items with No Contributing Factors*@
-                <div id="incidentsWNoContrib" style="padding-left:25px">
-                    @*//Death*@
-                    @if (Model.IRP_Death == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_Death)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Suicide Gestures*@
-                    @if (Model.IRP_SuicideGestures == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_SuicideGestures)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//AMA*@
-                    @if (Model.IRP_AMA == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_AMA)
-                        </dt>
-
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Substance Abuse*@
-                    @if (Model.IRP_SubstanceAbuse == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_SubstanceAbuse)
-                        </dt>
-
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Medication Error*@
-                    @if (Model.IRP_MedicationError == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_MedicationError)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Client Grievance*@
-                    @if (Model.IRP_ClientGrievance == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ClientGrievance)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Property Damage*@
-                    @if (Model.IRP_PropertyDamage == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_PropertyDamage)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Property Missing*@
-                    @if (Model.IRP_PropertyMissing == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_PropertyMissing)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Theft*@
-                    @if (Model.IRP_Theft == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_Theft)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                    @*//Other*@
-                    @if (Model.IRP_Other == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_Other)
-                        </dt>
-                        <dd>
-                            Yes
-                        </dd>
-                    }
-                </div>
-                @*//Items with Contributing Factors*@
-                <div id="incidentsWContrib" style="padding-left:25px">
-                    @*//Abuse Allegation*@
-                    @if (Model.IRP_AbuseAllegation == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribAbuseAllegation)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribAbuseAllegation)
-                        </dd>
-                    }
-                    @*//Physical Restraint*@
-                    @if (Model.IRP_PhysicalRestraint == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribPhysicalAggression)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribPhysicalAggression)
-                        </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_RestraintSTTime)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_RestraintSTTime)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_RestraintENTime)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_RestraintENTime)
-                            </dd>
-                    }
-                    @*//Police/Fire Involvement*@
-                    @if (Model.IRP_PoliceFire == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribPoliceInvolvement)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribPoliceInvolvement)
-                        </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_PoliceRepNo)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_PoliceRepNo)
-                            </dd>
-                    }
-                    @*//Injury*@
-                    @if (Model.IRP_Injury == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribInjuryItems)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribInjuryItems)
-                        </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_InjuryType)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_InjuryType)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_BodyPart)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_BodyPart)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
-                            </dd>
-                    }
-                    @*//Unplanned Hospitalization*@
-                    @if (Model.IRP_UnplannedHospitalization == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribUnplannedHospitalization)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribUnplannedHospitalization)
-                        </dd>
-                    }
-                    @*//Sexual Encounter*@
-                    @if (Model.IRP_SexualEncounter == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribSexualEncounter)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribSexualEncounter)
-                        </dd>
-                    }
-                    @*//Seclusion*@
-                    @if (Model.IRP_Seclusion == "1")
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.IRP_ContribSeclusion)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.IRP_ContribSeclusion)
-                        </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_SeclusionSTTime)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_SeclusionSTTime)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.IRP_SeclusionENTime)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.IRP_SeclusionENTime)
-                            </dd>
-                    }
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-                <div id="Names">
-                    @*//Victim First Name*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_VictimFirstName)
-                    </dd>
-                    @*//Victim Last Name*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_VictimLastName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_VictimLastName)
-                    </dd>
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-                <div>
-                    @*//Report On*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_ReportOn)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_ReportOn)
-                    </dd>
-                    @*//Prepared By First Name*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_PreparedByFirstName)
-                    </dd>
-                    @*//Prepared By Last Name*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_PreparedByLastName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_PreparedByLastName)
-                    </dd>
-                    @*//Witness*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_Witness)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_Witness)
-                    </dd>
-                    @*//Notified*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_Notified)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_Notified)
-                    </dd>
-                </div>
-            </dl>
-            <dl class="dl-horizontal">
-                <div>
-                    @*//Description*@
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_Description)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_Description)
-                    </dd>
-                </div>    
-            </dl>
-            <dl class="dl-horizontal">
-                <div id="riskMgrComment">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.IRP_RiskMgrComment)
-                    </dd>
-                </div>
-            </dl>
-        </dl>
-    <dl class="dl-horizontal" id="approvalDates">
-        <b>Approvals</b><br/>
-        <div id="resMgrApprovedDate">
-            @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                </dt>
-                <dd>
-                    @Model.IRP_ResMgrEmail
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
-                </dt>
-                <dd>
-                    @Model.IRP_ResMgrApprovedDate.ToShortDateString()
-                </dd>
-            }
-            else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                </dt>
-                <dd>
-                    Pending
-                </dd>
-            }
-        </div>
-        <br/>
-        <div id="deptDirApprovedDate">
-            @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
-                </dt>
-                <dd>
-                    @Model.IRP_DepDirEmail
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
-                </dt>
-                <dd>
-                    @Model.IRP_DeptDirApprovedDate.ToShortDateString()
-                </dd>
-            }
-            else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
-                </dt>
-                <dd>
-                    Pending
-                </dd>
-            }
-        </div>
-        <br/>
-        <div id="riskMgrApprovedDate">
-            @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
-                </dt>
-                <dd>
-                    @Model.IRP_RiskMgrEmail
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
-                </dt>
-                <dd>
-                    @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
-                </dd>
-            }
-            else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
-            {
-                <dt>
-                    @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
-                </dt>
-                <dd>
-                    Pending
-                </dd>
-            }
-        </div>
-        <br/>
-    </dl>
+                    </label>
+                </td>
+                @*//Report Date*@
+                <td class="set-3-wide">
+                    @Model.IRP_ReportDate.ToShortDateString()
+                </td>
+                <td class="set-3-wide"></td>
+                <td class="set-3-wide"></td>
+            </tr>
+        </table>
     </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*Program Name*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_ProgramName)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_ProgramName)
+                </td>
+            </tr>
+            <tr>
+                @*//Location*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_Location)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_Location)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                <td class="set-3-wide">
+                    <label>
+                        Nature of Incident
+                    </label>
+                </td>
+                <td colspan="7">
+                    <label>
+                        Contributing Factors
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    &nbsp
+                </td>
+            </tr>
+            <tr>
+                @*//Items with Contributing Factors*@
+                @*//Abuse Allegation*@
+                @if (Model.IRP_AbuseAllegation == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribAbuseAllegation)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribAbuseAllegation)
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Physical Restraint*@
+                @if (Model.IRP_PhysicalRestraint == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribPhysicalAggression)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribPhysicalAggression)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_RestraintSTTime)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_RestraintSTTime)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_RestraintENTime)
+                        </label>
+                    </td>
+                    <td class="set-2-wide">
+                        @Html.DisplayFor(model => model.IRP_RestraintENTime)
+                    </td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Police/Fire Involvement*@
+                @if (Model.IRP_PoliceFire == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribPoliceInvolvement)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribPoliceInvolvement)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_PoliceRepNo)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_PoliceRepNo)
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Injury*@
+                @if (Model.IRP_Injury == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribInjuryItems)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribInjuryItems)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_InjuryType)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_InjuryType)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_BodyPart)
+                        </label>
+                    </td>
+                    <td class="set-2-wide">
+                        @Html.DisplayFor(model => model.IRP_BodyPart)
+                    </td>
+                    <td class="set-2-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
+                        </label>
+                    </td>
+                    <td class="set-2-wide">
+                        @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
+                    </td>
+                }
+            </tr>
+            <tr>
+                @*//Unplanned Hospitalization*@
+                @if (Model.IRP_UnplannedHospitalization == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            Hospitalization
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribUnplannedHospitalization)
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Sexual Encounter*@
+                @if (Model.IRP_SexualEncounter == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribSexualEncounter)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribSexualEncounter)
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Seclusion*@
+                @if (Model.IRP_Seclusion == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ContribSeclusion)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_ContribSeclusion)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_SeclusionSTTime)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Html.DisplayFor(model => model.IRP_SeclusionSTTime)
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_SeclusionENTime)
+                        </label>
+                    </td>
+                    <td class="set-2-wide">
+                        @Html.DisplayFor(model => model.IRP_SeclusionENTime)
+                    </td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Items with No Contributing Factors*@
+                @*//Death*@
+                @if (Model.IRP_Death == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_Death)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Suicide Gestures*@
+                @if (Model.IRP_SuicideGestures == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_SuicideGestures)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//AMA*@
+                @if (Model.IRP_AMA == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_AMA)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Substance Abuse*@
+                @if (Model.IRP_SubstanceAbuse == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_SubstanceAbuse)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Medication Error*@
+                @if (Model.IRP_MedicationError == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_MedicationError)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Client Grievance*@
+                @if (Model.IRP_ClientGrievance == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ClientGrievance)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Property Damage*@
+                @if (Model.IRP_PropertyDamage == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_PropertyDamage)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Property Missing*@
+                @if (Model.IRP_PropertyMissing == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_PropertyMissing)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Theft*@
+                @if (Model.IRP_Theft == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_Theft)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+            <tr>
+                @*//Other*@
+                @if (Model.IRP_Other == "1")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_Other)
+                        </label>
+                    </td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-3-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                    <td class="set-2-wide"></td>
+                }
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <label>
+                        Victim Name
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    &nbsp
+                </td>
+            </tr>
+            <tr>
+                @*//Victim First Name*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
+                    </label>
+                </td>
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_VictimFirstName)
+                </td>
+            </tr>
+            <tr>
+                @*//Victim Last Name*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_VictimLastName)
+                    </label>
+                </td>
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_VictimLastName)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*//Report On*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_ReportOn)
+                    </label>
+                </td>
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_ReportOn)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="2">
+                    <label>
+                        Prepared By
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    &nbsp
+                </td>
+            </tr>
+            <tr>
+                @*//Prepared By First Name*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
+                    </label>
+                </td>
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_PreparedByFirstName)
+                </td>
+            </tr>
+            <tr>
+                @*//Prepared By Last Name*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_PreparedByLastName)
+                    </label>
+                </td>
+                <td class="set-3-wide">
+                    @Html.DisplayFor(model => model.IRP_PreparedByLastName)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*//Witness*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_Witness)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_Witness)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*//Notified*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_Notified)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_Notified)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*//Description*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_Description)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_Description)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                @*//Risk Manager Comment*@
+                <td class="set-3-wide">
+                    <label>
+                        @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
+                    </label>
+                </td>
+                <td class="set-6-wide">
+                    @Html.DisplayFor(model => model.IRP_RiskMgrComment)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <hr />
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="4">
+                    <label>
+                        Manager Approval Dates
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    &nbsp
+                </td>
+            </tr>
+            <tr>
+                @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_ResMgrEmail
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_ResMgrApprovedDate.ToShortDateString()
+                    </td>
+                }
+                else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        Pending
+                    </td>
+                }
+            </tr>
+            <tr>
+                @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_DepDirEmail
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_DeptDirApprovedDate.ToShortDateString()
+                    </td>
+                }
+                else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        Pending
+                    </td>
+                }
+            </tr>
+            <tr>
+                @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_RiskMgrEmail
+                    </td>
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
+                    </td>
+                }
+                else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                {
+                    <td class="set-3-wide">
+                        <label>
+                            @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
+                        </label>
+                    </td>
+                    <td class="set-3-wide">
+                        Pending
+                    </td>
+                }
+            </tr>
+        </table>
+        <hr />
+    </div>
+
 </div>
+
 <p>
     @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Edit", "Edit", new {id = Model.IRP_ID}) |
-    @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID }, new { onclick = "return confirm('Are you sure you want to apporve this incident?');"})
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IRP_ID }) |
+    @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID }, new { onclick = "return confirm('Are you sure you want to apporve this incident?');" })
 </p>
 
 <script language="javascript" type="text/javascript">
     //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function isRiskManager()
-    {
+    $(function isRiskManager() {
         var mgrPosition = '@(ViewBag.mgrPosition)';
-        if (mgrPosition == "Risk Manager")
-        {
+        if (mgrPosition == "Risk Manager") {
             $('#riskMgrComment').show();
         }
-        else if (mgrPosition != "Risk Manager")
-        {
+        else if (mgrPosition != "Risk Manager") {
             $('#riskMgrComment').hide();
+        }
+    });
+
+    //Show Report Category as RED if "Serious"
+    $(function isCategorySerious() {
+        var reportCategoryValue = '@Html.DisplayTextFor(model => model.IRP_Category)';
+        var reportCategoryName = '@Html.DisplayNameFor(model => model.IRP_Category): ';
+        if (reportCategoryValue == "Serious") {
+            var result = reportCategoryName.concat(reportCategoryValue.fontcolor("red"));
+            document.getElementById("reportCategory").innerHTML = result;
+        }
+        else if (reportCategoryValue != "Serious") {
+            var result = reportCategoryName.concat(reportCategoryValue.fontcolor("black"));
+            document.getElementById("reportCategory").innerHTML = result;
         }
     });
 

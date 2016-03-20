@@ -452,6 +452,7 @@ namespace DanielIncidentReporting.Controllers
             "IRP_Location, " +
             "IRP_ReportDate, " +
             "IRP_IncidentDate, " +
+            "IRP_IncidentTime, " +
             "IRP_VictimFirstName, " +
             "IRP_VictimLastName, " +
             "IRP_ReportOn, " +
