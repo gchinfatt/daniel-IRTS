@@ -289,9 +289,9 @@
         <!-- Contributing Factors -->
         <div id="ContribFactors" style='display: none;'>
             <hr />
-            <table id="ContribFactorsTable">
+            <table id="ContribFactorsTable" border="1">
                 <tr>
-                    <td colspan="6">
+                    <td id="ContribFactorsHeader"colspan="6">
                         <label class="medium-label">
                             Contributing Factors
                         </label>
@@ -815,7 +815,6 @@
             $('#ContribFactors_PoliceInvolvement').hide();
             $('#IRP_ContribPoliceInvolvement').hide();
             $('#ContribFactors_PoliceReportNumber').hide();
-            //document.getElementById('IRP_PoliceRepNo').value = "";
         }
         //Sexual Encounter
         if (IRP_SexualEncounterValue == "1")
@@ -829,7 +828,6 @@
             document.getElementById('cBox_SexualEncounter').checked = false;
             $('#ContribFactors_SexualEncounter').hide();
             $('#IRP_ContribSexualEncounter').hide();
-            //document.getElementById('IRP_ContribAbuseAllegation').value = "";
         }
         //Injury
         if (IRP_InjuryValue == "1")
@@ -851,7 +849,6 @@
             $('#ContribFactors_InjuryFollowUp').hide();
             $('#IRP_InjuryFollowUp').hide();
             $('#IRP_ContribInjuryItems').hide();
-            //document.getElementById('IRP_ContribInjuryItems').value = "";
         }
         //Physical Restraint
         if (IRP_PhysicalRestraintValue == "1")
@@ -869,9 +866,6 @@
             $('#ContribFactors_RestraintStartTime').hide();
             $('#ContribFactors_RestraintEndTime').hide();
             $('#IRP_ContribPhysicalAggression').hide();
-            //document.getElementById('IRP_ContribPhysicalAggression').value = "";
-            //document.getElementById('IRP_RestraintSTTime').value = "";
-            //document.getElementById('IRP_RestraintENTime').value = "";
         }
         //Seclusion
         if (IRP_SeclusionValue == "1")
@@ -986,11 +980,78 @@
         }
     });
 
+    //Counter created to hold the number of checked nature of incident checkboxes which have corresponding contributing factors
+    //This var is used to either display or hide the contributing factors section
+    var contribFactorsCounter = 0;
+
     //Display Contrib Factors Dropdowns if corresponding nature of incident is checked
     function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv)
     {
         //contributing factors <div>
-        if (sender.checked == true)
+        if (document.getElementById('cBox_AbuseAllegation').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_AbuseAllegation').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_UnplannedHospitalization').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_UnplannedHospitalization').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_PoliceFire').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_PoliceFire').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_SexualEncounter').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_SexualEncounter').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_Injury').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_Injury').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_PhysicalRestraint').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_PhysicalRestraint').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (document.getElementById('cBox_Seclusion').checked == true)
+        {
+            contribFactorsCounter++;
+        }
+        else if (document.getElementById('cBox_Seclusion').checked == false)
+        {
+            contribFactorsCounter--;
+        }
+
+        if (contribFactorsCounter != 0)
         {
             $('#ContribFactors').show();
             $(contribFactorDiv).show();
@@ -1003,100 +1064,79 @@
             $(contribFactorItemsDiv).hide();
         }
         //Abuse Allegation
-        if (sender.name == "IRP_AbuseAllegation")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_AbuseAllegation") {
+            if (sender.checked == true) {
                 $('#ContribFactors_AbuseAllegation').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_AbuseAllegation').hide();
             }
         }
         //Sexual Encounter
-        if (sender.name == "IRP_SexualEncounter")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_SexualEncounter") {
+            if (sender.checked == true) {
                 $('#ContribFactors_SexualEncounter').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_SexualEncounter').hide();
             }
         }
         //Unplanned Hospitalization
-        if (sender.name == "IRP_UnplannedHospitalization")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_UnplannedHospitalization") {
+            if (sender.checked == true) {
                 $('#ContribFactors_UnplannedHospitalization').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_UnplannedHospitalization').hide();
             }
         }
         //Police Involvement
-        if (sender.name == "IRP_PoliceFire")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_PoliceFire") {
+            if (sender.checked == true) {
                 $('#ContribFactors_PoliceInvolvement').show();
                 $('#ContribFactors_PoliceReportNumber').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_PoliceInvolvement').hide();
                 $('#ContribFactors_PoliceReportNumber').hide();
             }
         }
         //Physical Restraint
-        if (sender.name == "IRP_PhysicalRestraint")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_PhysicalRestraint") {
+            if (sender.checked == true) {
                 $('#ContribFactors_PhysicalAggression').show();
                 $('#ContribFactors_RestraintStartTime').show();
                 $('#ContribFactors_RestraintEndTime').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_PhysicalAggression').hide();
                 $('#ContribFactors_RestraintStartTime').hide();
                 $('#ContribFactors_RestraintEndTime').hide();
             }
         }
         //Seclusion
-        if (sender.name == "IRP_Seclusion")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_Seclusion") {
+            if (sender.checked == true) {
                 $('#ContribFactors_Seclusion').show();
                 $('#ContribFactors_SeclusionStartTime').show();
                 $('#ContribFactors_SeclusionEndTime').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_Seclusion').hide();
                 $('#ContribFactors_SeclusionStartTime').hide();
                 $('#ContribFactors_SeclusionEndTime').hide();
             }
         }
         //Injury
-        if (sender.name == "IRP_Injury")
-        {
-            if (sender.checked == true)
-            {
+        if (sender.name == "IRP_Injury") {
+            if (sender.checked == true) {
                 $('#ContribFactors_InjuryItems').show();
                 $('#ContribFactors_InjuryType').show();
                 $('#ContribFactors_InjuryBodyPart').show();
                 $('#ContribFactors_InjuryFollowUp').show();
                 $('#IRP_InjuryFollowUp').show();
             }
-            else
-            {
+            else {
                 $('#ContribFactors_InjuryItems').hide();
                 $('#ContribFactors_InjuryType').hide();
                 $('#ContribFactors_InjuryBodyPart').hide();
@@ -1105,5 +1145,125 @@
             }
         }
     }
+
+    ////Display Contrib Factors Dropdowns if corresponding nature of incident is checked
+    //function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv)
+    //{
+    //    //contributing factors <div>
+    //    if (sender.checked == true)
+    //    {
+    //        $('#ContribFactors').show();
+    //        $(contribFactorDiv).show();
+    //        $(contribFactorItemsDiv).show();
+    //    }
+    //    else
+    //    {
+    //        $('#ContribFactors').hide();
+    //        $(contribFactorDiv).hide();
+    //        $(contribFactorItemsDiv).hide();
+    //    }
+    //    //Abuse Allegation
+    //    if (sender.name == "IRP_AbuseAllegation")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_AbuseAllegation').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_AbuseAllegation').hide();
+    //        }
+    //    }
+    //    //Sexual Encounter
+    //    if (sender.name == "IRP_SexualEncounter")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_SexualEncounter').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_SexualEncounter').hide();
+    //        }
+    //    }
+    //    //Unplanned Hospitalization
+    //    if (sender.name == "IRP_UnplannedHospitalization")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_UnplannedHospitalization').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_UnplannedHospitalization').hide();
+    //        }
+    //    }
+    //    //Police Involvement
+    //    if (sender.name == "IRP_PoliceFire")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_PoliceInvolvement').show();
+    //            $('#ContribFactors_PoliceReportNumber').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_PoliceInvolvement').hide();
+    //            $('#ContribFactors_PoliceReportNumber').hide();
+    //        }
+    //    }
+    //    //Physical Restraint
+    //    if (sender.name == "IRP_PhysicalRestraint")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_PhysicalAggression').show();
+    //            $('#ContribFactors_RestraintStartTime').show();
+    //            $('#ContribFactors_RestraintEndTime').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_PhysicalAggression').hide();
+    //            $('#ContribFactors_RestraintStartTime').hide();
+    //            $('#ContribFactors_RestraintEndTime').hide();
+    //        }
+    //    }
+    //    //Seclusion
+    //    if (sender.name == "IRP_Seclusion")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_Seclusion').show();
+    //            $('#ContribFactors_SeclusionStartTime').show();
+    //            $('#ContribFactors_SeclusionEndTime').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_Seclusion').hide();
+    //            $('#ContribFactors_SeclusionStartTime').hide();
+    //            $('#ContribFactors_SeclusionEndTime').hide();
+    //        }
+    //    }
+    //    //Injury
+    //    if (sender.name == "IRP_Injury")
+    //    {
+    //        if (sender.checked == true)
+    //        {
+    //            $('#ContribFactors_InjuryItems').show();
+    //            $('#ContribFactors_InjuryType').show();
+    //            $('#ContribFactors_InjuryBodyPart').show();
+    //            $('#ContribFactors_InjuryFollowUp').show();
+    //            $('#IRP_InjuryFollowUp').show();
+    //        }
+    //        else
+    //        {
+    //            $('#ContribFactors_InjuryItems').hide();
+    //            $('#ContribFactors_InjuryType').hide();
+    //            $('#ContribFactors_InjuryBodyPart').hide();
+    //            $('#ContribFactors_InjuryFollowUp').hide();
+    //            $('#IRP_InjuryFollowUp').hide();
+    //        }
+    //    }
+    //}
 
 </script>
