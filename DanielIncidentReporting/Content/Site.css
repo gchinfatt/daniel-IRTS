@@ -45,10 +45,12 @@ h2, .h2 {
 
 /* Uses all form-control traits, but also overrides the max-width set above */
 /*Intended for us with textareafor's but also works with textboxes*/
+
+/*set-17-wide*/
 .large-textarea{ 
     max-width:none;
     display: block;
-    width: 920px;
+    width: 66.47em;
     height: 5em;
     padding: 6px 12px;
     font-size: 14px;
@@ -64,10 +66,11 @@ h2, .h2 {
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
 }
 
+/*set-6-wide*/
 .extralarge-textinput{
   max-width:none;
   display: block;
-  width: 324px;
+  width: 23.46em;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -83,10 +86,11 @@ h2, .h2 {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*set-5-wide*/
 .large-textinput{
   max-width:none;
   display: block;
-  width: 271px;
+  width: 19.55em;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -102,10 +106,11 @@ h2, .h2 {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*set-4-wide*/
 .medium-textinput{
   max-width:none;
   display: block;
-  width: 213px;
+  width: 15.64em;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -121,10 +126,11 @@ h2, .h2 {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*set-3-wide*/
 .small-textinput{
   max-width:none;
   display: block;
-  width: 163px;
+  width: 11.73em;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -140,10 +146,11 @@ h2, .h2 {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*set-2-wide*/
 .tiny-textinput{
   max-width:none;
   display: block;
-  width: 106px;
+  width: 7.82em;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -159,30 +166,104 @@ h2, .h2 {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
+/*set-5-wide*/
 .large-label{
   max-width:none;
-  width: 271px;
+  width: 19.55em;
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
+/*set-4-wide*/
 .medium-label{
   max-width:none;
-  width: 213px;
+  width: 15.64em;
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
+/*set-3-wide*/
 .small-label{
   max-width:none;
-  width: 163px;
+  width: 11.73em;
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
+.set-1-wide{
+  max-width:none;
+  width: 3.91em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-2-wide{
+  max-width:none;
+  width: 7.82em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-3-wide{
+  max-width:none;
+  width: 11.73em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-4-wide{
+  max-width:none;
+  width: 15.64em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-5-wide{
+  max-width:none;
+  width: 19.55em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-6-wide{
+  max-width:none;
+  width: 23.46em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-17-wide{
+  max-width:none;
+  width: 66.47em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-21-wide{
+  max-width:none;
+  width: 82.11em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
 
 /*used for coloring when testing design layout - not for production/release -- TJA*/
 .tr-ruler{
@@ -195,76 +276,4 @@ h2, .h2 {
 
 .td-quarter-color{
   background-color: forestgreen;
-}
-
-.set-1-wide{
-  max-width:none;
-  width: 50px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-2-wide{
-  max-width:none;
-  width: 106px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-3-wide{
-  max-width:none;
-  width: 163px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-4-wide{
-  max-width:none;
-  width: 213px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-5-wide{
-  max-width:none;
-  width: 271px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-6-wide{
-  max-width:none;
-  width: 324px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-17-wide{
-  max-width:none;
-  width: 923px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-21-wide{
-  max-width:none;
-  width: 1139px;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
 }
