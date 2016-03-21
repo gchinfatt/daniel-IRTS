@@ -21,7 +21,7 @@ namespace DanielIncidentReporting.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private IRTSDBContext2_TJA_test db = new IRTSDBContext2_TJA_test();
+        private IRTSDBContext2 db = new IRTSDBContext2();
         ApplicationDbContext context = new ApplicationDbContext();
 
         //

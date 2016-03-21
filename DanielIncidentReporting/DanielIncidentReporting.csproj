@@ -172,7 +172,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IncidentReportController.cs" />
     <Compile Include="Controllers\IncidentReportsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,17 +188,20 @@
     <Compile Include="Models\IncidentReport.cs" />
     <Compile Include="Models\IncidentType.cs" />
     <Compile Include="Models\InjuryFollowUp.cs" />
-    <Compile Include="Models\IRTSDBContext2_TJA_test.cs" />
+    <Compile Include="Models\IRTSDBContext2.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605_TJA_test.mdf" />
-    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605_TJA_test_log.ldf">
-      <DependentUpon>aspnet-DanielIncidentReporting-20151124070605_TJA_test.mdf</DependentUpon>
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-03092016.sql" />
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605.mdf" />
+    <Content Include="App_Data\aspnet-DanielIncidentReporting-20151124070605_log.ldf">
+      <DependentUpon>aspnet-DanielIncidentReporting-20151124070605.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\IRTSscript03092016.sql" />
+    <Content Include="App_Data\script1262016.sql" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker3.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />

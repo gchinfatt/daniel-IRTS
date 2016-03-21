@@ -15,7 +15,7 @@ namespace DanielIncidentReporting.Controllers
 {
     public class IncidentReportsController : Controller
     {
-        private IRTSDBContext2_TJA_test db = new IRTSDBContext2_TJA_test();
+        private IRTSDBContext2 db = new IRTSDBContext2();
 
         // GET: IncidentReports
         public ActionResult Index()
