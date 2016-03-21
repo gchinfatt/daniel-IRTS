@@ -172,6 +172,7 @@ namespace DanielIncidentReporting.Controllers
         {
             List<SelectListItem> list = new List<SelectListItem>();
 
+            list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
             foreach (var program in db.Programs)
             {
                 if (program.Prg_Active.Equals("1"))
@@ -305,6 +306,7 @@ namespace DanielIncidentReporting.Controllers
                 {
                     List<SelectListItem> list = new List<SelectListItem>();
 
+                    list.Add(new SelectListItem { Value = "-1", Text = "Program Name", Selected = true, Disabled = true });
                     foreach (var program in db.Programs)
                     {
                         if (program.Prg_Active.Equals("1"))
@@ -403,6 +405,7 @@ namespace DanielIncidentReporting.Controllers
             {
                 List<SelectListItem> list = new List<SelectListItem>();
 
+                list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
                 foreach (var program in db.Programs)
                 {
                     if (program.Prg_Active.Equals("1"))
@@ -523,6 +526,7 @@ namespace DanielIncidentReporting.Controllers
 
             List<SelectListItem> list = new List<SelectListItem>();
 
+            list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
             foreach (var program in db.Programs)
             {
                 if (program.Prg_Active.Equals("1"))
@@ -729,6 +733,7 @@ namespace DanielIncidentReporting.Controllers
 
                     List<SelectListItem> list = new List<SelectListItem>();
 
+                    list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
                     foreach (var program in db.Programs)
                     {
                         if (program.Prg_Active.Equals("1"))
@@ -855,6 +860,7 @@ namespace DanielIncidentReporting.Controllers
 
                 List<SelectListItem> list = new List<SelectListItem>();
 
+                list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
                 foreach (var program in db.Programs)
                 {
                     if (program.Prg_Active.Equals("1"))

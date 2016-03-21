@@ -80,7 +80,7 @@
                         @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "medium-textinput", @placeholder = "location", @maxlength = "499" })
+                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "medium-textinput", @placeholder = "location" })
                         @Html.ValidationMessageFor(model => model.IRP_Location, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -112,7 +112,7 @@
                         @Html.LabelFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "medium-textinput", @placeholder = "12:00AM", @maxlength = "49" })
+                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "medium-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_IncidentTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -139,7 +139,7 @@
                         @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_PreparedByFirstName, new { @class = "extralarge-textinput", @maxlength = "49", @placeholder = "First Name" })
+                        @Html.TextBoxFor(model => model.IRP_PreparedByFirstName, new { @class = "extralarge-textinput", @placeholder = "First Name" })
                         @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
@@ -148,7 +148,7 @@
                         @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_PreparedByLastName, new { @class = "extralarge-textinput", @maxlength = "49", @placeholder = "Last Name" })
+                        @Html.TextBoxFor(model => model.IRP_PreparedByLastName, new { @class = "extralarge-textinput", @placeholder = "Last Name" })
                         @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -191,7 +191,7 @@
                         @Html.LabelFor(model => model.IRP_VictimFirstName, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "extralarge-textinput", @maxlength = "99", @placeholder = "First Name" })
+                        @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "extralarge-textinput", @placeholder = "First Name" })
                         @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
@@ -200,7 +200,7 @@
                         @Html.LabelFor(model => model.IRP_VictimLastName, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "extralarge-textinput", @maxlength = "99", @placeholder = "Last Name" })
+                        @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "extralarge-textinput", @placeholder = "Last Name" })
                         @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -409,7 +409,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM", @maxlength = "199" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Restraint End Time -->
@@ -417,7 +417,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-3-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM", @maxlength = "199" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -434,7 +434,7 @@
                         @Html.LabelFor(model => model.IRP_PoliceRepNo, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_PoliceRepNo, new { @class = "medium-textinput", @maxlength = "199", @placeholder = "Police Report #" })
+                        @Html.TextBoxFor(model => model.IRP_PoliceRepNo, new { @class = "medium-textinput", @placeholder = "Police Report #" })
                         @Html.ValidationMessageFor(model => model.IRP_PoliceRepNo, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
@@ -447,14 +447,13 @@
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                        @Html.ValidationMessageFor(model => model.IRP_ContribInjuryItems, "", new { @class = "text-danger" })
                     </td>
                     <!-- Injury Type -->
                     <td id="ContribFactors_InjuryType" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "medium-textinput", @maxlength = "249", @placeholder = "Injury Type" })
+                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "medium-textinput", @placeholder = "Injury Type" })
                         @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
@@ -466,7 +465,7 @@
                         @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_BodyPart, new { @class = "medium-textinput", @maxlength = "249", @placeholder = "Body Part" })
+                        @Html.TextBoxFor(model => model.IRP_BodyPart, new { @class = "medium-textinput", @placeholder = "Body Part" })
                         @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
                     </td>
                     <!-- Injury FollowUp -->
@@ -475,7 +474,6 @@
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                        @Html.ValidationMessageFor(model => model.IRP_InjuryFollowUp, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-3-wide"></td>
@@ -487,7 +485,6 @@
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_ContribUnplannedHospitalization", ViewBag.unplannedHospitalizationItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                        @Html.ValidationMessageFor(model => model.IRP_ContribUnplannedHospitalization, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-4-wide"></td>
@@ -501,7 +498,6 @@
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_ContribSexualEncounter", ViewBag.sexualEncounterItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                        @Html.ValidationMessageFor(model => model.IRP_ContribSexualEncounter, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-4-wide"></td>
@@ -515,14 +511,13 @@
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_ContribSeclusion", ViewBag.seclusionItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                        @Html.ValidationMessageFor(model => model.IRP_ContribSeclusion, "", new { @class = "text-danger" })
                     </td>
                     <!-- Seclusion Start Time -->
                     <td id="ContribFactors_SeclusionStartTime" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM", @maxlength = "199" })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Seclusion End Time -->
@@ -530,7 +525,7 @@
                         @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-3-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM", @maxlength = "199" })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -547,7 +542,7 @@
                         @Html.LabelFor(model => model.IRP_Notified, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "large-textarea", @maxlength = "999", @placeholder = "Notified Person(s)" })
+                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "large-textarea", @placeholder = "Notified Person(s)" })
                         @Html.ValidationMessageFor(model => model.IRP_Notified, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -574,7 +569,7 @@
                         @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "large-textarea", @maxlength = "999", @placeholder = "Description" })
+                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "large-textarea", @placeholder = "Description" })
                         @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -599,7 +594,7 @@
                         @Html.LabelFor(model => model.IRP_Witness, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "large-textarea", @maxlength = "999", @placeholder = "Witness(es)" })
+                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "large-textarea", @placeholder = "Witness(es)" })
                         @Html.ValidationMessageFor(model => model.IRP_Witness, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -626,7 +621,7 @@
                         @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { @class = "large-textarea", @maxlength = "999", @placeholder = "Risk Manager Comment" })
+                        @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { @class = "large-textarea", @placeholder = "Risk Manager Comment" })
                         @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
                     </td>
                 </tr>
