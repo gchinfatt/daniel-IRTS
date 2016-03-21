@@ -110,7 +110,7 @@ namespace DanielIncidentReporting.Controllers
             
             //Column headers
             sb.AppendLine("Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" + "," + "Incident Date" + "," + "Victim First Name" +
-                    "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," + "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" + 
+                    "," + "Victim Last Name" + ", " + "Report On" + "," + ", " + "Res. Mgr. Email" + "," + "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" + 
                     "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" + "," + "Reporter First Name" + "," + "Reporter Last Name" + 
                     "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" + 
                     "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," + "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" + 
@@ -123,7 +123,7 @@ namespace DanielIncidentReporting.Controllers
             foreach (var incident in incidents)
             {
                 sb.AppendLine(incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " + incident.IRP_Location + "," + incident.IRP_ReportDate + "," + incident.IRP_IncidentDate + "," + incident.IRP_VictimFirstName +
-                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
+                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + ", " + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
                     "," + incident.IRP_RiskMgrComment + "," + incident.IRP_PreparedByFirstName + "," + incident.IRP_PreparedByLastName + "," + incident.IRP_Description + "," + incident.IRP_Witness + "," + incident.IRP_Notified +
                     "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +

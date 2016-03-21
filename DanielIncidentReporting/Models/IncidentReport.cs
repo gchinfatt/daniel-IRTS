@@ -26,6 +26,7 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Incident Date")]
         public DateTime IRP_IncidentDate { get; set; }
+
         [Display(Name = "Incident Time")]
         public string IRP_IncidentTime { get; set; }
 
@@ -40,14 +41,19 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Residential Manager")]
         public string IRP_ResMgrEmail { get; set; }
+
         [Display(Name = "Date")]
         public DateTime IRP_ResMgrApprovedDate { get; set; }
+
         [Display(Name = "Department Director")]
         public string IRP_DepDirEmail { get; set; }
+
         [Display(Name = "Date")]
         public DateTime IRP_DeptDirApprovedDate { get; set; }
+
         [Display(Name = "Risk Manager")]
         public string IRP_RiskMgrEmail { get; set; }
+
         [Display(Name = "Date")]
         public DateTime IRP_RiskMgrApprovedDate { get; set; }
 
