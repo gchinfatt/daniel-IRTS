@@ -19,8 +19,10 @@ namespace DanielIncidentReporting.Models
         public string IRP_Category { get; set; }
 
         [Display(Name = "Location")]
+        [Required(ErrorMessage = "Location is required")]
+        [StringLength(499, ErrorMessage = "Location can be no larger than 500 characters")]
         public string IRP_Location { get; set; }
-        
+
         [Display(Name = "Report Date")]
         public DateTime IRP_ReportDate { get; set; }
 
@@ -178,6 +180,6 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Police Report Number")]
         public string IRP_PoliceRepNo { get; set; }
-        
+
     }
 }

@@ -12,24 +12,19 @@
         $('.datepicker').datepicker();
     });
 </script>
-
 <h2>Report an Incident</h2>
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitIncident" }))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <!-- HIDDEN ReportDate sysdate -->
         <div class="container form-group">
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.IRP_ReportDate, new { @Value = DateTime.Now })
             </div>
         </div>
-
         <!--Program Name & Location-->
         <div>
             <table>
@@ -54,14 +49,11 @@
                 </tr>
             </table>
         </div>
-
         <script>
             var program;
             document.getElementById("");
         </script>
-
         <hr />
-
         <!--Incident Date & Time-->
         <div>
             <table>
@@ -86,9 +78,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!--Prepared By-->
         <div>
             <table>
@@ -122,9 +112,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!--Report On-->
         <div id="reportOn">
             <table>
@@ -174,9 +162,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!--Nature of Incident-->
         <div>
             <table>
@@ -341,7 +327,6 @@
                 </tr>
             </table>
         </div>
-
         <!-- Contributing Factors -->
         <div id="ContribFactors" style='display: none;'>
             <hr />
@@ -504,9 +489,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!-- Notification -->
         <div>
             <table>
@@ -531,9 +514,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!-- Description -->
         <div>
             <table>
@@ -556,9 +537,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!-- Witness Name -->
         <div>
             <table>
@@ -583,9 +562,7 @@
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <div class="form-group">
             <div class="col-md-2">
                 <input type="button" value="Submit Incident" class="btn btn-default" onClick="confirmation()" />
@@ -593,12 +570,9 @@
         </div>
     </div>
 }
-
 <script language="javascript" type="text/javascript">
-
     //these variables hold the value of the corresponding data in the database
     //and make that data available to the javascript functions in the <script>
-
     //Items With Contributing Factors
     var IRP_AbuseAllegationValue = '@Html.DisplayTextFor(model => model.IRP_AbuseAllegation)';
     var IRP_UnplannedHospitalizationValue = '@Html.DisplayTextFor(model => model.IRP_UnplannedHospitalization)';
@@ -607,7 +581,6 @@
     var IRP_InjuryValue = '@Html.DisplayTextFor(model => model.IRP_Injury)';
     var IRP_PhysicalRestraintValue = '@Html.DisplayTextFor(model => model.IRP_PhysicalRestraint)';
     var IRP_SeclusionValue = '@Html.DisplayTextFor(model => model.IRP_Seclusion)';
-
     //Items With No Contributing Factors
     var IRP_AMAValue = '@Html.DisplayTextFor(model => model.IRP_AMA)';
     var IRP_DeathValue = '@Html.DisplayTextFor(model => model.IRP_Death)';
@@ -619,7 +592,6 @@
     var IRP_PropertyMissingValue = '@Html.DisplayTextFor(model => model.IRP_PropertyMissing)';
     var IRP_TheftValue = '@Html.DisplayTextFor(model => model.IRP_Theft)';
     var IRP_OtherValue = '@Html.DisplayTextFor(model => model.IRP_Other)';
-
     function nullUncheckedNOIContrib() {
         //Abuse Allegation
         if (document.getElementById("cBox_AbuseAllegation").checked == false) {
@@ -658,7 +630,6 @@
             document.getElementById("ContribFactors_SeclusionEndTime").innerHTML = "";
         }
     }
-
     //Populate checked Contributing Factors on page load
     $(function recordedContribFactor() {
         if (
@@ -683,7 +654,6 @@
                 ) {
             //$('#ContribFactors').hide();
         }
-
         //Items with Contributing Factors
         //Abuse Allegation
         if (IRP_AbuseAllegationValue == "1") {
@@ -780,7 +750,6 @@
             $('#ContribFactors_SeclusionEndTime').hide();
             $('#IRP_ContribSeclusion').hide();
         }
-
         //Items With No Contributing Factors
         //AMA
         if (IRP_AMAValue == "1") {
@@ -853,11 +822,9 @@
             document.getElementById("cBox_Other").checked = false;
         }
     });
-
     //Counter created to hold the number of checked nature of incident checkboxes which have corresponding contributing factors
     //This var is used to either display or hide the contributing factors section
     var contribFactorsCounter = 0;
-
     //Display Contrib Factors Dropdowns if corresponding nature of incident is checked
     function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv) {
         //contributing factors <div>
@@ -867,49 +834,42 @@
         else if (document.getElementById('cBox_AbuseAllegation').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_UnplannedHospitalization').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_UnplannedHospitalization').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_PoliceFire').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_PoliceFire').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_SexualEncounter').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_SexualEncounter').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_Injury').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_Injury').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_PhysicalRestraint').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_PhysicalRestraint').checked == false) {
             contribFactorsCounter--;
         }
-
         if (document.getElementById('cBox_Seclusion').checked == true) {
             contribFactorsCounter++;
         }
         else if (document.getElementById('cBox_Seclusion').checked == false) {
             contribFactorsCounter--;
         }
-
         if (contribFactorsCounter != 0) {
             $('#ContribFactors').show();
             $(contribFactorDiv).show();
@@ -1002,16 +962,11 @@
             }
         }
     }
-
     function confirmation() {
         var r = confirm("Are you sure you want to submit this incident?");
-
         if (r) {
-            nullUncheckedNOIContrib();
+            //nullUncheckedNOIContrib();
             document.getElementById("submitIncident").submit();
         }
     }
-
 </script>
-
-
