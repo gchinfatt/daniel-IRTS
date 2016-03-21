@@ -9,37 +9,30 @@
 <script language="javascript" type="text/javascript">
 
     //Initialize any date pickers
-    $(function initDatePicker()
-    {
+    $(function initDatePicker() {
         $('.datepicker').datepicker();
     });
 
     //Show Risk Manager Comment Field if user is a Risk Manager
-    $(function isRiskManager()
-    {
+    $(function isRiskManager() {
         var mgrPosition = '@(ViewBag.mgrPosition)';
-        if (mgrPosition == "Risk Manager")
-        {
+        if (mgrPosition == "Risk Manager") {
             $('#riskMgrComment').show();
         }
-        else if (mgrPosition != "Risk Manager")
-        {
+        else if (mgrPosition != "Risk Manager") {
             $('#riskMgrComment').hide();
         }
     });
 
     //Show Report Category as RED if "Serious"
-    $(function isCategorySerious()
-    {
+    $(function isCategorySerious() {
         var reportCategoryValue = '@Html.DisplayTextFor(model => model.IRP_Category)';
         var reportCategoryName = '@Html.DisplayNameFor(model => model.IRP_Category): ';
-        if (reportCategoryValue == "Serious")
-        {
+        if (reportCategoryValue == "Serious") {
             var result = reportCategoryName.concat(reportCategoryValue.fontcolor("red"));
             document.getElementById("reportCategory").innerHTML = result;
         }
-        else if (reportCategoryValue != "Serious")
-        {
+        else if (reportCategoryValue != "Serious") {
             var result = reportCategoryName.concat(reportCategoryValue.fontcolor("black"));
             document.getElementById("reportCategory").innerHTML = result;
         }
@@ -677,47 +670,39 @@
     var IRP_TheftValue = '@Html.DisplayTextFor(model => model.IRP_Theft)';
     var IRP_OtherValue = '@Html.DisplayTextFor(model => model.IRP_Other)';
 
-    function nullUncheckedNOIContrib()
-    {
+    function nullUncheckedNOIContrib() {
         //Abuse Allegation
-        if (document.getElementById("cBox_AbuseAllegation").checked == false)
-        {
+        if (document.getElementById("cBox_AbuseAllegation").checked == false) {
             document.getElementById("IRP_ContribAbuseAllegation").innerHTML = "";
         }
         //Unplanned Hospitalization
-        if (document.getElementById("cBox_UnplannedHospitalization").checked == false)
-        {
+        if (document.getElementById("cBox_UnplannedHospitalization").checked == false) {
             document.getElementById("IRP_ContribUnplannedHospitalization").innerHTML = "";
         }
         //Police Involvement
-        if (document.getElementById("cBox_PoliceFire").checked == false)
-        {
+        if (document.getElementById("cBox_PoliceFire").checked == false) {
             document.getElementById("IRP_ContribPoliceInvolvement").innerHTML = "";
             document.getElementById("ContribFactors_PoliceReportNumber").innerHTML = "";
         }
         //Sexual Encounter
-        if (document.getElementById("cBox_SexualEncounter").checked == false)
-        {
+        if (document.getElementById("cBox_SexualEncounter").checked == false) {
             document.getElementById("IRP_ContribSexualEncounter").innerHTML = "";
         }
         //Injury
-        if (document.getElementById("cBox_Injury").checked == false)
-        {
+        if (document.getElementById("cBox_Injury").checked == false) {
             document.getElementById("IRP_ContribInjuryItems").innerHTML = "";
             document.getElementById("ContribFactors_InjuryType").innerHTML = "";
             document.getElementById("ContribFactors_InjuryBodyPart").innerHTML = "";
             document.getElementById("ContribFactors_InjuryFollowUp").innerHTML = "";
         }
         //Physical Restraint
-        if (document.getElementById("cBox_PhysicalRestraint").checked == false)
-        {
+        if (document.getElementById("cBox_PhysicalRestraint").checked == false) {
             document.getElementById("IRP_ContribPhysicalAggression").innerHTML = "";
             document.getElementById("ContribFactors_RestraintStartTime").innerHTML = "";
             document.getElementById("ContribFactors_RestraintEndTime").innerHTML = "";
         }
         //Seclusion
-        if (document.getElementById("cBox_Seclusion").checked == false)
-        {
+        if (document.getElementById("cBox_Seclusion").checked == false) {
             document.getElementById("IRP_ContribSeclusion").innerHTML = "";
             document.getElementById("ContribFactors_SeclusionStartTime").innerHTML = "";
             document.getElementById("ContribFactors_SeclusionEndTime").innerHTML = "";
@@ -725,8 +710,7 @@
     }
 
     //Populate checked Contributing Factors on page load
-    $(function recordedContribFactor()
-    {
+    $(function recordedContribFactor() {
         if (
                 IRP_AbuseAllegationValue == "1" ||
                 IRP_UnplannedHospitalizationValue == "1" ||
@@ -735,8 +719,7 @@
                 IRP_InjuryValue == "1" ||
                 IRP_PhysicalRestraintValue == "1" ||
                 IRP_SeclusionValue == "1"
-            )
-        {
+            ) {
             $('#ContribFactors').show();
         }
         else if (
@@ -747,69 +730,59 @@
                     IRP_InjuryValue != "1" &&
                     IRP_PhysicalRestraintValue != "1" &&
                     IRP_SeclusionValue != "1"
-                )
-        {
+                ) {
             $('#ContribFactors').hide();
         }
 
         //Items with Contributing Factors
         //Abuse Allegation
-        if (IRP_AbuseAllegationValue == "1")
-        {
+        if (IRP_AbuseAllegationValue == "1") {
             document.getElementById('cBox_AbuseAllegation').checked = true;
             $('#ContribFactors_AbuseAllegation').show();
             $('#IRP_ContribAbuseAllegation').show();
         }
-        else if (IRP_AbuseAllegationValue != "1")
-        {
+        else if (IRP_AbuseAllegationValue != "1") {
             document.getElementById('cBox_AbuseAllegation').checked = false;
             $('#ContribFactors_AbuseAllegation').hide();
             $('#IRP_ContribAbuseAllegation').hide();
         }
         //Unplanned Hospitalization
-        if (IRP_UnplannedHospitalizationValue == "1")
-        {
+        if (IRP_UnplannedHospitalizationValue == "1") {
             document.getElementById('cBox_UnplannedHospitalization').checked = true;
             $('#ContribFactors_UnplannedHospitalization').show();
             $('#IRP_ContribUnplannedHospitalization').show();
         }
-        else if (IRP_UnplannedHospitalizationValue != "1")
-        {
+        else if (IRP_UnplannedHospitalizationValue != "1") {
             document.getElementById('cBox_UnplannedHospitalization').checked = false;
             $('#ContribFactors_UnplannedHospitalization').hide();
             $('#IRP_ContribUnplannedHospitalization').hide();
         }
         //Involvement with Police and/or Fire/Rescue Personnel
-        if (IRP_PoliceFireValue == "1")
-        {
+        if (IRP_PoliceFireValue == "1") {
             document.getElementById('cBox_PoliceFire').checked = true;
             $('#ContribFactors_PoliceInvolvement').show();
             $('#IRP_ContribPoliceInvolvement').show();
             $('#ContribFactors_PoliceReportNumber').show();
         }
-        else if (IRP_PoliceFireValue != "1")
-        {
+        else if (IRP_PoliceFireValue != "1") {
             document.getElementById('cBox_PoliceFire').checked = false;
             $('#ContribFactors_PoliceInvolvement').hide();
             $('#IRP_ContribPoliceInvolvement').hide();
             $('#ContribFactors_PoliceReportNumber').hide();
         }
         //Sexual Encounter
-        if (IRP_SexualEncounterValue == "1")
-        {
+        if (IRP_SexualEncounterValue == "1") {
             document.getElementById('cBox_SexualEncounter').checked = true;
             $('#ContribFactors_SexualEncounter').show();
             $('#IRP_ContribSexualEncounter').show();
         }
-        else if (IRP_SexualEncounterValue != "1")
-        {
+        else if (IRP_SexualEncounterValue != "1") {
             document.getElementById('cBox_SexualEncounter').checked = false;
             $('#ContribFactors_SexualEncounter').hide();
             $('#IRP_ContribSexualEncounter').hide();
         }
         //Injury
-        if (IRP_InjuryValue == "1")
-        {
+        if (IRP_InjuryValue == "1") {
             document.getElementById('cBox_Injury').checked = true;
             $('#ContribFactors_InjuryItems').show();
             $('#ContribFactors_InjuryType').show();
@@ -818,8 +791,7 @@
             $('#IRP_InjuryFollowUp').show();
             $('#IRP_ContribInjuryItems').show();
         }
-        else if (IRP_InjuryValue != "1")
-        {
+        else if (IRP_InjuryValue != "1") {
             document.getElementById('cBox_Injury').checked = false;
             $('#ContribFactors_InjuryItems').hide();
             $('#ContribFactors_InjuryType').hide();
@@ -829,16 +801,14 @@
             $('#IRP_ContribInjuryItems').hide();
         }
         //Physical Restraint
-        if (IRP_PhysicalRestraintValue == "1")
-        {
+        if (IRP_PhysicalRestraintValue == "1") {
             document.getElementById('cBox_PhysicalRestraint').checked = true;
             $('#ContribFactors_PhysicalAggression').show();
             $('#ContribFactors_RestraintStartTime').show();
             $('#ContribFactors_RestraintEndTime').show();
             $('#IRP_ContribPhysicalAggression').show();
         }
-        else if (IRP_PhysicalRestraintValue != "1")
-        {
+        else if (IRP_PhysicalRestraintValue != "1") {
             document.getElementById('cBox_PhysicalRestraint').checked = false;
             $('#ContribFactors_PhysicalAggression').hide();
             $('#ContribFactors_RestraintStartTime').hide();
@@ -846,8 +816,7 @@
             $('#IRP_ContribPhysicalAggression').hide();
         }
         //Seclusion
-        if (IRP_SeclusionValue == "1")
-        {
+        if (IRP_SeclusionValue == "1") {
             document.getElementById('cBox_Seclusion').checked = true;
             $('#ContribFactors_Seclusion').show();
             $('#ContribFactors_SeclusionStartTime').show();
@@ -864,93 +833,73 @@
 
         //Items With No Contributing Factors
         //AMA
-        if (IRP_AMAValue == "1")
-        {
+        if (IRP_AMAValue == "1") {
             document.getElementById("cBox_AMA").checked = true;
         }
-        else if (IRP_AMAValue != "1")
-        {
+        else if (IRP_AMAValue != "1") {
             document.getElementById("cBox_AMA").checked = false;
         }
         //Death
-        if (IRP_DeathValue == "1")
-        {
+        if (IRP_DeathValue == "1") {
             document.getElementById("cBox_Death").checked = true;
         }
-        else if (IRP_DeathValue != "1")
-        {
+        else if (IRP_DeathValue != "1") {
             document.getElementById("cBox_Death").checked = false;
         }
         //Suicide Gestures
-        if (IRP_SuicideGesturesValue == "1")
-        {
+        if (IRP_SuicideGesturesValue == "1") {
             document.getElementById("cBox_SuicideGestures").checked = true;
         }
-        else if (IRP_SuicideGesturesValue != "1")
-        {
+        else if (IRP_SuicideGesturesValue != "1") {
             document.getElementById("cBox_SuicideGestures").checked = false;
         }
         //Substance Abuse
-        if (IRP_SubstanceAbuseValue == "1")
-        {
+        if (IRP_SubstanceAbuseValue == "1") {
             document.getElementById("cBox_SubstanceAbuse").checked = true;
         }
-        else if (IRP_SubstanceAbuseValue != "1")
-        {
+        else if (IRP_SubstanceAbuseValue != "1") {
             document.getElementById("cBox_SubstanceAbuse").checked = false;
         }
         //Medication Error
-        if (IRP_MedicationErrorValue == "1")
-        {
+        if (IRP_MedicationErrorValue == "1") {
             document.getElementById("cBox_MedicationError").checked = true;
         }
-        else if (IRP_MedicationErrorValue != "1")
-        {
+        else if (IRP_MedicationErrorValue != "1") {
             document.getElementById("cBox_MedicationError").checked = false;
         }
         //Client Grievance
-        if (IRP_ClientGrievanceValue == "1")
-        {
+        if (IRP_ClientGrievanceValue == "1") {
             document.getElementById("cBox_ClientGrievance").checked = true;
         }
-        else if (IRP_ClientGrievanceValue != "1")
-        {
+        else if (IRP_ClientGrievanceValue != "1") {
             document.getElementById("cBox_ClientGrievance").checked = false;
         }
         //Property Damage
-        if (IRP_PropertyDamageValue == "1")
-        {
+        if (IRP_PropertyDamageValue == "1") {
             document.getElementById("cBox_PropertyDamage").checked = true;
         }
-        else if (IRP_PropertyDamageValue != "1")
-        {
+        else if (IRP_PropertyDamageValue != "1") {
             document.getElementById("cBox_PropertyDamage").checked = false;
         }
         //Property Missing
-        if (IRP_PropertyMissingValue == "1")
-        {
+        if (IRP_PropertyMissingValue == "1") {
             document.getElementById("cBox_PropertyMissing").checked = true;
         }
-        else if (IRP_PropertyMissingValue != "1")
-        {
+        else if (IRP_PropertyMissingValue != "1") {
             document.getElementById("cBox_PropertyMissing").checked = false;
         }
         //Theft
-        if (IRP_TheftValue == "1")
-        {
+        if (IRP_TheftValue == "1") {
             document.getElementById("cBox_Theft").checked = true;
         }
-        else if (IRP_TheftValue != "1")
-        {
+        else if (IRP_TheftValue != "1") {
             document.getElementById("cBox_Theft").checked = false;
         }
         //Other
-        if (IRP_OtherValue == "1")
-        {
+        if (IRP_OtherValue == "1") {
             document.getElementById("cBox_Other").checked = true;
         }
-        else if (IRP_OtherValue != "1")
-        {
+        else if (IRP_OtherValue != "1") {
             document.getElementById("cBox_Other").checked = false;
         }
     });
@@ -960,80 +909,63 @@
     var contribFactorsCounter = 0;
 
     //Display Contrib Factors Dropdowns if corresponding nature of incident is checked
-    function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv)
-    {
+    function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv) {
         //contributing factors <div>
-        if (document.getElementById('cBox_AbuseAllegation').checked == true)
-        {
+        if (document.getElementById('cBox_AbuseAllegation').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_AbuseAllegation').checked == false)
-        {
+        else if (document.getElementById('cBox_AbuseAllegation').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_UnplannedHospitalization').checked == true)
-        {
+        if (document.getElementById('cBox_UnplannedHospitalization').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_UnplannedHospitalization').checked == false)
-        {
+        else if (document.getElementById('cBox_UnplannedHospitalization').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_PoliceFire').checked == true)
-        {
+        if (document.getElementById('cBox_PoliceFire').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_PoliceFire').checked == false)
-        {
+        else if (document.getElementById('cBox_PoliceFire').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_SexualEncounter').checked == true)
-        {
+        if (document.getElementById('cBox_SexualEncounter').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_SexualEncounter').checked == false)
-        {
+        else if (document.getElementById('cBox_SexualEncounter').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_Injury').checked == true)
-        {
+        if (document.getElementById('cBox_Injury').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_Injury').checked == false)
-        {
+        else if (document.getElementById('cBox_Injury').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_PhysicalRestraint').checked == true)
-        {
+        if (document.getElementById('cBox_PhysicalRestraint').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_PhysicalRestraint').checked == false)
-        {
+        else if (document.getElementById('cBox_PhysicalRestraint').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (document.getElementById('cBox_Seclusion').checked == true)
-        {
+        if (document.getElementById('cBox_Seclusion').checked == true) {
             contribFactorsCounter++;
         }
-        else if (document.getElementById('cBox_Seclusion').checked == false)
-        {
+        else if (document.getElementById('cBox_Seclusion').checked == false) {
             contribFactorsCounter--;
         }
 
-        if (contribFactorsCounter != 0)
-        {
+        if (contribFactorsCounter != 0) {
             $('#ContribFactors').show();
             $(contribFactorDiv).show();
             $(contribFactorItemsDiv).show();
         }
-        else
-        {
+        else {
             $('#ContribFactors').hide();
             $(contribFactorDiv).hide();
             $(contribFactorItemsDiv).hide();
