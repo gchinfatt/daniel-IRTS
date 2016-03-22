@@ -17,7 +17,7 @@ namespace DanielIncidentReporting.Controllers
     {
         private IRTSDBContext2 db = new IRTSDBContext2();
 
-        // GET: IncidentReports
+        // Get: IncidentReports
         public ActionResult Index()
         {
             ApplicationDbContext context = new ApplicationDbContext();
