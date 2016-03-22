@@ -8,7 +8,6 @@ using System.Data.Entity;
 
 namespace DanielIncidentReporting.Models
 {
-
     [Table("IncidentReports")]
     public class IncidentReport
     {
