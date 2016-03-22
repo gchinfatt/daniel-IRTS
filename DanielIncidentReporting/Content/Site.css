@@ -48,7 +48,10 @@ h2, .h2 {
 
 /*set-17-wide*/
 .large-textarea{ 
-    max-width:none;
+    max-width:66.47em;
+    min-width:23.46em;
+    max-height:25em;
+    min-height:10em;
     display: block;
     width: 66.47em;
     height: 5em;

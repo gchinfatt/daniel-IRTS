@@ -368,6 +368,7 @@
         </div>
 
         <!-- Contributing Factors -->
+        <!-- Contributing Factors Table -->
         <div id="ContribFactors" style='display: none;'>
             <hr />
             <label>
@@ -604,10 +605,9 @@
             </table>
         </div>
 
-        <hr />
-
-        <!--Risk Manager Comment-->
-        <div>
+        @*Risk Manager Comment*@
+        <div id="riskMgrComment">
+            <hr />
             <table>
                 <tr>
                     <td class="set-4-wide">
@@ -633,11 +633,11 @@
 
         <div class="form-group">
             <div class="col-md-2">
-                <input type="submit" value="Save" class="btn btn-default" onclick="nullUncheckedNOIContrib()" />
+                <input type="submit" value="Save Incident" class="btn btn-default" onClick="(new confirmation()).inner();" />
             </div>
         </div>
-
     </div>
+
 }
 
 <div>
@@ -1049,6 +1049,49 @@
                 $('#ContribFactors_InjuryBodyPart').hide();
                 $('#ContribFactors_InjuryFollowUp').hide();
                 $('#IRP_InjuryFollowUp').hide();
+            }
+        }
+    }
+    function confirmation() {
+        var r = confirm("Are you sure you want to modify and save this incident?");
+        if (r) {
+            this.inner = function () {
+                //Abuse Allegation
+                if (document.getElementById("cBox_AbuseAllegation").checked == false) {
+                    document.getElementById("IRP_ContribAbuseAllegation").innerHTML = "";
+                }
+                //Unplanned Hospitalization
+                if (document.getElementById("cBox_UnplannedHospitalization").checked == false) {
+                    document.getElementById("IRP_ContribUnplannedHospitalization").innerHTML = "";
+                }
+                //Police Involvement
+                if (document.getElementById("cBox_PoliceFire").checked == false) {
+                    document.getElementById("IRP_ContribPoliceInvolvement").innerHTML = "";
+                    document.getElementById("ContribFactors_PoliceReportNumber").innerHTML = "";
+                }
+                //Sexual Encounter
+                if (document.getElementById("cBox_SexualEncounter").checked == false) {
+                    document.getElementById("IRP_ContribSexualEncounter").innerHTML = "";
+                }
+                //Injury
+                if (document.getElementById("cBox_Injury").checked == false) {
+                    document.getElementById("IRP_ContribInjuryItems").innerHTML = "";
+                    document.getElementById("ContribFactors_InjuryType").innerHTML = "";
+                    document.getElementById("ContribFactors_InjuryBodyPart").innerHTML = "";
+                    document.getElementById("ContribFactors_InjuryFollowUp").innerHTML = "";
+                }
+                //Physical Restraint
+                if (document.getElementById("cBox_PhysicalRestraint").checked == false) {
+                    document.getElementById("IRP_ContribPhysicalAggression").innerHTML = "";
+                    document.getElementById("ContribFactors_RestraintStartTime").innerHTML = "";
+                    document.getElementById("ContribFactors_RestraintEndTime").innerHTML = "";
+                }
+                //Seclusion
+                if (document.getElementById("cBox_Seclusion").checked == false) {
+                    document.getElementById("IRP_ContribSeclusion").innerHTML = "";
+                    document.getElementById("ContribFactors_SeclusionStartTime").innerHTML = "";
+                    document.getElementById("ContribFactors_SeclusionEndTime").innerHTML = "";
+                }
             }
         }
     }
