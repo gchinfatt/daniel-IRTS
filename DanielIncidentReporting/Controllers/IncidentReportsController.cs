@@ -46,8 +46,8 @@ namespace DanielIncidentReporting.Controllers
             // Contributing Factors - 2. Physical Aggression dropdown list items - Gina Chin Fatt
             List<SelectListItem> physicalAggressionItems = new List<SelectListItem>();
             physicalAggressionItems.Add(new SelectListItem { Value = "-1", Text = "Physical Restraint", Selected = true, Disabled = true });
-            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
-            physicalAggressionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Physical Agression Toward Others", Text = "Physical Agression Toward Others" });
+            physicalAggressionItems.Add(new SelectListItem { Value = "Physical Agression Toward Self", Text = "Physical Agression Toward Self" });
 
             ViewBag.physicalAggressionItems = physicalAggressionItems;
 
@@ -135,8 +135,8 @@ namespace DanielIncidentReporting.Controllers
             // Contributing Factors - 7. Seclusion dropdown list items
             List<SelectListItem> seclusionItems = new List<SelectListItem>();
             seclusionItems.Add(new SelectListItem { Value = "-1", Text = "Seclusion", Selected = true, Disabled = true });
-            seclusionItems.Add(new SelectListItem { Value = "Toward Others", Text = "Toward Others" });
-            seclusionItems.Add(new SelectListItem { Value = "Toward Self", Text = "Toward Self" });
+            seclusionItems.Add(new SelectListItem { Value = "Physical Agression Toward Others", Text = "Physical Agression Toward Others" });
+            seclusionItems.Add(new SelectListItem { Value = "TPhysical Agression Toward Self", Text = "Physical Agression Toward Self" });
 
             ViewBag.seclusionItems = seclusionItems;
 
