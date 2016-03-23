@@ -18,15 +18,7 @@ namespace DanielIncidentReporting.Controllers
         private IRTSDBContext2 db = new IRTSDBContext2();
 
         public void populateViewDataItems(IncidentReport incidentReport, Incident incident, int? id)
-        {            
-            //ViewBag.mgrPosition
-            ApplicationDbContext context = new ApplicationDbContext();
-            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
-
-            String mgrPosition = userPosition.mgrPosition;
-
-            ViewBag.mgrPosition = mgrPosition;
-
+        {
             //ViewBag.programs
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
@@ -300,6 +292,14 @@ namespace DanielIncidentReporting.Controllers
 
             populateViewDataItems(null, null, id);
 
+            //ViewBag.mgrPosition
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+            String mgrPosition = userPosition.mgrPosition;
+
+            ViewBag.mgrPosition = mgrPosition;
+
             return View(incidentReport);
         }
 
@@ -383,6 +383,14 @@ namespace DanielIncidentReporting.Controllers
             }
 
             populateViewDataItems(null, null, id);
+
+            //ViewBag.mgrPosition
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+            String mgrPosition = userPosition.mgrPosition;
+
+            ViewBag.mgrPosition = mgrPosition;
 
             return View(incidentReport);
         }
@@ -471,6 +479,14 @@ namespace DanielIncidentReporting.Controllers
                 catch
                 {
                     populateViewDataItems(incidentReport, null, null);
+                    
+                    //ViewBag.mgrPosition
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+                    String mgrPosition = userPosition.mgrPosition;
+
+                    ViewBag.mgrPosition = mgrPosition;
 
                     return View(incidentReport);
                 }
@@ -479,6 +495,14 @@ namespace DanielIncidentReporting.Controllers
             else
             {
                 populateViewDataItems(incidentReport, null, null);
+
+                //ViewBag.mgrPosition
+                ApplicationDbContext context = new ApplicationDbContext();
+                ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+                String mgrPosition = userPosition.mgrPosition;
+
+                ViewBag.mgrPosition = mgrPosition;
 
                 return View(incidentReport);
             }

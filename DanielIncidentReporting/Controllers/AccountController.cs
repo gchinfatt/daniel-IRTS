@@ -613,11 +613,24 @@ namespace DanielIncidentReporting.Controllers
             }
         }
 
+        //Can delete this if AddErrors below is working
+        //private void AddErrors(IdentityResult result)
+        //{
+        //    foreach (var error in result.Errors)
+        //    {
+        //        ModelState.AddModelError("", error);
+        //    }
+        //}
+
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                //ModelState.AddModelError("", error);
+                if (error.StartsWith("Name"))
+                    ModelState.AddModelError("", "");
+                else ModelState.AddModelError("", error);
             }
         }
 
