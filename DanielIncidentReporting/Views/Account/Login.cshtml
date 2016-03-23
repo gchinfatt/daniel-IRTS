@@ -4,59 +4,86 @@
     ViewBag.Title = "Manager Log In";
 }
 
-<h2 style="text-align: left">@ViewBag.Title</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Contact your System Administrator to create your account.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", maxlength = "255" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                @*<p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>*@
+<h2>@ViewBag.Title</h2>
+<br/>
+<h4>Contact your System Administrator to create your account.</h4>
 
-                @*Enable this once you have account confirmation enabled for password reset functionality*@
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
+<div>
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    <table>
+                        <tr>
+                            <!-- Email -->
+                            <td>
+                                @Html.LabelFor(m => m.Email, new { @class = "tiny-label" })
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "large-textinput", maxlength = "255" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- Password -->
+                            <td>
+                                @Html.LabelFor(m => m.Password, new { @class = "tiny-label" })
+                            </td>
+                            <td>
+                                @Html.PasswordFor(m => m.Password, new { @class = "large-textinput" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- Remember Me? -->
+                            <td>
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                &nbsp;
+                                @Html.LabelFor(m => m.RememberMe)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <!-- Submit Button -->
+                            <td>
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <!-- Forgot Password -->
+                            <td>
+                                @*Enable this once you have account confirmation enabled for password reset functionality*@
+                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        }
+    </section>
+</div>
+
+<div class="col-md-4">
+    <section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>
 </div>
 
 @section Scripts {

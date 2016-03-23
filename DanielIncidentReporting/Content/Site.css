@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 
-h3, .h3 {
+.h4-custom {
     text-align: left;
     font-weight: bold;
 }
@@ -34,6 +34,16 @@ h2, .h2 {
 
 .img-responsive .img {
     text-align: center;
+}
+
+.img-daniellogo {
+  border: 0;
+  width: 11.14em;
+  height:5em;
+}
+
+.spacer-height1 {
+    height: .5em;
 }
 
 .row-margin{
@@ -196,6 +206,15 @@ h2, .h2 {
   margin-bottom: 0;
 }
 
+/*set-2-wide*/
+.tiny-label{
+  max-width:none;
+  width: 7.82em;
+  padding-top: 1px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 .set-1-wide{
   max-width:none;
   width: 3.91em;
@@ -280,3 +299,4 @@ h2, .h2 {
 .td-quarter-color{
   background-color: forestgreen;
 }
+/**********************************************************************************/

@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
 }
 
-@*functions used on the EDIT view*@
+<!-- functions used on the EDIT view -->
 <script language="javascript" type="text/javascript">
 
     //Initialize any date pickers
@@ -40,9 +40,9 @@
 
 </script>
 
-<h2>Edit an Incident Report</h2>
+<h2>@ViewBag.Title</h2>
 <br />
-<h3 id="reportCategory"></h3>
+<h4 class="h4-custom" id="reportCategory"></h4>
 
 @using (Html.BeginForm())
 {
@@ -55,11 +55,11 @@
         @Html.HiddenFor(model => model.IRP_ID)
         @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
 
-        <!--Program Name & Location-->
+        <!-- Program Name & Location -->
         <div>
             <table>
                 <tr>
-                    <!--Program Name-->
+                    <!-- Program Name -->
                     <td>
                         @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "medium-label" })
                     </td>
@@ -87,7 +87,7 @@
 
         <hr />
 
-        <!--Incident Date & Time-->
+        <!-- Incident Date & Time -->
         <div>
             <table>
                 <tr>
@@ -114,7 +114,7 @@
 
         <hr />
 
-        <!--Prepared By-->
+        <!-- Prepared By -->
         <div>
             <table>
                 <tr>
@@ -127,7 +127,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <!--Prepared By First Name-->
+                    <!-- Prepared By First Name -->
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new { @class = "medium-label" })
                     </td>
@@ -150,7 +150,7 @@
 
         <hr />
 
-        <!--Report On-->
+        <!-- Report On -->
         <div id="reportOn">
             <table>
                 <tr>
@@ -179,7 +179,7 @@
                     <td class="set-1-wide">&nbsp</td>
                 </tr>
                 <tr>
-                    <!--Report On First Name-->
+                    <!-- Report On First Name -->
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_VictimFirstName, htmlAttributes: new { @class = "medium-label" })
                     </td>
@@ -188,7 +188,7 @@
                         @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
-                    <!--Report On Last Name-->
+                    <!-- Report On Last Name -->
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_VictimLastName, htmlAttributes: new { @class = "medium-label" })
                     </td>
@@ -202,7 +202,7 @@
 
         <hr />
 
-        <!--Nature of Incident-->
+        <!-- Nature of Incident -->
         <div>
             <table>
                 <tr>
@@ -212,7 +212,7 @@
                         <br />
                     </td>
                 </tr>
-                <!--Header Row-->
+                <!-- Header Row -->
                 <tr>
                     <th class="set-5-wide">
                         CATEGORY A (Serious)
@@ -232,22 +232,22 @@
                         <br />
                     </th>
                 </tr>
-                <!--Row 1-->
+                <!-- Row 1 -->
                 <tr>
                     <td class="set-5-wide">
-                        <!--Abuse Allegation-->
+                        <!-- Abuse Allegation -->
                         <input type="checkbox" name="IRP_AbuseAllegation" id="cBox_AbuseAllegation" onclick="displayContrib(this, '#ContribFactors_AbuseAllegation', '#IRP_ContribAbuseAllegation')" value="1" />&nbsp&nbsp Abuse Allegation
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--AMA-->
+                        <!-- AMA -->
                         <input type="checkbox" name="IRP_AMA" id="cBox_AMA" value="1" />&nbsp&nbsp AMA
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Property Damage-->
+                        <!-- Property Damage -->
                         <input type="checkbox" name="IRP_PropertyDamage" id="cBox_PropertyDamage" value="1" />&nbsp&nbsp Property Damage
                         <br />
                     </td>
@@ -255,19 +255,19 @@
                 <!--Row 2-->
                 <tr>
                     <td class="set-5-wide">
-                        <!--Death-->
+                        <!-- Death -->
                         <input type="checkbox" name="IRP_Death" id="cBox_Death" value="1" />&nbsp&nbsp Death
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Sexual Encounter-->
+                        <!-- Sexual Encounter -->
                         <input type="checkbox" name="IRP_SexualEncounter" id="cBox_SexualEncounter" onclick="displayContrib(this, '#ContribFactors_SexualEncounter', '#IRP_ContribSexualEncounter')" value="1" />&nbsp&nbsp Sexual Encounter
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Property Missing-->
+                        <!-- Property Missing -->
                         <input type="checkbox" name="IRP_PropertyMissing" id="cBox_PropertyMissing" value="1" />&nbsp&nbsp Property Missing
                         <br />
                     </td>
@@ -275,89 +275,89 @@
                 <!--Row 3-->
                 <tr>
                     <td class="set-5-wide">
-                        <!--Suicicde Gestures-->
+                        <!-- Suicicde Gestures -->
                         <input type="checkbox" name="IRP_SuicideGestures" id="cBox_SuicideGestures" value="1" />&nbsp&nbsp Suicide Gestures
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Substace Abuse-->
+                        <!-- Substace Abuse -->
                         <input type="checkbox" name="IRP_SubstanceAbuse" id="cBox_SubstanceAbuse" value="1" />&nbsp&nbsp Substance Abuse
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Theft-->
+                        <!-- Theft -->
                         <input type="checkbox" name="IRP_Theft" id="cBox_Theft" value="1" />&nbsp&nbsp Theft
                         <br />
                     </td>
                 </tr>
-                <!--Row 4-->
+                <!-- Row 4 -->
                 <tr>
                     <td class="set-5-wide">
-                        <!--Unplanned Hospitalization-->
+                        <!-- Unplanned Hospitalization -->
                         <input type="checkbox" name="IRP_UnplannedHospitalization" id="cBox_UnplannedHospitalization" onclick="displayContrib(this, '#ContribFactors_UnplannedHospitalization', '#IRP_ContribUnplannedHospitalization')" value="1" />&nbsp&nbsp Unplanned Hospitalization
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Medication Error-->
+                        <!-- Medication Error -->
                         <input type="checkbox" name="IRP_MedicationError" id="cBox_MedicationError" value="1" />&nbsp&nbsp Medication Error
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Other-->
+                        <!-- Other -->
                         <input type="checkbox" name="IRP_Other" id="cBox_Other" value="1" />&nbsp&nbsp Other
                         <br />
                     </td>
                 </tr>
-                <!--Row 5-->
+                <!-- Row 5 -->
                 <tr>
                     <td class="set-5-wide">
-                        <!--Police/Fire Involvement-->
+                        <!-- Police/Fire Involvement -->
                         <input type="checkbox" name="IRP_PoliceFire" id="cBox_PoliceFire" onclick="displayContrib(this, '#ContribFactors_PoliceInvolvement', '#IRP_ContribPoliceInvolvement')" value="1" />&nbsp&nbsp Police/Fire/Rescue Involvement
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Injury-->
+                        <!-- Injury -->
                         <input type="checkbox" name="IRP_Injury" id="cBox_Injury" onclick="displayContrib(this, '#ContribFactors_InjuryItems', '#IRP_ContribInjuryItems')" value="1" />&nbsp&nbsp Injury
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide"></td>
                 </tr>
-                <!--Row 6-->
+                <!-- Row 6 -->
                 <tr>
                     <td class="set-5-wide"></td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Client Grievance-->
+                        <!-- Client Grievance -->
                         <input type="checkbox" name="IRP_ClientGrievance" id="cBox_ClientGrievance" value="1" />&nbsp&nbsp Client Grievance
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide"></td>
                 </tr>
-                <!--Row 7-->
+                <!-- Row 7 -->
                 <tr>
                     <td class="set-5-wide"></td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Physical Restraint-->
+                        <!-- Physical Restraint -->
                         <input type="checkbox" name="IRP_PhysicalRestraint" id="cBox_PhysicalRestraint" onclick="displayContrib(this, '#ContribFactors_PhysicalAggression', '#IRP_ContribPhysicalAggression')" value="1" />&nbsp&nbsp Physical Restraint
                         <br />
                     </td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide"></td>
                 </tr>
-                <!--Row 8-->
+                <!-- Row 8 -->
                 <tr>
                     <td class="set-5-wide"></td>
                     <td class="set-3-wide"></td>
                     <td class="set-5-wide">
-                        <!--Seclusion-->
+                        <!-- Seclusion -->
                         <input type="checkbox" name="IRP_Seclusion" id="cBox_Seclusion" onclick="displayContrib(this, '#ContribFactors_Seclusion', '#IRP_ContribSeclusion')" value="1" />&nbsp&nbsp Seclusion
                         <br />
                     </td>
@@ -605,7 +605,7 @@
             </table>
         </div>
 
-        @*Risk Manager Comment*@
+        <!-- Risk Manager Comment -->
         <div id="riskMgrComment">
             <hr />
             <table>
@@ -1052,6 +1052,7 @@
             }
         }
     }
+
     function confirmation() {
         var r = confirm("Are you sure you want to modify and save this incident?");
         if (r) {

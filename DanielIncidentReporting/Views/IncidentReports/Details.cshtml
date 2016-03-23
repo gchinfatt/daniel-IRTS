@@ -6,18 +6,17 @@
 
 <h2>Details</h2>
 <br />
-<h3 id="reportCategory"></h3>
-
+<h4 class="h4-custom" id="reportCategory"></h4>
 
 <div>
 
     <hr />
 
-    @*Program Name and Location*@
+    <!-- Program Name and Location -->
     <div>
         <table>
             <tr>
-                @*Program Name*@
+                <!-- Program Name -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_ProgramName)
@@ -28,7 +27,7 @@
                 </td>
             </tr>
             <tr>
-                @*//Location*@
+                <!-- Location -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_Location)
@@ -43,39 +42,39 @@
 
     <hr />
 
-    @*Incident Date and Time*@
+    <!-- Incident Date and Time -->
     <div>
         <table>
             <tr>
-                @*//Incident Date*@
+                <!-- Incident Date -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_IncidentDate)
                     </label>
                 </td>
-                @*//Incident Date*@
+                <!-- Incident Date -->
                 <td class="set-3-wide">
                     @Model.IRP_IncidentDate.ToShortDateString()
                 </td>
-                @*//Incident Time*@
+                <!-- Incident Time -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_IncidentTime)
                     </label>
                 </td>
-                @*//Incident Time*@
+                <!-- Incident Time -->
                 <td class="set-3-wide">
                     @Html.DisplayFor(model => model.IRP_IncidentTime)
                 </td>
             </tr>
             <tr>
-                @*//Report Date*@
+                <!-- Report Date -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_ReportDate)
                     </label>
                 </td>
-                @*//Report Date*@
+                <!-- Report Date -->
                 <td class="set-3-wide">
                     @Model.IRP_ReportDate.ToShortDateString()
                 </td>
@@ -87,7 +86,7 @@
 
     <hr />
 
-    @*Reported By*@
+    <!-- Reported By -->
     <div>
         <table>
             <tr>
@@ -103,7 +102,7 @@
                 </td>
             </tr>
             <tr>
-                @*//Prepared By First Name*@
+                <!-- Prepared By First Name -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
@@ -114,7 +113,7 @@
                 </td>
             </tr>
             <tr>
-                @*//Prepared By Last Name*@
+                <!-- Prepared By Last Name -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_PreparedByLastName)
@@ -129,11 +128,11 @@
 
     <hr />
 
-    @*Report On*@
+    <!-- Report On -->
     <div>
         <table>
             <tr>
-                @*//Report On*@
+                <!-- Report On -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_ReportOn)
@@ -144,7 +143,7 @@
                 </td>
             </tr>
             <tr>
-                @*//Report On First Name*@
+                <!-- Report On First Name -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
@@ -155,7 +154,7 @@
                 </td>
             </tr>
             <tr>
-                @*//Report On Last Name*@
+                <!-- Report On Last Name -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_VictimLastName)
@@ -170,7 +169,7 @@
 
     <hr />
 
-    @*Nature of Incident and Contributing Factors*@
+    <!-- Nature of Incident and Contributing Factors -->
     <div>
         <table>
             <tr>
@@ -191,8 +190,8 @@
                 </td>
             </tr>
             <tr>
-                @*//Items with Contributing Factors*@
-                @*//Abuse Allegation*@
+                <!-- Items with Contributing Factors -->
+                <!-- Abuse Allegation -->
                 @if (Model.IRP_AbuseAllegation == "1")
                 {
                     <td class="set-3-wide">
@@ -212,7 +211,7 @@
                 }
             </tr>
             <tr>
-                @*//Physical Restraint*@
+                <!-- Physical Restraint -->
                 @if (Model.IRP_PhysicalRestraint == "1")
                 {
                     <td class="set-3-wide">
@@ -244,7 +243,7 @@
                 }
             </tr>
             <tr>
-                @*//Police/Fire Involvement*@
+                <!-- Police/Fire Involvement -->
                 @if (Model.IRP_PoliceFire == "1")
                 {
                     <td class="set-3-wide">
@@ -270,7 +269,7 @@
                 }
             </tr>
             <tr>
-                @*//Injury*@
+                <!-- Injury -->
                 @if (Model.IRP_Injury == "1")
                 {
                     <td class="set-3-wide">
@@ -308,7 +307,7 @@
                 }
             </tr>
             <tr>
-                @*//Unplanned Hospitalization*@
+                <!-- Unplanned Hospitalization -->
                 @if (Model.IRP_UnplannedHospitalization == "1")
                 {
                     <td class="set-3-wide">
@@ -328,7 +327,7 @@
                 }
             </tr>
             <tr>
-                @*//Sexual Encounter*@
+                <!-- Sexual Encounter -->
                 @if (Model.IRP_SexualEncounter == "1")
                 {
                     <td class="set-3-wide">
@@ -348,7 +347,7 @@
                 }
             </tr>
             <tr>
-                @*//Seclusion*@
+                <!-- Seclusion -->
                 @if (Model.IRP_Seclusion == "1")
                 {
                     <td class="set-3-wide">
@@ -380,8 +379,8 @@
                 }
             </tr>
             <tr>
-                @*//Items with No Contributing Factors*@
-                @*//Death*@
+                <!-- Items with No Contributing Factors -->
+                <!-- Death -->
                 @if (Model.IRP_Death == "1")
                 {
                     <td class="set-3-wide">
@@ -399,7 +398,7 @@
                 }
             </tr>
             <tr>
-                @*//Suicide Gestures*@
+                <!-- Suicide Gestures -->
                 @if (Model.IRP_SuicideGestures == "1")
                 {
                     <td class="set-3-wide">
@@ -417,7 +416,7 @@
                 }
             </tr>
             <tr>
-                @*//AMA*@
+                <!-- AMA -->
                 @if (Model.IRP_AMA == "1")
                 {
                     <td class="set-3-wide">
@@ -435,7 +434,7 @@
                 }
             </tr>
             <tr>
-                @*//Substance Abuse*@
+                <!-- Substance Abuse -->
                 @if (Model.IRP_SubstanceAbuse == "1")
                 {
                     <td class="set-3-wide">
@@ -453,7 +452,7 @@
                 }
             </tr>
             <tr>
-                @*//Medication Error*@
+                <!-- Medication Error -->
                 @if (Model.IRP_MedicationError == "1")
                 {
                     <td class="set-3-wide">
@@ -471,7 +470,7 @@
                 }
             </tr>
             <tr>
-                @*//Client Grievance*@
+                <!-- Client Grievance -->
                 @if (Model.IRP_ClientGrievance == "1")
                 {
                     <td class="set-3-wide">
@@ -489,7 +488,7 @@
                 }
             </tr>
             <tr>
-                @*//Property Damage*@
+                <!-- Property Damage -->
                 @if (Model.IRP_PropertyDamage == "1")
                 {
                     <td class="set-3-wide">
@@ -507,7 +506,7 @@
                 }
             </tr>
             <tr>
-                @*//Property Missing*@
+                <!-- Property Missing -->
                 @if (Model.IRP_PropertyMissing == "1")
                 {
                     <td class="set-3-wide">
@@ -525,7 +524,7 @@
                 }
             </tr>
             <tr>
-                @*//Theft*@
+                <!-- Theft -->
                 @if (Model.IRP_Theft == "1")
                 {
                     <td class="set-3-wide">
@@ -543,7 +542,7 @@
                 }
             </tr>
             <tr>
-                @*//Other*@
+                <!-- Other -->
                 @if (Model.IRP_Other == "1")
                 {
                     <td class="set-3-wide">
@@ -565,11 +564,11 @@
 
     <hr />
 
-    @*Witness*@
+    <!-- Witness -->
     <div>
         <table>
             <tr>
-                @*//Witness*@
+                <!-- Witness -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_Witness)
@@ -584,11 +583,11 @@
 
     <hr />
 
-    @*Notified Person*@
+    <!-- Notified Person -->
     <div>
         <table>
             <tr>
-                @*//Notified*@
+                <!-- Notified -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_Notified)
@@ -603,11 +602,11 @@
 
     <hr />
 
-    @*Description*@
+    <!-- Description -->
     <div>
         <table>
             <tr>
-                @*//Description*@
+                <!-- Description -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_Description)
@@ -620,12 +619,12 @@
         </table>
     </div>
 
-    @*Risk Manager Comment*@
+    <!-- Risk Manager Comment -->
     <div id="riskMgrComment">
         <hr />
         <table>
             <tr>
-                @*//Risk Manager Comment*@
+                <!-- Risk Manager Comment -->
                 <td class="set-3-wide">
                     <label>
                         @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
@@ -640,7 +639,7 @@
 
     <hr />
 
-    @*Manager Approval Dates*@
+    <!-- Manager Approval Dates -->
     <div>
         <table>
             <tr>
@@ -655,7 +654,7 @@
                     &nbsp
                 </td>
             </tr>
-            @*Residential Manager Approval Date*@
+            <!-- Residential Manager Approval Date -->
             <tr>
                 @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
@@ -688,7 +687,7 @@
                     </td>
                 }
             </tr>
-            @*Department Director Approval Date*@
+            <!-- Department Director Approval Date -->
             <tr>
                 @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
                 {
@@ -721,7 +720,7 @@
                     </td>
                 }
             </tr>
-            @*Risk MAnager Approval Date*@
+            <!-- Risk MAnager Approval Date -->
             <tr>
                 @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
