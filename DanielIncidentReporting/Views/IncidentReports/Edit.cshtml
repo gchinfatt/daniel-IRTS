@@ -64,68 +64,55 @@
                         @Html.LabelFor(model => model.IRP_ProgramName, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td>
-                        @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList)ViewBag.programs, new { @class = "medium-textinput" })
+                        @Html.DropDownListFor(model => model.IRP_ProgramName, (SelectList)ViewBag.programs, new { @class = "extralarge-textinput" })
                         @Html.ValidationMessageFor(model => model.IRP_ProgramName, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
-                    <!--Location-->
+                    <!-- Location -->
                     <td>
                         @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "medium-textinput", @placeholder = "location" })
+                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "extralarge-textinput", @placeholder = "Location" })
                         @Html.ValidationMessageFor(model => model.IRP_Location, "", new { @class = "text-danger" })
                     </td>
                 </tr>
             </table>
         </div>
-
         <script>
             var program;
             document.getElementById("");
         </script>
-
         <hr />
-
         <!-- Incident Date & Time -->
         <div>
             <table>
                 <tr>
-                    <!--Incident Date-->
+                    <!-- Incident Date -->
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_IncidentDate, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_IncidentDate, "{0:MM/dd/yyyy}", new { @class = "medium-textinput datepicker", @placeholder = "01/01/0001" })
+                        @Html.TextBoxFor(model => model.IRP_IncidentDate, "{0:MM/dd/yyyy}", new { @class = "extralarge-textinput datepicker", @placeholder = "MM/DD/YYYY" })
                         @Html.ValidationMessageFor(model => model.IRP_IncidentDate, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
-                    <!--Incident Time-->
+                    <!-- Incident Time -->
                     <td>
                         @Html.LabelFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td>
-                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "medium-textinput", @placeholder = "12:00AM" })
+                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "extralarge-textinput", @placeholder = "HH:MM AM/PM" })
                         @Html.ValidationMessageFor(model => model.IRP_IncidentTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
             </table>
         </div>
-
         <hr />
 
         <!-- Prepared By -->
         <div>
             <table>
-                <tr>
-                    <td colspan="5">
-                        <label class="medium-label">
-                            Reported By
-                        </label>
-                        <br />
-                        <br />
-                    </td>
-                </tr>
                 <tr>
                     <!-- Prepared By First Name -->
                     <td class="set-4-wide">
@@ -136,7 +123,7 @@
                         @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-1-wide"></td>
-                    <!--Prepared By Last Name-->
+                    <!-- Prepared By Last Name -->
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new { @class = "medium-label" })
                     </td>
@@ -149,55 +136,99 @@
         </div>
 
         <hr />
-
         <!-- Report On -->
         <div id="reportOn">
             <table>
                 <tr>
-                    <td colspan="4">
+                    <td>
                         <label class="medium-label">
                             Report On
                         </label>
-                        <br />
-                        <br />
                     </td>
-                </tr>
-                <tr>
-                    <td class="set-1-wide">
+                    <!-- Will display <div id="reportOnClientNames"> -->
+                    <!-- & Will hide <div id="reportOnStaffNames"> -->
+                    <td class="set-1-5-wide">
                         @Html.RadioButton("IRP_ReportOn", "Client") Client
                     </td>
-                    <td class="set-1-wide">
+                    <!-- Will display <div id="reportOnStaffNames"> -->
+                    <!-- & Will hide <div id="reportOnClientNames"> -->
+                    <td class="set-1-5-wide">
                         @Html.RadioButton("IRP_ReportOn", "Staff") Staff
                     </td>
-                    <td class="set-1-wide">
+                    <!-- if "N/A" is selected, model.IRP_VictimFirstName & model.IRP_VictimLastName -->
+                    <!-- are both inserted to the DB as "N/A" to satisfy the field validation -->
+                    <td class="set-1-5-wide">
                         @Html.RadioButton("IRP_ReportOn", "N/A") N/A
                     </td>
                 </tr>
             </table>
-            <table>
-                <tr>
-                    <td class="set-1-wide">&nbsp</td>
-                </tr>
-                <tr>
-                    <!-- Report On First Name -->
-                    <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_VictimFirstName, htmlAttributes: new { @class = "medium-label" })
-                    </td>
-                    <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "extralarge-textinput", @placeholder = "First Name" })
-                        @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
-                    </td>
-                    <td class="set-1-wide"></td>
-                    <!-- Report On Last Name -->
-                    <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_VictimLastName, htmlAttributes: new { @class = "medium-label" })
-                    </td>
-                    <td class="set-6-wide">
-                        @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "extralarge-textinput", @placeholder = "Last Name" })
-                        @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-            </table>
+            <!-- If report on CLIENT is selected -->
+            <div id="reportOnClientNames" style="display: none;">
+                <table>
+                    <tr>
+                        <td class="set-1-wide">&nbsp</td>
+                    </tr>
+                    <tr>
+                        <!-- Report On First Name -->
+                        <td class="set-4-wide">
+                            <label class="medium-label">
+                                Client First Name
+                            </label>
+                        </td>
+                        <td class="set-6-wide">
+                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "extralarge-textinput", @placeholder = "First Name" })
+                            @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
+                        </td>
+                        <td class="set-1-wide"></td>
+                        <!-- Report On Last Name -->
+                        <td class="set-4-wide">
+                            <label class="medium-label">
+                                Client Last Name
+                            </label>
+                        </td>
+                        <td class="set-6-wide">
+                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "extralarge-textinput", @placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- If report on STAFF is selected -->
+            <div id="reportOnStaffNames" style="display: none;">
+                <table>
+                    <tr>
+                        <td class="set-1-wide">&nbsp</td>
+                    </tr>
+                    <tr>
+                        <!-- Report On First Name -->
+                        <td class="set-4-wide">
+                            <label class="medium-label">
+                                Staff First Name
+                            </label>
+                        </td>
+                        <td class="set-6-wide">
+                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "extralarge-textinput", @placeholder = "First Name" })
+                            @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
+                        </td>
+                        <td class="set-1-wide"></td>
+                        <!-- Report On Last Name -->
+                        <td class="set-4-wide">
+                            <label class="medium-label">
+                                Staff Last Name
+                            </label>
+                        </td>
+                        <td class="set-6-wide">
+                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "extralarge-textinput", @placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- If "N/A" is selected -->
+            <div id="reportOnNA">
+                @Html.HiddenFor(model => model.IRP_VictimFirstName, new { @Value = "N/A" })
+                @Html.HiddenFor(model => model.IRP_VictimLastName, new { @Value = "N/A" })
+            </div>
         </div>
 
         <hr />
@@ -208,6 +239,7 @@
                 <tr>
                     <td colspan="5">
                         @Html.LabelFor(model => model.IRP_Category, htmlAttributes: new { @class = "medium-label" })
+                        @Html.ValidationMessageFor(model => model.IRP_Category, "", new { @class = "text-danger" })
                         <br />
                         <br />
                     </td>
@@ -376,7 +408,7 @@
             </label>
             <br />
             <br />
-            <table id="ContribFactorsTable">
+            <table id="ContribFactorsTable" border="1">
                 <!-- Abuse Allegation -->
                 <tr id="ContribFactors_AbuseAllegation">
                     <td class="set-4-wide">
@@ -388,7 +420,7 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-4-wide"></td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-2-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Physical Aggression Items -->
                 <tr id="ContribFactors_PhysicalAggression">
@@ -403,15 +435,15 @@
                         @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "small-textinput", @placeholder = "HH:MM AM/PM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Restraint End Time -->
                     <td id="ContribFactors_RestraintEndTime" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
-                    <td class="set-3-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
+                    <td class="set-2-5-wide">
+                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "tiny-2-5-textinput", @placeholder = "HH:MM AM/PM" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -432,26 +464,26 @@
                         @Html.ValidationMessageFor(model => model.IRP_PoliceRepNo, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-3-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Injury Items -->
                 <tr id="ContribFactors_InjuryItems">
                     <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new { @class = "medium-label" })
+                        @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new {@class = "medium-label"})
                     </td>
                     <td class="set-4-wide">
-                        @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new { @class = "medium-textinput" })
+                        @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new {@class = "medium-textinput"})
                     </td>
                     <!-- Injury Type -->
                     <td id="ContribFactors_InjuryType" class="set-3-wide" style="padding-left: 10px">
-                        @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "small-label" })
+                        @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new {@class = "small-label"})
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "medium-textinput", @placeholder = "Injury Type" })
-                        @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.IRP_InjuryType, new {@class = "medium-textinput", @placeholder = "Injury Type"})
+                        @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new {@class = "text-danger"})
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-3-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Injury Body Part -->
                 <tr id="ContribFactors_InjuryBodyPart">
@@ -466,12 +498,19 @@
                     <td id="ContribFactors_InjuryFollowUp" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "small-label" })
                     </td>
-                    <td class="set-4-wide">
+                    <td id="ContribFactors_InjuryFollowUpSelection" class="set-4-wide">
                         @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new { @class = "medium-textinput" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-3-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
+                <!-- work in progress tja -->
+                @*<tr>
+                    <td id="IRP_ContribInjuryOtherText" colspan="6" style="display: none;">
+                        @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "large-textarea", @placeholder = "Describe the contributing factors for the injury" })
+                        @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
                 <!-- Unplanned Hospitalization -->
                 <tr id="ContribFactors_UnplannedHospitalization">
                     <td class="set-4-wide">
@@ -483,7 +522,7 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-4-wide"></td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-3-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Sexual Encounter -->
                 <tr id="ContribFactors_SexualEncounter">
@@ -496,7 +535,7 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-4-wide"></td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-3-wide"></td>
+                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Seclusion Items -->
                 <tr id="ContribFactors_Seclusion">
@@ -511,15 +550,15 @@
                         @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "small-textinput", @placeholder = "HH:MM AM/PM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Seclusion End Time -->
                     <td id="ContribFactors_SeclusionEndTime" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "small-label" })
                     </td>
-                    <td class="set-3-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "tiny-textinput", @placeholder = "12:00AM" })
+                    <td class="set-2-5-wide">
+                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "tiny-2-5-textinput", @placeholder = "HH:MM AM/PM" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -536,25 +575,13 @@
                         @Html.LabelFor(model => model.IRP_Notified, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "large-textarea", @placeholder = "Notified Person(s)" })
+                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "large-textarea", @placeholder = "Notified Person Name, Position, Date of Notification - Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_Notified, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set-4-wide"></td>
-                    <td>
-                        <small class="text-muted">
-                            Notified Person Name, Position, Date of Notification
-                            <br />
-                            Maximum 1,000 characters allowed
-                        </small>
                     </td>
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!-- Description -->
         <div>
             <table>
@@ -563,23 +590,13 @@
                         @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "large-textarea", @placeholder = "Description" })
+                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "large-textarea", @placeholder = "Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set-4-wide"></td>
-                    <td>
-                        <small class="text-muted">
-                            Maximum 1,000 characters allowed
-                        </small>
                     </td>
                 </tr>
             </table>
         </div>
-
         <hr />
-
         <!-- Witness Name -->
         <div>
             <table>
@@ -588,18 +605,8 @@
                         @Html.LabelFor(model => model.IRP_Witness, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "large-textarea", @placeholder = "Witness(es)" })
+                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "large-textarea", @placeholder = "Witness Name - Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_Witness, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set-4-wide"></td>
-                    <td>
-                        <small class="text-muted">
-                            Witness Name, Position
-                            <br />
-                            Maximum 1,000 characters allowed
-                        </small>
                     </td>
                 </tr>
             </table>
@@ -614,16 +621,8 @@
                         @Html.LabelFor(model => model.IRP_RiskMgrComment, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-17-wide">
-                        @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { @class = "large-textarea", @placeholder = "Risk Manager Comment" })
+                        @Html.TextAreaFor(model => model.IRP_RiskMgrComment, new { @class = "large-textarea", @placeholder = "Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_RiskMgrComment, "", new { @class = "text-danger" })
-                    </td>
-                </tr>
-                <tr>
-                    <td class="set-4-wide"></td>
-                    <td>
-                        <small class="text-muted">
-                            Maximum 1,000 characters allowed
-                        </small>
                     </td>
                 </tr>
             </table>
@@ -631,16 +630,15 @@
 
         <hr />
 
-        <div class="form-group">
-            <div class="col-md-2">
-                <input type="submit" value="Save Incident" class="btn btn-default" onClick="(new confirmation()).inner();" />
-            </div>
+        <div class="medium-label">
+            <input type="submit" value="Save Incident" class="btn btn-default" onClick="(new confirmation()).inner();" />
         </div>
     </div>
 
 }
 
-<div>
+<div class="medium-label" style="padding-left: .25em">
+    <br />
     @Html.ActionLink("Back to List", "Index")
 </div>
 
@@ -1052,6 +1050,37 @@
             }
         }
     }
+
+    //Display proper fields of report on depending on which reportOn radio button is selected
+    $(':radio[name=IRP_ReportOn]').change(function () {
+        // read the value of the selected radio button
+        var value = $(this).val();
+        if (value == 'Client') {
+            $('#reportOnStaffNames').hide();
+            $('#reportOnClientNames').show();
+        }
+        else if (value == 'Staff') {
+            $('#reportOnClientNames').hide();
+            $('#reportOnStaffNames').show();
+        }
+        else if (value == 'N/A') {
+            $('#reportOnClientNames').hide();
+            $('#reportOnStaffNames').hide();
+        }
+    });
+
+    //work in progress tja
+    //function displayInjuryOtherText() {
+    //    var IRP_ContribInjuryItemsSelected = $('#IRP_ContribInjuryItems').option:selected.text();
+    //    if (IRP_ContribInjuryItemsSelected == "Other")
+    //    {
+    //        $('#IRP_ContribInjuryOtherText').show();
+    //    }
+    //    else if (IRP_ContribInjuryItemsSelected != "Other")
+    //    {
+    //        $('#IRP_ContribInjuryOtherText').hide();
+    //    }
+    //}
 
     function confirmation() {
         var r = confirm("Are you sure you want to modify and save this incident?");

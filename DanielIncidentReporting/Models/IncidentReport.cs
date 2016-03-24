@@ -15,32 +15,33 @@ namespace DanielIncidentReporting.Models
         public int IRP_ID { get; set; }
 
         [Display(Name = "Nature of Incident")]
+        //[Required(ErrorMessage = "* Nature of Incident is required")]
         public string IRP_Category { get; set; }
 
         [Display(Name = "Location")]
-        [Required(ErrorMessage = "* Location is required")]
-        [StringLength(499, ErrorMessage = "* Location can be no larger than 500 characters")]
+        //[Required(ErrorMessage = "* Location is required")]
+        //[StringLength(499, ErrorMessage = "* Location can be no larger than 500 characters")]
         public string IRP_Location { get; set; }
 
         [Display(Name = "Report Date")]
         public DateTime IRP_ReportDate { get; set; }
 
         [Display(Name = "Incident Date")]
-        [Required(ErrorMessage = "* Incident Date is required")]
+        //[Required(ErrorMessage = "* Incident Date is required")]
         public DateTime IRP_IncidentDate { get; set; }
 
         [Display(Name = "Incident Time")]
-        [StringLength(49, ErrorMessage = "* Incident Time can be no larger than 50 characters")]
+        //[StringLength(49, ErrorMessage = "* Incident Time can be no larger than 50 characters")]
         public string IRP_IncidentTime { get; set; }
 
         [Display(Name = "Victim First Name")]
-        [Required(ErrorMessage = "* Victim First Name is required")]
-        [StringLength(99, ErrorMessage = "* Victim First Name can be no larger than 100 characters")]
+        //[Required(ErrorMessage = "* Victim First Name is required")]
+        //[StringLength(99, ErrorMessage = "* Victim First Name can be no larger than 100 characters")]
         public string IRP_VictimFirstName { get; set; }
 
         [Display(Name = "Victim Last Name")]
-        [Required(ErrorMessage = "* Victim Last Name is required")]
-        [StringLength(99, ErrorMessage = "* Victim Last Name can be no larger than 100 characters")]
+        //[Required(ErrorMessage = "* Victim Last Name is required")]
+        //[StringLength(99, ErrorMessage = "* Victim Last Name can be no larger than 100 characters")]
         public string IRP_VictimLastName { get; set; }
 
         [Display(Name = "Report On")]
@@ -65,28 +66,28 @@ namespace DanielIncidentReporting.Models
         public DateTime IRP_RiskMgrApprovedDate { get; set; }
 
         [Display(Name = "Risk Manager Comment")]
-        [StringLength(999, ErrorMessage = "* Risk Manager Comment can be no larger than 1000 characters")]
+        //[StringLength(999, ErrorMessage = "* Risk Manager Comment can be no larger than 1000 characters")]
         public string IRP_RiskMgrComment { get; set; }
 
         [Display(Name = "Reporter First Name")]
-        [StringLength(49, ErrorMessage = "* Reporter First Name can be no larger than 50 characters")]
+        //[StringLength(49, ErrorMessage = "* Reporter First Name can be no larger than 50 characters")]
         public string IRP_PreparedByFirstName { get; set; }
 
         [Display(Name = "Reporter Last Name")]
-        [StringLength(49, ErrorMessage = "* Reporter Last Name can be no larger than 50 characters")]
+        //[StringLength(49, ErrorMessage = "* Reporter Last Name can be no larger than 50 characters")]
         public string IRP_PreparedByLastName { get; set; }
 
         [Display(Name = "Description")]
-        [Required(ErrorMessage = "* Description is required")]
-        [StringLength(999, ErrorMessage = "* Description can be no larger than 1000 characters")]
+        //[Required(ErrorMessage = "* Description is required")]
+        //[StringLength(999, ErrorMessage = "* Description can be no larger than 1000 characters")]
         public string IRP_Description { get; set; }
 
         [Display(Name = "Injury Type")]
-        [StringLength(249, ErrorMessage = "* Injury Type can be no larger than 250 characters")]
+        //[StringLength(249, ErrorMessage = "* Injury Type can be no larger than 250 characters")]
         public string IRP_InjuryType { get; set; }
 
         [Display(Name = "Body Part")]
-        [StringLength(249, ErrorMessage = "* Injury Body Part can be no larger than 250 characters")]
+        //[StringLength(249, ErrorMessage = "* Injury Body Part can be no larger than 250 characters")]
         public string IRP_BodyPart { get; set; }
 
         [Display(Name = "Injury Follow-Up")]
@@ -96,15 +97,15 @@ namespace DanielIncidentReporting.Models
         public string IRP_ApprovalLevelReq { get; set; }
 
         [Display(Name = "Program Name")]
-        [Required(ErrorMessage = "* Program is required")]
+        //[Required(ErrorMessage = "* Program is required")]
         public string IRP_ProgramName { get; set; }
 
         [Display(Name = "Witness")]
-        [StringLength(999, ErrorMessage = "* Witness can be no larger than 1000 characters")]
+        //[StringLength(999, ErrorMessage = "* Witness can be no larger than 1000 characters")]
         public string IRP_Witness { get; set; }
 
         [Display(Name = "Notified Person")]
-        [StringLength(999, ErrorMessage = "* Notified Person can be no larger than 1000 characters")]
+        //[StringLength(999, ErrorMessage = "* Notified Person can be no larger than 1000 characters")]
         public string IRP_Notified { get; set; }
 
         //Contributing Factors
@@ -119,6 +120,9 @@ namespace DanielIncidentReporting.Models
 
         [Display(Name = "Injury")]
         public string IRP_ContribInjuryItems { get; set; }
+
+        [Display(Name = "Injury Other Contributing Factor")]
+        public string IRP_ContribInjuryOtherText { get; set; }
 
         [Display(Name = "Unplanned Hospitalization")]
         public string IRP_ContribUnplannedHospitalization { get; set; }
@@ -183,23 +187,23 @@ namespace DanielIncidentReporting.Models
 
         //Incident Types extras
         [Display(Name = "Restraint Start Time")]
-        [StringLength(199, ErrorMessage = "* Restraint Start Time can be no larger than 200 characters")]
+        //[StringLength(199, ErrorMessage = "* Restraint Start Time can be no larger than 200 characters")]
         public string IRP_RestraintSTTime { get; set; }
 
         [Display(Name = "Restraint End Time")]
-        [StringLength(199, ErrorMessage = "* Restraint End Time can be no larger than 200 characters")]
+        //[StringLength(199, ErrorMessage = "* Restraint End Time can be no larger than 200 characters")]
         public string IRP_RestraintENTime { get; set; }
 
         [Display(Name = "Seclusion Start Time")]
-        [StringLength(199, ErrorMessage = "* Seclusion Start Time can be no larger than 200 characters")]
+        //[StringLength(199, ErrorMessage = "* Seclusion Start Time can be no larger than 200 characters")]
         public string IRP_SeclusionSTTime { get; set; }
 
         [Display(Name = "Seclusion End Time")]
-        [StringLength(199, ErrorMessage = "* Seclusion End Time can be no larger than 200 characters")]
+        //[StringLength(199, ErrorMessage = "* Seclusion End Time can be no larger than 200 characters")]
         public string IRP_SeclusionENTime { get; set; }
 
         [Display(Name = "Police Report Number")]
-        [StringLength(199, ErrorMessage = "* Police Report Number can be no larger than 200 characters")]
+        //[StringLength(199, ErrorMessage = "* Police Report Number can be no larger than 200 characters")]
         public string IRP_PoliceRepNo { get; set; }
 
     }
