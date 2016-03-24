@@ -206,16 +206,19 @@ namespace DanielIncidentReporting.Controllers
             {
                 incidentReport.IRP_ApprovalLevelReq = "1";
                 incidentReport.IRP_ResMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_ResMgrEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Department Director"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "2";
                 incidentReport.IRP_DeptDirApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_DepDirEmail = user.Email;
             }
             else if (user.mgrPosition.Equals("Risk Manager"))
             {
                 incidentReport.IRP_ApprovalLevelReq = "3";
                 incidentReport.IRP_RiskMgrApprovedDate = System.DateTime.Now;
+                incidentReport.IRP_RiskMgrEmail = user.Email;
             }
 
             db.IncidentReports.AddOrUpdate(incidentReport);
