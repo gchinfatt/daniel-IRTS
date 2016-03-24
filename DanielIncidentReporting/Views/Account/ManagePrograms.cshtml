@@ -3,57 +3,87 @@
     ViewBag.Title = "Manage Programs";
 }
 
-<h2>Manage Programs</h2>
+<h2>@ViewBag.Title</h2>
 
-<hr/>
-<!-- Delete Program -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "delete" }))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="container form-group">
-        @Html.LabelFor(model => model.Prg_ID, htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.DropDownList("programId", (SelectList) ViewBag.programs, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Prg_ID, "", new {@class = "text-danger"})
-        </div>
-    </div>
-
-    <div class="container form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Delete Program" class="btn btn-default" onClick="confirmation('Delete')" />
-        </div>
-    </div>
-}
-
-
-<hr/>
-
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "add" }))
-{
-    @Html.AntiForgeryToken()
+<div>
     <!-- Add Program-->
-    <div class="container form-group">
-        @Html.Label("Add New Program", htmlAttributes: new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.Editor("programName", new {htmlAttributes = new {@class = "form-control", maxlength = "99" } })
-            @Html.ValidationMessageFor(model => model.Prg_Name, "", new {@class = "text-danger"})
-        </div>
-    </div>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "add" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
 
-    <div class="container form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Add Program" class="btn btn-default" onClick="confirmation('Add')" />
-        </div>
-    </div>}
+            <hr />
 
+            <div>
+                <h4>Add New Program</h4>
+                <br />
+                <table>
+                    <tr>
+                        <td class="set-3-wide">
+                            @Html.Label("New Program Name", htmlAttributes: new { @class = "small-label" })
+                        </td>
+                        <td>
+                            @Html.Editor("programName", new { htmlAttributes = new { @class = "medium-textinput", maxlength = "99" } })
+                            @Html.ValidationMessageFor(model => model.Prg_Name, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Add Program" class="btn btn-default" onClick="confirmation('Add')" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+
+    <!-- Delete Program -->
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "delete" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+
+            <hr />
+
+            <div>
+                <h4>Delete Program</h4>
+                <br />
+                <table>
+                    <tr>
+                        <td class="set-3-wide">
+                            @Html.LabelFor(model => model.Prg_ID, htmlAttributes: new { @class = "small-label" })
+                        </td>
+                        <td>
+                            @Html.DropDownList("programId", (SelectList)ViewBag.programs, new { @class = "medium-textinput" })
+                            @Html.ValidationMessageFor(model => model.Prg_ID, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Delete Program" class="btn btn-default" onClick="confirmation('Delete')" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+
+</div>
 <script>
     function confirmation(action) {
         if (action == "Delete") {
             var r = confirm("Are you sure you want to delete the selected program?");
             if (r) {
                 document.getElementById("delete").submit();
-            } 
+            }
 
         } else {
             var programName = document.getElementById('programName').value;
@@ -61,6 +91,6 @@
             if (r) {
                 document.getElementById("add").submit();
             }
+        }
     }
-}
 </script>

@@ -77,6 +77,7 @@ namespace DanielIncidentReporting.Models
         public string IRP_PreparedByLastName { get; set; }
 
         [Display(Name = "Description")]
+        [Required(ErrorMessage = "* Description is required")]
         [StringLength(999, ErrorMessage = "* Description can be no larger than 1000 characters")]
         public string IRP_Description { get; set; }
 

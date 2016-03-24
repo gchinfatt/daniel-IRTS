@@ -30,7 +30,7 @@ namespace DanielIncidentReporting.Controllers
         public ActionResult ManagePrograms()
         {
             List<SelectListItem> list = new List<SelectListItem>();
-            list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
+            list.Add(new SelectListItem { Value = "", Text = "Select Program", Selected = true, Disabled = true });
 
             foreach (var program in db.Programs)
             {

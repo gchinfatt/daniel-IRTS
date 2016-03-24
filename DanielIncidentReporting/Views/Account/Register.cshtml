@@ -21,39 +21,51 @@
                 <table>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.Email, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.Email, new {@class = "small-label"})
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "large-textinput", maxlength = "255" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Email, new {@class = "large-textinput", maxlength = "255"})
+                            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            @Html.LabelFor(m => m.Password, new { @class = "small-label" })
-                        </td>
-                        <td>
-                            @Html.PasswordFor(m => m.Password, new { @class = "large-textinput" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </td>
+                        <td class="spacer-height2" colspan="2"></td>
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.Password, new {@class = "small-label"})
                         </td>
                         <td>
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "large-textinput" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.Password, new {@class = "large-textinput"})
+                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
                         </td>
                     </tr>
                     <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
                         <td>
-                            @Html.LabelFor(m => m.mgrPosition, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.ConfirmPassword, new {@class = "small-label"})
                         </td>
                         <td>
-                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new { @class = "large-textinput" })
-                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "large-textinput"})
+                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.mgrPosition, new {@class = "small-label"})
+                        </td>
+                        <td>
+                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new {@class = "large-textinput"})
+                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new {@class = "text-danger"})
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
                     </tr>
                     <tr>
                         <td>
@@ -65,7 +77,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;</td>
+                        <td class="spacer-height2" colspan="2"></td>
                     </tr>
                     <tr>
                         <td>

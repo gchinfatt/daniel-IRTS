@@ -46,6 +46,10 @@ h2, .h2 {
     height: .5em;
 }
 
+.spacer-height2 {
+    height: 1em;
+}
+
 .row-margin{
   margin-right: -15px;
   margin-left: -15px;
@@ -218,6 +222,15 @@ h2, .h2 {
 .set-1-wide{
   max-width:none;
   width: 3.91em;
+  padding-left: 0px;
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.set-1-5-wide{
+  max-width:none;
+  width: 6em;
   padding-left: 0px;
   padding-top: 0;
   margin-top: 0;

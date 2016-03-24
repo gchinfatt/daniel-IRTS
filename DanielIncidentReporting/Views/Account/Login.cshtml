@@ -23,12 +23,15 @@
                         <tr>
                             <!-- Email -->
                             <td>
-                                @Html.LabelFor(m => m.Email, new { @class = "tiny-label" })
+                                @Html.LabelFor(m => m.Email, new {@class = "tiny-label"})
                             </td>
                             <td>
-                                @Html.TextBoxFor(m => m.Email, new { @class = "large-textinput", maxlength = "255" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.Email, new {@class = "large-textinput", maxlength = "255"})
+                                @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
                             </td>
+                        </tr>
+                        <tr>
+                            <td class="spacer-height2" colspan="2"></td>
                         </tr>
                         <tr>
                             <!-- Password -->

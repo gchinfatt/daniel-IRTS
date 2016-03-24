@@ -1,30 +1,47 @@
 ﻿@using System.Activities.Statements
 @model DanielIncidentReporting.Models.ApplicationUser
 @{
-    ViewBag.Title = "ManageUsers";
+    ViewBag.Title = "Manage Users";
 }
 
-<h2>Manage Users</h2>
-<hr/>
+<h2>@ViewBag.Title</h2>
 
-<!-- Delete User -->
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "deleteUser" }))
-{
-    @Html.AntiForgeryToken()
-        <div class="container form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("userId", (SelectList)ViewBag.users, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+<div>
+    <!-- Delete User -->
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "deleteUser" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+
+            <hr />
+
+            <div>
+                <h4>Delete User</h4>
+                <br />
+                <table>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "tiny-label" })
+                        </td>
+                        <td>
+                            @Html.DropDownList("userId", (SelectList)ViewBag.users, new { @class = "medium-textinput" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Delete User" class="btn btn-default" onClick="confirmation()" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-
-    <div class="container form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="button" value="Delete User" class="btn btn-default" onClick="confirmation()"/>
-        </div>
-    </div>
-}
+    }
+</div>
 
 
 <script>
