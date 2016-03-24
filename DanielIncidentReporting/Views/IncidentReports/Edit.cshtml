@@ -408,7 +408,7 @@
             </label>
             <br />
             <br />
-            <table id="ContribFactorsTable" border="1">
+            <table id="ContribFactorsTable">
                 <!-- Abuse Allegation -->
                 <tr id="ContribFactors_AbuseAllegation">
                     <td class="set-4-wide">
@@ -469,22 +469,34 @@
                 <!-- Injury Items -->
                 <tr id="ContribFactors_InjuryItems">
                     <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new {@class = "medium-label"})
+                        @Html.LabelFor(model => model.IRP_ContribInjuryItems, htmlAttributes: new { @class = "medium-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new {@class = "medium-textinput"})
+                        @Html.DropDownList("IRP_ContribInjuryItems", ViewBag.injuryItems as List<SelectListItem>, new { @class = "medium-textinput" })
                     </td>
                     <!-- Injury Type -->
                     <td id="ContribFactors_InjuryType" class="set-3-wide" style="padding-left: 10px">
-                        @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new {@class = "small-label"})
+                        @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "small-label" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_InjuryType, new {@class = "medium-textinput", @placeholder = "Injury Type"})
-                        @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new {@class = "text-danger"})
+                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "medium-textinput", @placeholder = "Injury Type" })
+                        @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-2-5-wide"></td>
                 </tr>
+            </table>
+            <div>
+                <div id="IRP_ContribInjuryOtherText" style="display: none;">
+                    @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "large-textarea", @placeholder = "Describe the contributing factors for the injury" })
+                    @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <script type="text/javascript">
+                
+            </script>
+            <table>
                 <!-- Injury Body Part -->
                 <tr id="ContribFactors_InjuryBodyPart">
                     <td class="set-4-wide">
@@ -504,13 +516,6 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-2-5-wide"></td>
                 </tr>
-                <!-- work in progress tja -->
-                @*<tr>
-                    <td id="IRP_ContribInjuryOtherText" colspan="6" style="display: none;">
-                        @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "large-textarea", @placeholder = "Describe the contributing factors for the injury" })
-                        @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
-                    </td>
-                </tr>*@
                 <!-- Unplanned Hospitalization -->
                 <tr id="ContribFactors_UnplannedHospitalization">
                     <td class="set-4-wide">
@@ -1069,18 +1074,18 @@
         }
     });
 
-    //work in progress tja
-    //function displayInjuryOtherText() {
-    //    var IRP_ContribInjuryItemsSelected = $('#IRP_ContribInjuryItems').option:selected.text();
-    //    if (IRP_ContribInjuryItemsSelected == "Other")
-    //    {
-    //        $('#IRP_ContribInjuryOtherText').show();
-    //    }
-    //    else if (IRP_ContribInjuryItemsSelected != "Other")
-    //    {
-    //        $('#IRP_ContribInjuryOtherText').hide();
-    //    }
-    //}
+    //display additional text input box if selected (in the dropdown) Injury Contributing Factor is "Other"
+    $(function displayInjuryContribFactorOtherText() {
+        $('#IRP_ContribInjuryItems').change(function () {
+            var value = $(this).val();
+            if (value == 'Other') {
+                $('#IRP_ContribInjuryOtherText').show();
+            }
+            else {
+                $('#IRP_ContribInjuryOtherText').hide();
+            }
+        });
+    });
 
     function confirmation() {
         var r = confirm("Are you sure you want to modify and save this incident?");
