@@ -259,7 +259,7 @@ namespace DanielIncidentReporting.Controllers
                     "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," + "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
                     "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," + "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." +
                     "," + "Restraint Start Time" + "," + "Restraint End Time" + "," + "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" +
-                    "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" + "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" +
+                    "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" + "," + "CF: Injury Other Description" + "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" +
                     "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up");
 
             //Actual values of each filtered incident
@@ -271,7 +271,7 @@ namespace DanielIncidentReporting.Controllers
                     "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
                     "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
                     "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + incident.IRP_PoliceRepNo + "," + incident.IRP_RestraintSTTime + "," + incident.IRP_RestraintENTime + "," + incident.IRP_SeclusionSTTime +
-                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribUnplannedHospitalization +
+                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribInjuryOtherText + "," + incident.IRP_ContribUnplannedHospitalization +
                     "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + incident.IRP_InjuryType + "," + incident.IRP_BodyPart + "," + incident.IRP_InjuryFollowUp); ;
             }
 
@@ -431,6 +431,7 @@ namespace DanielIncidentReporting.Controllers
             "IRP_ContribPhysicalAggression, " +
             "IRP_ContribPoliceInvolvement, " +
             "IRP_ContribInjuryItems, " +
+            "IRP_ContribInjuryOtherText, " +
             "IRP_ContribUnplannedHospitalization, " +
             "IRP_ContribSexualEncounter, " +
             "IRP_ContribSeclusion, " +

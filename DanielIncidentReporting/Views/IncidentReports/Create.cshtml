@@ -450,7 +450,20 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-2-5-wide"></td>
                 </tr>
-                <!-- Injury Body Part -->
+                <tr id="IRP_ContribInjuryOtherText" style="display: none;">
+                    <!-- Injury Contributing Factors "Other" Text Box -->
+                    <td class="set-4-wide">
+                        <label class="medium-label" style="padding-left: .5em">
+                            Injury Factors Description
+                        </label>
+                    </td>
+                    <td colspan="5">
+                        @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "large-textarea-tblBound", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
+                        @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Injury Body Part -->
                 <tr id="ContribFactors_InjuryBodyPart">
                     <td class="set-4-wide">
                         @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "medium-label" })
@@ -463,7 +476,7 @@
                     <td id="ContribFactors_InjuryFollowUp" class="set-3-wide" style="padding-left: 10px">
                         @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "small-label" })
                     </td>
-                    <td class="set-4-wide">
+                    <td id="ContribFactors_InjuryFollowUpSelection" class="set-4-wide">
                         @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new { @class = "medium-textinput" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
@@ -568,6 +581,7 @@
             </table>
         </div>
         <hr />
+        <!-- Submit Button -->
         <div class="medium-label">
             <input type="button" value="Submit Incident" class="btn btn-default" onClick="(new confirmation()).inner();" />
         </div>
@@ -946,6 +960,19 @@
         }
     });
 
+    //display additional text input box if selected (in the dropdown) Injury Contributing Factor is "Other"
+    $(function displayInjuryContribFactorOtherText() {
+        $('#IRP_ContribInjuryItems').change(function () {
+            var value = $(this).val();
+            if (value == 'Other') {
+                $('#IRP_ContribInjuryOtherText').show();
+            }
+            else {
+                $('#IRP_ContribInjuryOtherText').hide();
+            }
+        });
+    });
+
     function confirmation() {
         var r = confirm("Are you sure you want to submit this incident?");
         if (r) {
@@ -973,6 +1000,7 @@
                     document.getElementById("ContribFactors_InjuryType").innerHTML = "";
                     document.getElementById("ContribFactors_InjuryBodyPart").innerHTML = "";
                     document.getElementById("ContribFactors_InjuryFollowUp").innerHTML = "";
+                    document.getElementById("IRP_ContribInjuryOtherText").innerHTML = "";
                 }
                 //Physical Restraint
                 if (document.getElementById("cBox_PhysicalRestraint").checked == false) {
