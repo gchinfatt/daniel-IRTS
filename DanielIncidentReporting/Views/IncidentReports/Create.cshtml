@@ -390,7 +390,7 @@
                 <!-- Physical Aggression Items -->
                 <tr id="ContribFactors_PhysicalAggression">
                     <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_ContribPhysicalAggression, htmlAttributes: new { @class = "medium-label" })
+                        @Html.LabelFor(model => model.IRP_ContribPhysicalAggression, htmlAttributes: new {@class = "medium-label"})
                     </td>
                     <td class="set-4-wide">
                         @Html.DropDownList("IRP_ContribPhysicalAggression", ViewBag.physicalAggressionItems as List<SelectListItem>, new { @class = "medium-textinput" })
@@ -450,6 +450,26 @@
                     <td class="set-3-wide" style="padding-left: 10px"></td>
                     <td class="set-2-5-wide"></td>
                 </tr>
+                <tr>
+                    <!-- Injury Body Part -->
+                <tr id="ContribFactors_InjuryBodyPart">
+                    <td class="set-4-wide">
+                        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new {@class = "medium-label"})
+                    </td>
+                    <td class="set-4-wide">
+                        @Html.TextBoxFor(model => model.IRP_BodyPart, new {@class = "medium-textinput", @placeholder = "Body Part"})
+                        @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new {@class = "text-danger"})
+                    </td>
+                    <!-- Injury FollowUp -->
+                    <td id="ContribFactors_InjuryFollowUp" class="set-3-wide" style="padding-left: 10px">
+                        @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new {@class = "small-label"})
+                    </td>
+                    <td id="ContribFactors_InjuryFollowUpSelection" class="set-4-wide">
+                        @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new {@class = "medium-textinput"})
+                    </td>
+                    <td class="set-3-wide" style="padding-left: 10px"></td>
+                    <td class="set-2-5-wide"></td>
+                </tr>
                 <tr id="IRP_ContribInjuryOtherText" style="display: none;">
                     <!-- Injury Contributing Factors "Other" Text Box -->
                     <td class="set-4-wide">
@@ -461,26 +481,6 @@
                         @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "large-textarea-tblBound", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
                     </td>
-                </tr>
-                <tr>
-                    <!-- Injury Body Part -->
-                <tr id="ContribFactors_InjuryBodyPart">
-                    <td class="set-4-wide">
-                        @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "medium-label" })
-                    </td>
-                    <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_BodyPart, new { @class = "medium-textinput", @placeholder = "Body Part" })
-                        @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
-                    </td>
-                    <!-- Injury FollowUp -->
-                    <td id="ContribFactors_InjuryFollowUp" class="set-3-wide" style="padding-left: 10px">
-                        @Html.LabelFor(model => model.IRP_InjuryFollowUp, htmlAttributes: new { @class = "small-label" })
-                    </td>
-                    <td id="ContribFactors_InjuryFollowUpSelection" class="set-4-wide">
-                        @Html.DropDownList("IRP_InjuryFollowUp", ViewBag.injuryFollowUpItems as List<SelectListItem>, new { @class = "medium-textinput" })
-                    </td>
-                    <td class="set-3-wide" style="padding-left: 10px"></td>
-                    <td class="set-2-5-wide"></td>
                 </tr>
                 <!-- Unplanned Hospitalization -->
                 <tr id="ContribFactors_UnplannedHospitalization">
