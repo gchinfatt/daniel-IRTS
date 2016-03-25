@@ -4,7 +4,8 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<br />
+<br/>
+
 <h4>Create a new account</h4>
 
 <div>
@@ -55,27 +56,32 @@
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(m => m.mgrPosition, new {@class = "small-label"})
-                        </td>
-                        <td>
-                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new {@class = "large-textinput"})
-                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new {@class = "text-danger"})
-                        </td>
-                    </tr>
+
+                
+                <tr>
+                            <td>
+                                @Html.LabelFor(m => m.mgrPosition, new { @class = "small-label" })
+                            </td>
+                            <td>
+                                @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new { @class = "large-textinput" })
+                                @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(m => m.Program, new { @class = "small-label" })
-                        </td>
-                        <td>
-                            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @class = "large-textinput" })
-                            @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
-                        </td>
-                    </tr>
+                    
+                        <tr id="ProgramsDD">
+                            <td>
+                                @Html.LabelFor(m => m.Program, new { @class = "small-label" })
+                            </td>
+                            <td>
+                                @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @class = "large-textinput" })
+                                @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
@@ -89,7 +95,26 @@
         </div>
     }
 </div>
-
+@*<script language="javascript" type="text/javascript">
+    
+//hides programs if position (in the dropdown) Position is "Risk Manager"
+    $(function ()
+    {
+        $('#mgrPosition').change(function ()
+        {
+            var value = $(this).val();
+            if (value == 'Risk Manager')
+            {
+                $('#ProgramsDD').hide();
+            }
+            else {
+                $('#ProgramsDD').show();
+            }
+        });
+    });*@
+</script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
