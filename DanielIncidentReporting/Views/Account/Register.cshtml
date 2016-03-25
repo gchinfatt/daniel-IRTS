@@ -4,7 +4,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
-<br/>
+<br />
 
 <h4>Create a new account</h4>
 
@@ -22,23 +22,11 @@
                 <table>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.Email, new {@class = "small-label"})
+                            @Html.LabelFor(m => m.Email, new { @class = "small-label" })
                         </td>
                         <td>
-                            @Html.TextBoxFor(m => m.Email, new {@class = "large-textinput", maxlength = "255"})
-                            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="spacer-height2" colspan="2"></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            @Html.LabelFor(m => m.Password, new {@class = "small-label"})
-                        </td>
-                        <td>
-                            @Html.PasswordFor(m => m.Password, new {@class = "large-textinput"})
-                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                            @Html.TextBoxFor(m => m.Email, new { @class = "large-textinput", maxlength = "255" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                     <tr>
@@ -46,42 +34,54 @@
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.ConfirmPassword, new {@class = "small-label"})
+                            @Html.LabelFor(m => m.Password, new { @class = "small-label" })
                         </td>
                         <td>
-                            @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "large-textinput"})
-                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                            @Html.PasswordFor(m => m.Password, new { @class = "large-textinput" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="spacer-height2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "small-label" })
+                        </td>
+                        <td>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "large-textinput" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </td>
                     </tr>
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
 
-                
-                <tr>
-                            <td>
-                                @Html.LabelFor(m => m.mgrPosition, new { @class = "small-label" })
-                            </td>
-                            <td>
-                                @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new { @class = "large-textinput" })
-                                @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
-                            </td>
-                        </tr>
-                    
+
+                    <tr>
+                        <td>
+                            @Html.LabelFor(m => m.mgrPosition, new { @class = "small-label" })
+                        </td>
+                        <td>
+                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new { @class = "large-textinput" })
+                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
-                    
-                        <tr id="ProgramsDD">
-                            <td>
-                                @Html.LabelFor(m => m.Program, new { @class = "small-label" })
-                            </td>
-                            <td>
-                                @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @class = "large-textinput" })
-                                @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
-                            </td>
-                        </tr>
-                    
+
+                    <tr id="ProgramsDD">
+                        <td>
+                            @Html.LabelFor(m => m.Program, new { @class = "small-label" })
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @class = "large-textinput" })
+                            @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
@@ -96,25 +96,23 @@
     }
 </div>
 @*<script language="javascript" type="text/javascript">
-    
-//hides programs if position (in the dropdown) Position is "Risk Manager"
-    $(function ()
-    {
-        $('#mgrPosition').change(function ()
+
+    //hides programs if position (in the dropdown) Position is "Risk Manager"
+        $(function ()
         {
-            var value = $(this).val();
-            if (value == 'Risk Manager')
+            $('#mgrPosition').change(function ()
             {
-                $('#ProgramsDD').hide();
-            }
-            else {
-                $('#ProgramsDD').show();
-            }
+                var value = $(this).val();
+                if (value == 'Risk Manager')
+                {
+                    $('#ProgramsDD').hide();
+                }
+                else {
+                    $('#ProgramsDD').show();
+                }
+            });
         });
-    });*@
-</script>
+</script>*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-

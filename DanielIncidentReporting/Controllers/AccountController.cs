@@ -114,19 +114,19 @@ namespace DanielIncidentReporting.Controllers
             ApplicationUser deletedUser = context.Users.Find(userId);
 
             deletedUser.isActive = "0";
-            
+
             context.Users.Remove(deletedUser);
             context.SaveChanges();
             ViewBag.deleteduser = deletedUser.Email;
             return View("DeleteUserConfirmation");
         }
-        
+
         public AccountController()
         {
 
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -138,9 +138,9 @@ namespace DanielIncidentReporting.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -235,7 +235,7 @@ namespace DanielIncidentReporting.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -290,35 +290,35 @@ namespace DanielIncidentReporting.Controllers
             if (ModelState.IsValid)
             {
                 try
-                 {
-                    List < SelectListItem > list = new List<SelectListItem>();
-                    
+                {
+                    List<SelectListItem> list = new List<SelectListItem>();
+
                     foreach (var program in db.Programs)
                     {
                         if (program.Prg_Active.Equals("1"))
-                        { 
+                        {
                             list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
                         }
                     }
-                    
-                        SelectList programs = new SelectList(list, "Value", "Text");
-                        ViewBag.programs = programs;
-                    
+
+                    SelectList programs = new SelectList(list, "Value", "Text");
+                    ViewBag.programs = programs;
+
                     // Manager position dropdown list items - Gina Chin Fatt
-                    List < SelectListItem > managerItems = new List<SelectListItem>();
+                    List<SelectListItem> managerItems = new List<SelectListItem>();
                     managerItems.Add(new SelectListItem
                     {
                         Value = "-1",
                         Text = "Select manager position",
                         Selected = true,
                         Disabled = true
-                     });
+                    });
 
-                        managerItems.Add(new SelectListItem { Value = "Residential Manager", Text = "Residential Manager" });
-                        managerItems.Add(new SelectListItem { Value = "Department Director", Text = "Department Director" });
-                        managerItems.Add(new SelectListItem { Value = "Risk Manager", Text = "Risk Manager" });
-                    
-                        ViewBag.managerItems = managerItems;
+                    managerItems.Add(new SelectListItem { Value = "Residential Manager", Text = "Residential Manager" });
+                    managerItems.Add(new SelectListItem { Value = "Department Director", Text = "Department Director" });
+                    managerItems.Add(new SelectListItem { Value = "Risk Manager", Text = "Risk Manager" });
+
+                    ViewBag.managerItems = managerItems;
                 }
                 catch
                 {
@@ -326,7 +326,7 @@ namespace DanielIncidentReporting.Controllers
                 }
 
                 //In trying to remove the 'Username taken' error message, if delete UserName = model.Email - error message displays 'Name cannot be null or empty'
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition  = model.mgrPosition, Program = model.Program, isActive = model.isActive};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, mgrPosition = model.mgrPosition, Program = model.Program, isActive = model.isActive };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -348,7 +348,7 @@ namespace DanielIncidentReporting.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-            
+
         }
 
         //
@@ -398,7 +398,7 @@ namespace DanielIncidentReporting.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-            
+
         }
 
         //
