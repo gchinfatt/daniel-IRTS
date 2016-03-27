@@ -347,6 +347,42 @@ namespace DanielIncidentReporting.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            //pasted try/catch here to eliminate break when registering 'Risk Manager' with no program selected 3/25
+            try
+            {
+                List<SelectListItem> list = new List<SelectListItem>();
+
+                foreach (var program in db.Programs)
+                {
+                    if (program.Prg_Active.Equals("1"))
+                    {
+                        list.Add(new SelectListItem() { Value = program.Prg_Name, Text = program.Prg_Name });
+                    }
+                }
+
+                SelectList programs = new SelectList(list, "Value", "Text");
+                ViewBag.programs = programs;
+
+                // Manager position dropdown list items - Gina Chin Fatt
+                List<SelectListItem> managerItems = new List<SelectListItem>();
+                managerItems.Add(new SelectListItem
+                {
+                    Value = "-1",
+                    Text = "Select manager position",
+                    Selected = true,
+                    Disabled = true
+                });
+
+                managerItems.Add(new SelectListItem { Value = "Residential Manager", Text = "Residential Manager" });
+                managerItems.Add(new SelectListItem { Value = "Department Director", Text = "Department Director" });
+                managerItems.Add(new SelectListItem { Value = "Risk Manager", Text = "Risk Manager" });
+
+                ViewBag.managerItems = managerItems;
+            }
+            catch
+            {
+                return View();
+            }
             return View(model);
 
         }
