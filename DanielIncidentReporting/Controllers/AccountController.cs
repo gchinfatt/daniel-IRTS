@@ -287,6 +287,15 @@ namespace DanielIncidentReporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
+            //if (model.Program == null)
+            //{
+            //    model.Program = "Administration";
+            //    model.isActive = "0";
+            //    ModelState.Remove("Program");
+            //}
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+
             if (ModelState.IsValid)
             {
                 try
