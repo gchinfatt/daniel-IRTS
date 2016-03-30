@@ -116,30 +116,6 @@ h2, .h2 {
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
 }
 
-/*Commented output during testing -TJA (3/30 11:29am)*/
-/*set-17-wide*/
-/*.large-textarea{ 
-    max-width:66.47em;
-    min-width:23.46em;
-    max-height:25em;
-    min-height:10em;
-    display: block;
-    width: 66.47em;
-    height: 5em;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    color: #555555;
-    vertical-align: middle;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
-}*/
-
 /*Custom label classes*/
 .raptorLabel{
   min-height: 1px;
