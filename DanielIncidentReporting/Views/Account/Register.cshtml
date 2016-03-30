@@ -14,30 +14,30 @@
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
 
-            <hr />
+            <hr/>
 
-            @Html.ValidationSummary("", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.isActive, new { @Value = "1" })
             <div>
-                <table>
+                <table class="table-borderless">
                     <tr>
-                        <td>
-                            @Html.LabelFor(m => m.Email, new { @class = "small-label" })
+                        <td class="size-3-wide">
+                            @Html.LabelFor(m => m.Email, new { @class = "raptorLabel" })
                         </td>
-                        <td>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "large-textinput", maxlength = "255" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        <td class="size-6-wide">
+                            @Html.TextBoxFor(m => m.Email, new {@class = "raptorInputText", maxlength = "255"})
+                            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.Password, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.Password, new { @class = "raptorLabel" })
                         </td>
                         <td>
-                            @Html.PasswordFor(m => m.Password, new { @class = "large-textinput" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "raptorInputText" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -46,10 +46,10 @@
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "raptorLabel" })
                         </td>
                         <td>
-                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "large-textinput" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "raptorInputText" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -60,24 +60,24 @@
 
                     <tr>
                         <td>
-                            @Html.LabelFor(m => m.mgrPosition, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.mgrPosition, new { @class = "raptorLabel" })
                         </td>
                         <td>
-                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new {@class = "large-textinput"})
-                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new {@class = "text-danger"})
+                            @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new { @class = "raptorInputText" })
+                            @Html.ValidationMessageFor(m => m.mgrPosition, "", new { @class = "text-danger" })
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
 
                     <tr id="ProgramsDD">
                         <td>
-                            @Html.LabelFor(m => m.Program, new { @class = "small-label" })
+                            @Html.LabelFor(m => m.Program, new { @class = "raptorLabel" })
                         </td>
                         <td>
-                            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @id = "program", @class = "large-textinput" })
+                            @Html.DropDownListFor(m => m.Program, (SelectList)ViewBag.programs, new { @id = "program", @class = "raptorInputText" })
                             @Html.ValidationMessageFor(m => m.Program, "", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -95,26 +95,21 @@
         </div>
     }
 </div>
+
 <script language="javascript" type="text/javascript">
 
     //hides programs if position (in the dropdown) Position is "Risk Manager"
-        $(function ()
-        {
-            $('#mgrPosition').change(function ()
-            {
-                var value = $(this).val();
-                if (value == 'Risk Manager')
-                {
-                    $('#ProgramsDD').hide();
-                    //$('#program').val("Administration");
-                }
-                else {
-                    $('#ProgramsDD').show();
-                    $('#program').val(null);
-                }
-            });
+    $(function () {
+        $('#mgrPosition').change(function () {
+            var value = $(this).val();
+            if (value == 'Risk Manager') {
+                $('#ProgramsDD').hide();
+                //$('#program').val("Administration");
+            }
+            else {
+                $('#ProgramsDD').show();
+                $('#program').val(null);
+            }
         });
+    });
 </script>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

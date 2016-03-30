@@ -14,19 +14,19 @@
         <div>
 
             <hr />
-
             <div>
                 <h4>Delete User</h4>
                 <br />
-                <table>
+                <table class="table-borderless">
                     <tr>
-                        <td>
-                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "tiny-label" })
+                        <td class="size-1-wide">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "raptorLabel" })
                         </td>
-                        <td>
-                            @Html.DropDownList("userId", (SelectList)ViewBag.users, new { @class = "medium-textinput" })
+                        <td class="size-6-wide">
+                            @Html.DropDownList("userId", (SelectList)ViewBag.users, new { @class = "raptorInputText" })
                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>

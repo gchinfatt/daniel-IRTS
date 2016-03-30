@@ -9,31 +9,28 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
 
-
-
-
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top ">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @*@Html.ActionLink("Daniel IRTS", "Create", "IncidentReports", new { area = "" }, new { @class = "navbar-brand" })*@
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Daniel IRTS", "Create", "IncidentReports", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
 
-                <li>@Html.ActionLink("Report an Incident", "Create", "IncidentReports")</li>
-            </ul>
-            @Html.Partial("_LoginPartial")
+                    <li>@Html.ActionLink("Report an Incident", "Create", "IncidentReports")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
         </div>
     </div>
-</div>
     <!-- Daniel Kids Logo -->
     <div class="spacer-height1"></div>
     <div class="container body-content logo-image">

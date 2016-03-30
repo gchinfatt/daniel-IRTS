@@ -17,15 +17,17 @@
             <div>
                 <h4>Add New Program</h4>
                 <br />
-                <table>
+
+                <table class="table-borderless">
                     <tr>
-                        <td class="set-3-wide">
-                            @Html.Label("New Program Name", htmlAttributes: new { @class = "small-label" })
+                        <td class="size-3-wide">
+                            @Html.Label("New Program Name", htmlAttributes: new { @class = "raptorLabel" })
                         </td>
-                        <td>
-                            @Html.Editor("programName", new { htmlAttributes = new { @class = "medium-textinput", maxlength = "99" } })
+                        <td class="size-6-wide">
+                            @Html.Editor("programName", new { htmlAttributes = new { @class = "raptorInputText", maxlength = "99" } })
                             @Html.ValidationMessageFor(model => model.Prg_Name, "", new { @class = "text-danger" })
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>
@@ -52,15 +54,16 @@
             <div>
                 <h4>Delete Program</h4>
                 <br />
-                <table>
+                <table class="table-borderless">
                     <tr>
-                        <td class="set-3-wide">
-                            @Html.LabelFor(model => model.Prg_ID, htmlAttributes: new { @class = "small-label" })
+                        <td class="size-3-wide">
+                            @Html.LabelFor(model => model.Prg_ID, htmlAttributes: new { @class = "raptorLabel" })
                         </td>
-                        <td>
-                            @Html.DropDownList("programId", (SelectList)ViewBag.programs, new { @class = "medium-textinput" })
+                        <td class="size-6-wide">
+                            @Html.DropDownList("programId", (SelectList)ViewBag.programs, new { @class = "raptorInputText" })
                             @Html.ValidationMessageFor(model => model.Prg_ID, "", new { @class = "text-danger" })
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td class="spacer-height2" colspan="2"></td>

@@ -37,17 +37,21 @@ h2, .h2 {
 }
 
 .img-daniellogo {
-  border: 0;
-  width: 11.14em;
-  height:5em;
+    border: 0;
+    height: auto; 
+    width: auto; 
+    max-width: 11.14em; 
+    max-height: 5em;
 }
 
 .spacer-height1 {
     height: .5em;
+    max-height: .5em;
 }
 
 .spacer-height2 {
-    height: 1em;
+    height: auto;
+    max-height: 1em;
 }
 
 .row-margin{
@@ -57,11 +61,64 @@ h2, .h2 {
   margin-bottom: 5px
 }
 
+.table-borderless{
+  width:100%;
+  max-width: 100%;
+  table-layout: fixed;
+  background-color: transparent;
+}
+
+.table-borderless tr td, .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+    /*border: 1px solid black;*/
+}
+
 /* Uses all form-control traits, but also overrides the max-width set above */
 /*Intended for us with textareafor's but also works with textboxes*/
 
+/*Custom input classes*/
+.raptorInputText{
+  width: 100%;
+  max-width: none;
+  display: block;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.raptorInputTextArea{
+    width:100%;
+    max-width: 100%;
+    max-height:25em;
+    display: block;
+    height: 5em;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
+}
+
+/*Commented output during testing -TJA (3/30 11:29am)*/
 /*set-17-wide*/
-.large-textarea{ 
+/*.large-textarea{ 
     max-width:66.47em;
     min-width:23.46em;
     max-height:25em;
@@ -81,288 +138,114 @@ h2, .h2 {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
-}
+}*/
 
-/*set-17-wide*/
-.large-textarea-tblBound{ 
-    max-width:none;
-    min-width:5em;
-    max-height:none;
-    display: block;
-    width: 66.47em;
-    height: 5em;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    color: #555555;
-    vertical-align: middle;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; 
-}
-
-/*set-6-wide*/
-.extralarge-textinput{
-  max-width:none;
-  display: block;
-  width: 23.46em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-5-wide*/
-.large-textinput{
-  max-width:none;
-  display: block;
-  width: 19.55em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-4-wide*/
-.medium-textinput{
-  max-width:none;
-  display: block;
-  width: 15.64em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-3-wide*/
-.small-textinput{
-  max-width:none;
-  display: block;
-  width: 11.73em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-2-5-wide*/
-.tiny-2-5-textinput{
-  max-width:none;
-  display: block;
-  width: 10em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-2-wide*/
-.tiny-textinput{
-  max-width:none;
-  display: block;
-  width: 7.82em;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.428571429;
-  color: #555555;
-  vertical-align: middle;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-/*set-5-wide*/
-.large-label{
-  max-width:none;
-  width: 19.55em;
+/*Custom label classes*/
+.raptorLabel{
+  min-height: 1px;
+  padding-left: 0;
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-/*set-4-wide*/
-.medium-label{
+/*Custom size classes*/
+.size-1-wide{
+  width: 5%;
+}
+.size-2-wide{
+  width: 10%;
+}
+.size-3-wide{
+  width: 15%;
+}
+.size-4-wide{
+  width: 20%;
+}
+.size-5-wide{
+  width: 25%;
+}
+.size-6-wide{
+  width: 30%;
+}
+.size-7-wide{
+  width: 35%;
+}
+.size-8-wide{
+  width: 40%;
+}
+.size-9-wide{
+  width: 45%;
+}
+.size-10-wide{
+  width: 50%;
+}
+.size-11-wide{
+  width: 55%;
+}
+.size-12-wide{
+  width: 60%;
+}
+.size-13-wide{
+  width: 65%;
+}
+.size-14-wide{
+  width: 70%;
+}
+.size-15-wide{
+  width: 75%;
+}
+.size-16-wide{
+  width: 80%;
+}
+.size-17-wide{
+  width: 85%;
+}
+.size-18-wide{
+  width: 90%;
+}
+.size-19-wide{
+  width: 95%;
+}
+.size-20-wide{
+  width: 100%;
+}
+
+.size-1-wide,
+.size-2-wide,
+.size-3-wide,
+.size-4-wide,
+.size-5-wide,
+.size-6-wide,
+.size-7-wide,
+.size-8-wide,
+.size-9-wide,
+.size-10-wide,
+.size-11-wide,
+.size-12-wide,
+.size-13-wide,
+.size-14-wide,
+.size-15-wide,
+.size-16-wide,
+.size-17-wide,
+.size-18-wide,
+.size-19-wide,
+.size-20-wide{
+  min-height: 1px;
   max-width:none;
-  width: 15.64em;
+  padding-left: 0;
   padding-top: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/*set-3-wide*/
-.small-label{
-  max-width:none;
-  width: 11.73em;
-  padding-top: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/*set-2-5-wide*/
-.tiny-5-label{
-  max-width:none;
-  width: 10em;
-  padding-top: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/*set-2-wide*/
-.tiny-label{
-  max-width:none;
-  width: 7.82em;
-  padding-top: 1px;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-1-wide{
-  max-width:none;
-  width: 3.91em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-1-5-wide{
-  max-width:none;
-  width: 6em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-2-wide{
-  max-width:none;
-  width: 7.82em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-2-5-wide{
-  max-width:none;
-  width: 10em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-3-wide{
-  max-width:none;
-  width: 11.73em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-4-wide{
-  max-width:none;
-  width: 15.64em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-5-wide{
-  max-width:none;
-  width: 19.55em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-6-wide{
-  max-width:none;
-  width: 23.46em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-17-wide{
-  max-width:none;
-  width: 66.47em;
-  padding-left: 0px;
-  padding-top: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.set-21-wide{
-  max-width:none;
-  width: 82.11em;
-  padding-left: 0px;
-  padding-top: 0;
   margin-top: 0;
   margin-bottom: 0;
 }
 
 /*used for coloring when testing design layout - not for production/release -- TJA*/
 .tr-ruler{
-      background-color: dimgray;
+      background-color: yellow;
+}
+
+.td-end-color{
+  background-color: skyblue;
 }
 
 .td-center-color{

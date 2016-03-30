@@ -12,13 +12,44 @@
 
     <hr />
 
+
+    <!--******************************************************************************************************************-->
+    <!--******************************************************************************************************************-->
+    <!--******************************************************************************************************************-->
+    <table width="100%" height="100em" border="1">
+        <tr class="tr-ruler">
+            <td class="td-end-color"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="td-quarter-color"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="td-center-color"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="td-quarter-color"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="td-end-color"></td>
+        </tr>
+    </table>
+    <!--******************************************************************************************************************-->
+    <!--******************************************************************************************************************-->
+    <!--******************************************************************************************************************-->
     <!-- Program Name and Location -->
     <div>
         <table>
             <tr>
                 <!-- Program Name -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_ProgramName)
                     </label>
                 </td>
@@ -29,7 +60,7 @@
             <tr>
                 <!-- Location -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_Location)
                     </label>
                 </td>
@@ -48,7 +79,7 @@
             <tr>
                 <!-- Incident Date -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_IncidentDate)
                     </label>
                 </td>
@@ -58,7 +89,7 @@
                 </td>
                 <!-- Incident Time -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_IncidentTime)
                     </label>
                 </td>
@@ -70,7 +101,7 @@
             <tr>
                 <!-- Report Date -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_ReportDate)
                     </label>
                 </td>
@@ -91,7 +122,7 @@
         <table>
             <tr>
                 <td colspan="2">
-                    <label>
+                    <label class="raptorLabel">
                         Reported By
                     </label>
                 </td>
@@ -104,7 +135,7 @@
             <tr>
                 <!-- Prepared By First Name -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_PreparedByFirstName)
                     </label>
                 </td>
@@ -115,7 +146,7 @@
             <tr>
                 <!-- Prepared By Last Name -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_PreparedByLastName)
                     </label>
                 </td>
@@ -134,7 +165,7 @@
             <tr>
                 <!-- Report On -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_ReportOn)
                     </label>
                 </td>
@@ -145,7 +176,7 @@
             <tr>
                 <!-- Report On First Name -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
                     </label>
                 </td>
@@ -156,7 +187,7 @@
             <tr>
                 <!-- Report On Last Name -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_VictimLastName)
                     </label>
                 </td>
@@ -174,12 +205,12 @@
         <table>
             <tr>
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         Nature of Incident
                     </label>
                 </td>
                 <td colspan="7">
-                    <label>
+                    <label class="raptorLabel">
                         Contributing Factors
                     </label>
                 </td>
@@ -195,7 +226,7 @@
                 @if (Model.IRP_AbuseAllegation == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribAbuseAllegation)
                         </label>
                     </td>
@@ -215,7 +246,7 @@
                 @if (Model.IRP_PhysicalRestraint == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribPhysicalAggression)
                         </label>
                     </td>
@@ -223,7 +254,7 @@
                         @Html.DisplayFor(model => model.IRP_ContribPhysicalAggression)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_RestraintSTTime)
                         </label>
                     </td>
@@ -231,7 +262,7 @@
                         @Html.DisplayFor(model => model.IRP_RestraintSTTime)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_RestraintENTime)
                         </label>
                     </td>
@@ -247,7 +278,7 @@
                 @if (Model.IRP_PoliceFire == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribPoliceInvolvement)
                         </label>
                     </td>
@@ -255,7 +286,7 @@
                         @Html.DisplayFor(model => model.IRP_ContribPoliceInvolvement)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_PoliceRepNo)
                         </label>
                     </td>
@@ -273,7 +304,7 @@
                 @if (Model.IRP_Injury == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribInjuryItems)
                         </label>
                     </td>
@@ -281,7 +312,7 @@
                         @Html.DisplayFor(model => model.IRP_ContribInjuryItems)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_InjuryType)
                         </label>
                     </td>
@@ -289,7 +320,7 @@
                         @Html.DisplayFor(model => model.IRP_InjuryType)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_BodyPart)
                         </label>
                     </td>
@@ -297,7 +328,7 @@
                         @Html.DisplayFor(model => model.IRP_BodyPart)
                     </td>
                     <td class="set-2-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_InjuryFollowUp)
                         </label>
                     </td>
@@ -311,7 +342,7 @@
                 @if (Model.IRP_UnplannedHospitalization == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             Hospitalization
                         </label>
                     </td>
@@ -331,7 +362,7 @@
                 @if (Model.IRP_SexualEncounter == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribSexualEncounter)
                         </label>
                     </td>
@@ -351,7 +382,7 @@
                 @if (Model.IRP_Seclusion == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ContribSeclusion)
                         </label>
                     </td>
@@ -359,7 +390,7 @@
                         @Html.DisplayFor(model => model.IRP_ContribSeclusion)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_SeclusionSTTime)
                         </label>
                     </td>
@@ -367,7 +398,7 @@
                         @Html.DisplayFor(model => model.IRP_SeclusionSTTime)
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_SeclusionENTime)
                         </label>
                     </td>
@@ -384,7 +415,7 @@
                 @if (Model.IRP_Death == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_Death)
                         </label>
                     </td>
@@ -402,7 +433,7 @@
                 @if (Model.IRP_SuicideGestures == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_SuicideGestures)
                         </label>
                     </td>
@@ -420,7 +451,7 @@
                 @if (Model.IRP_AMA == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_AMA)
                         </label>
                     </td>
@@ -438,7 +469,7 @@
                 @if (Model.IRP_SubstanceAbuse == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_SubstanceAbuse)
                         </label>
                     </td>
@@ -456,7 +487,7 @@
                 @if (Model.IRP_MedicationError == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_MedicationError)
                         </label>
                     </td>
@@ -474,7 +505,7 @@
                 @if (Model.IRP_ClientGrievance == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ClientGrievance)
                         </label>
                     </td>
@@ -492,7 +523,7 @@
                 @if (Model.IRP_PropertyDamage == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_PropertyDamage)
                         </label>
                     </td>
@@ -510,7 +541,7 @@
                 @if (Model.IRP_PropertyMissing == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_PropertyMissing)
                         </label>
                     </td>
@@ -528,7 +559,7 @@
                 @if (Model.IRP_Theft == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_Theft)
                         </label>
                     </td>
@@ -546,7 +577,7 @@
                 @if (Model.IRP_Other == "1")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_Other)
                         </label>
                     </td>
@@ -570,7 +601,7 @@
             <tr>
                 <!-- Witness -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_Witness)
                     </label>
                 </td>
@@ -589,7 +620,7 @@
             <tr>
                 <!-- Notified -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_Notified)
                     </label>
                 </td>
@@ -608,7 +639,7 @@
             <tr>
                 <!-- Description -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_Description)
                     </label>
                 </td>
@@ -626,7 +657,7 @@
             <tr>
                 <!-- Risk Manager Comment -->
                 <td class="set-3-wide">
-                    <label>
+                    <label class="raptorLabel">
                         @Html.DisplayNameFor(model => model.IRP_RiskMgrComment)
                     </label>
                 </td>
@@ -644,7 +675,7 @@
         <table>
             <tr>
                 <td colspan="4">
-                    <label>
+                    <label class="raptorLabel">
                         Manager Approval Dates
                     </label>
                 </td>
@@ -659,7 +690,7 @@
                 @if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
                         </label>
                     </td>
@@ -667,7 +698,7 @@
                         @Model.IRP_ResMgrEmail
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
                         </label>
                     </td>
@@ -678,7 +709,7 @@
                 else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
                         </label>
                     </td>
@@ -692,7 +723,7 @@
                 @if (Model.IRP_DeptDirApprovedDate.ToShortDateString() != "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
                         </label>
                     </td>
@@ -700,7 +731,7 @@
                         @Model.IRP_DepDirEmail
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
                         </label>
                     </td>
@@ -711,7 +742,7 @@
                 else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_DepDirEmail)
                         </label>
                     </td>
@@ -725,7 +756,7 @@
                 @if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() != "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
                         </label>
                     </td>
@@ -733,7 +764,7 @@
                         @Model.IRP_RiskMgrEmail
                     </td>
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
                         </label>
                     </td>
@@ -744,7 +775,7 @@
                 else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
                 {
                     <td class="set-3-wide">
-                        <label>
+                        <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_RiskMgrEmail)
                         </label>
                     </td>
