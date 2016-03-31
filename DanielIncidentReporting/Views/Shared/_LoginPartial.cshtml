@@ -1,6 +1,7 @@
 ﻿@using DanielIncidentReporting.Models
 @using Microsoft.AspNet.Identity
 @using System.Net.Mail
+@using System.Web.UI.HtmlControls
 
 @if (Request.IsAuthenticated)
 {
@@ -16,8 +17,22 @@
             @{
                 MailAddress addr = new MailAddress(User.Identity.GetUserName());
                 var uname = addr.User;
-                @Html.ActionLink("Hello " + uname + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                
+                //original ActionLink - go back to this if no time to style solutions below
+                @*@Html.ActionLink("Hello " + uname + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+                
+                //temp fix - new ActionLink with no actionName or controllerName 
+                @Html.ActionLink("Hello " + uname + "!", null, null, routeValues: null, htmlAttributes: new { title = "Manage" })
+               
+                //we want to use this, but needs styling
+                @*<p>Hello @uname!</p>*@
+
             }
+            </li>
+        <li>
+            @Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+
          </li>
 
          @*code for risk manager functionality*@
@@ -28,8 +43,10 @@
         }
         @if (user.mgrPosition.Equals("Risk Manager"))
         {
-            <li>@Html.ActionLink("Manage Programs", "ManagePrograms", "Account")</li>
-            <li>@Html.ActionLink("Manage Users", "ManageUsers", "Account")</li>
+            @*<li>@Html.ActionLink("Manage Programs", "ManagePrograms", "Account")</li>
+            <li>@Html.ActionLink("Manage Users", "ManageUsers", "Account")</li>*@
+            <li>@Html.ActionLink("Programs", "ManagePrograms", "Account")</li>
+            <li>@Html.ActionLink("Users", "ManageUsers", "Account")</li>
             <li>@Html.ActionLink("Export", "ExportCSV", "IncidentReports")</li>
             <li>@Html.ActionLink("Search", "SearchByName", "IncidentReports")</li>
         }
