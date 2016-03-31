@@ -52,6 +52,7 @@
         <hr />
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IRP_ReportDate)
         @Html.HiddenFor(model => model.IRP_ID)
         @Html.HiddenFor(model => model.IRP_ApprovalLevelReq)
 

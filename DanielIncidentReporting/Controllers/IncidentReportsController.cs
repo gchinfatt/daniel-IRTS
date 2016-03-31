@@ -237,16 +237,18 @@ namespace DanielIncidentReporting.Controllers
 
         //POST ExportCSV
         [HttpPost]
-        public ActionResult ExportCSV(DateTime dateFrom, DateTime dateTo)
+        public ActionResult ExportCSV(ExportReport report)
         {
             List<IncidentReport> incidents = new List<IncidentReport>();
+            int lastRow = 1;
 
             //Filter incidents by date
             foreach (var incident in db.IncidentReports)
             {
-                if (incident.IRP_IncidentDate >= dateFrom && incident.IRP_IncidentDate <= dateTo)
+                if (incident.IRP_IncidentDate >= report.fromDate && incident.IRP_IncidentDate <= report.toDate)
                 {
                     incidents.Add(incident);
+                    lastRow++;
                 }
             }
 
@@ -254,35 +256,125 @@ namespace DanielIncidentReporting.Controllers
             StringBuilder sb = new StringBuilder();
 
             //Column headers
-            sb.AppendLine("Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" + "," + "Incident Date" + "," + "Victim First Name" +
-                    "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," + "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" +
-                    "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" + "," + "Reporter First Name" + "," + "Reporter Last Name" +
-                    "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," + "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" +
-                    "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," + "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
-                    "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," + "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." +
-                    "," + "Restraint Start Time" + "," + "Restraint End Time" + "," + "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" +
-                    "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" + "," + "CF: Injury Other Description" + "," + "CF: Unpl. Hosp." + "," + "CF: Sexual Encounter" + "," + "CF: Seclusion" +
-                    "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up");
+            string columnHeaders = "Id" + "," + "Program" + ", " + "Category" + ", " + "Location" + "," + "Report Date" +
+                                   "," + "Incident Date" + "," + "Victim First Name" +
+                                   "," + "Victim Last Name" + ", " + "Report On" + "," + "Res. Mgr. Email" + "," +
+                                   "Res. Mgr. Appr. Date" + "," + "Dep. Dir. Email" + "," + "Dep. Dir. Appr. Date" +
+                                   "," + "Risk Mgr. Email" + "," + "Risk Mgr. Appr. Date" + "," + "Risk Mgr. Comment" +
+                                   "," + "Reporter First Name" + "," + "Reporter Last Name" +
+                                   "," + "Description" + "," + "Witnesses" + "," + "Notifications" + "," +
+                                   "Abuse Allegation" + "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" +
+                                   "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
+                                   "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
+                                   "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
+                                   "Prop. Missing" + "," + "Theft" + "," + "Other" + "," + "Police Report Nbr." +
+                                   "," + "Restraint Start Time" + "," + "Restraint End Time" + "," +
+                                   "Seclusion Start Time" + "," + "Seclusion End Time" + "," + "CF: Abuse Allegation" +
+                                   "," + "CF: Phys. Restraint" + "," + "CF: Police Involvement" + "," + "CF: Injury" +
+                                   "," + "CF: Injury Other Description" + "," + "CF: Unpl. Hosp." + "," +
+                                   "CF: Sexual Encounter" + "," + "CF: Seclusion" +
+                                   "," + "Injury Type" + "," + "Injury Body Part" + "," + "Injury Follow Up";
+
+
+            
+            sb.AppendLine(columnHeaders);
 
             //Actual values of each filtered incident
             foreach (var incident in incidents)
             {
-                sb.AppendLine(incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " + incident.IRP_Location + "," + incident.IRP_ReportDate + "," + incident.IRP_IncidentDate + "," + incident.IRP_VictimFirstName +
-                    "," + incident.IRP_VictimLastName + "," + incident.IRP_ReportOn + "," + "Res. Email" + "," + incident.IRP_ResMgrApprovedDate + "," + "Dep. Dir. Email" + "," + incident.IRP_DeptDirApprovedDate + "," + "Risk Email" + "," + incident.IRP_RiskMgrApprovedDate +
-                    "," + incident.IRP_RiskMgrComment + "," + incident.IRP_PreparedByFirstName + "," + incident.IRP_PreparedByLastName + "," + incident.IRP_Description + "," + incident.IRP_Witness + "," + incident.IRP_Notified +
-                    "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," + incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," + incident.IRP_UnplannedHospitalization + "," + "AMA" + "," + incident.IRP_SexualEncounter +
-                    "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," + incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," + incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," + incident.IRP_PropertyDamage +
-                    "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," + incident.IRP_Other + "," + incident.IRP_PoliceRepNo + "," + incident.IRP_RestraintSTTime + "," + incident.IRP_RestraintENTime + "," + incident.IRP_SeclusionSTTime +
-                    "," + incident.IRP_SeclusionENTime + "," + incident.IRP_ContribAbuseAllegation + "," + incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement + "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribInjuryOtherText + "," + incident.IRP_ContribUnplannedHospitalization +
-                    "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," + incident.IRP_InjuryType + "," + incident.IRP_BodyPart + "," + incident.IRP_InjuryFollowUp); ;
+                string columnValues = incident.IRP_ID + "," + incident.IRP_ProgramName + ", " + incident.IRP_Category + ", " +
+                                  EscapeCSV(incident.IRP_Location) + "," + formatDate(incident.IRP_ReportDate) + "," +
+                                  formatDate(incident.IRP_IncidentDate) + "," + EscapeCSV(incident.IRP_VictimFirstName) +
+                                  "," + EscapeCSV(incident.IRP_VictimLastName) + "," + EscapeCSV(incident.IRP_ReportOn) + "," + EscapeCSV(incident.IRP_ResMgrEmail) +
+                                  "," + formatDate(incident.IRP_ResMgrApprovedDate) + "," + EscapeCSV(incident.IRP_DepDirEmail) + "," +
+                                  formatDate(incident.IRP_DeptDirApprovedDate) + "," + EscapeCSV(incident.IRP_RiskMgrEmail) + "," +
+                                  formatDate(incident.IRP_RiskMgrApprovedDate) +
+                                  "," + EscapeCSV(incident.IRP_RiskMgrComment) + "," + EscapeCSV(incident.IRP_PreparedByFirstName) + "," +
+                                  EscapeCSV(incident.IRP_PreparedByLastName) + "," + EscapeCSV(incident.IRP_Description) + "," +
+                                  EscapeCSV(incident.IRP_Witness) + "," + EscapeCSV(incident.IRP_Notified) +
+                                  "," + incident.IRP_AbuseAllegation + "," + incident.IRP_Death + "," +
+                                  incident.IRP_PoliceFire + "," + incident.IRP_SuicideGestures + "," +
+                                  incident.IRP_UnplannedHospitalization + "," + incident.IRP_AMA + "," +
+                                  incident.IRP_SexualEncounter +
+                                  "," + incident.IRP_SubstanceAbuse + "," + incident.IRP_MedicationError + "," +
+                                  incident.IRP_Injury + "," + incident.IRP_ClientGrievance + "," +
+                                  incident.IRP_PhysicalRestraint + "," + incident.IRP_Seclusion + "," +
+                                  incident.IRP_PropertyDamage +
+                                  "," + incident.IRP_PropertyMissing + "," + incident.IRP_Theft + "," +
+                                  incident.IRP_Other + "," + EscapeCSV(incident.IRP_PoliceRepNo) + "," +
+                                  EscapeCSV(incident.IRP_RestraintSTTime) + "," + EscapeCSV(incident.IRP_RestraintENTime) + "," +
+                                  EscapeCSV(incident.IRP_SeclusionSTTime) +
+                                  "," + EscapeCSV(incident.IRP_SeclusionENTime) + "," + incident.IRP_ContribAbuseAllegation + "," +
+                                  incident.IRP_ContribPhysicalAggression + "," + incident.IRP_ContribPoliceInvolvement +
+                                  "," + incident.IRP_ContribInjuryItems + "," + incident.IRP_ContribInjuryOtherText +
+                                  "," + incident.IRP_ContribUnplannedHospitalization +
+                                  "," + incident.IRP_ContribSexualEncounter + "," + incident.IRP_ContribSeclusion + "," +
+                                  EscapeCSV(incident.IRP_InjuryType) + "," + EscapeCSV(incident.IRP_BodyPart) + "," +
+                                  EscapeCSV(incident.IRP_InjuryFollowUp);
+
+                sb.AppendLine(columnValues); ;
             }
 
+            string totalHeaders = ",,,,,,,,,,,,,,,,,,,,," + "Abuse Allegation" +
+                                  "," + "Death" + "," + "Police/Fire" + "," + "Suicide Gestures" +
+                                  "," + "Unpl. Hospitalization" + "," + "AMA" + "," + "Sexual Encounter" + "," +
+                                  "Substance Abuse" + "," + "Med. Error" + "," + "Injury" + "," + "Client Grievance" +
+                                  "," + "Phys. Restraint" + "," + "Seclusion" + "," + "Prop. Damage" + "," +
+                                  "Prop. Missing" +
+                                  "," + "Theft" + "," + "Other";
+
+            string totalValues = ",,,,,,,,,,,,,,,,,,,," + "Total" + "," + "=SUM(V2: V" + lastRow + ")" + "," +
+                                 "=SUM(W2: w" + lastRow + ")" + "," + "=SUM(X2: X" + lastRow + ")" + "," + "=SUM(Y2: Y" +
+                                 lastRow + ")" + "," + "=SUM(Z2: Z" + lastRow + ")" +
+                                 "," + "=SUM(AA2: AA" + lastRow + ")" + "," + "=SUM(AB2: AB" + lastRow + ")" + "," +
+                                 "=SUM(AC2: AC" + lastRow + ")" + "," + "=SUM(AD2: AD" + lastRow + ")" + "," +
+                                 "=SUM(AE2: AE" + lastRow + ")" + "," + "=SUM(AF2: AF" + lastRow + ")" +
+                                 "," + "=SUM(AG2: AG" + lastRow + ")" + "," + "=SUM(AH2: AH" + lastRow + ")" + "," +
+                                 "=SUM(AI2: AI" + lastRow + ")" + "," + "=SUM(AJ2: AJ" + lastRow + ")" + "," +
+                                 "=SUM(AK2: AK" + lastRow + ")" + "," + "=SUM(AL2: AL" + lastRow + ")";
+            sb.AppendLine();
+            sb.AppendLine(totalHeaders);
+            sb.AppendLine(totalValues);
+            
+
             String csv = sb.ToString();
-            String reportName = "Incidents" + dateFrom.ToShortDateString() + "_" + dateTo.ToShortDateString() + ".csv";
+            String reportName = "Incidents" + report.fromDate.ToShortDateString() + "_" + report.toDate.ToShortDateString() + ".csv";
 
             return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
         }
 
+        public string formatDate(DateTime date)
+        {
+            string formattedDate = date.ToShortDateString();
+
+            if (formattedDate == "1/1/0001")
+            {
+                formattedDate = null;
+            }
+            return formattedDate;
+        }
+        public string EscapeCSV(string toEscape)
+        {
+            if (toEscape != null)
+            {
+                if (toEscape.Contains("\""))
+                {
+                    toEscape = toEscape.Replace("\"", "\"\"");
+                }
+
+                if (toEscape.Contains(","))
+                {
+                    toEscape = string.Format("\"{0}\"", toEscape);
+                }
+
+                if (toEscape.Contains(System.Environment.NewLine))
+                {
+                    toEscape = string.Format("\"{0}\"", toEscape);
+                }
+            }
+           
+            return toEscape;
+        }
         //GET search by name page
         public ActionResult SearchByName()
         {

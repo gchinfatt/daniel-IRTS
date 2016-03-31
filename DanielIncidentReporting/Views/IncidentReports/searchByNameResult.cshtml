@@ -22,6 +22,12 @@ else
                 @Html.DisplayNameFor(model => model.IRP_IncidentDate)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.IRP_VictimLastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_VictimFirstName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.IRP_ProgramName)
             </th>
             <th>
@@ -36,6 +42,12 @@ else
         <tr>
             <td>
                 @item.IRP_IncidentDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IRP_VictimLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IRP_VictimFirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IRP_ProgramName)
