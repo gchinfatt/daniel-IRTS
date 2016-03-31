@@ -131,6 +131,9 @@
                     <td class="size-2-wide">
                         @Html.RadioButton("IRP_ReportOn", "N/A") N/A
                     </td>
+                    @*<td id="validateChosenReportOn" class="text-danger" style="display: none;">
+                        * You must select 1 of the above options
+                    </td>*@
                     <td></td>
                 </tr>
             </table>
@@ -200,8 +203,7 @@
         </div>
 
         <hr />
-
-
+    
         <!-- Nature of Incident -->
         <div>
             <table class="table-borderless">
@@ -381,8 +383,6 @@
                 </tr>
             </table>
         </div>
-
-
 
         <!-- Contributing Factors -->
         <div id="ContribFactors" style='display: none;'>
@@ -929,6 +929,19 @@
         }
     }
 
+    ////Display proper fields of report on depending on which reportOn radio button is selected
+    //function validateReportOn() {
+    //    // read the value of the selected radio button
+    //    if (document.getElementById("IRP_ReportOn").checked)
+    //    {
+    //        $('#validateChosenReportOn').hide();
+    //    }
+    //    else
+    //    {
+    //        $('#validateChosenReportOn').show();
+    //    }
+    //}
+
     //Display proper fields of report on depending on which reportOn radio button is selected
     $(':radio[name=IRP_ReportOn]').change(function () {
         // read the value of the selected radio button
@@ -942,7 +955,7 @@
         } else if (value == 'N/A') {
             $('#reportOnClientNames').hide();
             $('#reportOnStaffNames').hide();
-        }
+        } 
     });
 
     //display additional text input box if selected (in the dropdown) Injury Contributing Factor is "Other"

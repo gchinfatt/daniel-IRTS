@@ -31,6 +31,7 @@ namespace DanielIncidentReporting.Models
         public DateTime IRP_IncidentDate { get; set; }
 
         [Display(Name = "Incident Time")]
+        [Required(ErrorMessage = "* Incident Time is required")]
         [StringLength(49, ErrorMessage = "* Incident Time can be no larger than 50 characters")]
         public string IRP_IncidentTime { get; set; }
 
@@ -45,7 +46,7 @@ namespace DanielIncidentReporting.Models
         public string IRP_VictimLastName { get; set; }
 
         [Display(Name = "Report On")]
-        [Required(ErrorMessage = "* Select at least one")]
+        [Required(ErrorMessage = "* You must select 1 of the above options")]
         public string IRP_ReportOn { get; set; }
 
         [Display(Name = "Residential Manager")]
