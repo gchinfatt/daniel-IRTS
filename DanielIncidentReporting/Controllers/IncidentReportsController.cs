@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using DanielIncidentReporting.Models;
 using System.Data.Entity.Validation;
 using System.Text;
+using System.Web.Services.Protocols;
 
 namespace DanielIncidentReporting.Controllers
 {
@@ -156,11 +157,12 @@ namespace DanielIncidentReporting.Controllers
             }
         }
         
+
         // Get: IncidentReports
         public ActionResult Index()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-
+            
             ApplicationUser user = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
             if (user != null)
             {
@@ -190,7 +192,7 @@ namespace DanielIncidentReporting.Controllers
                 }
 
             }
-            return View();
+          return View();
         }
 
         //GET: IncidentReports
@@ -280,6 +282,19 @@ namespace DanielIncidentReporting.Controllers
 
             return File(new System.Text.UTF8Encoding().GetBytes(csv), "text/csv", reportName);
         }
+
+        //GET search by name page
+        public ActionResult SearchByName()
+        {
+            return View();
+        }
+        //POST search by name page
+        [HttpPost]
+        public ActionResult SearchByName(String lastName)
+        {
+            return View("searchByNameResult", db.IncidentReports.Where(m => m.IRP_VictimLastName.Equals(lastName)));
+        }
+
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
         {

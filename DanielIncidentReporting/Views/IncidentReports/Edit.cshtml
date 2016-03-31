@@ -520,13 +520,13 @@
                 </tr>
                 <tr id="IRP_ContribInjuryOtherText" style="display: none;">
                     <!-- Injury Contributing Factors "Other" Text Box -->
-                    <td class="set-4-wide">
-                        <label class="raptorLabel" style="padding-left: .5em">
+                    <td>
+                        <label class="raptorLabel">
                             Injury Factors Description
                         </label>
                     </td>
                     <td colspan="5">
-                        @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -667,6 +667,7 @@
     var IRP_PoliceFireValue = '@Html.DisplayTextFor(model => model.IRP_PoliceFire)';
     var IRP_SexualEncounterValue = '@Html.DisplayTextFor(model => model.IRP_SexualEncounter)';
     var IRP_InjuryValue = '@Html.DisplayTextFor(model => model.IRP_Injury)';
+    var IRP_ContribInjuryItemsValue = '@Html.DisplayTextFor(model => model.IRP_ContribInjuryItems)';
     var IRP_InjuryContribOtherValue = '@Html.DisplayTextFor(model => model.IRP_ContribInjuryOtherText)';
     var IRP_PhysicalRestraintValue = '@Html.DisplayTextFor(model => model.IRP_PhysicalRestraint)';
     var IRP_SeclusionValue = '@Html.DisplayTextFor(model => model.IRP_Seclusion)';
@@ -1087,11 +1088,22 @@
 
     //display additional text input box if selected (in the dropdown) Injury Contributing Factor is "Other"
     $(function displayInjuryContribFactorOtherText() {
-        if (IRP_InjuryContribOtherValue == 'Other') {
+        if (IRP_ContribInjuryItemsValue == 'Other') {
             $('#IRP_ContribInjuryOtherText').show();
         } else {
             $('#IRP_ContribInjuryOtherText').hide();
         }
+    });
+
+    $(function displayInjuryContribFactorOtherText() {
+        $('#IRP_ContribInjuryItems').change(function () {
+            var value = $(this).val();
+            if (value == 'Other') {
+                $('#IRP_ContribInjuryOtherText').show();
+            } else {
+                $('#IRP_ContribInjuryOtherText').hide();
+            }
+        });
     });
 
     function confirmation() {

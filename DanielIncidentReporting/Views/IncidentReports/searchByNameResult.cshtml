@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DanielIncidentReporting.Models.IncidentReport>
+@{
+    ViewBag.Title = "searchByNameResult";
+}
+
+<h2>Manager Dashboard</h2>
+<hr />
+
+
+@if (Model.Count().Equals(0))
+{
+    <div style="text-align: left">
+        <p>No incidents found with that last name.</p>
+    </div>
+}
+else
+{
+    <h4>Incidents found</h4>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_IncidentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_ProgramName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IRP_Category)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {   
+        <tr>
+            <td>
+                @item.IRP_IncidentDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IRP_Category)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+            </td>
+        </tr>
+        }
+    </table> 
+}
+
+@Html.ActionLink("Back", "SearchByName")

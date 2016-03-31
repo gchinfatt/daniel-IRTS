@@ -256,7 +256,6 @@ namespace DanielIncidentReporting.Controllers
         {
             List<SelectListItem> list = new List<SelectListItem>();
             list.Add(new SelectListItem { Value = "", Text = "Program Name", Selected = true, Disabled = true });
-
             foreach (var program in db.Programs)
             {
                 if (program.Prg_Active.Equals("1"))
@@ -287,13 +286,13 @@ namespace DanielIncidentReporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-            //if (model.Program == null)
-            //{
-            //    model.Program = "Administration";
-            //    model.isActive = "0";
-            //    ModelState.Remove("Program");
-            //}
+            //this should only happen if you are registered as a Risk Manager.
+            if (model.Program == null)
+            {
+                model.Program = "Administration";
+                //model.isActive = "0";
+                ModelState.Remove("Program");
+            }
             //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)

@@ -181,7 +181,7 @@
                         <!-- Report On Last Name -->
                         <td class="size-3-wide">
                             <label class="raptorLabel">
-                                Staff First Name
+                                Staff Last Name
                             </label>
                         </td>
                         <td class="size-5-wide">
@@ -491,13 +491,13 @@
                 </tr>
                 <tr id="IRP_ContribInjuryOtherText" style="display: none;">
                     <!-- Injury Contributing Factors "Other" Text Box -->
-                    <td class="set-4-wide">
-                        <label class="raptorLabel" style="padding-left: .5em">
+                    <td>
+                        <label class="raptorLabel">
                             Injury Factors Description
                         </label>
                     </td>
                     <td colspan="5">
-                        @Html.TextBoxFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
                         @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -804,7 +804,7 @@
     });
     //Counter created to hold the number of checked nature of incident checkboxes which have corresponding contributing factors
     //This var is used to either display or hide the contributing factors section
-    var contribFactorsCounter = 0;
+    var contribFactorsCounter = 6;
 
     //Display Contrib Factors Dropdowns if corresponding nature of incident is checked
     function displayContrib(sender, contribFactorDiv, contribFactorItemsDiv) {
