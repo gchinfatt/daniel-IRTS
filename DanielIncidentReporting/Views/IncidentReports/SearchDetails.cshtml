@@ -277,16 +277,16 @@
                     </td>
                     if (Model.IRP_ContribInjuryItems == "Other")
                     {
-                        <tr>
-                            <td>
-                                <label class="raptorLabel">
-                                    Injury Description
-                                </label>
-                            </td>
-                            <td colspan="7">
-                                @Html.DisplayFor(model => model.IRP_ContribInjuryOtherText)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            <label class="raptorLabel">
+                                Injury Description
+                            </label>
+                        </td>
+                        <td colspan="7">
+                            @Html.DisplayFor(model => model.IRP_ContribInjuryOtherText)
+                        </td>
+                    </tr>
                     }
                     <td>
                         <label class="raptorLabel">
@@ -581,13 +581,13 @@
                 <tr>
                     @if (Model.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
                     {
-                      if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
-                      {
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                            </label>
-                        </td>
+                        if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
+                        {
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                                </label>
+                            </td>
                             <td>
                                 @Model.IRP_ResMgrEmail
                             </td>
@@ -599,20 +599,20 @@
                             <td>
                                 @Model.IRP_ResMgrApprovedDate.ToShortDateString()
                             </td>
-                      }
-                      else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
-                      {
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                            </label>
-                        </td>
+                        }
+                        else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                        {
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                                </label>
+                            </td>
                             <td>
                                 Pending
                             </td>
-                      }
+                        }
                     }
-                        
+
                 </tr>
                 <!-- Department Director Approval Date -->
                 <tr>
@@ -687,9 +687,13 @@
     </div>
 
     <p>
-        @Html.ActionLink("Back to List", "Index") |
+        <a href="javascript:void(0);" onclick="history.go(-1);">Back</a> |
         @Html.ActionLink("Edit", "Edit", new { id = Model.IRP_ID }) |
-        @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID }, new { onclick = "return confirm('Are you sure you want to apporve this incident?');" })
+        @if (Model.IRP_ApprovalLevelReq == "0" || Model.IRP_ApprovalLevelReq == "1" || Model.IRP_ApprovalLevelReq == "2")
+        {
+            @Html.ActionLink("Approve Incident", "Approve", new { id = Model.IRP_ID }, new { onclick = "return confirm('Are you sure you want to apporve this incident?');" })
+        }
+            
     </p>
 
     <script language="javascript" type="text/javascript">

@@ -178,7 +178,7 @@ namespace DanielIncidentReporting.Controllers
                     return
                         View(
                             db.IncidentReports.Where(
-                                m => m.IRP_ProgramName.Equals(user.Program) && m.IRP_ApprovalLevelReq.Equals("1")));
+                                m => m.IRP_ProgramName.Equals(user.Program) && (m.IRP_ApprovalLevelReq.Equals("0") || m.IRP_ApprovalLevelReq.Equals("1"))));
                 }
                 else if (user.mgrPosition.Equals("Risk Manager"))
                 {
@@ -387,6 +387,31 @@ namespace DanielIncidentReporting.Controllers
             return View("searchByNameResult", db.IncidentReports.Where(m => m.IRP_VictimLastName.Equals(lastName)));
         }
 
+        public ActionResult SearchDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            IncidentReport incidentReport = db.IncidentReports.Find(id);
+            if (incidentReport == null)
+            {
+                return HttpNotFound();
+            }
+
+            populateViewDataItems(null, null, id);
+
+            //ViewBag.mgrPosition
+            ApplicationDbContext context = new ApplicationDbContext();
+            ApplicationUser userPosition = context.Users.Where(m => m.UserName.Equals(User.Identity.Name)).FirstOrDefault();
+
+            String mgrPosition = userPosition.mgrPosition;
+
+            ViewBag.mgrPosition = mgrPosition;
+
+            return View(incidentReport);
+        }
+          
         // GET: IncidentReports/Details/5
         public ActionResult Details(int? id)
         {

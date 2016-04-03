@@ -349,6 +349,7 @@
     <Content Include="Views\IncidentReports\ExportCSV.cshtml" />
     <Content Include="Views\IncidentReports\searchByName.cshtml" />
     <Content Include="Views\IncidentReports\searchByNameResult.cshtml" />
+    <Content Include="Views\IncidentReports\SearchDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Edit\" />

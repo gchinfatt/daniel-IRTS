@@ -34,7 +34,7 @@ namespace DanielIncidentReporting.Controllers
 
             foreach (var program in db.Programs)
             {
-                if (program.Prg_Active.Equals("1"))
+                if (program.Prg_Active.Equals("1") && program.Prg_Name != "SIPP - Statewide In-patient Psychiatric Program")
                 {
                     list.Add(new SelectListItem() { Value = program.Prg_ID.ToString(), Text = program.Prg_Name });
                 }
