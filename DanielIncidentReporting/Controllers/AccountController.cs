@@ -286,8 +286,9 @@ namespace DanielIncidentReporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            
             //this should only happen if you are registered as a Risk Manager.
-            if (model.Program == null)
+            if (model.Program == null && model.mgrPosition == "Risk Manager")
             {
                 model.Program = "Administration";
                 //model.isActive = "0";
