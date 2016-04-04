@@ -98,18 +98,50 @@
 
 <script language="javascript" type="text/javascript">
 
-    //hides programs if position (in the dropdown) Position is "Risk Manager"
+    //original hides programs if position (in the dropdown) Position is "Risk Manager"
+    //$(function () {
+    //    $('#mgrPosition').change(function () {
+    //    var value = $(this).val();
+    //        if (value == 'Risk Manager') {
+    //            $('#ProgramsDD').hide();
+    //            //$('#program').val("Administration");
+    //        }
+    //        else {
+    //            $('#ProgramsDD').show();
+    //            $('#program').val(null);
+    //        }
+    //    });
+    //});
     $(function () {
         $('#mgrPosition').change(function () {
-            var value = $(this).val();
+        var value = $(this).val();
             if (value == 'Risk Manager') {
                 $('#ProgramsDD').hide();
+                $('#program').val(null);
                 //$('#program').val("Administration");
             }
             else {
                 $('#ProgramsDD').show();
-                $('#program').val(null);
+                $('#ProgramsDD').val(null);
+                //$('#program').val();
             }
         });
     });
+
+    //checks to see if risk manager is selected when page load - if risk manager is selected then programs dropdown is hidden
+    $(window).load(function () {
+        var x = $('#mgrPosition').val();
+        if (x == 'Risk Manager') {
+            $('#ProgramsDD').hide();
+            //$('#ProgramsDD').val();
+           
+            //return false;
+        } else {
+            $('#ProgramsDD').show();
+            //$('#program').val(null);
+        }
+    });
+   
+    
+   
 </script>
