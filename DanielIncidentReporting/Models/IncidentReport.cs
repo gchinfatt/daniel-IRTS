@@ -105,7 +105,7 @@ namespace DanielIncidentReporting.Models
         public string IRP_ProgramName { get; set; }
 
         [Display(Name = "Witness(es)")]
-        //[Required(ErrorMessage = "* Witness(es) is required")]
+        [Required(ErrorMessage = "* Witness(es) is(are) required. If the incident had no witness(es), enter: \u0022None\u0022.")]
         [StringLength(999, ErrorMessage = "* Witness(es) can be no larger than 1000 characters")]
         public string IRP_Witness { get; set; }
 
