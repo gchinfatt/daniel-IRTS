@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
@@ -394,6 +395,15 @@ namespace DanielIncidentReporting.Controllers
             }
             return View(model);
 
+        }
+
+        [HttpPost]
+        public JsonResult doesEmailExist(string Email)
+        {
+            var user = context.Users.Where(m => m.Email.Equals(Email));
+            //var user = Membership.GetUser(Email);
+
+            return Json(user == null);
         }
 
         //

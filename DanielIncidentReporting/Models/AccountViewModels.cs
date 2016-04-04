@@ -1,6 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 
 namespace DanielIncidentReporting.Models
@@ -70,6 +70,7 @@ namespace DanielIncidentReporting.Models
         [EmailAddress]
         [StringLength(256)]
         [Display(Name = "Email")]
+        [Remote("doesEmailExist", "Account", HttpMethod = "POST", ErrorMessage = "* Email already exists. Please enter a different email.")]
         public string Email { get; set; }
 
         [Required]
@@ -80,7 +81,7 @@ namespace DanielIncidentReporting.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
@@ -108,7 +109,7 @@ namespace DanielIncidentReporting.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
