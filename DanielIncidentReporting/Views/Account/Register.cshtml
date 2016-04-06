@@ -67,6 +67,8 @@
                         <td>
                             @Html.DropDownList("mgrPosition", ViewBag.managerItems as List<SelectListItem>, new {@class = "raptorInputText"})
                             @Html.ValidationMessageFor(m => m.mgrPosition, "", new {@class = "text-danger"})
+                            
+                            <td id="SIPPMessage">The program SIPP will be assigned to this position</td>
                         </td>
                     </tr>
 
@@ -82,6 +84,7 @@
                             @Html.DropDownListFor(m => m.Program, (SelectList) ViewBag.programs, new {@id = "program", @class = "raptorInputText"})
                             @Html.ValidationMessageFor(m => m.Program, "", new {@class = "text-danger"})
                         </td>
+                        
                     </tr>
 
                     <tr>
@@ -135,16 +138,19 @@
             var value = $(this).val();
             if (value == 'Risk Manager') {
                 $('#ProgramsDD').hide();
+                $('#SIPPMessage').hide();
                 $('#program').val(null);
                 //$('#program').val("Administration");
             }
             else if(value == 'Residential Manager') {
                 $('#ProgramsDD').hide();
+                $('#SIPPMessage').show();
                 $('#program').val(null);
                 //$('#program').val();
             }
             else {
                 $('#ProgramsDD').show();
+                $('#SIPPMessage').hide();
                 $('#program').val(null);
                 //$('#program').val();
             }
@@ -170,20 +176,24 @@
         var x = $('#mgrPosition').val();
         if (x == 'Risk Manager') {
             $('#ProgramsDD').hide();
+            $('#SIPPMessage').hide();
             //$('#ProgramsDD').val();
 
             //return false;
         }
         else if (x == 'Residential Manager') {
             $('#ProgramsDD').hide();
+            $('#SIPPMessage').show();
             //$('#program').val(null);
         }
         else if (x == 'Department Director') {
             $('#ProgramsDD').show();
+            $('#SIPPMessage').hide();
             //$('#program').val(null);
         }       
         else {
             $('#ProgramsDD').hide();
+            $('#SIPPMessage').hide();
             //$('#program').val(null);
         }
     });
