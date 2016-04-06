@@ -114,31 +114,76 @@
     //        }
     //    });
     //});
-    $(function() {
-        $('#mgrPosition').change(function() {
+    //$(function() {
+    //    $('#mgrPosition').change(function() {
+    //        var value = $(this).val();
+    //        if (value == 'Risk Manager') {
+    //            $('#ProgramsDD').hide();
+    //            $('#program').val(null);
+    //            //$('#program').val("Administration");
+    //        } else {
+    //            $('#ProgramsDD').show();
+    //            $('#ProgramsDD').val(null);
+    //            //$('#program').val();
+    //        }
+    //    });
+    //});
+
+    //WIP
+    $(function () {
+        $('#mgrPosition').change(function () {
             var value = $(this).val();
             if (value == 'Risk Manager') {
                 $('#ProgramsDD').hide();
                 $('#program').val(null);
                 //$('#program').val("Administration");
-            } else {
+            }
+            else if(value == 'Residential Manager') {
+                $('#ProgramsDD').hide();
+                $('#program').val(null);
+                //$('#program').val();
+            }
+            else {
                 $('#ProgramsDD').show();
-                $('#ProgramsDD').val(null);
+                $('#program').val(null);
                 //$('#program').val();
             }
         });
     });
 
-    //checks to see if risk manager is selected when page load - if risk manager is selected then programs dropdown is hidden
-    $(window).load(function() {
+    ////checks to see if risk manager is selected when page load - if risk manager is selected then programs dropdown is hidden
+    //$(window).load(function() {
+    //    var x = $('#mgrPosition').val();
+    //    if (x == 'Risk Manager') {
+    //        $('#ProgramsDD').hide();
+    //        //$('#ProgramsDD').val();
+
+    //        //return false;
+    //    } else {
+    //        $('#ProgramsDD').show();
+    //        //$('#program').val(null);
+    //    }
+    //});
+
+    //WIP - checks to see if risk manager or residential manager is selected when page load - if risk manager or residential manager is selected then programs dropdown is hidden
+    $(window).load(function () {
         var x = $('#mgrPosition').val();
         if (x == 'Risk Manager') {
             $('#ProgramsDD').hide();
             //$('#ProgramsDD').val();
 
             //return false;
-        } else {
+        }
+        else if (x == 'Residential Manager') {
+            $('#ProgramsDD').hide();
+            //$('#program').val(null);
+        }
+        else if (x == 'Department Director') {
             $('#ProgramsDD').show();
+            //$('#program').val(null);
+        }       
+        else {
+            $('#ProgramsDD').hide();
             //$('#program').val(null);
         }
     });

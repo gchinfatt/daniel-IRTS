@@ -295,6 +295,13 @@ namespace DanielIncidentReporting.Controllers
                 //model.isActive = "0";
                 ModelState.Remove("Program");
             }
+            //this should only happen if you are registered as a Residential Manager.
+            if (model.Program == null && model.mgrPosition == "Residential Manager")
+            {
+                model.Program = "SIPP - Statewide In-patient Psychiatric Program";
+                //model.isActive = "0";
+                ModelState.Remove("Program");
+            }
             //var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             if (ModelState.IsValid)
@@ -401,7 +408,6 @@ namespace DanielIncidentReporting.Controllers
         public JsonResult doesEmailExist(string Email)
         {
             var user = context.Users.Where(m => m.Email.Equals(Email));
-            //var user = Membership.GetUser(Email);
 
             return Json(user == null);
         }
