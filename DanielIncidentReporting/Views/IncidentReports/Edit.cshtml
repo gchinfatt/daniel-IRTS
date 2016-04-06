@@ -166,16 +166,18 @@
                     </td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td colspan="5">
+                        @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
             </table>
-            <!-- If report on CLIENT is selected -->
-            <div id="reportOnClientNames" style="display: none;">
+            <div id="reportOnNames" style="display: none;">
                 <table class="table-borderless">
                     <tr>
                         <!-- Report On First Name -->
                         <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Client First Name
-                            </label>
+                            <label id="reportOnWhoFirst" class="raptorLabel"></label>
                         </td>
                         <td class="size-5-wide">
                             @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "raptorInputText", @placeholder = "First Name" })
@@ -184,9 +186,7 @@
                         <td class="size-1-wide"></td>
                         <!-- Report On Last Name -->
                         <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Client Last Name
-                            </label>
+                            <label id="reportOnWhoLast" class="raptorLabel">                            </label>
                         </td>
                         <td class="size-5-wide">
                             @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "raptorInputText", @placeholder = "Last Name" })
@@ -195,40 +195,6 @@
                         <td></td>
                     </tr>
                 </table>
-            </div>
-            <!-- If report on STAFF is selected -->
-            <div id="reportOnStaffNames" style="display: none;">
-                <table class="table-borderless">
-                    <tr>
-                        <!-- Report On First Name -->
-                        <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Staff First Name
-                            </label>
-                        </td>
-                        <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "raptorInputText", @placeholder = "First Name" })
-                            @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
-                        </td>
-                        <td class="size-1-wide"></td>
-                        <!-- Report On Last Name -->
-                        <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Staff First Name
-                            </label>
-                        </td>
-                        <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "raptorInputText", @placeholder = "Last Name" })
-                            @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-            <!-- If "N/A" is selected -->
-            <div id="reportOnNA">
-                @Html.HiddenFor(model => model.IRP_VictimFirstName, new { @Value = "N/A" })
-                @Html.HiddenFor(model => model.IRP_VictimLastName, new { @Value = "N/A" })
             </div>
         </div>
 
@@ -685,6 +651,9 @@
     var IRP_TheftValue = '@Html.DisplayTextFor(model => model.IRP_Theft)';
     var IRP_OtherValue = '@Html.DisplayTextFor(model => model.IRP_Other)';
 
+    var IRP_VictimFirstNameValue = '@Html.DisplayTextFor(model => model.IRP_VictimFirstName)';
+    var IRP_VictimLastNameValue = '@Html.DisplayTextFor(model => model.IRP_VictimLastName)';
+
     function nullUncheckedNOIContrib() {
         //Abuse Allegation
         if (document.getElementById("cBox_AbuseAllegation").checked == false) {
@@ -1069,21 +1038,61 @@
         }
     }
 
+    //Display appropriate fields from selected radio button
+    //Used for onload, and page reload after catch for validation
+    var reportOnClientFirst = "Client First Name";
+    var reportOnClientLast = "Client Last Name";
+    var reportOnStaffFirst = "Staff First Name";
+    var reportOnStaffLast = "Staff Last Name";
+    var reportOnNAFirst = "First Name";
+    var reportOnNALast = "Last Name";
+    var selectedReportOn = $('input[name=IRP_ReportOn]:checked').val();
+
+    if (selectedReportOn == 'Client') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnClientFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnClientLast;
+        $('#reportOnNames').show();
+    } else if (selectedReportOn == 'Staff') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnStaffFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnStaffLast;
+        $('#reportOnNames').show();
+    } else if (selectedReportOn == 'N/A') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnNAFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnNALast;
+        document.getElementById("IRP_VictimFirstName").value = IRP_VictimFirstNameValue;
+        document.getElementById("IRP_VictimLastName").value = IRP_VictimLastNameValue;
+        $('#reportOnNames').hide();
+    }
+
     //Display proper fields of report on depending on which reportOn radio button is selected
     $(':radio[name=IRP_ReportOn]').change(function () {
-        // read the value of the selected radio button
+        var reportOnClientFirst = "Client First Name";
+        var reportOnClientLast = "Client Last Name";
+        var reportOnStaffFirst = "Staff First Name";
+        var reportOnStaffLast = "Staff Last Name";
+        var reportOnNAFirst = "First Name";
+        var reportOnNALast = "Last Name";
         var value = $(this).val();
+
+        // read the value of the selected radio button
         if (value == 'Client') {
-            $('#reportOnStaffNames').hide();
-            $('#reportOnClientNames').show();
-        }
-        else if (value == 'Staff') {
-            $('#reportOnClientNames').hide();
-            $('#reportOnStaffNames').show();
-        }
-        else if (value == 'N/A') {
-            $('#reportOnClientNames').hide();
-            $('#reportOnStaffNames').hide();
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnClientFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnClientLast;
+            document.getElementById("IRP_VictimFirstName").value = IRP_VictimFirstNameValue;
+            document.getElementById("IRP_VictimLastName").value = IRP_VictimLastNameValue;
+            $('#reportOnNames').show();
+        } else if (value == 'Staff') {
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnStaffFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnStaffLast;
+            document.getElementById("IRP_VictimFirstName").value = IRP_VictimFirstNameValue;
+            document.getElementById("IRP_VictimLastName").value = IRP_VictimLastNameValue;
+            $('#reportOnNames').show();
+        } else if (value == 'N/A') {
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnNAFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnNALast;
+            document.getElementById("IRP_VictimFirstName").value = "N/A";
+            document.getElementById("IRP_VictimLastName").value = "N/A";
+            $('#reportOnNames').hide();
         }
     });
 

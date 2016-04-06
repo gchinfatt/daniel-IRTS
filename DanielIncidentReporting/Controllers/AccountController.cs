@@ -404,13 +404,13 @@ namespace DanielIncidentReporting.Controllers
 
         }
 
-        [HttpPost]
-        public JsonResult doesEmailExist(string Email)
-        {
-            var user = context.Users.Where(m => m.Email.Equals(Email));
+        //[HttpPost]
+        //public JsonResult doesEmailExist(string Email)
+        //{
+        //    var user = context.Users.Where(m => m.Email.Equals(Email));
 
-            return Json(user == null);
-        }
+        //    return Json(user == null);
+        //}
 
         //
         // GET: /Account/ConfirmEmail

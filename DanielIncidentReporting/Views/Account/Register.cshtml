@@ -14,6 +14,8 @@
     {
         @Html.AntiForgeryToken()
 
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-horizontal">
 
             <hr/>
@@ -91,6 +93,7 @@
                         <td class="spacer-height2" colspan="2"></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td>
                             <input type="submit" class="btn btn-default" value="Register"/>
                         </td>

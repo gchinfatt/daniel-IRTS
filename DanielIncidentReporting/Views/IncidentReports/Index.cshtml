@@ -39,6 +39,67 @@ else
             {
                 if (item.IRP_ApprovalLevelReq == "2")
                 {
+                    //Display IRP_Category as red font
+                    if (item.IRP_Category == "Serious")
+                    {
+                        <tr>
+                            <td>
+                                @item.IRP_IncidentDate.ToShortDateString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                            </td>
+                            <td style="color:red;">
+                                @Html.DisplayFor(modelItem => item.IRP_Category)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new {id = item.IRP_ID})
+                            </td>
+                        </tr>
+                    }
+                    //Display IRP_Category as black font
+                    else if (item.IRP_Category == "Regular")
+                    {
+                        <tr>
+                            <td>
+                                @item.IRP_IncidentDate.ToShortDateString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_Category)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                //Display IRP_Category as red font
+                if (item.IRP_Category == "Serious")
+                {
+                    <tr>
+                        <td>
+                            @item.IRP_IncidentDate.ToShortDateString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                        </td>
+                        <td style="color:red;">
+                            @Html.DisplayFor(modelItem => item.IRP_Category)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                        </td>
+                    </tr>
+                }
+                //Display IRP_Category as black font
+                else if (item.IRP_Category == "Regular")
+                {
                     <tr>
                         <td>
                             @item.IRP_IncidentDate.ToShortDateString()
@@ -54,23 +115,6 @@ else
                         </td>
                     </tr>
                 }
-            }
-            else
-            {
-                <tr>
-                    <td>
-                        @item.IRP_IncidentDate.ToShortDateString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IRP_ProgramName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IRP_Category)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
-                    </td>
-                </tr>
             }
         }
     </table>
@@ -102,20 +146,42 @@ else
             {
                 if (item.IRP_ApprovalLevelReq == "0" || item.IRP_ApprovalLevelReq == "1")
                 {
-                    <tr>
-                        <td>
-                           @item.IRP_IncidentDate.ToShortDateString()
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IRP_ProgramName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IRP_Category)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details (Pending)", "Details", new {id = item.IRP_ID})
-                        </td>
-                    </tr>
+                    //Display IRP_Category as red font
+                    if (item.IRP_Category == "Serious")
+                    {
+                        <tr>
+                            <td>
+                                @item.IRP_IncidentDate.ToShortDateString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                            </td>
+                            <td style="color:red;">
+                                @Html.DisplayFor(modelItem => item.IRP_Category)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                            </td>
+                        </tr>
+                    }
+                    //Display IRP_Category as black font
+                    else if (item.IRP_Category == "Regular")
+                    {
+                        <tr>
+                            <td>
+                                @item.IRP_IncidentDate.ToShortDateString()
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IRP_Category)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                            </td>
+                        </tr>
+                    }
                 }
             }
         </table>

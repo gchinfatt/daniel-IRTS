@@ -13,20 +13,19 @@
 
         <table class="table-borderless">
             <tr>
-                <td class="size-2-wide">
-                    @Html.Label("Last Name", htmlAttributes: new { @class = "raptorLabel" })
+                <td class="size-3-wide">
+                    @Html.Label("Client Last Name", htmlAttributes: new { @class = "raptorLabel" })
                 </td>
                 <td class="size-5-wide">
                     @Html.TextBox("lastName", null, new {@class = "raptorInputText"})
                 </td>
                 <td></td>
             </tr>
+
             <tr>
-                <td class="spacer-height1"></td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Search" class="btn btn-default" />
+                <td></td>
+                <td class="size-5-wide">
+                    <input type="submit" value="Search" class="btn btn-default"/>
                 </td>
             </tr>
         </table>
