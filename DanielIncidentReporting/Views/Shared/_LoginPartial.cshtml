@@ -22,11 +22,12 @@
                 @*@Html.ActionLink("Hello " + uname + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
                 
                 //temp fix - new ActionLink with no actionName or controllerName 
-                @Html.ActionLink("Hello " + uname + "!", null, null, routeValues: null, htmlAttributes: new { title = "Manage" })
+                @*@Html.ActionLink("Hello " + uname + "!", null, null, routeValues: null, htmlAttributes: new { title = "Manage" })*@
                
                 //we want to use this, but needs styling
                 @*<p>Hello @uname!</p>*@
-
+                <a>Hello @uname!</a>
+                
             }
             </li>
         <li>
