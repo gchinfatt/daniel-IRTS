@@ -5,17 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.Web.Mvc;
 
 namespace DanielIncidentReporting.Models
 {
     public class ExportReport
     {
-        [Display(Name = "From")]
-        //[Required(ErrorMessage = "* Date From is required")]
+        [Display(Name = "Start Date")]
+        [Required]
         public DateTime fromDate { get; set; }
 
-        [Display(Name = "To")]
-        //[Required(ErrorMessage = "* Date To is required")]
+        [Display(Name = "End Date")]
+        [Required]
         public DateTime toDate { get; set; }
+
     }
 }

@@ -43,7 +43,7 @@
                         @Html.LabelFor(model => model.IRP_Location, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="size-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "raptorInputText", @placeholder = "Location" })
+                        @Html.TextBoxFor(model => model.IRP_Location, new { @class = "raptorInputText", @placeholder = "Location", @maxlength = "499" })
                         @Html.ValidationMessageFor(model => model.IRP_Location, "", new { @class = "text-danger" })
                     </td>
                     <td></td>
@@ -73,7 +73,7 @@
                         @Html.LabelFor(model => model.IRP_IncidentTime, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="size-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM" })
+                        @Html.TextBoxFor(model => model.IRP_IncidentTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM", @maxlength = "99" })
                         @Html.ValidationMessageFor(model => model.IRP_IncidentTime, "", new { @class = "text-danger" })
                     </td>
                     <td></td>
@@ -90,7 +90,7 @@
                         @Html.LabelFor(model => model.IRP_PreparedByFirstName, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="size-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_PreparedByFirstName, new { @class = "raptorInputText", @placeholder = "First Name" })
+                        @Html.TextBoxFor(model => model.IRP_PreparedByFirstName, new { @class = "raptorInputText", @placeholder = "First Name", @maxlength = "49" })
                         @Html.ValidationMessageFor(model => model.IRP_PreparedByFirstName, "", new { @class = "text-danger" })
                     </td>
                     <td class="size-1-wide"></td>
@@ -99,7 +99,7 @@
                         @Html.LabelFor(model => model.IRP_PreparedByLastName, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="size-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_PreparedByLastName, new { @class = "raptorInputText", @placeholder = "Last Name" })
+                        @Html.TextBoxFor(model => model.IRP_PreparedByLastName, new { @class = "raptorInputText", @placeholder = "Last Name", @maxlength = "49" })
                         @Html.ValidationMessageFor(model => model.IRP_PreparedByLastName, "", new { @class = "text-danger" })
                     </td>
                     <td></td>
@@ -131,79 +131,42 @@
                     <td class="size-2-wide">
                         @Html.RadioButton("IRP_ReportOn", "N/A") N/A
                     </td>
-                    @*<td id="validateChosenReportOn" class="text-danger" style="display: none;">
-                        * You must select 1 of the above options
-                    </td>*@
                     <td></td>
                 </tr>
+                <tr>
+                    <td colspan="5">
+                        @Html.ValidationMessageFor(model => model.IRP_ReportOn, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
             </table>
-            <!-- If report on CLIENT is selected -->
-            <div id="reportOnClientNames" style="display: none;">
+            <div id="reportOnNames" style="display: none;">
                 <table class="table-borderless">
                     <tr>
                         <!-- Report On First Name -->
                         <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Client First Name
-                            </label>
+                            <label id="reportOnWhoFirst" class="raptorLabel"></label>
                         </td>
                         <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "raptorInputText", @placeholder = "First Name" })
+                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "raptorInputText", @placeholder = "First Name", @maxlength = "99" })
                             @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
                         </td>
                         <td class="size-1-wide"></td>
                         <!-- Report On Last Name -->
                         <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Client Last Name
-                            </label>
+                            <label id="reportOnWhoLast" class="raptorLabel">                            </label>
                         </td>
                         <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "raptorInputText", @placeholder = "Last Name" })
+                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "raptorInputText", @placeholder = "Last Name", @maxlength = "99" })
                             @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
                         </td>
                         <td></td>
                     </tr>
                 </table>
-            </div>
-            <!-- If report on STAFF is selected -->
-            <div id="reportOnStaffNames" style="display: none;">
-                <table class="table-borderless">
-                    <tr>
-                        <!-- Report On First Name -->
-                        <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Staff First Name
-                            </label>
-                        </td>
-                        <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimFirstName, new { @class = "raptorInputText", @placeholder = "First Name" })
-                            @Html.ValidationMessageFor(model => model.IRP_VictimFirstName, "", new { @class = "text-danger" })
-                        </td>
-                        <td class="size-1-wide"></td>
-                        <!-- Report On Last Name -->
-                        <td class="size-3-wide">
-                            <label class="raptorLabel">
-                                Staff Last Name
-                            </label>
-                        </td>
-                        <td class="size-5-wide">
-                            @Html.TextBoxFor(model => model.IRP_VictimLastName, new { @class = "raptorInputText", @placeholder = "Last Name" })
-                            @Html.ValidationMessageFor(model => model.IRP_VictimLastName, "", new { @class = "text-danger" })
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-            <!-- If "N/A" is selected -->
-            <div id="reportOnNA">
-                @Html.HiddenFor(model => model.IRP_VictimFirstName, new { @Value = "N/A" })
-                @Html.HiddenFor(model => model.IRP_VictimLastName, new { @Value = "N/A" })
             </div>
         </div>
 
         <hr />
-    
+
         <!-- Nature of Incident -->
         <div>
             <table class="table-borderless">
@@ -419,7 +382,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintSTTime, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintSTTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM", @maxlength = "199" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Restraint End Time -->
@@ -427,7 +390,7 @@
                         @Html.LabelFor(model => model.IRP_RestraintENTime, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-2-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM" })
+                        @Html.TextBoxFor(model => model.IRP_RestraintENTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM", @maxlength = "199" })
                         @Html.ValidationMessageFor(model => model.IRP_RestraintENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -444,7 +407,7 @@
                         @Html.LabelFor(model => model.IRP_PoliceRepNo, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_PoliceRepNo, new { @class = "raptorInputText", @placeholder = "Police Report #" })
+                        @Html.TextBoxFor(model => model.IRP_PoliceRepNo, new { @class = "raptorInputText", @placeholder = "Police Report #", @maxlength = "199" })
                         @Html.ValidationMessageFor(model => model.IRP_PoliceRepNo, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
@@ -463,7 +426,7 @@
                         @Html.LabelFor(model => model.IRP_InjuryType, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "raptorInputText", @placeholder = "Injury Type" })
+                        @Html.TextBoxFor(model => model.IRP_InjuryType, new { @class = "raptorInputText", @placeholder = "Injury Type", @maxlength = "249" })
                         @Html.ValidationMessageFor(model => model.IRP_InjuryType, "", new { @class = "text-danger" })
                     </td>
                     <td class="set-3-wide" style="padding-left: 10px"></td>
@@ -476,7 +439,7 @@
                         @Html.LabelFor(model => model.IRP_BodyPart, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_BodyPart, new { @class = "raptorInputText", @placeholder = "Body Part" })
+                        @Html.TextBoxFor(model => model.IRP_BodyPart, new { @class = "raptorInputText", @placeholder = "Body Part", @maxlength = "249" })
                         @Html.ValidationMessageFor(model => model.IRP_BodyPart, "", new { @class = "text-danger" })
                     </td>
                     <!-- Injury FollowUp -->
@@ -497,7 +460,7 @@
                         </label>
                     </td>
                     <td colspan="5">
-                        @Html.TextAreaFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_ContribInjuryOtherText, new { @class = "raptorInputTextArea", @placeholder = "Describe the contributing factors for the injury - Maximum 1,000 characters allowed", @maxlength = "999" })
                         @Html.ValidationMessageFor(model => model.IRP_ContribInjuryOtherText, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -540,7 +503,7 @@
                         @Html.LabelFor(model => model.IRP_SeclusionSTTime, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-4-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM" })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionSTTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM", @maxlength = "199" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionSTTime, "", new { @class = "text-danger" })
                     </td>
                     <!-- Seclusion End Time -->
@@ -548,7 +511,7 @@
                         @Html.LabelFor(model => model.IRP_SeclusionENTime, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td class="set-2-5-wide">
-                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM" })
+                        @Html.TextBoxFor(model => model.IRP_SeclusionENTime, new { @class = "raptorInputText", @placeholder = "HH:MM AM/PM", @maxlength = "199" })
                         @Html.ValidationMessageFor(model => model.IRP_SeclusionENTime, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -563,7 +526,7 @@
                         @Html.LabelFor(model => model.IRP_Notified, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td>
-                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "raptorInputTextArea", @placeholder = "Notified Person Name, Position, Date of Notification - Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_Notified, new { @class = "raptorInputTextArea", @placeholder = "Notified Person Name, Position, Date of Notification - Maximum 1,000 characters allowed", @maxlength = "999" })
                         @Html.ValidationMessageFor(model => model.IRP_Notified, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -578,7 +541,7 @@
                         @Html.LabelFor(model => model.IRP_Description, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td>
-                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "raptorInputTextArea", @placeholder = "Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_Description, new { @class = "raptorInputTextArea", @placeholder = "Maximum 1,000 characters allowed", @maxlength = "999" })
                         @Html.ValidationMessageFor(model => model.IRP_Description, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -593,7 +556,7 @@
                         @Html.LabelFor(model => model.IRP_Witness, htmlAttributes: new { @class = "raptorLabel" })
                     </td>
                     <td>
-                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "raptorInputTextArea", @placeholder = "Witness Name - Maximum 1,000 characters allowed" })
+                        @Html.TextAreaFor(model => model.IRP_Witness, new { @class = "raptorInputTextArea", @placeholder = "Witness Name, Position, Date of Notification - Maximum 1,000 characters allowed", @maxlength = "999" })
                         @Html.ValidationMessageFor(model => model.IRP_Witness, "", new { @class = "text-danger" })
                     </td>
                 </tr>
@@ -929,33 +892,62 @@
         }
     }
 
-    ////Display proper fields of report on depending on which reportOn radio button is selected
-    //function validateReportOn() {
-    //    // read the value of the selected radio button
-    //    if (document.getElementById("IRP_ReportOn").checked)
-    //    {
-    //        $('#validateChosenReportOn').hide();
-    //    }
-    //    else
-    //    {
-    //        $('#validateChosenReportOn').show();
-    //    }
-    //}
+    //Display appropriate fields from selected radio button
+    //Used for onload, and page reload after catch for validation
+    var reportOnClientFirst = "Client First Name";
+    var reportOnClientLast = "Client Last Name";
+    var reportOnStaffFirst = "Staff First Name";
+    var reportOnStaffLast = "Staff Last Name";
+    var reportOnNAFirst = "First Name";
+    var reportOnNALast = "Last Name";
+    var selectedReportOn = $('input[name=IRP_ReportOn]:checked').val();
+
+    if (selectedReportOn == 'Client') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnClientFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnClientLast;
+        $('#reportOnNames').show();
+    } else if (selectedReportOn == 'Staff') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnStaffFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnStaffLast;
+        $('#reportOnNames').show();
+    } else if (selectedReportOn == 'N/A') {
+        document.getElementById("reportOnWhoFirst").innerHTML = reportOnNAFirst;
+        document.getElementById("reportOnWhoLast").innerHTML = reportOnNALast;
+        document.getElementById("IRP_VictimFirstName").value = "N/A";
+        document.getElementById("IRP_VictimLastName").value = "N/A";
+        $('#reportOnNames').hide();
+    }
 
     //Display proper fields of report on depending on which reportOn radio button is selected
     $(':radio[name=IRP_ReportOn]').change(function () {
-        // read the value of the selected radio button
+        var reportOnClientFirst = "Client First Name";
+        var reportOnClientLast = "Client Last Name";
+        var reportOnStaffFirst = "Staff First Name";
+        var reportOnStaffLast = "Staff Last Name";
+        var reportOnNAFirst = "First Name";
+        var reportOnNALast = "Last Name";
         var value = $(this).val();
+
+        // read the value of the selected radio button
         if (value == 'Client') {
-            $('#reportOnStaffNames').hide();
-            $('#reportOnClientNames').show();
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnClientFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnClientLast;
+            document.getElementById("IRP_VictimFirstName").value = "";
+            document.getElementById("IRP_VictimLastName").value = "";
+            $('#reportOnNames').show();
         } else if (value == 'Staff') {
-            $('#reportOnClientNames').hide();
-            $('#reportOnStaffNames').show();
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnStaffFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnStaffLast;
+            document.getElementById("IRP_VictimFirstName").value = "";
+            document.getElementById("IRP_VictimLastName").value = "";
+            $('#reportOnNames').show();
         } else if (value == 'N/A') {
-            $('#reportOnClientNames').hide();
-            $('#reportOnStaffNames').hide();
-        } 
+            document.getElementById("reportOnWhoFirst").innerHTML = reportOnNAFirst;
+            document.getElementById("reportOnWhoLast").innerHTML = reportOnNALast;
+            document.getElementById("IRP_VictimFirstName").value = "N/A";
+            document.getElementById("IRP_VictimLastName").value = "N/A";
+            $('#reportOnNames').hide();
+        }
     });
 
     //display additional text input box if selected (in the dropdown) Injury Contributing Factor is "Other"

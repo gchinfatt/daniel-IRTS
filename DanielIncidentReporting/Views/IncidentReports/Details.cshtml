@@ -99,6 +99,11 @@
                 <td></td>
             </tr>
             <tr>
+                <td>
+                <hr class="raptorhr">
+                </td>
+            </tr>
+            <tr>
                 <!-- Prepared By First Name -->
                 <td>
                     <label class="raptorLabel">
@@ -177,7 +182,7 @@
                     </label>
                 </td>
                 @if (Model.IRP_AbuseAllegation == "1" || Model.IRP_PhysicalRestraint == "1" || Model.IRP_PoliceFire == "1" || Model.IRP_Injury == "1" || Model.IRP_UnplannedHospitalization == "1" || Model.IRP_UnplannedHospitalization == "1" || Model.IRP_Seclusion == "1")
-                {
+            {
                     <td class="size-3-wide">
                         <label class="raptorLabel">
                             Contributing Factors
@@ -196,6 +201,21 @@
                 <td class="size-2-wide"></td>
                 <td></td>
             </tr>
+            @if (Model.IRP_AbuseAllegation == "1" || Model.IRP_PhysicalRestraint == "1" || Model.IRP_PoliceFire == "1" || Model.IRP_Injury == "1" || Model.IRP_UnplannedHospitalization == "1" || Model.IRP_UnplannedHospitalization == "1" || Model.IRP_Seclusion == "1")
+            {
+                <tr>
+                    <td colspan="2">
+                        <hr class="raptorhr">
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        <hr class="raptorhr">
+                    </td>
+                </tr> }
             <tr>
                 <!-- Items with Contributing Factors -->
                 <!-- Abuse Allegation -->
@@ -223,22 +243,22 @@
                     <td>
                         @Html.DisplayFor(model => model.IRP_ContribPhysicalAggression)
                     </td>
-                    <td>
-                        <label class="raptorLabel">
-                            @Html.DisplayNameFor(model => model.IRP_RestraintSTTime)
-                        </label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_RestraintSTTime)
-                    </td>
-                    <td>
-                        <label class="raptorLabel">
-                            @Html.DisplayNameFor(model => model.IRP_RestraintENTime)
-                        </label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_RestraintENTime)
-                    </td>
+                        <td>
+                            <label class="raptorLabel">
+                                @Html.DisplayNameFor(model => model.IRP_RestraintSTTime)
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_RestraintSTTime)
+                        </td>
+                        <td>
+                            <label class="raptorLabel">
+                                @Html.DisplayNameFor(model => model.IRP_RestraintENTime)
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_RestraintENTime)
+                        </td>
                 }
             </tr>
             <tr>
@@ -253,14 +273,14 @@
                     <td>
                         @Html.DisplayFor(model => model.IRP_ContribPoliceInvolvement)
                     </td>
-                    <td>
-                        <label class="raptorLabel">
-                            @Html.DisplayNameFor(model => model.IRP_PoliceRepNo)
-                        </label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_PoliceRepNo)
-                    </td>
+                        <td>
+                            <label class="raptorLabel">
+                                @Html.DisplayNameFor(model => model.IRP_PoliceRepNo)
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_PoliceRepNo)
+                        </td>
                 }
             </tr>
             <tr>
@@ -275,45 +295,45 @@
                     <td>
                         @Html.DisplayFor(model => model.IRP_ContribInjuryItems)
                     </td>
-                    if (Model.IRP_ContribInjuryItems == "Other")
-                    {
-                        <tr>
-                            <td>
-                                <label class="raptorLabel">
-                                    Injury Description
-                                </label>
-                            </td>
-                            <td colspan="7">
-                                @Html.DisplayFor(model => model.IRP_ContribInjuryOtherText)
-                            </td>
-                        </tr>
-                    }
+
                     <td>
                         <label class="raptorLabel">
                             @Html.DisplayNameFor(model => model.IRP_InjuryType)
                         </label>
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_InjuryType)
-                    </td>
-                    <td>
-                        <label class="raptorLabel">
-                            @Html.DisplayNameFor(model => model.IRP_BodyPart)
-                        </label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_BodyPart)
-                    </td>
-                    <td>
-                        <label class="raptorLabel">
-                            Follow Up
-                        </label>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_InjuryType)
+                        </td>
+                        <td>
+                            <label class="raptorLabel">
+                                @Html.DisplayNameFor(model => model.IRP_BodyPart)
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_BodyPart)
+                        </td>
+                        <td>
+                            <label class="raptorLabel">
+                                Follow Up
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IRP_InjuryFollowUp)
+                        </td>
+                    if (Model.IRP_ContribInjuryItems == "Other")
+                    {
+                    <tr>
+                        <td>
+                            <label class="raptorLabel">
+                                Injury Description
+                            </label>
+                        </td>
+                        <td colspan="7">
+                            @Html.DisplayFor(model => model.IRP_ContribInjuryOtherText)
+                        </td>
+                    </tr>
+                    }
                 }
-                </tr>
                 <tr>
                     <!-- Unplanned Hospitalization -->
                     @if (Model.IRP_UnplannedHospitalization == "1")
@@ -354,22 +374,22 @@
                         <td>
                             @Html.DisplayFor(model => model.IRP_ContribSeclusion)
                         </td>
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_SeclusionSTTime)
-                            </label>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.IRP_SeclusionSTTime)
-                        </td>
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_SeclusionENTime)
-                            </label>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(model => model.IRP_SeclusionENTime)
-                        </td>
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_SeclusionSTTime)
+                                </label>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.IRP_SeclusionSTTime)
+                            </td>
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_SeclusionENTime)
+                                </label>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.IRP_SeclusionENTime)
+                            </td>
                     }
                 </tr>
                 <tr>
@@ -577,42 +597,47 @@
                     <td class="size-2-wide"></td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td>
+                        <hr class="raptorhr">
+                    </td>
+                </tr>
                 <!-- Residential Manager Approval Date -->
                 <tr>
                     @if (Model.IRP_ProgramName.Equals("SIPP - Statewide In-patient Psychiatric Program"))
                     {
-                      if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
-                      {
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                            </label>
-                        </td>
-                            <td>
-                                @Model.IRP_ResMgrEmail
-                            </td>
+                        if (Model.IRP_ResMgrApprovedDate.ToShortDateString() != "1/1/0001")
+                        {
                             <td>
                                 <label class="raptorLabel">
-                                    @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+                                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
                                 </label>
                             </td>
                             <td>
-                                @Model.IRP_ResMgrApprovedDate.ToShortDateString()
+                                @Model.IRP_ResMgrEmail
                             </td>
-                      }
-                      else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
-                      {
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
-                            </label>
-                        </td>
+                                <td>
+                                    <label class="raptorLabel">
+                                        @Html.DisplayNameFor(model => model.IRP_ResMgrApprovedDate)
+                                    </label>
+                                </td>
+                                <td>
+                                    @Model.IRP_ResMgrApprovedDate.ToShortDateString()
+                                </td>
+                        }
+                        else if (Model.IRP_ResMgrApprovedDate.ToShortDateString() == "1/1/0001")
+                        {
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_ResMgrEmail)
+                                </label>
+                            </td>
                             <td>
                                 Pending
                             </td>
-                      }
+                        }
                     }
-                        
+
                 </tr>
                 <!-- Department Director Approval Date -->
                 <tr>
@@ -626,14 +651,14 @@
                         <td>
                             @Model.IRP_DepDirEmail
                         </td>
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
-                            </label>
-                        </td>
-                        <td>
-                            @Model.IRP_DeptDirApprovedDate.ToShortDateString()
-                        </td>
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_DeptDirApprovedDate)
+                                </label>
+                            </td>
+                            <td>
+                                @Model.IRP_DeptDirApprovedDate.ToShortDateString()
+                            </td>
                     }
                     else if (Model.IRP_DeptDirApprovedDate.ToShortDateString() == "1/1/0001")
                     {
@@ -659,14 +684,14 @@
                         <td>
                             @Model.IRP_RiskMgrEmail
                         </td>
-                        <td>
-                            <label class="raptorLabel">
-                                @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
-                            </label>
-                        </td>
-                        <td>
-                            @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
-                        </td>
+                            <td>
+                                <label class="raptorLabel">
+                                    @Html.DisplayNameFor(model => model.IRP_RiskMgrApprovedDate)
+                                </label>
+                            </td>
+                            <td>
+                                @Model.IRP_RiskMgrApprovedDate.ToShortDateString()
+                            </td>
                     }
                     else if (Model.IRP_RiskMgrApprovedDate.ToShortDateString() == "1/1/0001")
                     {

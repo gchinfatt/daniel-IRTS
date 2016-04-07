@@ -70,7 +70,7 @@ namespace DanielIncidentReporting.Models
         [EmailAddress]
         [StringLength(256)]
         [Display(Name = "Email")]
-        [Remote("doesEmailExist", "Account", HttpMethod = "POST", ErrorMessage = "* Email already exists. Please enter a different email.")]
+        //[Remote("doesEmailExist", "Account", HttpMethod = "POST", ErrorMessage = "Email already exists. Please enter a different email.")]
         public string Email { get; set; }
 
         [Required]
@@ -79,6 +79,7 @@ namespace DanielIncidentReporting.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        //[Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

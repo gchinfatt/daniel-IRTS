@@ -10,40 +10,65 @@
         $('.datepicker').datepicker(); //Initialise any date pickers
     });
 </script>
+    <h2>Export Incidents</h2>
 
-<h2>Export Incidents</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "Export" }))
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Select Dates</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <hr/>
 
-        <!-- Incident Date -->
-        <div class="form-group">
-            @Html.Label("From", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.fromDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", @placeholder = "MM/DD/YYYY" })
+    <h4>Select Dates</h4>
+
+    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+    <!-- Incident Date -->
+    <table class="table-borderless">
+        <tr>
+            <td class="size-2-wide">
+                @Html.LabelFor(model => model.fromDate, new { @class = "raptorLabel" })
+            </td>
+            <td class="size-5-wide">
+                @Html.TextBoxFor(model => model.fromDate, "{0:MM/dd/yyyy}", new { @class = "raptorInputText datepicker", @placeholder = "MM/DD/YYYY", @autocomplete = "off" })
                 @Html.ValidationMessageFor(model => model.fromDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.Label("To", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               @Html.TextBoxFor(model => model.toDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", @placeholder = "MM/DD/YYYY" })
-               @Html.ValidationMessageFor(model => model.toDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Export" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="size-2-wide">
+                @Html.LabelFor(model => model.toDate, new { @class = "raptorLabel" })
+            </td>
+            <td class="size-5-wide">
+                @Html.TextBoxFor(model => model.toDate, "{0:MM/dd/yyyy}", new { @class = "raptorInputText datepicker", @placeholder = "MM/DD/YYYY", @autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.toDate, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="Export" class="btn btn-default" onClick="validateRange();"/>
+            </td>
+        </tr>
+    </table>
 }
 
+<script language="javascript" type="text/javascript">
 
+    function validateRange() {
+        var startDate = $("#fromDate").val();
+        var endDate = $("#toDate").val();
+
+        if (startDate > endDate) {
+            var invalidDateRange = alert("Warning: End Date is earlier than Start Date");
+        } else
+        {
+            document.getElementById("Export").submit();
+
+        }    
+    }
+
+</script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

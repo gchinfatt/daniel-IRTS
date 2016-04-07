@@ -17,7 +17,7 @@
                     @Html.Label("Client Last Name", htmlAttributes: new { @class = "raptorLabel" })
                 </td>
                 <td class="size-5-wide">
-                    @Html.TextBox("lastName", null, new {@class = "raptorInputText"})
+                    @Html.TextBox("lastName", null, new {@class = "raptorInputText", @maxlength = "99" })
                 </td>
                 <td></td>
             </tr>

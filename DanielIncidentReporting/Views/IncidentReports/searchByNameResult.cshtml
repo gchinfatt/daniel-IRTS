@@ -3,7 +3,7 @@
     ViewBag.Title = "searchByNameResult";
 }
 
-<h2>Manager Dashboard</h2>
+<h2>Search Results</h2>
 <hr />
 
 
@@ -38,27 +38,55 @@ else
         </tr>
 
         @foreach (var item in Model)
-        {   
-        <tr>
-            <td>
-                @item.IRP_IncidentDate.ToShortDateString()
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IRP_VictimLastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IRP_VictimFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IRP_ProgramName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IRP_Category)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "SearchDetails", new { id = item.IRP_ID })
-            </td>
-        </tr>
+        {
+            //Display IRP_Category as red font
+            if (item.IRP_Category == "Serious")
+            {
+                <tr>
+                    <td>
+                        @item.IRP_IncidentDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_VictimLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_VictimFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                    </td>
+                    <td style="color:red;">
+                        @Html.DisplayFor(modelItem => item.IRP_Category)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                    </td>
+                </tr>
+            }
+            //Display IRP_Category as black font
+            else if (item.IRP_Category == "Regular")
+            {
+                <tr>
+                    <td>
+                        @item.IRP_IncidentDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_VictimLastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_VictimFirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_ProgramName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IRP_Category)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.IRP_ID })
+                    </td>
+                </tr>
+            }
         }
     </table> 
 }

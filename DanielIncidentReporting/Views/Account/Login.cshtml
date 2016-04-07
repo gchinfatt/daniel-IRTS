@@ -5,7 +5,6 @@
 }
 
 <div>
-    @*<div class="container">*@
     <h2>@ViewBag.Title</h2>
     <br />
     <h4>Contact your System Administrator to create your account.</h4>
@@ -23,7 +22,7 @@
             <tr>
             <!-- Email -->
             <td class="size-3-wide">
-                @Html.LabelFor(m => m.Email, new {@class = "customlabel"})
+                @Html.LabelFor(m => m.Email, new {@class = "raptorLabel" })
             </td>
             <td class="size-5-wide">
             @Html.TextBoxFor(m => m.Email, new {@class = "raptorInputText" })
@@ -38,7 +37,7 @@
                 <tr>
                     <!-- Password -->
                     <td>
-                        @Html.LabelFor(m => m.Password, new { @class = "customlabel" })
+                        @Html.LabelFor(m => m.Password, new { @class = "raptorLabel" })
                     </td>
                     <td>
                         @Html.PasswordFor(m => m.Password, new { @class = "raptorInputText" })
@@ -56,7 +55,7 @@
                     <td>
                         @Html.CheckBoxFor(m => m.RememberMe)
                         &nbsp;
-                            @Html.LabelFor(m => m.RememberMe, new { @class = "customlabel" })
+                            @Html.LabelFor(m => m.RememberMe, new { @class = "raptorLabel" })
                         </td>
                         <td></td>
                     </tr>

@@ -44,6 +44,16 @@ h2, .h2 {
     max-height: 5em;
 }
 
+.raptorhr {
+  height: 0;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+
 .spacer-height1 {
     height: .5em;
     max-height: .5em;
@@ -123,6 +133,15 @@ h2, .h2 {
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.contribLabel{
+  min-height: 1px;
+  padding-left: 0;
+  padding-top: 1px;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: normal;
 }
 
 /*Custom size classes*/
