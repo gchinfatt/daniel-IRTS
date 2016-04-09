@@ -287,7 +287,7 @@ namespace DanielIncidentReporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
+           
             //this should only happen if you are registered as a Risk Manager.
             if (model.Program == null && model.mgrPosition == "Risk Manager")
             {
@@ -442,7 +442,10 @@ namespace DanielIncidentReporting.Controllers
         {
             if (ModelState.IsValid)
             {
+                //retrieves user by email
                 var user = await UserManager.FindByNameAsync(model.Email);
+                //check if user exists or if user email / registration is not confirmed
+                user.EmailConfirmed = true;
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -450,10 +453,13 @@ namespace DanielIncidentReporting.Controllers
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
+                //uses GeneratePasswordResetTokenAsync and UserId to generate a token instead of Microsoft.AspNet.Identity.Owin.DataProtectorTokenProvider
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //generates  e-mail reset URL
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //sends password reset URL - should use SMTP
                 await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //redirects to ForgotPasswordConfirmation page
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
