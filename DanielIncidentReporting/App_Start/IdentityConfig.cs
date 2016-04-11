@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -19,13 +20,26 @@ namespace DanielIncidentReporting
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            var mailMessage= new MailMessage
-                ("me@example.com", message.Destination, message.Subject, message.Body);
+            ////code for sending email using Daniel SMTP
+            //var mailMessage= new MailMessage
+            //    ("me@example.com", message.Destination, message.Subject, message.Body);
+            //mailMessage.IsBodyHtml = true;
+            //using (var client = new SmtpClient("outlook.danielkids.org", 25))
+            //{
+            //    //uncomment this to run method
+            //    await client.SendMailAsync(mailMessage);
+            //}
+
+            //test code for sending email using gmail SMTP
+            var mailMessage = new MailMessage
+              ("me@example.com", "unfdkids@gmail.com", "test subject", "test body");
+
             mailMessage.IsBodyHtml = true;
-            using (var client = new SmtpClient("outlook.danielkids.org", 25))
+
+            using (var client = new SmtpClient("smtp.gmail.com", 465))
             {
-                //uncomment this to run method
-                //await client.SendMailAsync(mailMessage);
+               client.Credentials = new NetworkCredential("unfdkids", "raptormvc");
+               await client.SendMailAsync(mailMessage);
             }
             // Plug in your email service here to send an email.
             //return Task.FromResult(0);
