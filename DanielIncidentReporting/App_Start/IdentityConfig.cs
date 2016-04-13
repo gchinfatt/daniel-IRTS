@@ -21,8 +21,8 @@ namespace DanielIncidentReporting
         public async Task SendAsync(IdentityMessage message)
         {
             ////code for sending email using Daniel SMTP
-            //var mailMessage= new MailMessage
-            //    ("me@example.com", message.Destination, message.Subject, message.Body);
+            //var mailMessage = new MailMessage
+            //    ("incident@danielkids.org", message.Destination, message.Subject, message.Body);
             //mailMessage.IsBodyHtml = true;
             //using (var client = new SmtpClient("outlook.danielkids.org", 25))
             //{
@@ -30,21 +30,33 @@ namespace DanielIncidentReporting
             //    await client.SendMailAsync(mailMessage);
             //}
 
-            //test code for sending email using gmail SMTP
+            //code for sending email using Daniel SMTP - used this to send test email to Jim
             var mailMessage = new MailMessage
-              ("me@example.com", "unfdkids@gmail.com", "test subject", "test body");
-
+                ("incident@danielkids.org", "jwillard@danielkids.org", "IRTS Password Reset Test", "Hi Jim - This is a test for the IRTS password reset. Please let us know at unfdkids@gmail.com if you receive this email. Thank you.");
             mailMessage.IsBodyHtml = true;
-
-            using (var client = new SmtpClient("smtp.gmail.com", 465))
+            using (var client = new SmtpClient("outlook.danielkids.org", 25))
             {
-               client.Credentials = new NetworkCredential("unfdkids", "raptormvc");
-               await client.SendMailAsync(mailMessage);
+                //uncomment this to run method
+                await client.SendMailAsync(mailMessage);
             }
-            // Plug in your email service here to send an email.
-            //return Task.FromResult(0);
+
+
+
+            ////test code for sending email using gmail SMTP
+            //    var mailMessage = new MailMessage
+            //      ("unfdkids@gmail.com", "unfdkids@gmail.com", "test subject", "test body");
+
+            //    mailMessage.IsBodyHtml = true;
+
+            //    using (var client = new SmtpClient("smtp.gmail.com", 25))
+            //    {
+            //        client.Credentials = new NetworkCredential("unfdkids", "raptormvc");
+            //        await client.SendMailAsync(mailMessage);
+            //    }
+            //    // Plug in your email service here to send an email.
+            //    //return Task.FromResult(0);
+            }
         }
-    }
 
     public class SmsService : IIdentityMessageService
     {
