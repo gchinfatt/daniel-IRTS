@@ -32,7 +32,7 @@ namespace DanielIncidentReporting
 
             //code for sending email using Daniel SMTP - used this to send test email to Jim
             var mailMessage = new MailMessage
-                ("incident@danielkids.org", "jwillard@danielkids.org", "IRTS Password Reset Test", "Hi Jim - This is a test for the IRTS password reset. Please let us know at unfdkids@gmail.com if you receive this email. Thank you.");
+                ("incident@danielkids.org", message.Destination, message.Subject, message.Body);
             mailMessage.IsBodyHtml = true;
             using (var client = new SmtpClient("outlook.danielkids.org", 25))
             {
